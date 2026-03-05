@@ -14,7 +14,12 @@ return new class extends Migration
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-        });
+            $table->integer('id_categoria');
+            $table->string('marca');
+            $table->string('modelo');
+
+            $table->foreign('id_categoria')->references('id')->on('categorias');
+            });
     }
 
     /**

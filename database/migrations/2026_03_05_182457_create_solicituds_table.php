@@ -14,6 +14,15 @@ return new class extends Migration
         Schema::create('solicituds', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('id_trabajador');
+            $table->integer('id_admin');
+            $table->String('motivo');
+            $table->String('Estado');
+            $table->date('fecha_prestamo');
+            $table->date('fecha_devolucion');
+            $table->date('fecha_entraga')->nullable();
+
+
         });
     }
 
