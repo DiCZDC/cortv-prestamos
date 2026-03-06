@@ -8,7 +8,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 use Symfony\Component\HttpFoundation\Response;
 
-new #[Title('Two-factor authentication')] class extends Component {
+new #[Title('Autenticación de 2 pasos')] class extends Component {
     public bool $twoFactorEnabled;
 
     public bool $requiresConfirmation;
@@ -51,22 +51,22 @@ new #[Title('Two-factor authentication')] class extends Component {
 <section class="w-full">
     @include('partials.settings-heading')
 
-    <flux:heading class="sr-only">{{ __('Two-factor authentication settings') }}</flux:heading>
+    <flux:heading class="sr-only">{{ __('Configuración de Autenticación de 2 Pasos') }}</flux:heading>
 
     <x-pages::settings.layout
-        :heading="__('Two-factor authentication')"
-        :subheading="__('Manage your two-factor authentication settings')"
+        :heading="__('Autenticación de 2 pasos')"
+        :subheading="__('Maneja las configuraciones de tu autenticación de 2 pasos ')"
     >
         <div class="flex flex-col w-full mx-auto space-y-6 text-sm" wire:cloak>
             @if ($twoFactorEnabled)
                 <div class="space-y-4">
                     <div class="flex items-center gap-3">
-                        <flux:badge color="green">{{ __('Enabled') }}</flux:badge>
+                        <flux:badge color="green">{{ __('Activa') }}</flux:badge>
                     </div>
 
                     <flux:text>
-                        {{ __('With two-factor authentication enabled, you will be prompted for a secure, random pin during login, which you can retrieve from the TOTP-supported application on your phone.') }}
-                    </flux:text>
+                        {{ __('Cuando habilites la autenticación de 2 pasos, se te va a solicitar un pin de seguridad durante el inicio de sesión. Este pin se puede consultar desde una aplicación con soporte TOTP en tu telefono.') }}
+                        </flux:text>
 
                     <livewire:pages::settings.two-factor.recovery-codes :$requiresConfirmation />
 
@@ -77,18 +77,19 @@ new #[Title('Two-factor authentication')] class extends Component {
                             icon:variant="outline"
                             wire:click="disable"
                         >
-                            {{ __('Disable 2FA') }}
+                            {{ __('Desactivar 2FA') }}
                         </flux:button>
                     </div>
                 </div>
             @else
                 <div class="space-y-4">
                     <div class="flex items-center gap-3">
-                        <flux:badge color="red">{{ __('Disabled') }}</flux:badge>
+                        <flux:badge color="red">{{ __('Desactivado') }}</flux:badge>
                     </div>
 
                     <flux:text variant="subtle">
-                        {{ __('When you enable two-factor authentication, you will be prompted for a secure pin during login. This pin can be retrieved from a TOTP-supported application on your phone.') }}
+                        {{ __('
+                        Cuando habilites la autenticación de 2 pasos, se te va a solicitar un pin de seguridad durante el inicio de sesión. Este pin se puede consultar desde una aplicación con soporte TOTP en tu telefono.') }}
                     </flux:text>
 
                     <flux:modal.trigger name="two-factor-setup-modal">
@@ -98,7 +99,7 @@ new #[Title('Two-factor authentication')] class extends Component {
                             icon:variant="outline"
                             wire:click="$dispatch('start-two-factor-setup')"
                         >
-                            {{ __('Enable 2FA') }}
+                            {{ __('Activar 2FA') }}
                         </flux:button>
                     </flux:modal.trigger>
 

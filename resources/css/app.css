@@ -24,7 +24,7 @@
     --color-zinc-950: #0a0a0a;
 
     --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
+    --color-accent-content: #AE2B2F; /* Originalmente tenia var(--color-neutral-800) */
     --color-accent-foreground: var(--color-white);
 }
 
