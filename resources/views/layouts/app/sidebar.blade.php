@@ -15,10 +15,10 @@
                     <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Inicio') }}
                     </flux:sidebar.item>
-                    <flux:sidebar.item icon="file" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    <flux:sidebar.item icon="file" :href="route('prestamos.index')" :current="request()->routeIs('prestamos.index')" wire:navigate>
                         {{ __('Prestamos') }}
                     </flux:sidebar.item>
-                    <flux:sidebar.item icon="archive" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    <flux:sidebar.item icon="archive" :href="route('archivos.index')" :current="request()->routeIs('archivos.index')" wire:navigate>
                         {{ __('Archivo') }}
                     </flux:sidebar.item>
                     <flux:sidebar.item icon="truck" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
@@ -30,13 +30,6 @@
                     <flux:sidebar.item icon="airplay" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Equipo') }}
                     </flux:sidebar.item>
-                <flux:sidebar.item icon="home" :href="route('prestamos.index')" :current="request()->routeIs('prestamos.index')" wire:navigate>
-                        {{ __('Prestamos') }}
-                </flux:sidebar.item>    
-
-                <flux:sidebar.item icon="home" :href="route('archivos.index')" :current="request()->routeIs('archivos.index')" wire:navigate>
-                        {{ __('Archivos') }}
-                </flux:sidebar.item>    
 
 
                 </flux:sidebar.group>
