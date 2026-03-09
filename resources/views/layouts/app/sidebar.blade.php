@@ -12,13 +12,23 @@
 
             <flux:sidebar.nav>
                 <flux:sidebar.group :heading="__('Platform')" class="grid">
-                    <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    
+                <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
+                <flux:sidebar.item icon="home" :href="route('prestamos.index')" :current="request()->routeIs('prestamos.index')" wire:navigate>
+                        {{ __('Prestamos') }}
+                </flux:sidebar.item>    
+
+                <flux:sidebar.item icon="home" :href="route('archivos.index')" :current="request()->routeIs('archivos.index')" wire:navigate>
+                        {{ __('Archivos') }}
+                </flux:sidebar.item>    
+
+
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 
-            <flux:spacer />
+           <flux:spacer />
 
             <flux:sidebar.nav>
                 <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
