@@ -22,4 +22,4 @@ yarn-error.log
 /.vscode
 /.zed
 
-!vendor\livewire\flux\stubs\resources\views\flux
+!vendor/livewire/flux/stubs/resources/views/flux
