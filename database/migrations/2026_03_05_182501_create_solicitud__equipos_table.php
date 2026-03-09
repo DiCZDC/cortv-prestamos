@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('solicitud__equipos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('id_Unidad_Equipo');
-            $table->foreign('id_Unidad_Equipo')->references('id')->on('unidad__equipos');
+            $table->integer('id_solicitud');
+            $table->foreign('id_solicitud')->references('id')->on('solicituds');
+            $table->integer('id_unidad_Equipo');
+            $table->foreign('id_unidad_Equipo')->references('id')->on('unidad__equipos');
 
         });
     }

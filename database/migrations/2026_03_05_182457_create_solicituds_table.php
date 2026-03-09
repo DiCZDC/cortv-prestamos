@@ -17,10 +17,10 @@ return new class extends Migration
             $table->integer('id_trabajador');
             $table->integer('id_admin');
             $table->String('motivo');
-            $table->String('Estado');
+            $table->String('estado');
             $table->date('fecha_prestamo');
             $table->date('fecha_devolucion');
-            $table->date('fecha_entraga')->nullable();
+            $table->date('fecha_entrega')->nullable();
 
 
         });
