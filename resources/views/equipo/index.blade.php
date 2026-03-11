@@ -2,4 +2,5 @@
     <div>
         el index de equipo
     </div>
+    @livewire('equipo.table')
 </x-layouts::app>
