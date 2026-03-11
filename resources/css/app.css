@@ -26,6 +26,24 @@
     --color-accent: var(--color-neutral-800);
     --color-accent-content: #AE2B2F; /* Originalmente tenia var(--color-neutral-800) */
     --color-accent-foreground: var(--color-white);
+
+    --color-rojo_oscuro: #8B2427;
+    --color-rojo_claro: #AE2B2F;
+    --color-hueso: #FBFCFF;
+    --color-verde_palido: #8DAA91;
+    --color-azul_saturado: #279AF1;
+    --color-verde_oscuro: #506C64;
+    --color-gris_oscuro: #1E1E1E;
+    --color-gris_claro: #6C757D;
+    --color-azul_fondo: #F4F7F9;
+    --color-verde_claro: #76D245;
+    --color-verde_mid: #86D05E;
+    --color-azul_oscuro: #4969C4;
+    --color-naranja_logo: #ED8319;
+    --color-amarillo_logo: #EEC33B;
+
+    --color-rojo_hover: #C9686C;
+
 }
 
 @layer theme {

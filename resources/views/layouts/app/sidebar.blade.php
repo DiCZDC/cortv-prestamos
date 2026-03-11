@@ -15,25 +15,27 @@
                     <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Inicio') }}
                     </flux:sidebar.item>
-                    <flux:sidebar.item icon="file" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    <flux:sidebar.item icon="file" :href="route('prestamos.index')" :current="request()->routeIs('prestamos.index')" wire:navigate>
                         {{ __('Prestamos') }}
                     </flux:sidebar.item>
-                    <flux:sidebar.item icon="archive" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    <flux:sidebar.item icon="archive" :href="route('archivos.index')" :current="request()->routeIs('archivos.index')" wire:navigate>
                         {{ __('Archivo') }}
                     </flux:sidebar.item>
-                    <flux:sidebar.item icon="truck" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    <flux:sidebar.item icon="truck" :href="route('recepcion.index')" :current="request()->routeIs('recepcion.index')" wire:navigate>
                         {{ __('Recepción') }}
                     </flux:sidebar.item>
-                    <flux:sidebar.item icon="users" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    <flux:sidebar.item icon="users" :href="route('personal.index')" :current="request()->routeIs('personal.index')" wire:navigate>
                         {{ __('Personal') }}
                     </flux:sidebar.item>
-                    <flux:sidebar.item icon="airplay" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                    <flux:sidebar.item icon="airplay" :href="route('equipo.index')" :current="request()->routeIs('equipo.index')" wire:navigate>
                         {{ __('Equipo') }}
                     </flux:sidebar.item>
+
+
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 
-            <flux:spacer />
+           <flux:spacer />
 
             <flux:sidebar.nav>
                 <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
