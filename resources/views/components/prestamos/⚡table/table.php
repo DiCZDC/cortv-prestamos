@@ -11,7 +11,6 @@ new class extends Component
 {
 
     use WithPagination;
-    public $icon = 'database';
     public $sortBy = 'id';
     public $sortDirection = 'ASC';
 

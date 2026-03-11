@@ -8,7 +8,7 @@
                     {{ __('Equipo') }}
                 </span>
             </div>
-            <div>
+            <div class="mb-2 flex items-center gap-6 text-gris_claro">
                 <flux:icon name="database" class="inline h-6 w-6" />
                 <span class="text-sm text-muted-foreground">
                     {{ __('Equipo registrado.') }}
