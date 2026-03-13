@@ -28,8 +28,7 @@
                     @endif
                 </flux:table.cell>
                 <flux:table.cell>
-                    <button class="px-2 py-1 text-sm text-white bg-blue-500 rounded">Editar</button>
-                    <button class="px-2 py-1 text-sm text-white bg-red-500 rounded">Eliminar</button>
+                    <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
                 </flux:table.cell>
             </flux:table.row>
         @empty
