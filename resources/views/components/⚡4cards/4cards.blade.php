@@ -15,10 +15,10 @@
     />
     <livewire:card 
         titulo='Equipo más solicitado' 
-        descripcion="{{ $this->mas_solicitado->first()?->marca.' '.$this->mas_solicitado->first()?->modelo }}" 
+        descripcion='Conversor de audio'
         icono='award' 
-        color_text='text-black'
-    />    
+        color_text='black'
+    />
     <livewire:card 
         titulo='Equipo menos solicitado' 
         descripcion="{{ $this->menos_solicitado->first()?->marca.' '. $this->menos_solicitado->first()?->modelo }}" 
