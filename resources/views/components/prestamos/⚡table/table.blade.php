@@ -37,19 +37,21 @@
                 </flux:table.cell>
                 {{-- Estado del prestamo --}}
                 <flux:table.cell>
-                    @if($prestamo->fecha_entrega === null)
-                        <flux:badge size="sm" color="blue" inset="top bottom">
-                            Prestado
-                        </flux:badge>
-                    @elseif ($prestamo->fecha_prestamo > now())
-                        <flux:badge size="sm" color="amber" inset="top bottom">
-                            Pendiente
-                        </flux:badge>
-                    @else
-                        <flux:badge size="sm" color="green" inset="top bottom">
-                            Devuelto
-                        </flux:badge>
-                    @endif
+                    <flux:badge size="sm" :color="
+                        $prestamo->fecha_entrega === null
+                            ? 'blue'
+                            : ($prestamo->fecha_prestamo > now()
+                                ? 'amber'
+                                : 'green')
+                    " inset="top bottom">
+                        {{
+                            $prestamo->fecha_entrega === null
+                                ? 'Prestado'
+                                : ($prestamo->fecha_prestamo > now()
+                                    ? 'Pendiente'
+                                    : 'Devuelto')
+                        }}
+                    </flux:badge>
                 </flux:table.cell>
                 {{-- Fecha de prestamo --}}
                 <flux:table.cell variant="strong">
@@ -59,7 +61,14 @@
                     {{ $prestamo -> fecha_devolucion }}
                 </flux:table.cell>
                 <flux:table.cell variant="strong">
-                    {{ $prestamo -> fecha_entrega ?? 'Aun no devuelto' }}
+                    <flux:badge size="sm" 
+                            color="{{ ($prestamo->fecha_entrega && $prestamo->fecha_entrega <= $prestamo->fecha_devolucion) ? 
+                                    'green' : 
+                                    (($prestamo->fecha_entrega > $prestamo->fecha_devolucion) ? 
+                                    'red':'gray') }}" 
+                            inset="top bottom">
+                        {{ $prestamo->fecha_entrega ?? 'Aun no devuelto' }}
+                    </flux:badge>
                 </flux:table.cell>
                 <flux:table.cell>
                     <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
