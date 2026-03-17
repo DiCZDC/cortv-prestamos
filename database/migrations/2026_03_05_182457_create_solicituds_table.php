@@ -15,13 +15,16 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('id_trabajador');
-            $table->integer('id_admin');
+            $table->integer('id_admin')->nullable();
             $table->String('motivo');
             $table->String('estado');
             $table->date('fecha_prestamo');
             $table->date('fecha_devolucion');
             $table->date('fecha_entrega')->nullable();
 
+            $table->foreign('id_trabajador')->references('id')->on('users');
+            $table->foreign('id_admin')->references('id')->on('users');
+            
 
         });
     }
