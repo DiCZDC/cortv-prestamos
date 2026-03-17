@@ -16,6 +16,17 @@
                 <flux:table.cell>{{ $equipo->modelo}}</flux:table.cell>
                 <flux:table.cell>{{ $this->cant_equipos($equipo->id) }}</flux:table.cell>
                 <flux:table.cell>
+                    @if ($this->cant_equipos($equipo->id) > 0)
+                        <flux:badge size="sm" color="green" inset="top bottom">
+                            Disponible
+                        </flux:badge>
+                    @else
+                        <flux:badge size="sm" color="red" inset="top bottom">
+                            No hay unidades disponibles
+                        </flux:badge>
+                    @endif
+                </flux:table.cell>
+                <flux:table.cell>
                     <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
                 </flux:table.cell>
             </flux:table.row>
