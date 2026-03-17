@@ -3,13 +3,12 @@
     <livewire:modal-card
         name="modalDeudas"
         titulo="Mas deudas acumuladas xd"
-        descripcion="{{ $this->mas_deudas->first()?->name }}" 
         icono="thumbs-down"
         color-bg="bg-rojo_claro"
         color-text="text-hueso"
-        {{-- DATOS DEL MODAL --}}
         titulo-modal="Personal con más deudas acumuladas"
-        datos={{ $this->mas_deudas }}
+        {{-- name_table = "modal.tabla.deudores" --}}
+        :datos="$this->mas_deudas"
     />
     
     <livewire:card 

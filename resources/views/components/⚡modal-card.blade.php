@@ -5,7 +5,6 @@ use Livewire\Component;
 new class extends Component
 {
     public string $titulo;
-    public string $descripcion;
     public string $icono;
     public string $colorBg = 'bg-white';
     public string $colorText = 'text-black';
@@ -13,7 +12,13 @@ new class extends Component
     public string $name;
     public string $tituloModal;
     
-    public $datos; 
+    public string $name_table;
+    public $datos = [];
+
+    public function mount($datos = [])
+    {
+        $this->datos = $datos;
+    }
 };
 ?>
 
@@ -24,7 +29,7 @@ new class extends Component
             <livewire:card
                 :nombre_modal="$name"
                 :titulo="$titulo"
-                :descripcion="$datos -> first()?->name"
+                :descripcion="$datos->first()?->name"
                 :icono="$icono"
                 :color_bg="$colorBg"
                 :color_text="$colorText"
@@ -37,7 +42,7 @@ new class extends Component
         <div class="flex flex-col gap-4">
             <span class="font-semibold text-lg">{{ $tituloModal }}</span>
 
-
+            {{-- @livewire( $name_table , ['datos' => $datos]) --}}
            
         </div>
 
