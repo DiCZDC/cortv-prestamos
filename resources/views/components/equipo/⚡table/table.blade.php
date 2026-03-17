@@ -7,7 +7,6 @@
             <flux:table.column sortable :sorted="$this->sortBy === 'marca'" :direction="$this->sortDirection" wire:click="sort('marca')">Marca</flux:table.column>
             <flux:table.column sortable :sorted="$this->sortBy === 'modelo'" :direction="$this->sortDirection" wire:click="sort('modelo')">Modelo</flux:table.column>
             <flux:table.column>Unidades totales</flux:table.column>
-            <flux:table.column>Estado</flux:table.column>
             <flux:table.column>Acciones</flux:table.column>
         </flux:table.columns>
         @forelse ($this->equipos as $equipo )
@@ -32,6 +31,11 @@
                 </flux:table.cell>
             </flux:table.row>
         @empty
-            
+            <flux:table.row>
+                <flux:table.cell colspan="5" class="text-center py-4">
+                    No se encontraron equipos.
+                </flux:table.cell>
+            </flux:table.row>
         @endforelse
+        
 </div>

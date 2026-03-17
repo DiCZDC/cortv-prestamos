@@ -19,6 +19,7 @@
                     <flux:table.cell>{{ $persona->role }}</flux:table.cell>
                     <flux:table.cell>
                         <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
+                        
                     </flux:table.cell>
                 </flux:table.row>
             @empty
