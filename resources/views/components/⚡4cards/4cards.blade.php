@@ -1,5 +1,17 @@
 <div class="grid grid-cols-2 grid-rows-2 place-items-center content-center">
     
+    <livewire:modal-card
+        name="modalDeudas"
+        titulo="Mas deudas acumuladas"
+        descripcion="Israel Juarez"
+        icono="thumbs-down"
+        color-bg="bg-rojo_claro"
+        color-text="text-hueso"
+        {{-- DATOS DEL MODAL --}}
+        titulo-modal="Personal con más deudas acumuladas"
+        tipo="deudas"
+    />
+
     <livewire:card 
         titulo='Mas deudas acumuladas' 
         descripcion="{{ $this->mas_deudas->first()?->name }}" 
