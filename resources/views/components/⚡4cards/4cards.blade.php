@@ -15,7 +15,7 @@
     />
     <livewire:card 
         titulo='Equipo más solicitado' 
-        descripcion='Conversor de audio'
+        descripcion="{{ $this->mas_solicitado->first()?->marca.' '.$this->mas_solicitado->first()?->modelo}}"
         icono='award' 
         color_text='black'
     />

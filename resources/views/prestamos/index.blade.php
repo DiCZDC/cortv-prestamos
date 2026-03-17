@@ -20,5 +20,4 @@
         </div>
     </div>
     @livewire('prestamos.table')
-
 </x-layouts::app>

@@ -20,6 +20,11 @@
                 </flux:table.cell>
             </flux:table.row>
         @empty
-            
+            <flux:table.row>
+                <flux:table.cell colspan="5" class="text-center py-4">
+                    No se encontraron equipos.
+                </flux:table.cell>
+            </flux:table.row>
         @endforelse
+        
 </div>
