@@ -12,8 +12,8 @@ new class extends Component
     // PROPS PARA EL MODAL
     public string $name;
     public string $tituloModal;
-    public string $tipo; // 'deudas' | 'mantenimiento' | etc.
-     
+    
+    public $datos; 
 };
 ?>
 
@@ -24,7 +24,7 @@ new class extends Component
             <livewire:card
                 :nombre_modal="$name"
                 :titulo="$titulo"
-                :descripcion="$descripcion"
+                :descripcion="$datos -> first()?->name"
                 :icono="$icono"
                 :color_bg="$colorBg"
                 :color_text="$colorText"
@@ -37,13 +37,8 @@ new class extends Component
         <div class="flex flex-col gap-4">
             <span class="font-semibold text-lg">{{ $tituloModal }}</span>
 
-            @if(empty($datos))
-                <p class="text-sm text-gray-400">Cargando...</p>
-            @else
-                {{-- Slot dinámico según tipo --}}
-                @includeWhen($tipo === 'deudas', 'livewire.partials.tabla-deudores', ['datos' => $datos])
-                @includeWhen($tipo === 'mantenimiento', 'livewire.partials.tabla-mantenimiento', ['datos' => $datos])
-            @endif
+
+           
         </div>
 
         <div class="mt-6 flex justify-end">

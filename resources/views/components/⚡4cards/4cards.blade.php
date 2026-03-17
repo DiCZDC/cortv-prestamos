@@ -2,23 +2,16 @@
     
     <livewire:modal-card
         name="modalDeudas"
-        titulo="Mas deudas acumuladas"
-        descripcion="Israel Juarez"
+        titulo="Mas deudas acumuladas xd"
+        descripcion="{{ $this->mas_deudas->first()?->name }}" 
         icono="thumbs-down"
         color-bg="bg-rojo_claro"
         color-text="text-hueso"
         {{-- DATOS DEL MODAL --}}
         titulo-modal="Personal con más deudas acumuladas"
-        tipo="deudas"
+        datos={{ $this->mas_deudas }}
     />
-
-    <livewire:card 
-        titulo='Mas deudas acumuladas' 
-        descripcion="{{ $this->mas_deudas->first()?->name }}" 
-        icono='thumbs-down' 
-        color_bg='bg-rojo_claro' 
-        color_text='text-hueso'
-    />
+    
     <livewire:card 
         titulo='Mantenimiento' 
         descripcion='{{ $this->cant_mantenimiento ?? 0 }} equipos reportados necesitan revision' 
