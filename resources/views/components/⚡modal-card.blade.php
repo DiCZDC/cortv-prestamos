@@ -27,7 +27,7 @@ new class extends Component
 <div>
     {{-- Trigger: al click carga datos y abre el modal --}}
     <flux:modal.trigger :name="$name">
-        <div>
+        <div class="cursor-pointer">
             <livewire:card
                 :nombre_modal="$name"
                 :titulo="$titulo"
