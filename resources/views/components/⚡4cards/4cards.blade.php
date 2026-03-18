@@ -12,12 +12,14 @@
         :datos="$this->mas_deudas"
 
     />
+    {{-- ajhsadk --}}
     <livewire:card 
         titulo='Mantenimiento' 
         descripcion='{{ $this->cant_mantenimiento ?? 0 }} equipos reportados necesitan revision' 
         icono='wrench' 
         color_bg='bg-rojo_oscuro' color_text='text-hueso'
     />
+
     <livewire:modal-card
         name="modalMasSolicitudes"
         titulo="Equipo más solicitado"
