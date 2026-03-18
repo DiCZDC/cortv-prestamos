@@ -14,4 +14,5 @@
             </span>
         </div>
     </div>
+    @livewire('archivo.table')
 </x-layouts::app>
