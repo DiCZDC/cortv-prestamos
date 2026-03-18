@@ -7,6 +7,16 @@
             <div class="h-full relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
                 <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
             </div>
+            @role('admin')
+                <div class="h-full relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+                    SOY ADMIN
+                </div>
+            @endrole
+             @role('trabajador')
+                <div class="h-full relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+                    SOY TRABAJADOR
+                </div>
+            @endrole
             
         </div>
     

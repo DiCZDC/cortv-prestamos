@@ -8,7 +8,12 @@ use App\Models\{
     Equipo,
     Unidad_Equipo,
     Solicitud,
-    Solicitud_Equipo
+    Solicitud_Equipo,
+};
+
+use Spatie\Permission\Models\{
+    Role,
+    Permission
 };
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,7 +27,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
         
-        User::factory()->create([
+        $usuario = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
@@ -32,5 +37,13 @@ class DatabaseSeeder extends Seeder
         Solicitud::factory(500)->create();
         Unidad_Equipo::factory(1000)->create();
         Solicitud_Equipo::factory(1000)->create();
+        
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'trabajador']);
+
+        $usuario->assignRole('admin');
+        
+        // Permission::create(['name' => 'solicitar_prestamo']);
+        // Permission::create(['name' => 'ver_archivo']);
     }
 }
