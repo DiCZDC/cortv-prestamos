@@ -6,14 +6,16 @@ new class extends Component
 {
     public string $titulo;
     public string $icono;
-    public string $colorBg = 'bg-white';
-    public string $colorText = 'text-black';
+    public string $color_bg = 'bg-white';
+    public string $color_text = 'text-black';
     // PROPS PARA EL MODAL
     public string $name;
     public string $tituloModal;
+    // public string $table;
+    public string $table;
     
-    public string $name_table;
     public $datos = [];
+    public $descripcion;
 
     public function mount($datos = [])
     {
@@ -29,10 +31,10 @@ new class extends Component
             <livewire:card
                 :nombre_modal="$name"
                 :titulo="$titulo"
-                :descripcion="$datos->first()?->name"
+                :descripcion="$descripcion"
                 :icono="$icono"
-                :color_bg="$colorBg"
-                :color_text="$colorText"
+                :color_bg="$color_bg"
+                :color_text="$color_text"
             />
         </div>
     </flux:modal.trigger>
@@ -42,16 +44,9 @@ new class extends Component
         <div class="flex flex-col gap-4">
             <span class="font-semibold text-lg">{{ $tituloModal }}</span>
 
-            {{-- @livewire( $name_table , ['datos' => $datos]) --}}
+            <livewire:dynamic-component :component="$table" :datos="$datos" />
            
         </div>
 
-        <div class="mt-6 flex justify-end">
-            <flux:button
-                variant="primary"
-                x-on:click="$flux.modal('{{ $name }}').close()">
-                Cerrar
-            </flux:button>
-        </div>
     </flux:modal>
 </div>

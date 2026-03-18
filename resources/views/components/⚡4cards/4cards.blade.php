@@ -2,32 +2,44 @@
     
     <livewire:modal-card
         name="modalDeudas"
-        titulo="Mas deudas acumuladas xd"
+        titulo="Mas deudas acumuladas"
         icono="thumbs-down"
-        color-bg="bg-rojo_claro"
-        color-text="text-hueso"
+        color_bg="bg-rojo_claro"
+        color_text="text-hueso"
         titulo-modal="Personal con más deudas acumuladas"
-        {{-- name_table = "modal.tabla.deudores" --}}
+        table="modal.tabla.deudores"
+        :descripcion="$this->mas_deudas->first()?->name"
         :datos="$this->mas_deudas"
+
     />
-    
     <livewire:card 
         titulo='Mantenimiento' 
         descripcion='{{ $this->cant_mantenimiento ?? 0 }} equipos reportados necesitan revision' 
         icono='wrench' 
         color_bg='bg-rojo_oscuro' color_text='text-hueso'
     />
-    <livewire:card 
-        titulo='Equipo más solicitado' 
-        descripcion="{{ $this->mas_solicitado->first()?->marca.' '.$this->mas_solicitado->first()?->modelo}}"
-        icono='award' 
-        color_text='black'
+    <livewire:modal-card
+        name="modalMasSolicitudes"
+        titulo="Equipo más solicitado"
+        icono="award"
+        color_text="black"
+        titulo-modal="Equipo más solicitado"
+        table="modal.tabla.solicitudes"
+        :descripcion="$this->mas_solicitado->first()->modelo.' '.$this->mas_solicitado->first()->marca ?? 'N/A'"
+        :datos="$this->mas_solicitado"
     />
-    <livewire:card 
-        titulo='Equipo menos solicitado' 
-        descripcion="{{ $this->menos_solicitado->first()?->marca.' '. $this->menos_solicitado->first()?->modelo }}" 
-        icono='trending-down' 
+    
+    <livewire:modal-card
+        name="modalMenosSolicitudes"
+        titulo="Equipo menos solicitado"
+        icono="trending-down"
+
         color_bg='bg-black' 
         color_text='text-hueso'
+
+        titulo-modal="Equipo menos solicitado"
+        table="modal.tabla.solicitudes"
+        :descripcion="$this->menos_solicitado->first()->modelo.' '.$this->menos_solicitado->first()->marca ?? 'N/A'"   
+        :datos="$this->menos_solicitado"
     />
 </div>
