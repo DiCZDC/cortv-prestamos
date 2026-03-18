@@ -6,10 +6,10 @@
         icono="thumbs-down"
         color_bg="bg-rojo_claro"
         color_text="text-hueso"
-        titulo-modal="Personal con más deudas acumuladas"
+        titulo-modal="Personal mas deudor"
         table="modal.tabla.deudores"
         :descripcion="$this->mas_deudas->first()?->name"
-        :datos="$this->mas_deudas"
+        :datos="$this->mas_deudas"    
 
     />
     {{-- ajhsadk --}}

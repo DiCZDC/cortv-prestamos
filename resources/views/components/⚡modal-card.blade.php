@@ -8,6 +8,7 @@ new class extends Component
     public string $icono;
     public string $color_bg = 'bg-white';
     public string $color_text = 'text-black';
+    public string $iconoT = "info";
     // PROPS PARA EL MODAL
     public string $name;
     public string $tituloModal;
@@ -35,14 +36,18 @@ new class extends Component
                 :icono="$icono"
                 :color_bg="$color_bg"
                 :color_text="$color_text"
+
             />
         </div>
     </flux:modal.trigger>
 
     {{-- Modal --}}
-    <flux:modal :name="$name" class="w-[500px] p-6 rounded-2xl">
+    <flux:modal :name="$name" class="w-auto p-6 rounded-2xl">
         <div class="flex flex-col gap-4">
-            <span class="font-semibold text-lg">{{ $tituloModal }}</span>
+            <div class="flex items-center gap-4">
+                <flux:icon name="{{ $iconoT }}" class="w-7 h-7 text-black" />
+                <span class="font-semibold text-lg">{{ $tituloModal }}</span>
+            </div>
 
             <livewire:dynamic-component :component="$table" :datos="$datos" />
            
