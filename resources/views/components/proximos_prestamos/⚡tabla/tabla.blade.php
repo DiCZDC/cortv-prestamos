@@ -3,16 +3,18 @@
         <flux:table.columns>
             
         <flux:table.column></flux:table.column>
-            <flux:table.column  class=" text-gris_claro! text-base! font-semibold" >Equipo</flux:table.column>
-            <flux:table.column class=" text-gris_claro! text-base! font-semibold" >Solicitante</flux:table.column>
-            <flux:table.column class=" text-gris_claro! text-base! font-semibold" >Tiempo</flux:table.column>
 
+            <x-componentes.header_table> Equipo </x-componentes.header_table>
+            <x-componentes.header_table> Solicitante </x-componentes.header_table>
+            <x-componentes.header_table> Fecha </x-componentes.header_table>    
+            
         </flux:table.columns>
 
         <flux:table.rows>
             <flux:table.row>
                 <flux:table.cell> <flux:icon name="video"> </flux:table.cell>
-                <flux:table.cell>Jul 29, 10:45 AM</flux:table.cell>
+                <flux:table.cell>Eveniet Cole Group</flux:table.cell>
+                <flux:table.cell variant="strong">Casas Veronica Andrea</flux:table.cell>
                 <flux:table.cell>
                  
                 <flux:badge
@@ -25,8 +27,7 @@
 
                 size="lg" inset="top bottom">Paid</flux:badge>
             
-            </flux:table.cell>
-                <flux:table.cell variant="strong">$49.00</flux:table.cell>
+                </flux:table.cell>
             </flux:table.row>
 
             <flux:table.row>

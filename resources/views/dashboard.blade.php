@@ -12,7 +12,7 @@
     
         <div class="grid auto-rows-min gap-4 md:grid-cols-2">
 
-            <div class="h-full relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+            <div class="h-full relative aspect-video overflow-hidden rounded-xl shadow-xl ">
                 <!-- Titulo de la tabla -->
                     <div class="flex flex-row justify-start items-center gap-3 px-8 pt-6">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
