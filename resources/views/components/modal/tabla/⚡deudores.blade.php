@@ -14,10 +14,10 @@ new class extends Component
 ?>
 
 <div>
-    <flux:table>
-        <flux:table.columns>
-            <flux:table.column>Nombre</flux:table.column>
-            <flux:table.column>Deudas Totales</flux:table.column>
+    <flux:table class="[&_table]:table-fixed!">
+        <flux:table.columns align="center">
+            <flux:table.column  >Nombre</flux:table.column>
+            <flux:table.column  >Deudas Totales</flux:table.column>
         </flux:table.columns>
 
         <flux:table.rows>
