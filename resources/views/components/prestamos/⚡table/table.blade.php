@@ -3,12 +3,9 @@
         <flux:table.columns>
             <flux:table.column sortable :sorted="$sortBy === 'id'" :direction="$sortDirection" wire:click="sort('id')">ID</flux:table.column>
             <flux:table.column>Trabajador</flux:table.column>
-            <flux:table.column>Administrador</flux:table.column>
             <flux:table.column>Motivo</flux:table.column>
-            <flux:table.column>Estado</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'fecha_prestamo'" :direction="$sortDirection" wire:click="sort('fecha_prestamo')">Fecha Préstamo</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'fecha_devolucion'" :direction="$sortDirection" wire:click="sort('fecha_devolucion')">Fecha Devolución</flux:table.column>
-            <flux:table.column sortable :sorted="$sortBy === 'fecha_entrega'" :direction="$sortDirection" wire:click="sort('fecha_entrega')">Fecha Real de Entrega</flux:table.column>
             <flux:table.column>Acciones</flux:table.column>
         </flux:table.columns>
 
@@ -24,42 +21,24 @@
                         {{ $prestamo->nombre_trabajador}}
                     </flux:table.cell>
 
-                    <flux:table.cell class="whitespace-nowrap">
-                        {{ $prestamo->nombre_admin}}
-                    </flux:table.cell>
 
                     <flux:table.cell class="whitespace-nowrap">
                         {{ Str::limit($prestamo->motivo, 30, '...') }}
                     </flux:table.cell>
 
-                    {{-- Estado del préstamo --}}
-                    <flux:table.cell>
-                        <flux:badge
-                            size="sm"
-                            :color="$prestamo->estado === 'Aprobada' ? 'green' : ($prestamo->estado === 'Pendiente' ? 'amber' : 'red')"
-                            inset="top bottom"
-                        >
-                            {{ $prestamo->estado }}
-                        </flux:badge>
-                    </flux:table.cell>
-
-                    <flux:table.cell variant="strong">{{ $prestamo->fecha_prestamo }}</flux:table.cell>
-                    <flux:table.cell variant="strong">{{ $prestamo->fecha_devolucion }}</flux:table.cell>
-
-                    {{-- Fecha real de entrega --}}
+                    
                     <flux:table.cell variant="strong">
-                        <flux:badge
-                            size="sm"
-                            :color="$prestamo->fecha_entrega <= $prestamo->fecha_devolucion ? 'green' : 'red'"
-                            inset="top bottom"
-                        >
-                            {{ 
-
-                                $prestamo->fecha_entrega
-                            
-                            }}
+                        <flux:badge>
+                            {{ $prestamo->fecha_prestamo }}
                         </flux:badge>
                     </flux:table.cell>
+                    
+                    <flux:table.cell variant="strong">
+                        <flux:badge>
+                            {{ $prestamo->fecha_devolucion }}
+                        </flux:badge>
+                    </flux:table.cell>
+
 
                     <flux:table.cell>
                         <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom" />

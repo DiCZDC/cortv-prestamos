@@ -1,11 +1,11 @@
-<x-layouts::app :title="__('Prestamos')">
+<x-layouts::app :title="__('Prestamos Pendientes')">
    <div class="flex flex-row gap mb-10">
         <div class=" pt-2 w-3/4 gap-6">
             {{-- Cabecera principal --}}
             <div class="mb-4 flex items-center gap-6 text-rojo_claro">
                 <flux:icon name="file" class="inline h-15 w-15" />
                 <span class="ml-2 text-5xl font-semibold">
-                    {{ __('Prestamos Activos/Pendientes') }}
+                    {{ __('Prestamos pendientes') }}
                 </span>
             </div>
             <div class="mb-2 flex items-center text-gris_claro align-middle gap-7">
