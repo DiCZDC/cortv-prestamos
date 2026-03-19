@@ -19,5 +19,5 @@
             <livewire:card titulo='4 Prestamos' descripcion='Pendientes de entrega' icono='box' color_text='black'/>    
         </div>
     </div>
-    @livewire('prestamos.table')
+    {{-- @livewire('prestamos.table') --}}
 </x-layouts::app>

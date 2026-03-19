@@ -1,17 +1,11 @@
 <x-layouts::app :title="__('Dashboard')">
-    <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
-        <div class="grid grid-cols-2 gap-4">
-           
-            @livewire('4cards')
-            
-            <div class="h-full relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-            </div>
-            
-        </div>
-    
-        <div class="grid auto-rows-min gap-4 md:grid-cols-2">
+    @role('admin')
+        @include('dashboard.admin')
 
+    @endrole
+    @role('trabajador')
+        @include('dashboard.trabajador')
+    @endrole
             <div class="h-full relative aspect-video overflow-hidden rounded-xl shadow-xl ">
                 <!-- Titulo de la tabla -->
                     <div class="flex flex-row justify-start items-center gap-3 px-8 pt-6">
