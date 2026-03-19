@@ -16,7 +16,14 @@
                     <flux:table.cell>{{ $persona->id }}</flux:table.cell>
                     <flux:table.cell>{{ $persona->name }}</flux:table.cell>
                     <flux:table.cell>{{ $persona->email }}</flux:table.cell>
-                    <flux:table.cell>{{ $persona->role }}</flux:table.cell>
+                    
+                    <flux:table.cell class="flex items-center gap-1">
+                        <flux:icon :name="$persona->roles->first()?->name == 'admin' ? 'shield-user' : 
+                                        ($persona->roles->first()?->name ? 'user' : 'user-x')"
+                        size="sm" class="mr-1" />
+                        {{ $persona->roles->first()?->name ?? 'Sin rol' }}
+                    </flux:table.cell>
+                    
                     <flux:table.cell>
                         <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
                         

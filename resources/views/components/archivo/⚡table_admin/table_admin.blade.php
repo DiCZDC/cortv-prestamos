@@ -3,7 +3,7 @@
         <flux:table.columns>
             <flux:table.column sortable :sorted="$sortBy === 'id'" :direction="$sortDirection" wire:click="sort('id')">ID</flux:table.column>
             <flux:table.column>Trabajador</flux:table.column>
-            <flux:table.column>Aprobado por</flux:table.column>
+            <flux:table.column>Administrador</flux:table.column>
             <flux:table.column>Motivo</flux:table.column>
             <flux:table.column>Estado</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'fecha_prestamo'" :direction="$sortDirection" wire:click="sort('fecha_prestamo')">Fecha Préstamo</flux:table.column>
@@ -21,11 +21,11 @@
                     </flux:table.cell>
 
                     <flux:table.cell class="whitespace-nowrap">
-                        Nombre Trabajador
+                        {{ $prestamo->nombre_trabajador}}
                     </flux:table.cell>
 
                     <flux:table.cell class="whitespace-nowrap">
-                        Nombre Admin
+                        {{ $prestamo->nombre_admin}}
                     </flux:table.cell>
 
                     <flux:table.cell class="whitespace-nowrap">
@@ -36,10 +36,10 @@
                     <flux:table.cell>
                         <flux:badge
                             size="sm"
-                            :color="$prestamo->fecha_entrega === null ? 'blue' : ($prestamo->fecha_prestamo > now() ? 'amber' : 'green')"
+                            :color="$prestamo->estado === 'Aprobada' ? 'green' : ($prestamo->estado === 'Pendiente' ? 'amber' : 'red')"
                             inset="top bottom"
                         >
-                            {{ $prestamo->fecha_entrega === null ? 'Prestado' : ($prestamo->fecha_prestamo > now() ? 'Pendiente' : 'Devuelto') }}
+                            {{ $prestamo->estado }}
                         </flux:badge>
                     </flux:table.cell>
 
@@ -50,12 +50,14 @@
                     <flux:table.cell variant="strong">
                         <flux:badge
                             size="sm"
-                            :color="$prestamo->fecha_entrega
-                                ? ($prestamo->fecha_entrega <= $prestamo->fecha_devolucion ? 'green' : 'red')
-                                : 'gray'"
+                            :color="$prestamo->fecha_entrega <= $prestamo->fecha_devolucion ? 'green' : 'red'"
                             inset="top bottom"
                         >
-                            {{ $prestamo->fecha_entrega ?? 'Aún no devuelto' }}
+                            {{ 
+
+                                $prestamo->fecha_entrega
+                            
+                            }}
                         </flux:badge>
                     </flux:table.cell>
 

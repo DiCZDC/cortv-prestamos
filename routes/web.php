@@ -15,7 +15,12 @@ Route::view('/', 'welcome')->name('home');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard'); 
     
-
+    Route::prefix('archivos')->name('archivos.')->group(function () {
+        Route::controller(ArchivoController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/{id}', 'show')->name('show');
+        });
+    });
     Route::middleware(['auth','role:admin'])->group(function () { 
         Route::prefix('prestamos')->name('prestamos.')->group(function () {
             Route::controller(prestamosController::class)->group(function () {
@@ -25,12 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             });
             
         });
-        Route::prefix('archivos')->name('archivos.')->group(function () {
-            Route::controller(ArchivoController::class)->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::get('/{id}', 'show')->name('show');
-            });
-        });
+        
 
         Route::prefix('recepcion')->name('recepcion.')->group(function () {
             Route::controller(RecepcionController::class)->group(function () {

@@ -3,14 +3,29 @@
     {{-- Simplicity is the consequence of refined emotions. - Jean D'Alembert --}}
     <flux:table :paginate="$this->equipos">
         <flux:table.columns>
+            <flux:table.column></flux:table.column>
+
             <flux:table.column sortable :sorted="$this->sortBy === 'id'" :direction="$this->sortDirection" wire:click="sort('id')">ID</flux:table.column>
             <flux:table.column sortable :sorted="$this->sortBy === 'marca'" :direction="$this->sortDirection" wire:click="sort('marca')">Marca</flux:table.column>
             <flux:table.column sortable :sorted="$this->sortBy === 'modelo'" :direction="$this->sortDirection" wire:click="sort('modelo')">Modelo</flux:table.column>
             <flux:table.column>Unidades totales</flux:table.column>
             <flux:table.column>Acciones</flux:table.column>
         </flux:table.columns>
+        
         @forelse ($this->equipos as $equipo )
             <flux:table.row :key="$equipo->id">
+                <flux:table.cell>
+                    <flux:icon :name="
+                    // Hace falta configurar los iconos para cada categoria, por ahora se asigna laptop a categoria 1 y box a las demas
+                    $equipo->id_categoria == 1? 'laptop'
+                    : ($equipo->id_categoria == 2 ? 'box' 
+                    : ($equipo->id_categoria == 3 ? 'mic-vocal' 
+                    : ($equipo->id_categoria == 4 ? 'cable':'headset'))) 
+
+
+                    " 
+                    class="w-5 h-5" />
+                </flux:table.cell>
                 <flux:table.cell>{{ $equipo->id }}</flux:table.cell>
                 <flux:table.cell>{{ $equipo->marca }}</flux:table.cell>
                 <flux:table.cell>{{ $equipo->modelo}}</flux:table.cell>
