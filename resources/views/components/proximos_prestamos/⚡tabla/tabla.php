@@ -11,10 +11,5 @@ use app\Models\{
 new class extends Component
 {
     public $dias = 2;
-    // #[Computed]
-    // public function solicitud(){
-        
-    //     return solicitud_equipo::
-        
-    // }    
+      
 };

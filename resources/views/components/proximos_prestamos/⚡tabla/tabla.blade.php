@@ -14,19 +14,8 @@
             <flux:table.row>
                 <flux:table.cell> <flux:icon name="video"> </flux:table.cell>
                 <flux:table.cell>Eveniet Cole Group</flux:table.cell>
-                <flux:table.cell variant="strong">Casas Veronica Andrea</flux:table.cell>
-                <flux:table.cell>
-                 
-                <flux:badge
-                 @class([
-                        '!bg-azul_saturado' => $dias <= 3,
-                        '!bg-azul_intenso' => $dias > 3 && $dias <= 8,
-                        '!bg-azul_oscuro' => $dias > 8,
-                        '!text-hueso' => true
-                    ])
-
-                size="lg" inset="top bottom">Paid</flux:badge>
-            
+                <flux:table.cell>Casas Veronica Andrea</flux:table.cell>
+                <flux:table.cell>  <x-componentes.badge-table :dias="$dias"> En {{ $dias }} dias </x-componentes.badge-table> 
                 </flux:table.cell>
             </flux:table.row>
 
