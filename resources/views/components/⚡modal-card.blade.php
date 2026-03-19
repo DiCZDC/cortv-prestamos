@@ -5,53 +5,53 @@ use Livewire\Component;
 new class extends Component
 {
     public string $titulo;
-    public string $descripcion;
     public string $icono;
-    public string $colorBg = 'bg-white';
-    public string $colorText = 'text-black';
+    public string $color_bg = 'bg-white';
+    public string $color_text = 'text-black';
+    public string $iconoT = "info";
     // PROPS PARA EL MODAL
     public string $name;
     public string $tituloModal;
-    public string $tipo; // 'deudas' | 'mantenimiento' | etc.
-     
+    // public string $table;
+    public string $table;
+    
+    public $datos = [];
+    public $descripcion;
+
+    public function mount($datos = [])
+    {
+        $this->datos = $datos;
+    }
 };
 ?>
 
 <div>
     {{-- Trigger: al click carga datos y abre el modal --}}
     <flux:modal.trigger :name="$name">
-        <div>
+        <div class="cursor-pointer">
             <livewire:card
                 :nombre_modal="$name"
                 :titulo="$titulo"
                 :descripcion="$descripcion"
                 :icono="$icono"
-                :color_bg="$colorBg"
-                :color_text="$colorText"
+                :color_bg="$color_bg"
+                :color_text="$color_text"
+
             />
         </div>
     </flux:modal.trigger>
 
     {{-- Modal --}}
-    <flux:modal :name="$name" class="w-[500px] p-6 rounded-2xl">
+    <flux:modal :name="$name" class="w-auto p-6 rounded-2xl">
         <div class="flex flex-col gap-4">
-            <span class="font-semibold text-lg">{{ $tituloModal }}</span>
+            <div class="flex items-center gap-4">
+                <flux:icon name="{{ $iconoT }}" class="w-7 h-7 text-black" />
+                <span class="font-semibold text-lg">{{ $tituloModal }}</span>
+            </div>
 
-            @if(empty($datos))
-                <p class="text-sm text-gray-400">Cargando...</p>
-            @else
-                {{-- Slot dinámico según tipo --}}
-                @includeWhen($tipo === 'deudas', 'livewire.partials.tabla-deudores', ['datos' => $datos])
-                @includeWhen($tipo === 'mantenimiento', 'livewire.partials.tabla-mantenimiento', ['datos' => $datos])
-            @endif
+            <livewire:dynamic-component :component="$table" :datos="$datos" />
+           
         </div>
 
-        <div class="mt-6 flex justify-end">
-            <flux:button
-                variant="primary"
-                x-on:click="$flux.modal('{{ $name }}').close()">
-                Cerrar
-            </flux:button>
-        </div>
     </flux:modal>
 </div>
