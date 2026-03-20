@@ -13,6 +13,7 @@ new class extends Component
 {
     use WithPagination;
     public $dias = 2;
+    
     #[Computed]
     public function prestamos()
     {
