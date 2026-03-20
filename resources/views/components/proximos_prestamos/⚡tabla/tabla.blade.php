@@ -1,5 +1,5 @@
 <div>
-<flux:table>
+<flux:table :paginate="$this->prestamos">
         <flux:table.columns>
             
         <flux:table.column></flux:table.column>
@@ -10,11 +10,14 @@
             
         </flux:table.columns>
         @forelse ($this->prestamos as $prestamo)
+            @php
+                $dias = round(now()->diffInDays($prestamo->solicitud->fecha_prestamo));
+            @endphp
             <flux:table.row>
                 <flux:table.cell> <flux:icon name="video"> </flux:table.cell>
-                <flux:table.cell>Eveniet Cole Group</flux:table.cell>
-                <flux:table.cell>Casas Veronica Andrea</flux:table.cell>
-                <flux:table.cell>  <x-componentes.badge-table :dias="$dias"> En {{ $dias }} dias </x-componentes.badge-table> 
+                <flux:table.cell>{{ $prestamo->unidad_equipo->equipo->marca . ' ' . $prestamo->unidad_equipo->equipo->modelo }}</flux:table.cell>
+                <flux:table.cell>{{ $prestamo->nombre_trabajador }}</flux:table.cell>
+                <flux:table.cell>  <x-componentes.badge-table :dias="$dias"> En {{$dias }} dias </x-componentes.badge-table> 
                 </flux:table.cell>
             </flux:table.row>
         @empty

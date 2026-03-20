@@ -3,7 +3,7 @@
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Computed;
-use app\Models\{
+use App\Models\{
     Solicitud_Equipo,
     Equipo,
     User
@@ -12,12 +12,15 @@ use app\Models\{
 new class extends Component
 {
     use WithPagination;
-    public $dias = 2;
     #[Computed]
     public function prestamos()
     {
         return Solicitud_Equipo::query()
-            
-            ->paginate(5);
+        ->join('solicituds', 'solicitud__equipos.id_solicitud', '=', 'solicituds.id')
+        ->where('solicituds.fecha_prestamo', '>', now())
+        ->join('users', 'solicituds.id_trabajador', '=', 'users.id')
+        ->select('solicitud__equipos.*', 'users.name as nombre_trabajador')
+        ->orderBy('solicituds.fecha_prestamo', 'asc')
+        ->paginate(5);
     }    
 };

@@ -18,7 +18,7 @@ class Unidad_Equipo extends Model
     
     public function equipo()
     {
-        return $this->belongsTo(Equipo::class);
+        return $this->belongsTo(Equipo::class, 'id_equipo');
     }
     
 }
