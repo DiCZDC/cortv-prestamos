@@ -36,7 +36,10 @@
                     <flux:table.cell>
                         <flux:badge
                             size="sm"
-                            :color="$prestamo->estado === 'Aprobada' ? 'green' : ($prestamo->estado === 'Pendiente' ? 'amber' : 'red')"
+                            :color="$prestamo->estado === 'Autorizada' ? 'green' 
+                            : ($prestamo->estado === 'Entregada' ? 'cyan' 
+                            : ($prestamo->estado === 'Pendiente' ? 'yellow' 
+                            :($prestamo->estado === 'Rechazada' ? 'red' : 'blue')))"
                             inset="top bottom"
                         >
                             {{ $prestamo->estado }}

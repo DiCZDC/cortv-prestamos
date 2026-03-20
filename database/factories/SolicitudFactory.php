@@ -23,7 +23,7 @@ class SolicitudFactory extends Factory
             'id_trabajador' => User::query()->inRandomOrder()->value('id'),
             'id_admin' => User::query()->inRandomOrder()->value('id'),
             'motivo' => fake()->sentence(),
-            'estado' => fake()->randomElement(['Pendiente', 'Aprobada', 'Rechazada']),
+            'estado' => fake()->randomElement(['Pendiente', 'Autorizada', 'Entregada', 'Rechazada','Devuelta']),
             'fecha_prestamo' => fake()->dateTimeBetween('-2 year', '+1 year'),
             'fecha_devolucion' => fake()->dateTimeBetween('-1 year', '+1 year'),
             'fecha_entrega' => fake()->optional()->dateTimeBetween('-1 year', '+1 year'),

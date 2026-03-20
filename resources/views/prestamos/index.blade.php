@@ -11,7 +11,7 @@
             <div class="mb-2 flex items-center text-gris_claro align-middle gap-7">
                 <flux:icon name="database" class="inline h-10 w-10" />
                 <span class="text-[30px] -tracking-tighter text-gris_claro font-inter" style="font-style: normal;">
-                    {{ __('Solicitud de prestamos') }}
+                    {{ __('Solicitudes de prestamos pendientes de aprobar') }}
                 </span>
             </div>
         </div>

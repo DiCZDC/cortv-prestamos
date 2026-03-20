@@ -27,7 +27,7 @@ new class extends Component
     #[Computed]
     public function prestamos(){
         return Solicitud::query()
-            ->where('estado', 'Aprobada')
+            ->where('estado', 'Entregada')
             ->whereNull('fecha_entrega')
             ->orderBy("solicituds.{$this->sortBy}", $this->sortDirection)
             ->join('users', 'solicituds.id_trabajador', '=', 'users.id')
