@@ -28,6 +28,7 @@ new class extends Component
     {
         return Solicitud::query()
             ->whereNotNull('fecha_entrega')
+            ->where('estado', '!=', 'Pendiente')
             ->orderBy("solicituds.{$this->sortBy}", $this->sortDirection)
             ->join('users', 'solicituds.id_trabajador', '=', 'users.id')
             ->select('solicituds.*', 'users.name as nombre_trabajador')
