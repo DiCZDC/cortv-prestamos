@@ -1,14 +1,28 @@
-@props(['dias'])
+@props([
+    'dias'   => null,
+    'colores' => [
+        'urgente' => '!bg-azul_saturado',
+        'proximo' => '!bg-azul_intenso',
+        'normal'  => '!bg-azul_oscuro',
+    ],
+])
+
+@php
+    $color = match(true) {
+        $dias !== null && $dias <= 5 => $colores['urgente'],
+        $dias !== null && $dias <= 7 => $colores['proximo'],
+        $dias !== null && $dias > 7  => $colores['normal'],
+        default                      => '',
+    };
+@endphp
 
 <flux:badge
     {{ $attributes->class([
-        '!bg-azul_saturado' => $dias <= 3,
-        '!bg-azul_intenso'  => $dias > 3 && $dias <= 8,
-        '!bg-azul_oscuro'   => $dias > 8,
+        $color                      => true,
         '!text-hueso font-semibold' => true,
     ])->merge([
-        'size' => 'lg', 
-        'inset' => 'top bottom'
+        'size'  => 'lg',
+        'inset' => 'top bottom',
     ]) }}
 >
     {{ $slot }}

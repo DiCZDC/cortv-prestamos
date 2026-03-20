@@ -9,20 +9,23 @@ use App\Models\{
     User
 };
 
+use Illuminate\Support\Carbon;
+
+
 new class extends Component
 {
     use WithPagination;
     #[Computed]
-    public function prestamos()
+    public function atrasados()
     {
         return Solicitud_Equipo::query()
         ->join('solicituds', 'solicitud__equipos.id_solicitud', '=', 'solicituds.id')
-        ->where('solicituds.estado', 'Autorizada')
-        ->where('solicituds.fecha_prestamo', '>', now())
+        ->where('solicituds.fecha_devolucion', '<', now()) 
+        ->where('solicituds.fecha_devolucion', '>=', now()->subDays(30))
+        ->where('solicituds.estado', 'Entregada')
         ->join('users', 'solicituds.id_trabajador', '=', 'users.id')
         ->select('solicitud__equipos.*', 'users.name as nombre_trabajador')
-        ->orderBy('solicituds.fecha_prestamo', 'asc')
+        ->orderBy('solicituds.fecha_prestamo', 'desc')
         ->paginate(5);
-    }
- 
+    }   
 };
