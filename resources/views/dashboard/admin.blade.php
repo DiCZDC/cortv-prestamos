@@ -3,8 +3,8 @@
     
         @livewire('4cards')
         
-        <div class="h-full relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
+        <div class="h-full relative rounded-xl ">
+            <livewire:grafica.dashboard />
         </div>
     </div>
 
@@ -22,19 +22,19 @@
                 </div>
         </div>
 
-        
-    </div>
-
-    <div class="h-full w-[84%] relative shadow-xl rounded-xl ">
+        <div class="h-full w-[84%] relative shadow-xl rounded-xl ">
             <div class="flex flex-row justify-start items-center gap-3 px-8 pt-10">
-                <flux:icon name="clock-alert" class="w-[36px]! h-[36px]! text-black" />
+                <flux:icon name="clock-alert" class="w-9! h-9! text-black" />
                 <span class="font-semibold text-[24px] text-black [word-spacing:0.3rem]"> Prestamos Atrasados</span>
             </div>
                                 
             <div class="pt-3 px-10 pb-6" >
                     @livewire('prestamos_atrasados.tabla')
             </div>
-    </div>      
+        </div>
+        
+    </div>
 
+        
     
 </div>

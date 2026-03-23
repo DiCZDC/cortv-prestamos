@@ -17,12 +17,14 @@
             @endphp
 
             <flux:table.row>
-                <flux:table.cell> <flux:icon name="video"> </flux:table.cell>
+                <flux:table.cell>
+                    <flux:icon name="video" />
+                </flux:table.cell>
                 <flux:table.cell class="text-balance!">{{ $prestamo->unidad_equipo->equipo->marca . ' ' . $prestamo->unidad_equipo->equipo->modelo }}</flux:table.cell>
                 <flux:table.cell class="text-balance!">{{ $prestamo->nombre_trabajador }}</flux:table.cell>
                 <flux:table.cell>  
-                    <x-componentes.badge-table :dias="$dias" >
-                     En {{$dias }} dias </x-componentes.badge-table> 
+                    <x-componentes.badgeTable :dias="$dias" >
+                     En {{$dias }} dias </x-componentes.badgeTable> 
                 </flux:table.cell>
             </flux:table.row>
         
