@@ -27,7 +27,8 @@ class Barras
             ->addData([$this->datos[2]], 'Reservados')
             ->addData([$this->datos[3]], 'En mantenimiento')
             ->setXAxis([' Equipos en total  ' ])
-            ->setGrid(color: '#6C757D', opacity: 0.1, strokeDashArray: 7)
-            ->setShowXAxisLabels(false);
+            ->setColors(['#76D245', '#AE2B2F', '#279AF1', '#EEC33B'])
+            ->setGrid(color: '#6C757D', opacity: 0.1, strokeDashArray: 7);
+            
     }
 }

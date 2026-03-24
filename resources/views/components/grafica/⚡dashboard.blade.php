@@ -1,14 +1,14 @@
 <?php
 
 use Livewire\Component;
-use App\Charts\Barras;
-use ArielMejiaDev\LarapexCharts\BarChart;
+use App\Charts\donut;
+use ArielMejiaDev\LarapexCharts\DonutChart;
 use App\Models\Unidad_Equipo;
 new class extends Component
 {
-    public function getChartProperty():BarChart
+    public function getChartProperty():DonutChart
     {
-        return app()->make(Barras::class, ['datos' => [$this->filter_unidad('Disponible'),$this->filter_unidad('Prestado'),$this->filter_unidad('Reservado'),$this->filter_unidad('En reparación')]])->build();
+        return app()->make(donut::class, ['datos' => [$this->filter_unidad('Disponible'),$this->filter_unidad('Prestado'),$this->filter_unidad('Reservado'),$this->filter_unidad('En reparación')]])->build();
     }
 
     public function getChartCdnProperty(): string
