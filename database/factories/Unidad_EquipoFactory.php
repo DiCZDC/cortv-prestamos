@@ -20,7 +20,7 @@ class Unidad_EquipoFactory extends Factory
         return [
             'id_equipo' => Equipo::query()->inRandomOrder()->value('id'),
             'sicipo' => fake()->unique()->numerify('SICIPO-####'),
-            'estado' => fake()->randomElement(['Disponible', 'Prestado', 'En reparación']),
+            'estado' => fake()->randomElement(['Disponible', 'Prestado', 'En reparación','Reservado']),
         ];
     }
 }
