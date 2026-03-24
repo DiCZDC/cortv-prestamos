@@ -16,6 +16,8 @@ new class extends Component
     use WithPagination;
     public $sortBy = 'id';
     public $sortDirection = 'ASC';
+    public $search = '';
+    public $perPage = 10;
 
     public function sort($column) {
         if ($this->sortBy === $column) {
@@ -35,6 +37,6 @@ new class extends Component
             ->orderBy("solicituds.{$this->sortBy}", $this->sortDirection)
             ->join('users', 'solicituds.id_trabajador', '=', 'users.id')
             ->select('solicituds.*', 'users.name as nombre_trabajador')
-            ->paginate(10);
+            ->paginate($this->perPage);
     }
 };

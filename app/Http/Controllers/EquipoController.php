@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Charts\Prueba;
 use Illuminate\Http\Request;
-
 class EquipoController extends Controller
 {
-    public function index(Prueba $chart)
+    public function index()
     {
-        return view('equipo.index', ['chart' => $chart->build()]);
+        return view('equipo.index');
     }
 
     public function show($id)

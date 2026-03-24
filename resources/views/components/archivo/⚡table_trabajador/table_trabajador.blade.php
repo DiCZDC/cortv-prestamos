@@ -70,4 +70,5 @@
             @endforelse
         </flux:table.rows>
     </flux:table>
+    
 </div>

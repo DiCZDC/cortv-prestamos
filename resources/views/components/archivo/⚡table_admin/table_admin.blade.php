@@ -51,17 +51,22 @@
 
                     {{-- Fecha real de entrega --}}
                     <flux:table.cell variant="strong">
+                        @if ($prestamo->fecha_entrega!== null)
                         <flux:badge
                             size="sm"
                             :color="$prestamo->fecha_entrega <= $prestamo->fecha_devolucion ? 'green' : 'red'"
-                            inset="top bottom"
-                        >
+                            inset="top bottom">
                             {{ 
 
                                 $prestamo->fecha_entrega
                             
                             }}
                         </flux:badge>
+                        @elseif ($prestamo->estado === 'Entregada')
+                            <span class="text-sm text-gris_claro">En espera de devolución</span>
+                        @else
+                            <span class="text-sm text-gris_claro">No entregado</span>
+                        @endif
                     </flux:table.cell>
 
                     <flux:table.cell>
@@ -78,4 +83,10 @@
             @endforelse
         </flux:table.rows>
     </flux:table>
+    <flux:select size="sm" class="w-full sm:w-auto" wire:model.live="perPage">
+        <flux:select.option value="10">10</flux:select.option>
+        <flux:select.option value="25">25</flux:select.option>
+        <flux:select.option value="50">50</flux:select.option>
+        <flux:select.option value="100">100</flux:select.option>
+    </flux:select>
 </div>

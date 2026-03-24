@@ -12,6 +12,8 @@ new class extends Component
     use WithPagination;
     public $sortBy = 'id';
     public $sortDirection = 'ASC';
+    public $search = '';
+    public $perPage = 10;
 
     public function sort($column) {
         if ($this->sortBy === $column) {
@@ -32,6 +34,6 @@ new class extends Component
     {
         return Equipo::query()
             ->tap(fn($query)=> $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
-            ->paginate(10);
+            ->paginate($this->perPage);
     }
 };
