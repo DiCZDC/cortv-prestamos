@@ -1,23 +1,32 @@
 <x-layouts::app :title="__('Prestamos Pendientes')">
-   <div class="flex flex-row gap mb-10">
-        <div class=" pt-2 w-3/4 gap-6">
+   <div class="flex flex-row mb-10 justify-between gap-1">
+        <div class="w-3/4 flex flex-col self-center items-start">
             {{-- Cabecera principal --}}
-            <div class="mb-4 flex items-center gap-6 text-rojo_claro">
-                <flux:icon name="file" class="inline h-15 w-15" />
-                <span class="ml-2 text-5xl font-semibold">
-                    {{ __('Prestamos pendientes') }}
+            <div class="mb-4 flex items-center gap-2 text-rojo_claro">
+                <flux:icon name="file" class="inline size-13" />
+                <span class="ml-2 text-5xl font-bold">
+                    {{ __('Prestamos') }}
                 </span>
             </div>
-            <div class="mb-2 flex items-center text-gris_claro align-middle gap-7">
-                <flux:icon name="database" class="inline h-10 w-10" />
+            <div class="mb-2 pl-1 flex items-center text-gris_claro align-middle gap-4">
+                <flux:icon name="database" class="inline size-9" />
                 <span class="text-[30px] -tracking-tighter text-gris_claro font-inter" style="font-style: normal;">
                     {{ __('Solicitudes de prestamos pendientes de aprobar') }}
                 </span>
             </div>
         </div>
+
+
         <div class="w-1/4 flex justify-center items-center">
             <livewire:card titulo='4 Prestamos' descripcion='Pendientes de entrega' icono='box' color_text='black'/>    
         </div>
     </div>
     @livewire('prestamos.table')
+
+    {{-- <flux:button  href="{{ route('prestamos.create') }}" target="_blank" rel="noopener noreferrer" icon:trailing="square-plus" class="bg-rojo_claro! text-white! hover:bg-rojo_claro/90! transition delay-150 duration-300 ease-in-out hover:-translate-y-1">
+        {{ __('Crear nuevo prestamo') }}
+    </flux:button>     --}}
+
+    <x-componentes.boton-href ruta="prestamos.create" texto="Crear nuevo prestamo" icon="square-plus" />
+
 </x-layouts::app>
