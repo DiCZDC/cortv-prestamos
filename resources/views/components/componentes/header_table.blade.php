@@ -1,11 +1,34 @@
-@props(['icon' => null])
+@props([
+    'icon' => null,
+    'sortable' => null,
+    'sortBy' => null,
+    'sortDirection' => null,
+])
 
-<flux:table.column 
-    {{ $attributes->class(['text-gris_claro! text-base! font-semibold' => true]) }}>
-
-    @if($icon)
-        <flux:icon :name="$icon" class="text-gris_claro! mr-2"/>
-    @endif
-    
-    {{ $slot }}
-</flux:table.column>
+@if($sortable)
+    <flux:table.column 
+        sortable 
+        :sorted="$sortBy === $sortable" 
+        :direction="$sortDirection" 
+        wire:click="sort('{{ $sortable }}')"
+        {{ $attributes }}
+    >
+        <span class="inline-flex items-center gap-2 whitespace-nowrap text-gris_claro text-base font-semibold">
+            @if($icon)
+                <flux:icon :name="$icon" class="text-gris_claro!" />
+            @endif
+            
+            {{ $slot }}
+        </span>
+    </flux:table.column>
+@else
+    <flux:table.column {{ $attributes }}>
+        <span class="inline-flex items-center gap-2 whitespace-nowrap text-gris_claro text-base font-semibold">
+            @if($icon)
+                <flux:icon :name="$icon" class="text-gris_claro!" />
+            @endif
+            
+            {{ $slot }}
+        </span>
+    </flux:table.column>
+@endif

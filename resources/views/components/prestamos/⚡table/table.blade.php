@@ -1,12 +1,14 @@
 <div>
     <flux:table :paginate="$this->prestamos">
         <flux:table.columns>
-            <flux:table.column sortable :sorted="$sortBy === 'id'" :direction="$sortDirection" wire:click="sort('id')">ID</flux:table.column>
-            <flux:table.column>Trabajador</flux:table.column>
-            <flux:table.column>Motivo</flux:table.column>
-            <flux:table.column sortable :sorted="$sortBy === 'fecha_prestamo'" :direction="$sortDirection" wire:click="sort('fecha_prestamo')">Fecha Préstamo</flux:table.column>
-            <flux:table.column sortable :sorted="$sortBy === 'fecha_devolucion'" :direction="$sortDirection" wire:click="sort('fecha_devolucion')">Fecha Devolución</flux:table.column>
-            <flux:table.column>Acciones</flux:table.column>
+            <x-componentes.header_table sortable="id" :sortBy="$sortBy" :sortDirection="$sortDirection"> ID </x-componentes.header_table>
+            <x-componentes.header_table icon="contact-round"> Trabajador </x-componentes.header_table>
+            <x-componentes.header_table icon="library-big"> Motivo </x-componentes.header_table>
+            
+            <x-componentes.header_table icon="calendar-1" sortable="fecha_prestamo" :sortBy="$sortBy" :sortDirection="$sortDirection"> Fecha Préstamo </x-componentes.header_table>
+            <x-componentes.header_table icon="calendar-off" sortable="fecha_devolucion" :sortBy="$sortBy" :sortDirection="$sortDirection"> Fecha Devolución </x-componentes.header_table>
+
+            <x-componentes.header_table icon="target"> Acciones </x-componentes.header_table>
         </flux:table.columns>
 
         <flux:table.rows>
