@@ -22,11 +22,8 @@
         </div>
     </div>
     @livewire('prestamos.table')
-
-    {{-- <flux:button  href="{{ route('prestamos.create') }}" target="_blank" rel="noopener noreferrer" icon:trailing="square-plus" class="bg-rojo_claro! text-white! hover:bg-rojo_claro/90! transition delay-150 duration-300 ease-in-out hover:-translate-y-1">
-        {{ __('Crear nuevo prestamo') }}
-    </flux:button>     --}}
-
-    <x-componentes.boton-href ruta="prestamos.create" texto="Crear nuevo prestamo" icon="square-plus" />
+   
+    <x-componentes.boton-href ruta="prestamos.create" texto="Crear nuevo prestamo" icon="square-plus" color="rojo_claro" />
+    
 
 </x-layouts::app>

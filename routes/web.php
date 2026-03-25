@@ -25,9 +25,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     Route::middleware(['auth','role:admin'])->group(function () { 
         Route::prefix('prestamos')->name('prestamos.')->group(function () {
+            
             Route::controller(prestamosController::class)->group(function () {
                 Route::get('/', 'index')->name('index');
-                Route::post('create', 'create')->name('create');
+                Route::get('create', 'create')->name('create');
                 Route::get('/{id}', 'show')->name('show');
             });
             

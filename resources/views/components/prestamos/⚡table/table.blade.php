@@ -40,8 +40,9 @@
                     </flux:table.cell>
 
 
-                    <flux:table.cell>
-                        <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom" />
+                        <flux:table.cell>
+                            <x-componentes.boton-href ruta="prestamos.show" texto="Ver" icon="eye" :id="$prestamo->id" color="azul_saturado" />    
+                    {{-- <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom" /> --}}
                     </flux:table.cell>
 
                 </flux:table.row>
