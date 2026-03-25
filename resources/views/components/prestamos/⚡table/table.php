@@ -17,7 +17,7 @@ new class extends Component
     public $sortBy = 'id';
     public $sortDirection = 'ASC';
     public $search = '';
-    public $perPage = 10;
+    public $perPage = 6;
 
     public function sort($column) {
         if ($this->sortBy === $column) {
