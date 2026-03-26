@@ -36,6 +36,10 @@ new class extends Component
             ->orderBy("solicituds.{$this->sortBy}", $this->sortDirection)
             ->join('users', 'solicituds.id_trabajador', '=', 'users.id')
             ->select('solicituds.*', 'users.name as nombre_trabajador')
+            ->when($this->search !== '', function ($query) {
+                $query->whereRaw('LOWER(users.name) like ?', ['%' . strtolower($this->search) . '%'])
+                    ->orWhereRaw('LOWER(solicituds.motivo) like ?', ['%' . strtolower($this->search) . '%']);
+            })
             ->paginate($this->perPage);
     }
 };
