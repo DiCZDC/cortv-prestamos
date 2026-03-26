@@ -22,7 +22,6 @@
         </div>
     </div>  
     <div class="mt-10">
-        {{-- <livewire:recepcion.table> --}}
         @livewire('recepcion.table')
     </div>
 </x-layouts::app>
