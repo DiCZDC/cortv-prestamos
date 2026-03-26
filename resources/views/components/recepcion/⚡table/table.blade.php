@@ -1,14 +1,11 @@
 <div>    
-    <div class = "flex flex-row items-center gap-4 mb-4 ">
-        <flux:input  icon="magnifying-glass" placeholder="Buscar por nombre de trabajador, administrador o motivo..." wire:model.live="search"/>
-        <flux:select size="md" class="w-full sm:w-auto" wire:model.live="filter">
-            <flux:select.option value="">Todos</flux:select.option>
-            <flux:select.option value="atrasado">Atrasado</flux:select.option>
-            <flux:select.option value="tiempo">En tiempo</flux:select.option>
-        </flux:select>
-    </div>
-
-     <flux:table :paginate="$this->prestamos" pagination:scroll-to   >
+    @livewire('searchbar', 
+    [
+        'filter' => ['all' => 'Todos', 'atrasado' => 'Atrasado', 'tiempo' => 'En tiempo'],
+        'search_var'=> $search
+    ])
+        
+    <flux:table :paginate="$this->prestamos" pagination:scroll-to   >
         <flux:table.columns>
             <flux:table.column sortable :sorted="$sortBy === 'id'" :direction="$sortDirection" wire:click="sort('id')">ID</flux:table.column>
             <flux:table.column>Trabajador</flux:table.column>

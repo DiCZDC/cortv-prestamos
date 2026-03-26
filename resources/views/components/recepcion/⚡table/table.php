@@ -4,6 +4,7 @@ use App\Models\Solicitud;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\On;
 
 new class extends Component
 {
@@ -24,7 +25,11 @@ new class extends Component
             $this->sortDirection = 'asc';
         }
     }
-
+    #[On('searchUpdated')]
+    public function updateSearch($value)
+    {
+        $this->search = $value;
+    }
     #[Computed]
     public function prestamos()
     {

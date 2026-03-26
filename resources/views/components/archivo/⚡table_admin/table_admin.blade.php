@@ -1,4 +1,6 @@
 <div>
+    
+
     <flux:table :paginate="$this->prestamos">
         <flux:table.columns>
             <flux:table.column sortable :sorted="$sortBy === 'id'" :direction="$sortDirection" wire:click="sort('id')">ID</flux:table.column>
