@@ -32,15 +32,17 @@
         <div class="flex flex-col">
             <div class="flex items-center gap-3 text-rojo_claro mt-8">
                 Aki ba el candelario
+                <flux:text>
+                    Periodo de prestamo
+                </span>
             </div>
             <div>
                <livewire:card
-                :nombre_modal="'A'"
                 :titulo="'Asignar equipos'"
                 :descripcion="'Selecciona los equipos que deseas asignar a esta solicitud'"
-                :icono="'box'"
-                :color_bg="'bg-azul_claro'"
-                :color_text="'text-azul_oscuro'"
+                :icono="'thumbs-up'"
+                :color_bg="'bg-verde_mid'"
+                :color_text="'text-hueso'"
                />
             </div>
         </div>
