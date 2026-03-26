@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('modelo');
 
             $table->foreign('id_categoria')->references('id')->on('categorias');
-            });
+        });
     }
 
     /**

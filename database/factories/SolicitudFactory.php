@@ -2,13 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Solicitud;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\{
-    User,
-    Equipo
-};
+
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Solicitud>
+ * @extends Factory<Solicitud>
  */
 class SolicitudFactory extends Factory
 {
@@ -19,18 +18,18 @@ class SolicitudFactory extends Factory
      */
     public function definition(): array
     {
-        $estado  = fake()->randomElement(['Pendiente', 'Autorizada', 'Entregada', 'Rechazada','Devuelta']);
+        $estado = fake()->randomElement(['Pendiente', 'Autorizada', 'Entregada', 'Rechazada', 'Devuelta']);
         $fecha_prestamo = fake()->dateTimeBetween('-2 year', '-1 year');
         $fecha_devolucion = fake()->dateTimeBetween($fecha_prestamo, '+1 year');
         $fecha_entrega = null;
-        
+
         if ($estado === 'Devuelta') {
-            $fecha_entrega = fake()->dateTimeBetween($fecha_devolucion->format('Y-m-d H:i:s') . ' -1 month', $fecha_devolucion->format('Y-m-d H:i:s') . ' +1 month');
-        }else if($estado === 'Autorizada'){
+            $fecha_entrega = fake()->dateTimeBetween($fecha_devolucion->format('Y-m-d H:i:s').' -1 month', $fecha_devolucion->format('Y-m-d H:i:s').' +1 month');
+        } elseif ($estado === 'Autorizada') {
             $fecha_prestamo = fake()->dateTimeBetween('now', '+1 month');
-            $fecha_devolucion = fake()->dateTimeBetween($fecha_prestamo, $fecha_prestamo->format('Y-m-d H:i:s') . ' +1 month');
+            $fecha_devolucion = fake()->dateTimeBetween($fecha_prestamo, $fecha_prestamo->format('Y-m-d H:i:s').' +1 month');
         }
-        
+
         return [
             'id_trabajador' => User::query()->inRandomOrder()->value('id'),
             'id_admin' => User::query()->inRandomOrder()->value('id'),

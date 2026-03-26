@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class componentesbadgeTable extends Component
+class botonHref extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class componentesbadgeTable extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.componentes.badgeTable');
+        return view('components.componentes.boton-href');
     }
 }
