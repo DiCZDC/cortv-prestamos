@@ -17,12 +17,12 @@ class Solicitud_Equipo extends Model
         'estado',
     ];
 
-    public function equipo()
+    public function unidad_equipo()
     {
-        return $this->belongsTo(Equipo::class);
+        return $this->belongsTo(Unidad_Equipo::class, 'id_unidad_Equipo');
     }
     public function solicitud()
     {
-        return $this->belongsTo(Solicitud::class);
+        return $this->belongsTo(Solicitud::class, 'id_solicitud');
     }
 }

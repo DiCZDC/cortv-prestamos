@@ -14,5 +14,10 @@
             </span>
         </div>
     </div>
-    @livewire('archivo.table')
+    @role('admin')
+         @livewire('archivo.table_admin')
+    @endrole
+    @role('trabajador')
+        @livewire('archivo.table_trabajador')
+    @endrole
 </x-layouts::app>

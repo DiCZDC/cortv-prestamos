@@ -1,3 +1,3 @@
-<div>
+<x-layouts::app title="Archivo">
     el chow de archivos w
-</div>
+</x-layouts>

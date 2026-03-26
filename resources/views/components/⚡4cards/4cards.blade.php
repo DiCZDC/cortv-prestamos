@@ -8,7 +8,7 @@
         color_text="text-hueso"
         titulo-modal="Personal mas deudor"
         table="modal.tabla.deudores"
-        :descripcion="$this->mas_deudas->first()?->name"
+        :descripcion="$this->mas_deudas->first()?->name ?? 'Aún no hay deudas acumuladas'"
         :datos="$this->mas_deudas"    
 
     />

@@ -1,8 +1,9 @@
+
 <div>
+    {{-- Live as if you were to die tomorrow. Learn as if you were to live forever. - Mahatma Gandhi --}}
     <flux:table :paginate="$this->prestamos">
         <flux:table.columns>
             <flux:table.column sortable :sorted="$sortBy === 'id'" :direction="$sortDirection" wire:click="sort('id')">ID</flux:table.column>
-            <flux:table.column>Trabajador</flux:table.column>
             <flux:table.column>Aprobado por</flux:table.column>
             <flux:table.column>Motivo</flux:table.column>
             <flux:table.column>Estado</flux:table.column>
@@ -19,13 +20,9 @@
                     <flux:table.cell class="flex items-center gap-3">
                         {{ $prestamo->id }}
                     </flux:table.cell>
-
+                    
                     <flux:table.cell class="whitespace-nowrap">
-                        Nombre Trabajador
-                    </flux:table.cell>
-
-                    <flux:table.cell class="whitespace-nowrap">
-                        Nombre Admin
+                        {{ $prestamo->name ?? 'Pendiente de Aprobación' }}
                     </flux:table.cell>
 
                     <flux:table.cell class="whitespace-nowrap">
@@ -67,10 +64,11 @@
             @empty
                 <flux:table.row>
                     <flux:table.cell colspan="9" class="text-center py-4">
-                        No se encontraron préstamos.
+                        No has realizado ninguna solicitud de prestamo.
                     </flux:table.cell>
                 </flux:table.row>
             @endforelse
         </flux:table.rows>
     </flux:table>
+    
 </div>

@@ -31,6 +31,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'trabajador']);
+        
+        $usuario->assignRole('admin');
 
         Categoria::factory(10)->create();
         Equipo::factory(100)->create();
@@ -38,10 +42,7 @@ class DatabaseSeeder extends Seeder
         Unidad_Equipo::factory(1000)->create();
         Solicitud_Equipo::factory(1000)->create();
         
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'trabajador']);
-
-        $usuario->assignRole('admin');
+        
         
         // Permission::create(['name' => 'solicitar_prestamo']);
         // Permission::create(['name' => 'ver_archivo']);

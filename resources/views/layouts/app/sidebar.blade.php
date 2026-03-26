@@ -18,14 +18,17 @@
                     
                     @role('admin')
                         <flux:sidebar.item icon="file" :href="route('prestamos.index')" :current="request()->routeIs('prestamos.index')" wire:navigate>
-                            {{ __('Prestamos') }}
-                        </flux:sidebar.item>
-                        <flux:sidebar.item icon="archive" :href="route('archivos.index')" :current="request()->routeIs('archivos.index')" wire:navigate>
-                            {{ __('Archivo') }}
+                            {{ __('Prestamos Pendientes') }}
                         </flux:sidebar.item>
                         <flux:sidebar.item icon="truck" :href="route('recepcion.index')" :current="request()->routeIs('recepcion.index')" wire:navigate>
                             {{ __('Recepción') }}
                         </flux:sidebar.item>
+                    @endrole
+                        <flux:sidebar.item icon="archive" :href="route('archivos.index')" :current="request()->routeIs('archivos.index')" wire:navigate>
+                            {{ __('Archivo') }}
+                        </flux:sidebar.item>
+                    @role('admin')
+                        
                         <flux:sidebar.item icon="users" :href="route('personal.index')" :current="request()->routeIs('personal.index')" wire:navigate>
                             {{ __('Personal') }}
                         </flux:sidebar.item>

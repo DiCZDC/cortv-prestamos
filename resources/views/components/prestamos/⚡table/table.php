@@ -5,7 +5,10 @@ use Livewire\{
     WithPagination
     };
 use Livewire\Attributes\Computed;
-use App\Models\Solicitud;
+use App\Models\{
+    Solicitud,
+    User
+};
 
 new class extends Component
 {
@@ -13,6 +16,8 @@ new class extends Component
     use WithPagination;
     public $sortBy = 'id';
     public $sortDirection = 'ASC';
+    public $search = '';
+    public $perPage = 6;
 
     public function sort($column) {
         if ($this->sortBy === $column) {
@@ -27,10 +32,11 @@ new class extends Component
     public function prestamos()
     {
         return Solicitud::query()
+            ->where('estado','Pendiente')
+            ->whereNull('fecha_entrega')
             ->orderBy("solicituds.{$this->sortBy}", $this->sortDirection)
             ->join('users', 'solicituds.id_trabajador', '=', 'users.id')
-            // ->join('users', 'solicituds.id_admin', '=', 'users.id')
-            // ->tap(fn($query)=> $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
-            ->paginate(10);
+            ->select('solicituds.*', 'users.name as nombre_trabajador')
+            ->paginate($this->perPage);
     }
 };

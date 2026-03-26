@@ -25,7 +25,7 @@ new class extends Component
 };
 ?>
 
-<div>
+<div >
     {{-- Trigger: al click carga datos y abre el modal --}}
     <flux:modal.trigger :name="$name">
         <div class="cursor-pointer">

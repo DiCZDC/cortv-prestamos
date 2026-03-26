@@ -11,7 +11,10 @@ new class extends Component{
     #[Computed]
     public function personal()
     {
-        return User::query()->paginate(10);
+        return User::with('roles')->paginate(10);
     }
 
+
+    //User::whereHas('roles', function ($query) {    $query->where('name', 'admin');})->get();
 };
+
