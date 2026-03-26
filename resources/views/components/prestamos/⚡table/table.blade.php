@@ -1,13 +1,11 @@
 <div>
-    <flux:table :paginate="$this->prestamos">
+    <flux:table :paginate="$this->prestamos" pagination:scroll-to   >
         <flux:table.columns>
             <x-componentes.header_table sortable="id" :sortBy="$sortBy" :sortDirection="$sortDirection"> ID </x-componentes.header_table>
             <x-componentes.header_table icon="contact-round"> Trabajador </x-componentes.header_table>
             <x-componentes.header_table icon="library-big"> Motivo </x-componentes.header_table>
-            
             <x-componentes.header_table icon="calendar-1" sortable="fecha_prestamo" :sortBy="$sortBy" :sortDirection="$sortDirection"> Fecha Préstamo </x-componentes.header_table>
             <x-componentes.header_table icon="calendar-off" sortable="fecha_devolucion" :sortBy="$sortBy" :sortDirection="$sortDirection"> Fecha Devolución </x-componentes.header_table>
-
             <x-componentes.header_table icon="target"> Acciones </x-componentes.header_table>
         </flux:table.columns>
 
