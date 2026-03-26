@@ -5,16 +5,17 @@
         <div class="flex w-full pr-5 justify-between mb-4 ">
             {{-- info de la vista --}}
             <div class="flex flex-col justify-center gap-8.5 pl-3 ">
-                <div class="flex items-center gap-3 text-rojo_claro">
-                    <flux:icon name="file" class="inline size-13" />
-                    <h1 class="text-5xl font-bold inline">Prestamos</h1>
-                </div>
-                <div class="flex items-center gap-3 text-gris_claro pl-1.5">
+                
+                <x-componentes.titulo icono="file" texto="Prestamos" />
+                <x-componentes.subtitulo icono="book-alert" texto="Prestamos pendientes de aprobar" />
+
+                {{-- <div class="flex items-center gap-3 text-gris_claro pl-1.5">
                     <flux:icon name="book-alert" class="inline size-9" />
                     <span class="text-2xl text-gris_claro font-semibold " >
                         {{ __('Solicitudes de prestamos pendientes de aprobar') }}
                     </span>
-                </div>
+                </div> --}}
+
             </div>
             {{-- card --}}
             
