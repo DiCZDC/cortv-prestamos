@@ -1,4 +1,5 @@
 <div>
+    <flux:input kbd="⌘K" icon="magnifying-glass" placeholder="Search..."/>
     <flux:table :paginate="$this->prestamos" pagination:scroll-to   >
         <flux:table.columns>
             <x-componentes.header_table sortable="id" :sortBy="$sortBy" :sortDirection="$sortDirection"> ID </x-componentes.header_table>
