@@ -1,3 +1,8 @@
+@php
+    $cant_esperados = App\Models\Solicitud::where('fecha_devolucion','=',now())->count();
+    $cant_atrasados = App\Models\Solicitud::where('fecha_devolucion','<',now())->where('estado','=','Entregada')->count();
+
+@endphp
 <x-layouts::app :title="__('Recepción')">
     <div class="flex flex-row gap"> 
         <div class=" pt-2 w-1/2 gap-6">
@@ -16,8 +21,8 @@
             </div>
         </div>
         <div class="w-2/5 flex justify-between items-center ">
-            <livewire:card titulo='Equipo más solicitado' descripcion='Conversor de audio' icono='award' color_text='black'/>    
-            <livewire:card titulo='Equipo más solicitado' descripcion='Conversor de audio' icono='award' color_text='black'/>    
+            <livewire:card titulo='{{$cant_esperados}} equipos' descripcion='esperados hoy' icono='inbox' color_text='black'/>    
+            <livewire:card titulo='{{$cant_atrasados}} Prestamos' descripcion='atrasados' icono='clock' color_text='black'/>    
         
         </div>
     </div>  

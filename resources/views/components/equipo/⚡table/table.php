@@ -52,7 +52,7 @@ new class extends Component
         return Equipo::query()
             ->tap(fn ($query) => $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
             ->join('categorias', 'equipos.id_categoria', '=', 'categorias.id')
-            ->select('equipos.*', 'categorias.nombre_categoria')
+            ->select('equipos.*', 'categorias.nombre_categoria', 'categorias.icono as icono_categoria')
             ->when($this->search, function ($query) {
                 $query->where(function ($subQuery) {
                     $subQuery->whereRaw('LOWER(equipos.modelo) like ?', ['%' . strtolower($this->search) . '%'])
