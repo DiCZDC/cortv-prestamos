@@ -12,7 +12,7 @@ new class extends Component
     public $search = '';
 
     #[On('searchUpdated')]
-    public function updateSearch($value)    
+    public function updateSearch($value)
     {
         $this->search = $value;
     }
@@ -20,12 +20,11 @@ new class extends Component
     #[Computed]
     public function personal()
     {
-        return User::
-            with('roles')
+        return User::with('roles')
             ->when($this->search !== '', function ($query) {
-                $query->whereRaw('LOWER(users.name) like ?', ['%' . strtolower($this->search) . '%'])
-                    ->orWhereRaw('LOWER(users.email) like ?', ['%' . strtolower($this->search) . '%']);
-                    // ->orWhereRaw('LOWER(solicituds.motivo) like ?', ['%' . strtolower($this->search) . '%']);
+                $query->whereRaw('LOWER(users.name) like ?', ['%'.strtolower($this->search).'%'])
+                    ->orWhereRaw('LOWER(users.email) like ?', ['%'.strtolower($this->search).'%']);
+                // ->orWhereRaw('LOWER(solicituds.motivo) like ?', ['%' . strtolower($this->search) . '%']);
             })
             ->paginate(10);
     }

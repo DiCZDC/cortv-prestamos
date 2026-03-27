@@ -20,14 +20,16 @@ new class extends Component
     public $filter;
 
     public $perPage = 10;
+
     #[On('searchUpdated')]
     public function updateSearch($value)
-    {        
+    {
         $this->search = $value;
     }
+
     #[On('filterUpdated')]
     public function updateFilter($value)
-    {        
+    {
         $this->filter = $value;
     }
 
@@ -55,8 +57,8 @@ new class extends Component
             ->select('equipos.*', 'categorias.nombre_categoria', 'categorias.icono as icono_categoria')
             ->when($this->search, function ($query) {
                 $query->where(function ($subQuery) {
-                    $subQuery->whereRaw('LOWER(equipos.modelo) like ?', ['%' . strtolower($this->search) . '%'])
-                        ->orWhereRaw('LOWER(equipos.marca) like ?', ['%' . strtolower($this->search) . '%']);
+                    $subQuery->whereRaw('LOWER(equipos.modelo) like ?', ['%'.strtolower($this->search).'%'])
+                        ->orWhereRaw('LOWER(equipos.marca) like ?', ['%'.strtolower($this->search).'%']);
                 });
             })
             ->when($this->filter, function ($query) {

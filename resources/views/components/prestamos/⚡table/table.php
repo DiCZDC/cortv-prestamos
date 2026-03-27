@@ -27,6 +27,7 @@ new class extends Component
             $this->sortDirection = 'asc';
         }
     }
+
     #[On('searchUpdated')]
     public function updateSearch($value)
     {
@@ -43,8 +44,8 @@ new class extends Component
             ->join('users', 'solicituds.id_trabajador', '=', 'users.id')
             ->select('solicituds.*', 'users.name as nombre_trabajador')
             ->when($this->search !== '', function ($query) {
-                $query->whereRaw('LOWER(users.name) like ?', ['%' . strtolower($this->search) . '%'])
-                    ->orWhereRaw('LOWER(solicituds.motivo) like ?', ['%' . strtolower($this->search) . '%']);
+                $query->whereRaw('LOWER(users.name) like ?', ['%'.strtolower($this->search).'%'])
+                    ->orWhereRaw('LOWER(solicituds.motivo) like ?', ['%'.strtolower($this->search).'%']);
             })
             ->paginate($this->perPage);
     }
