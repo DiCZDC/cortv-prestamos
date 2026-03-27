@@ -25,6 +25,7 @@
         titulo="Equipo más solicitado"
         icono="award"
         color_text="black"
+        color_bg="not-dark:bg-hueso"
         titulo-modal="Equipo más solicitado"
         table="modal.tabla.solicitudes"
         :descripcion="$this->mas_solicitado->first()->modelo.' '.$this->mas_solicitado->first()->marca ?? 'N/A'"
