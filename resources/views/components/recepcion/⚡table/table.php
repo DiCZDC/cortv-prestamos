@@ -1,23 +1,24 @@
 <?php
 
-use Livewire\{
-    Component,
-    WithPagination
-};
+use App\Models\Solicitud;
 use Livewire\Attributes\Computed;
-use App\Models\{
-    Solicitud
-};
+use Livewire\Component;
+use Livewire\WithPagination;
+
 new class extends Component
 {
-
     use WithPagination;
+
     public $sortBy = 'id';
+
     public $sortDirection = 'ASC';
+
     public $search = '';
+
     public $perPage = 10;
 
-    public function sort($column) {
+    public function sort($column)
+    {
         if ($this->sortBy === $column) {
             $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
         } else {
@@ -27,7 +28,8 @@ new class extends Component
     }
 
     #[Computed]
-    public function prestamos(){
+    public function prestamos()
+    {
         return Solicitud::query()
             ->where('estado', 'Entregada')
             ->whereNull('fecha_entrega')

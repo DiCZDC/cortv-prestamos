@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Equipo;
+use App\Models\Unidad_Equipo;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\{
-    Equipo};
+
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Unidad_Equipo>
+ * @extends Factory<Unidad_Equipo>
  */
 class Unidad_EquipoFactory extends Factory
 {
@@ -20,7 +21,7 @@ class Unidad_EquipoFactory extends Factory
         return [
             'id_equipo' => Equipo::query()->inRandomOrder()->value('id'),
             'sicipo' => fake()->unique()->numerify('SICIPO-####'),
-            'estado' => fake()->randomElement(['Disponible', 'Prestado', 'En reparación','Reservado']),
+            'estado' => fake()->randomElement(['Disponible', 'Prestado', 'En reparación', 'Reservado']),
         ];
     }
 }

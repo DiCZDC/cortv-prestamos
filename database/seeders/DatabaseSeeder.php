@@ -2,21 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\{
-    User,
-    Categoria,
-    Equipo,
-    Unidad_Equipo,
-    Solicitud,
-    Solicitud_Equipo,
-};
-
-use Spatie\Permission\Models\{
-    Role,
-    Permission
-};
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Categoria;
+use App\Models\Equipo;
+use App\Models\Solicitud;
+use App\Models\Solicitud_Equipo;
+use App\Models\Unidad_Equipo;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,14 +21,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory(10)->create();
-        
+
         $usuario = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'trabajador']);
-        
+
         $usuario->assignRole('admin');
 
         Categoria::factory(10)->create();
@@ -41,9 +36,7 @@ class DatabaseSeeder extends Seeder
         Solicitud::factory(500)->create();
         Unidad_Equipo::factory(1000)->create();
         Solicitud_Equipo::factory(1000)->create();
-        
-        
-        
+
         // Permission::create(['name' => 'solicitar_prestamo']);
         // Permission::create(['name' => 'ver_archivo']);
     }

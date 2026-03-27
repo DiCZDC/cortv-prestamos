@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class prestamosController extends Controller
 {
     /**
@@ -22,13 +20,11 @@ class prestamosController extends Controller
         return view('prestamos.create');
     }
 
-       /**
+    /**
      * Display the specified resource.
      */
     public function show($id)
     {
         return view('prestamos.show', ['id' => $id]);
     }
-
-    
 }

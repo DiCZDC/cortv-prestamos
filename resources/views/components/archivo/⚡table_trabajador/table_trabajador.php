@@ -1,26 +1,27 @@
 <?php
 
-use Livewire\{
-    Component,
-    WithPagination
-};
+use App\Models\Solicitud;
 use Livewire\Attributes\Computed;
-use App\Models\{
-    Solicitud,
-    user
-};
+use Livewire\Component;
+use Livewire\WithPagination;
+
 new class extends Component
 {
     use WithPagination;
+
     public $userId;
+
     public $sortBy = 'id';
+
     public $sortDirection = 'asc';
+
     public function mount()
     {
-        $this->userId = auth()->id();;
+        $this->userId = auth()->id();
     }
-    
-    public function sort($column) {
+
+    public function sort($column)
+    {
         if ($this->sortBy === $column) {
             $this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
         } else {
@@ -36,7 +37,7 @@ new class extends Component
             ->orderBy("solicituds.{$this->sortBy}", $this->sortDirection)
             ->join('users', 'solicituds.id_admin', '=', 'users.id')
             ->paginate(10);
-            // ->tap(fn($query)=> $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
+        // ->tap(fn($query)=> $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
     }
 };
 /*

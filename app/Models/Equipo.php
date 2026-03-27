@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Database\Factories\EquipoFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Equipo extends Model
 {
-    /** @use HasFactory<\Database\Factories\EquipoFactory> */
+    /** @use HasFactory<EquipoFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -20,6 +21,7 @@ class Equipo extends Model
     {
         return $this->belongsTo(Categoria::class);
     }
+
     public function unidad_equipos()
     {
         return $this->hasMany(Unidad_Equipo::class);
