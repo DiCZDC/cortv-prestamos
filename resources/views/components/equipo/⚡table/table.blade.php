@@ -7,7 +7,6 @@
 
     @endphp
     {{-- Simplicity is the consequence of refined emotions. - Jean D'Alembert --}}
-    {{$this->filter}}
     <livewire:searchbar 
         placeholder="Buscar por marca o modelo..."
         :filters="$this->filters" />
