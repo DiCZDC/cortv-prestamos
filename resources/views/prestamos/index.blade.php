@@ -9,13 +9,6 @@
                 <x-componentes.titulo icono="file" texto="Prestamos" />
                 <x-componentes.subtitulo icono="book-alert" texto="Prestamos pendientes de aprobar" />
 
-                {{-- <div class="flex items-center gap-3 text-gris_claro pl-1.5">
-                    <flux:icon name="book-alert" class="inline size-9" />
-                    <span class="text-2xl text-gris_claro font-semibold " >
-                        {{ __('Solicitudes de prestamos pendientes de aprobar') }}
-                    </span>
-                </div> --}}
-
             </div>
             {{-- card --}}
             
