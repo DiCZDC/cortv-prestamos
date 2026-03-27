@@ -1,5 +1,13 @@
-<div>
-    
+<div class="mt-4">
+    <livewire:searchbar 
+        :filters="[
+            '' => 'Todos',
+            'Autorizada' => 'Autorizada',
+            'Pendiente' => 'Pendiente',
+            'Entregada' => 'Entregada',
+            'Devuelta' => 'Devuelta',
+            'Rechazada' => 'Rechazada',
+        ]"/>
 
     <flux:table :paginate="$this->prestamos">
         <flux:table.columns>

@@ -1,5 +1,5 @@
 <div>
-    <flux:input icon="magnifying-glass" placeholder="Buscar por nombre de trabajador o motivo..." wire:model.live="search"/>
+    <livewire:searchbar/>
     <flux:table :paginate="$this->prestamos" pagination:scroll-to   >
         <flux:table.columns>
             <x-componentes.header_table sortable="id" :sortBy="$sortBy" :sortDirection="$sortDirection"> ID </x-componentes.header_table>

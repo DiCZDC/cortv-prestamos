@@ -30,6 +30,12 @@ new class extends Component
     {
         $this->search = $value;
     }
+    #[On('filterUpdated')]
+    public function updateFilter($value)
+    {        $this->filter = $value;
+    }
+
+
     #[Computed]
     public function prestamos()
     {
@@ -50,7 +56,8 @@ new class extends Component
             ->join('users as admin', 'solicituds.id_admin', '=', 'admin.id')
             ->select('solicituds.*', 'users.name as nombre_trabajador', 'admin.name as nombre_admin')
             ->when($this->search !== '', function ($query) {
-                $query->whereRaw('LOWER(users.name) like ?', ['%' . strtolower($this->search) . '%'])
+                $query
+                    ->whereRaw('LOWER(users.name) like ?', ['%' . strtolower($this->search) . '%'])
                     ->orWhereRaw('LOWER(admin.name) like ?', ['%' . strtolower($this->search) . '%'])
                     ->orWhereRaw('LOWER(solicituds.motivo) like ?', ['%' . strtolower($this->search) . '%']);
             })

@@ -2,6 +2,7 @@
 
 use App\Models\Solicitud;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -25,6 +26,11 @@ new class extends Component
             $this->sortBy = $column;
             $this->sortDirection = 'asc';
         }
+    }
+    #[On('searchUpdated')]
+    public function updateSearch($value)
+    {
+        $this->search = $value;
     }
 
     #[Computed]

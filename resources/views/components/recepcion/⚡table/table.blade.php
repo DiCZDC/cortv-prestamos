@@ -1,9 +1,5 @@
 <div>    
-    @livewire('searchbar', 
-    [
-        'filter' => ['all' => 'Todos', 'atrasado' => 'Atrasado', 'tiempo' => 'En tiempo'],
-        'search_var'=> $search
-    ])
+    <livewire:searchbar :filters="['all' => 'Todos', 'atrasado' => 'Atrasado', 'tiempo' => 'En tiempo']"/>
         
     <flux:table :paginate="$this->prestamos" pagination:scroll-to   >
         <flux:table.columns>
