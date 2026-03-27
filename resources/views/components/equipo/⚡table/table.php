@@ -16,7 +16,19 @@ new class extends Component
 
     public $search = '';
 
+    public $filter = '';
+
     public $perPage = 10;
+    #[On('searchUpdated')]
+    public function updateSearch($value)
+    {        
+        $this->search = $value;
+    }
+    #[On('filterUpdated')]
+    public function updateFilter($value)
+    {        
+        $this->filter = $value;
+    }
 
     public function sort($column)
     {
@@ -38,6 +50,13 @@ new class extends Component
     {
         return Equipo::query()
             ->tap(fn ($query) => $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
+            ->when($this->search, function ($query) {
+                $query->WhereRaw('LOWER(modelo) like ?', ['%' . strtolower($this->search) . '%'])
+                    ->orWhereRaw('LOWER(marca) like ?', ['%' . strtolower($this->search) . '%']);
+            })
+            ->when($this->filter, function ($query) {
+                $query->where('id_categoria', $this->filter);
+            })
             ->paginate($this->perPage);
     }
 };
