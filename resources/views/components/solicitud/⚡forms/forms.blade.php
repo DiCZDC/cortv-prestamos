@@ -28,8 +28,9 @@
                 
                 {{-- campos --}}
                 <div class="gap-7 flex flex-col mt-6">
-                    <x-componentes.input-form badge="Requerido" label="Motivo" placeholder="Ingrese el motivo del préstamo" model="motivo" icon="library-big" />
-                    
+                     
+                     <livewire:busqueda.input />   
+
                     <x-componentes.input-form type="date" badge="Requerido" label="Fecha de Devolución" placeholder="Seleccione la fecha de devolución" model="fecha_devolucion" />
                 </div>
                 
