@@ -20,7 +20,6 @@ class donut
     public function build(): DonutChart
     {
         return $this->chart->donutChart()
-            // >setTitle('Productos disponibles.')
             ->setSubtitle('Estado actual del inventario.')
             ->addData([$this->datos[0], $this->datos[1], $this->datos[2], $this->datos[3]])
             ->setLabels(['Disponibles', 'Prestados', 'Reservados', 'En reparación'])

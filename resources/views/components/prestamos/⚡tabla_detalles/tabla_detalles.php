@@ -1,11 +1,9 @@
 <?php
 
-use Livewire\Component;
-use App\Models\{
-    Solicitud_Equipo,
-    Solicitud
-    };
+use App\Models\Solicitud;
+use App\Models\Solicitud_Equipo;
 use Livewire\Attributes\Computed;
+use Livewire\Component;
 
 new class extends Component
 {
@@ -20,7 +18,7 @@ new class extends Component
     public function detalles()
     {
         return Solicitud_Equipo::where('id_solicitud', $this->solicitudId)->get();
-    }   
+    }
 
     #[Computed]
     public function solicitud($id_equipo)
@@ -34,6 +32,7 @@ new class extends Component
             ->whereRaw('? BETWEEN solicituds.fecha_prestamo AND solicituds.fecha_entrega', [$hoy])
             ->distinct('solicituds.id')
             ->count('solicituds.id');
-        return $total == 0? true : false;
+
+        return $total == 0 ? true : false;
     }
 };

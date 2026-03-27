@@ -19,6 +19,7 @@ class CategoriaFactory extends Factory
     {
         return [
             'nombre_categoria' => $this->faker->word(),
+            'icono' => $this->faker->word(),
         ];
     }
 }

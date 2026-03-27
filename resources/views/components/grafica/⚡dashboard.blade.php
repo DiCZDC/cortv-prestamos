@@ -21,7 +21,7 @@ new class extends Component
 };
 ?>
 
-<div wire:ignore>
+<div wire:ignore class="rounded-2xl">
     {!! $this->chart->container() !!}
 </div>
 

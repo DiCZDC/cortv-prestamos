@@ -1,5 +1,5 @@
 <x-layouts::app :title="__('Personal')">
-    <div class=" pt-2 w-3/4 gap-6">
+    <div class=" pt-2 w-3/4 gap-6 mb-10">
             {{-- Cabecera principal --}}
             <div class="mb-4 flex items-center gap-6 text-rojo_claro">
                 <flux:icon name="users" class="inline h-15 w-15" />
@@ -14,5 +14,5 @@
                 </span>
             </div>
         </div>
-    @livewire('personal.table')
+        @livewire('personal.table')
 </x-layouts::app>
