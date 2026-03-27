@@ -1,5 +1,7 @@
 <div>
-    <livewire:searchbar/>
+    <livewire:searchbar
+        placeholder="Buscar por nombre de trabajador o motivo..."
+    />
     <flux:table :paginate="$this->prestamos" pagination:scroll-to   >
         <flux:table.columns>
             <x-componentes.header_table sortable="id" :sortBy="$sortBy" :sortDirection="$sortDirection"> ID </x-componentes.header_table>

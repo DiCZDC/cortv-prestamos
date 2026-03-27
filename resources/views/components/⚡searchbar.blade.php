@@ -5,6 +5,7 @@ use Livewire\Component;
 new class extends Component
 {
     public $filters = [];
+    public $placeholder = 'Buscar por nombre de trabajador, administrador o motivo...';
     public $search_var = '';
     public $filter = '';
 
@@ -21,7 +22,7 @@ new class extends Component
     <div class = "flex flex-row items-center gap-4 mb-4 ">
         <flux:input 
             icon="magnifying-glass" 
-            placeholder="Buscar por nombre de trabajador, administrador o motivo..." 
+            placeholder="{{ $this->placeholder }}" 
             wire:model.blur="search_var"
             wire:change="$parent.updateSearch($event.target.value)"
         />

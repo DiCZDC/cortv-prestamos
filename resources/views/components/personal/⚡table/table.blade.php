@@ -1,7 +1,9 @@
 <div>
     {{-- It is never too late to be what you might have been. - George Eliot --}}
     
-    <livewire:searchbar />
+    <livewire:searchbar
+        placeholder="Buscar por nombre de trabajador o correo..."
+    />
     
     <flux:table :paginate="$this->personal">
     {{-- header de la tabla --}}

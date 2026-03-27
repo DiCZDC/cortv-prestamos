@@ -1,5 +1,12 @@
 <div>    
-    <livewire:searchbar :filters="['all' => 'Todos', 'atrasado' => 'Atrasado', 'tiempo' => 'En tiempo']"/>
+    <livewire:searchbar 
+        placeholder="Buscar por nombre de trabajador, administrador o motivo..."
+        :filters="[
+            'all' => 'Todos', 
+            'atrasado' => 'Atrasado', 
+            'tiempo' => 'En tiempo'
+            ]"
+    />
         
     <flux:table :paginate="$this->prestamos" pagination:scroll-to   >
         <flux:table.columns>
