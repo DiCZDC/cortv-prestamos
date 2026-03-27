@@ -1,5 +1,14 @@
 <div>    
-    <flux:table :paginate="$this->prestamos">
+    <livewire:searchbar 
+        placeholder="Buscar por nombre de trabajador, administrador o motivo..."
+        :filters="[
+            'all' => 'Todos', 
+            'atrasado' => 'Atrasado', 
+            'tiempo' => 'En tiempo'
+            ]"
+    />
+        
+    <flux:table :paginate="$this->prestamos" pagination:scroll-to   >
         <flux:table.columns>
             <flux:table.column sortable :sorted="$sortBy === 'id'" :direction="$sortDirection" wire:click="sort('id')">ID</flux:table.column>
             <flux:table.column>Trabajador</flux:table.column>

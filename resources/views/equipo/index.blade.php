@@ -15,9 +15,6 @@
                 </span>
             </div>
         </div>
-        <div class="w-1/4 flex justify-center items-center">
-            <livewire:card titulo='Equipo más solicitado' descripcion='Conversor de audio' icono='award' color_text='black'/>    
-        </div>
     </div>
 
     @livewire('equipo.table')

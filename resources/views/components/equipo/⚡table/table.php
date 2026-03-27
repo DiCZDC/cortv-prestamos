@@ -3,6 +3,7 @@
 use App\Models\Equipo;
 use App\Models\Unidad_Equipo;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,7 +17,21 @@ new class extends Component
 
     public $search = '';
 
+    public $filter;
+
     public $perPage = 10;
+
+    #[On('searchUpdated')]
+    public function updateSearch($value)
+    {
+        $this->search = $value;
+    }
+
+    #[On('filterUpdated')]
+    public function updateFilter($value)
+    {
+        $this->filter = $value;
+    }
 
     public function sort($column)
     {
@@ -38,6 +53,17 @@ new class extends Component
     {
         return Equipo::query()
             ->tap(fn ($query) => $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
+            ->join('categorias', 'equipos.id_categoria', '=', 'categorias.id')
+            ->select('equipos.*', 'categorias.nombre_categoria', 'categorias.icono as icono_categoria')
+            ->when($this->search, function ($query) {
+                $query->where(function ($subQuery) {
+                    $subQuery->whereRaw('LOWER(equipos.modelo) like ?', ['%'.strtolower($this->search).'%'])
+                        ->orWhereRaw('LOWER(equipos.marca) like ?', ['%'.strtolower($this->search).'%']);
+                });
+            })
+            ->when($this->filter, function ($query) {
+                $query->where('categorias.id', '=', $this->filter);
+            })
             ->paginate($this->perPage);
     }
 };

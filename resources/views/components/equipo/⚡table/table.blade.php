@@ -1,6 +1,15 @@
-
 <div>
+    @php
+        $categorias = \App\Models\Categoria::get();
+        $this->filters = ['' => 'Todos'];
+        foreach ($categorias as $categoria)
+            $this->filters[$categoria->id] = $categoria->nombre_categoria;
+
+    @endphp
     {{-- Simplicity is the consequence of refined emotions. - Jean D'Alembert --}}
+    <livewire:searchbar 
+        placeholder="Buscar por marca o modelo..."
+        :filters="$this->filters" />
     <flux:table :paginate="$this->equipos">
         <flux:table.columns>
             <flux:table.column></flux:table.column>
