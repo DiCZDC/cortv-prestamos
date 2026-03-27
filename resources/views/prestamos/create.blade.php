@@ -1,3 +1,3 @@
 <x-layouts::app title="Crear Préstamo">
-    el create
+    <livewire:solicitud.forms title="Initial Title" />
 </x-layouts::app >

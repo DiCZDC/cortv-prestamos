@@ -44,7 +44,7 @@
     --color-azul_intenso:  #0088FF;
 
     --color-rojo_hover: #C9686C;
-
+    --color-fondo: #f5f8fa;
 }
 
 @layer theme {

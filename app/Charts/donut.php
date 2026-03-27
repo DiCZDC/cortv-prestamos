@@ -23,7 +23,6 @@ class donut
             ->setSubtitle('Estado actual del inventario.')
             ->addData([$this->datos[0], $this->datos[1], $this->datos[2], $this->datos[3]])
             ->setLabels(['Disponibles', 'Prestados', 'Reservados', 'En reparación'])
-            // ->setShowLabels(false)
             ->setXAxis([' Equipos en total  '])
             ->setColors(['#76D245', '#AE2B2F', '#279AF1', '#EEC33B']);
     }
