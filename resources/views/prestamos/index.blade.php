@@ -2,7 +2,10 @@
     {{-- div general --}}
     <div class="px-1 ">
         {{-- header --}}
-        <div class="flex w-full pr-5 justify-between mb-4 ">
+        <div class="flex w-full pr-5 justify-between mb-4 
+            gap-10 items-center flex-col-reverse
+            md:flex-row md:gap-8.5
+        ">
             {{-- info de la vista --}}
             <div class="flex flex-col justify-center gap-8.5 pl-3 ">
                 

@@ -1,11 +1,11 @@
 <?php
 use Flux\Flux;
 use Livewire\Attributes\Validate;
-use Livewire\Component;
-use Livewire\Attributes\Computed;
 use App\Models\Equipo;
 use App\Models\Unidad_Equipo;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Computed;
+use Livewire\Component;
 
 new class extends Component
 {   
