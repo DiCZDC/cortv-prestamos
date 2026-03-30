@@ -4,30 +4,40 @@ use Livewire\Component;
 use Livewire\Attributes\Computed;
 use App\Models\Equipo;
 use App\Models\Unidad_Equipo;
+use Livewire\Attributes\On;
 
 new class extends Component
 {
     public $motivo;
-
     public $fecha_prestamo;
-
     public $estado = 'Pendiente';
-
     public $fecha_devolucion;
     
-    // modelo + equipo
-    public $nombre_equipo =1; 
+    public $equipos_seleccionados = [];
 
-    public $nombre_unidad_equipo;
-
-    #[Computed]
-    public function equipos()
+    #[On('equipo-agregado')]
+    public function agregar_equipo($unidad_id)
     {
-        return Equipo::all();
+        // Evitar duplicados con IDs simples
+        if (!in_array($unidad_id, $this->equipos_seleccionados)) {
+            $this->equipos_seleccionados[] = $unidad_id;
+        }
+    }
+
+    public function eliminar_equipo($id)
+    {
+        $this->equipos_seleccionados = array_values(
+            array_filter($this->equipos_seleccionados, fn($item) => $item != $id)
+        );
     }
 
     #[Computed]
-    public function unidades_equipo($id){
-        return Unidad_Equipo::where('id_equipo', $id)->get();
+    public function unidades_seleccionadas()
+    {
+        return Unidad_Equipo::with('equipo')
+            ->whereIn('id', $this->equipos_seleccionados)
+            ->get();
     }
+
+    public function save() {}
 };
