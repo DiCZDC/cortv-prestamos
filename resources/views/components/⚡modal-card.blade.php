@@ -42,7 +42,9 @@ new class extends Component
     </flux:modal.trigger>
 
     {{-- Modal --}}
-    <flux:modal :name="$name" class="w-auto p-6 rounded-2xl">
+    <flux:modal :name="$name" class="w-[80%] p-6 rounded-2xl
+        md:w-auto
+    ">
         <div class="flex flex-col gap-4">
             <div class="flex items-center gap-4">
                 <flux:icon name="{{ $iconoT }}" class="w-7 h-7 text-black" />

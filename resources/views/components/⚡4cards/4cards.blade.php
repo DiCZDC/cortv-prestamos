@@ -1,4 +1,14 @@
-<div class="grid grid-cols-2 grid-rows-2 place-items-center content-center">
+<div class="
+            grid grid-cols-1 place-items-center content-center 
+            
+            
+            gap-y-7
+            md:w-fit
+            md:mx-auto
+            md:gap-13
+            md:grid-cols-2 
+            lg:
+            ">
     
     <livewire:modal-card
         name="modalDeudas"
