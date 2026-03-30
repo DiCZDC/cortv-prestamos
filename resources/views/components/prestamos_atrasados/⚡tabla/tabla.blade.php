@@ -2,7 +2,7 @@
 <flux:table :paginate="$this->atrasados">
         <flux:table.columns>
             
-        <flux:table.column></flux:table.column>
+        <flux:table.column class="hidden md:block"></flux:table.column>
 
             <x-componentes.header_table> Equipo </x-componentes.header_table>
             <x-componentes.header_table> Solicitante </x-componentes.header_table>
@@ -13,14 +13,14 @@
             @forelse ($this->atrasados as $prestamo)
             
             @php
-    $dias = round(
-        \Carbon\Carbon::parse($prestamo->solicitud->fecha_devolucion)
-            ->diffInDays(now())
-    );
-@endphp
+                $dias = round(
+                    \Carbon\Carbon::parse($prestamo->solicitud->fecha_devolucion)
+                        ->diffInDays(now())
+                );
+            @endphp
 
             <flux:table.row>
-                <flux:table.cell>
+                <flux:table.cell class="hidden md:block">
                     <flux:icon name="video" />
                 </flux:table.cell>
                 <flux:table.cell class="text-balance!">{{ $prestamo->unidad_equipo->equipo->marca . ' ' . $prestamo->unidad_equipo->equipo->modelo }}</flux:table.cell>
