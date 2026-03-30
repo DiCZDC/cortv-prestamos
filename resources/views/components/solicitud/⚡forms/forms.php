@@ -11,6 +11,8 @@ new class extends Component
     public $estado = 'Pendiente';
 
     public $fecha_devolucion;
-
+    
+    // modelo + equipo
+    public $nombre_equipo; 
 
 };

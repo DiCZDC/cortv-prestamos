@@ -25,7 +25,7 @@
         <div class="h-full w-[84%] relative shadow-xl rounded-xl ">
             <div class="flex flex-row justify-start items-center gap-3 px-8 pt-10">
                 <flux:icon name="clock-alert" class="w-9! h-9! text-black dark:text-hueso" />
-                <span class="font-semibold text-[24px] text-black [word-spacing:0.3rem] dark: text-hueso"> Prestamos Atrasados</span>
+                <span class="font-semibold text-[24px] text-black [word-spacing:0.3rem] dark:text-hueso"> Prestamos Atrasados</span>
             </div>
                                 
             <div class="pt-3 px-10 pb-6" >

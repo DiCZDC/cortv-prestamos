@@ -17,6 +17,7 @@
             <option value="{{ $equipo->nombre }}">
         @endforeach
     </datalist>
+    
     <div>
         @error('nombre_equipo')
                 <span class="text-red-500 text-sm">{{ $message }}</span>
