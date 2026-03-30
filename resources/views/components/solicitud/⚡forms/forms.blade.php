@@ -2,20 +2,23 @@
 
     <div class="flex px-15 py-3">
     
-        <section class="w-1/2 flex flex-col items-start justify-center gap-4">
+        <section class="w-1/2 flex flex-col items-start justify-center gap-3">
                 {{-- div de la primera parte del formulario --}}
             <div class="flex flex-col bg-white shadow-2xl rounded-2xl px-12 py-9 w-140">  
                 {{-- titulo --}}
-                <div class="flex justify-center items-center gap-3 mb-1 text-rojo_claro">
+                <div class="flex justify-center items-center gap-2.5 text-rojo_claro">
                     <flux:icon name="file" class="inline size-12" />
                     <h1 class="text-4xl font-bold inline">Datos de la solicitud</h1>
                 </div>
                 
                 {{-- campos --}}
-                <div class="gap-7 flex flex-col mt-7">
-                    <x-componentes.input-form badge="Requerido" label="Motivo" placeholder="Ingrese el motivo del préstamo" model="motivo" icon="library-big" />
-                    <x-componentes.input-form type="date" badge="Requerido" label="Fecha de Devolución" placeholder="Seleccione la fecha de devolución" model="fecha_devolucion" />
+                <div class="gap-5 flex flex-col mt-7">
+                    <flux:field>
+                        <x-componentes.input-form badge="Requerido" label="Motivo" placeholder="Ingrese el motivo del préstamo" model="motivo" icon="library-big" />
+                        <flux:description class="!mt-0">Maximo 255 caracteres para el motivo, minimo 10.</flux:description>
+                    </flux:field>
                     <x-componentes.input-form type="date" badge="Requerido" label="Fecha de Préstamo" placeholder="Seleccione la fecha de préstamo" model="fecha_prestamo" />
+                    <x-componentes.input-form type="date" badge="Requerido" label="Fecha de Devolución" placeholder="Seleccione la fecha de devolución" model="fecha_devolucion" />
                 </div>
                 
             </div>
@@ -35,7 +38,7 @@
                     <h1 class="text-4xl font-bold inline text-center text-wrap">Equipo solicitado</h1>
                 </div>
 
-                <div class="p-15">
+                <div class="py-3 px-5 w-8/10">
                     <flux:table>
                         <flux:table.columns>
                             <x-componentes.header_table icon="hard-drive"> Equipo </x-componentes.header_table>
@@ -53,14 +56,8 @@
                                 <flux:table.cell>
                                     {{ $equipo->sicipo }}
                                 </flux:table.cell>
-                                <flux:table.cell class="flex justify-end">
-                                    <x-componentes.btnsformulario 
-                                        type="button" 
-                                        texto="Eliminar" 
-                                        color="rojo_claro" 
-                                        icon="trash" 
-                                        wire:click="eliminar_equipo({{ $equipo->id }})" 
-                                    />
+                                <flux:table.cell>
+                                    <flux:icon.circle-x class="transition delay-150 duration-300 ease-in-out  hover:scale-120 cursor-pointer text-rojo_claro" wire:click="eliminar_equipo({{ $equipo->id }})" />
                                 </flux:table.cell>
                             </flux:table.row>
 

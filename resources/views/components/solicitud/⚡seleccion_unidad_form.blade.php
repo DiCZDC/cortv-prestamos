@@ -1,4 +1,6 @@
 <?php
+namespace App\Livewire;
+use Flux\Flux;
 
 use Livewire\Component;
 use Livewire\Attributes\Computed;
@@ -49,6 +51,11 @@ new class extends Component
         $this->validate();
         $this->dispatch('equipo-agregado', unidad_id: $this->nombre_unidad_equipo);
         $this->reset(['nombre_equipo', 'nombre_unidad_equipo']);
+        Flux::toast(
+            heading: 'Equipo agregado',
+            text: 'El equipo ha sido agregado a la solicitud correctamente.',
+            variant: 'success',
+        );
     }
     
 };
@@ -83,8 +90,7 @@ new class extends Component
                     
                 </flux:select>                             
                  
-                <div>@error('nombre_equipo') {{ $message }} @enderror</div>
-
+                <flux:error name="nombre_equipo" /> 
             </flux:field>
 
             <flux:field>
@@ -105,11 +111,11 @@ new class extends Component
                         <flux:select.option disabled>No hay unidades disponibles</flux:select.option>
                     @endforelse
                 </flux:select>
-                
-                <div>@error('nombre_unidad_equipo') {{ $message }} @enderror</div>                             
+
+                <flux:error name="nombre_unidad_equipo" />
             </flux:field>
                 
             <flux:button wire:click="agregar" variant="primary" class="border-none w-full !bg-rojo_claro ">Agregar Equipo</flux:button>
         </div>
-                    
+      
 </div>  
