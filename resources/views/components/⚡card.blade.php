@@ -24,8 +24,11 @@ new class extends Component
 };
 ?>
 
-<div class="w-[254px] h-[180px] {{$color_bg}} rounded-3xl shadow-2xl flex flex-col items-center 
-    justify-center gap-2 p-5  select-none" wire:click="$dispatch('flux-modal', { nombre: '{{$nombre_modal}}' })">
+<div class="w-[240px] h-[180px] {{$color_bg}} rounded-3xl shadow-2xl flex flex-col items-center 
+    justify-center gap-2 p-5  select-none
+    {{-- md:w-[2px] md:h-[180px] --}}
+    " 
+    wire:click="$dispatch('flux-modal', { nombre: '{{$nombre_modal}}' })">
     
     <flux:icon name="{{ $icono }}" class="w-10 h-10 {{$color_text}}" />
     <span class="{{$color_text}} font-semibold text-[22px] text-center tracking-[-0.38px] leading-none"> {{ $titulo }} </span>                      

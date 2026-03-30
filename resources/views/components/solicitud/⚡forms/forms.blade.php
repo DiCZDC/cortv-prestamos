@@ -31,25 +31,35 @@
                 {{-- campos --}}
                 <div class="gap-7 flex flex-col mt-6">
                      
-                    <x-componentes.input-form list="equipos" badge="Selecciona al menos uno" label="Equipo" placeholder="¿Qué equipo se solicita?" model="nombre_equipo" icon="magnifying-glass" />
-                    
                     <flux:field>
+
+                        <flux:label badge="Requerido">
+                            <span class="text-gris_claro text-base font-semibold">Equipo</span>
+                        </flux:label>
+
+                        <flux:select wire:model.live="nombre_equipo" placeholder="Seleccione un equipo...">
+                            @forelse ($this->equipos as $equipo)
+                                <flux:select.option value="{{ $equipo->id }}">{{ $equipo->marca . " " . $equipo->modelo }}</flux:select.option>
+                                
+                            @empty
+                                <flux:select.option disabled>No hay equipos disponibles</flux:select.option>
+                            @endforelse
+                            
+                        </flux:select>                             
+                    </flux:field>
 
                         <flux:label badge="Requerido">
                             <span class="text-gris_claro text-base font-semibold">Sicipo</span>
                         </flux:label>
 
-                        <flux:select wire:model="industry" placeholder="Choose industry...">
-                            <flux:select.option >Photography</flux:select.option>
-                            <flux:select.option>Design services</flux:select.option>
-                            <flux:select.option>Web development</flux:select.option>
-                            <flux:select.option>Accounting</flux:select.option>
-                            <flux:select.option>Legal services</flux:select.option>
-                            <flux:select.option>Consulting</flux:select.option>
-                            <flux:select.option>Other</flux:select.option>
+                        <flux:select wire:model="nombre_unidad_equipo" placeholder="Elige una unidad...">
+                            @forelse ($this->unidades_equipo($nombre_equipo) as $unidad)
+                                <flux:select.option value="{{ $unidad->id }}">{{ $unidad->sicipo}}</flux:select.option>
+                            @empty
+                                <flux:select.option disabled>No hay unidades disponibles</flux:select.option>
+                            @endforelse
                         </flux:select>                             
                     </flux:field>
-
 
                 </div>
                 

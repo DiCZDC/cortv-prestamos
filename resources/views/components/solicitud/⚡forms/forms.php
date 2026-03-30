@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Equipo;
+use App\Models\Unidad_Equipo;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component
@@ -11,8 +14,21 @@ new class extends Component
     public $estado = 'Pendiente';
 
     public $fecha_devolucion;
-    
-    // modelo + equipo
-    public $nombre_equipo; 
 
+    // modelo + equipo
+    public $nombre_equipo = 1;
+
+    public $nombre_unidad_equipo;
+
+    #[Computed]
+    public function equipos()
+    {
+        return Equipo::all();
+    }
+
+    #[Computed]
+    public function unidades_equipo($id)
+    {
+        return Unidad_Equipo::where('id_equipo', $id)->get();
+    }
 };

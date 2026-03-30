@@ -1,5 +1,9 @@
 <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid 
+                gap-4
+                grid-cols-1
+                lg:grid-cols-2 md:rows-1
+                ">
     
         @livewire('4cards')
         
@@ -8,7 +12,9 @@
         </div>
     </div>
 
-    <div class="grid auto-rows-min gap-4 md:grid-cols-2 place-items-center content-center">
+    <div class="grid auto-rows-min gap-4 grid-cols-1 place-items-center content-center
+                lg:grid-cols-2
+    ">
 
         <div class="h-full w-[84%] relative rounded-xl shadow-xl">
         <!-- Titulo de la tabla -->
