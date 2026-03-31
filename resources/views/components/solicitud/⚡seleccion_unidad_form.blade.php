@@ -60,11 +60,17 @@ new class extends Component
     
 };
 ?>
-<div class="flex flex-col bg-white shadow-2xl rounded-2xl px-12 py-6 w-140 mt-9">  
+<div class="flex flex-col bg-white shadow-2xl rounded-2xl px-12 py-6 w-full mt-9">  
         {{-- titulo --}}
         <div class="flex justify-center items-center gap-5 mb-2 text-rojo_claro">
-            <flux:icon name="command" class="inline size-12" />
-            <h1 class="text-4xl font-bold inline text-center text-wrap">Agrega equipo <br> a la solicitud</h1>
+            <flux:icon name="command" class="inline 
+                size-8
+                md:size-12
+                " />
+            <h1 class="font-bold inline text-center text-wrap
+                    text-2xl
+                    md:text-4xl
+            ">Agrega equipo <br> a la solicitud</h1>
         </div>
         
         {{-- campos --}}
