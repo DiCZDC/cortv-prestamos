@@ -24,22 +24,21 @@ $tooltip ??= $slot->isNotEmpty() ? (string) $slot : null;
 
 // Size-up icons in square/icon-only buttons...
 $iconClasses = Flux::classes('size-4')
-    ->add('in-data-flux-sidebar-group-dropdown:text-rojo_oscuro! dark:in-data-flux-sidebar-group-dropdown:text-white/80!')
+    ->add('in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80!')
     ->add('[[data-flux-sidebar-item]:hover_&]:text-current!');
 
 $classes = Flux::classes()
     ->add('h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg')
     ->add('in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center')
     ->add('py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px')
-    ->add('text-rojo_oscuro dark:text-white/80')
+    ->add('text-zinc-500 dark:text-white/80')
     ->add(match ($accent) {
         true => [
-            'data-current:text-hueso hover:data-current:text-hueso',
-            'data-current:bg-rojo_claro dark:data-current:bg-white/[7%]',
-            'hover:text-hueso dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-rojo_hover',
+            'data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content)',
+            'data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent',
+            'hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 ',
             'border border-transparent',
         ],
-        
         false => [
             'data-current:text-zinc-800 dark:data-current:text-zinc-100 data-current:border-zinc-200',
             'data-current:bg-white dark:data-current:bg-white/10 data-current:border data-current:border-zinc-200 dark:data-current:border-white/10 data-current:shadow-xs',

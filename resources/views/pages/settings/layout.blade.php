@@ -21,6 +21,6 @@
         </div>
     </div>
     @persist('toast')
-                <flux:toast />
-            @endpersist
+        <flux:toast />
+    @endpersist
 </div>
