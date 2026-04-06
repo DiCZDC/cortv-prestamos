@@ -28,7 +28,7 @@
                     </flux:table.cell>
                     
                     <flux:table.cell class="whitespace-nowrap">
-                        {{ $prestamo->name ?? 'Pendiente de Aprobación' }}
+                        {{ $prestamo->admin_name ?? 'Pendiente de Aprobación' }}
                     </flux:table.cell>
 
                     <flux:table.cell class="whitespace-nowrap">

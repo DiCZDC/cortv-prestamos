@@ -5,10 +5,9 @@
                             ->count();
     $devoluciones_en_tiempo = App\Models\Solicitud::where('id_trabajador', auth()->user()->id)
                             ->where('estado','Devuelta')
-                            ->whereColumn('fecha_devolucion','<=','fecha_entrega')
+                            ->whereColumn('fecha_devolucion','<','fecha_entrega')
                             ->count();
-    $porcentaje_cumplimiento = $devoluciones_totales > 0 ? ($devoluciones_en_tiempo / $devoluciones_totales) * 100 : 0; // Ejemplo de porcentaje de cumplimiento
-
+    $porcentaje_cumplimiento = $devoluciones_totales > 0 ? (($devoluciones_totales-$devoluciones_en_tiempo )/ $devoluciones_totales) * 100 : 0; // Ejemplo de porcentaje de cumplimiento
     $devoluciones_atrasadas = App\Models\Solicitud::where('id_trabajador', auth()->user()->id)
                             ->where('estado','Entregada')
                             ->where('fecha_devolucion','<',now())
