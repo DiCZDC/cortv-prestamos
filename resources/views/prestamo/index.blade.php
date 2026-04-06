@@ -29,12 +29,12 @@
                 
             </div> 
 
-            <livewire:prestamos.table lazy />
+            <livewire:prestamo.table lazy />
         </div>
 
         {{-- boton  --}}
         <div class="flex w-full justify-end mt-4 pr-1">
-            <x-componentes.boton-href ruta="prestamos.create" texto="Crear nuevo prestamo" icon="square-plus" color="rojo_claro" />
+            <x-componentes.boton-href ruta="prestamo.create" texto="Crear nuevo prestamo" icon="square-plus" color="rojo_claro" />
         </div>
     </div>
 </x-layouts::app>

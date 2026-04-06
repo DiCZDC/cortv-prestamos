@@ -18,7 +18,7 @@
                         {{ $this->solicitud($detalle->Unidad_Equipo->Equipo->id) ? 'Disponible' : 'Equipo no disponible' }}
                     </flux:table.cell>
                     <flux:table.cell>
-                        <x-componentes.boton-href ruta="prestamos.show" texto="Asignar" icon="external-link" :id="$solicitudId" color="azul_oscuro" />        
+                        <x-componentes.boton-href ruta="prestamo.show" texto="Asignar" icon="external-link" :id="$solicitudId" color="azul_oscuro" />        
                     </flux:table.cell>
                 </flux:table.row>
             @empty
@@ -31,7 +31,7 @@
         </flux:table.rows>
     </flux:table>
 
-    {{-- <x-componentes.boton-href ruta="prestamos.show" texto="Aceptar prestamo" icon="external" :id="$solicitudId" color="azul_oscuro" />         --}}
+    {{-- <x-componentes.boton-href ruta="prestamo.show" texto="Aceptar prestamo" icon="external" :id="$solicitudId" color="azul_oscuro" />         --}}
     <div class="flex align-middle justify-evenly">
         <flux:button variant="outline" icon="check" color="rojo_claro" class="mt-4" wire:click="asignarEquipos">
             Aceptar prestamo

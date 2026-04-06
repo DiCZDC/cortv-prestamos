@@ -1,8 +1,9 @@
 @php
     $producto = App\Models\Equipo::find($id);
 @endphp
+
 <x-layouts::app title="Equipo">
-    <flux:breadcrumbs>
+    <flux:breadcrumbs class="mb-4">
         <flux:breadcrumbs.item href="{{ route('equipo.index') }}">Equipo</flux:breadcrumbs.item>
         <flux:breadcrumbs.item href="#"> {{ $producto->marca . ' ' . $producto->modelo }}</flux:breadcrumbs.item>
     </flux:breadcrumbs>
