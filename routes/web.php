@@ -3,7 +3,7 @@
 use App\Http\Controllers\ArchivoController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\PersonalController;
-use App\Http\Controllers\prestamosController;
+use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\RecepcionController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +13,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::view('dashboard', 'dashboard')->name('dashboard');
 
-    Route::prefix('archivos')->name('archivos.')->group(function () {
+    Route::prefix('archivo')->name('archivo.')->group(function () {
         Route::controller(ArchivoController::class)->group(function () {
             Route::get('/', 'index')->name('index');
             Route::get('/{id}', 'show')->name('show');
@@ -21,9 +21,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 
     Route::middleware(['auth', 'role:admin'])->group(function () {
-        Route::prefix('prestamos')->name('prestamos.')->group(function () {
+        Route::prefix('prestamo')->name('prestamo.')->group(function () {
 
-            Route::controller(prestamosController::class)->group(function () {
+            Route::controller(PrestamoController::class)->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::get('create', 'create')->name('create');
                 Route::get('/{id}', 'show')->name('show');

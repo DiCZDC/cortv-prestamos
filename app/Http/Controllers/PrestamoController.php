@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-class prestamosController extends Controller
+class PrestamoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('prestamos.index');
+        return view('prestamo.index');
     }
 
     /**
@@ -17,7 +17,7 @@ class prestamosController extends Controller
      */
     public function create()
     {
-        return view('prestamos.create');
+        return view('prestamo.create');
     }
 
     /**
@@ -25,6 +25,6 @@ class prestamosController extends Controller
      */
     public function show($id)
     {
-        return view('prestamos.show', ['id' => $id]);
+        return view('prestamo.show', ['id' => $id]);
     }
 }

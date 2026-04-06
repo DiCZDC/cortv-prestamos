@@ -1,0 +1,12 @@
+@props(['texto' => '', 'icon' => '', 'color' => '', 'id' => null, 'type' => 'submit'] )
+
+
+<flux:button
+    {{ $attributes }}
+    type="{{ $type }}"
+    icon:trailing="{{ $icon }}" 
+    class="!bg-{{$color}} !text-white hover:!bg-{{$color}}/90 transition delay-150 duration-300 ease-in-out  hover:scale-107 cursor-pointer"
+>
+    {{ __($texto) }} 
+</flux:button>
+

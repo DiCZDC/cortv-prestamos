@@ -19,14 +19,14 @@
                     </flux:sidebar.item>
                     
                     @role('admin')
-                        <flux:sidebar.item icon="file" :href="route('prestamos.index')" :current="request()->routeIs('prestamos.index')" wire:navigate>
+                        <flux:sidebar.item icon="file" :href="route('prestamo.index')" :current="request()->routeIs('prestamo.index')" wire:navigate>
                             {{ __('Prestamos Pendientes') }}
                         </flux:sidebar.item>
                         <flux:sidebar.item icon="truck" :href="route('recepcion.index')" :current="request()->routeIs('recepcion.index')" wire:navigate>
                             {{ __('Recepción') }}
                         </flux:sidebar.item>
                     @endrole
-                        <flux:sidebar.item icon="archive" :href="route('archivos.index')" :current="request()->routeIs('archivos.index')" wire:navigate>
+                        <flux:sidebar.item icon="archive" :href="route('archivo.index')" :current="request()->routeIs('archivo.index')" wire:navigate>
                             {{ __('Archivo') }}
                         </flux:sidebar.item>
                     @role('admin')
@@ -115,5 +115,8 @@
         {{ $slot }}
 
         @fluxScripts
+        @persist('toast')
+            <flux:toast />
+        @endpersist 
     </body>
 </html>

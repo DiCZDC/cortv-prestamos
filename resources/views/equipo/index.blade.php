@@ -8,6 +8,5 @@
             </div>
         </div>
     </div>
-
-    @livewire('equipo.table')
+    <livewire:equipo.table lazy/>
 </x-layouts::app>

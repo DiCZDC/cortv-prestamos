@@ -1,19 +1,20 @@
 <?php
 
-namespace App\View\Components\Componentes;
+namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class BadgeTable extends Component
+class table extends Component
 {
     /**
      * Create a new component instance.
      */
+
     public function __construct()
     {
-        //
+
     }
 
     /**
@@ -21,6 +22,6 @@ class BadgeTable extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.componentes.BadgeTable');
+        return view('components.placeholder.table');
     }
 }

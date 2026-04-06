@@ -33,16 +33,17 @@ new class extends Component
     #[Computed]
     public function prestamos()
     {
-        return Solicitud::query()->where('id_trabajador', $this->userId)
+        return Solicitud::query()->where('id_trabajador',auth()->id())
             ->orderBy("solicituds.{$this->sortBy}", $this->sortDirection)
             ->join('users', 'solicituds.id_admin', '=', 'users.id')
+            ->select('solicituds.*', 'users.name as admin_name')
             ->paginate(10);
-        // ->tap(fn($query)=> $this->sortBy ? $query->orderBy($this->sortBy, $this->sortDirection) : $query)
     }
 };
 /*
         Solicitud::query()->where('id_trabajador', 1)
             ->orderBy("solicituds.id", 'asc')
             ->join('users', 'solicituds.id_admin', '=', 'users.id')
+            ->select('solicituds.*', 'users.name as admin_name')
             ->paginate(10);
  */

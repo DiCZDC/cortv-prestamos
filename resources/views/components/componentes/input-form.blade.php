@@ -9,6 +9,7 @@
     'disabled' => false,
     // Valores soportados: live.blur, live, defer, normal.
     'wire' => 'live.blur',
+    ''
 ])
 
 @php

@@ -1,4 +1,9 @@
 <div class="mt-4">
+    @placeholder
+        <x-placeholder.table 
+            :header="['ID', 'Trabajador', 'Administrador', 'Motivo', 'Estado del Prestamo', 'Fecha Préstamo', 'Fecha Devolución', 'Fecha Real de Entrega', 'Acciones']" 
+            filter=true />
+    @endplaceholder
     <livewire:searchbar 
         :filters="[
             '' => 'Todos',

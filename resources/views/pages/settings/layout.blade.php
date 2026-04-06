@@ -20,4 +20,7 @@
             {{ $slot }}
         </div>
     </div>
+    @persist('toast')
+        <flux:toast />
+    @endpersist
 </div>

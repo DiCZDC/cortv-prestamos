@@ -1,4 +1,11 @@
 <div>
+    @placeholder
+        <x-placeholder.table 
+            :header="['ID', 'Trabajador', 'Motivo', 'Fecha Préstamo', 'Fecha Devolución', 'Acciones']" 
+            searchbar=true 
+            perPage=6
+        />
+    @endplaceholder
     <livewire:searchbar
         placeholder="Buscar por nombre de trabajador o motivo..."
     />
@@ -44,7 +51,7 @@
 
 
                     <flux:table.cell>
-                            <x-componentes.boton-href ruta="prestamos.show" texto="Ver" icon="eye" :id="$prestamo->id" color="azul_saturado" />    
+                            <x-componentes.boton-href ruta="prestamo.show" texto="Ver" icon="eye" :id="$prestamo->id" color="azul_saturado" />    
                     </flux:table.cell>
 
                 </flux:table.row>
