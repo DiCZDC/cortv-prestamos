@@ -9,7 +9,11 @@
     {{-- Simplicity is the consequence of refined emotions. - Jean D'Alembert --}}
     
     @placeholder
-        <x-placeholder.table :header="['','ID', 'Marca', 'Modelo', 'Unidades totales', 'Acciones']"  filter=true/>
+        <x-placeholder.table 
+            :header="['','ID', 'Marca', 'Modelo', 'Unidades totales', 'Acciones']"  
+            filter=true
+            perPage=10
+        />
     @endplaceholder
     
     <livewire:searchbar 

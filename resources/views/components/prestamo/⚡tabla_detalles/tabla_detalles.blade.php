@@ -1,6 +1,10 @@
 
 <div>
     {{-- The only way to do great work is to love what you do. - Steve Jobs --}}
+    @placeholder
+        <x-placeholder.table 
+            :header="['Fecha Préstamo', 'Disponibilidad', 'Acciones']" />
+    @endplaceholder
     <flux:table>
         <flux:table.columns>
             <x-componentes.header_table icon="hard-drive"> Fecha Préstamo </x-componentes.header_table> 

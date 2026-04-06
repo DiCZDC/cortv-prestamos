@@ -3,7 +3,9 @@
     @placeholder
         <x-placeholder.table 
             :header="['ID', 'Nombre', 'Correo', 'Rol', 'Acciones']" 
-            filter=true />
+            filter=true 
+            perPage=10
+        />
     @endplaceholder
     
     <livewire:searchbar

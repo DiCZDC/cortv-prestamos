@@ -1,6 +1,12 @@
-
 <div>
     {{-- Live as if you were to die tomorrow. Learn as if you were to live forever. - Mahatma Gandhi --}}
+
+    @placeholder
+        <x-placeholder.table
+            :header="['ID', 'Aprobado por', 'Motivo', 'Estado', 'Fecha Préstamo', 'Fecha Devolución', 'Fecha Real de Entrega', 'Acciones']"
+            perPage=10
+        />
+    @endplaceholder
     <flux:table :paginate="$this->prestamos">
         <flux:table.columns>
             <flux:table.column sortable :sorted="$sortBy === 'id'" :direction="$sortDirection" wire:click="sort('id')">ID</flux:table.column>

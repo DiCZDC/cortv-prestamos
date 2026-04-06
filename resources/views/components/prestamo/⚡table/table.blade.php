@@ -1,6 +1,10 @@
 <div>
     @placeholder
-        <x-placeholder.table :header="['ID', 'Trabajador', 'Motivo', 'Fecha Préstamo', 'Fecha Devolución', 'Acciones']" searchbar=true />
+        <x-placeholder.table 
+            :header="['ID', 'Trabajador', 'Motivo', 'Fecha Préstamo', 'Fecha Devolución', 'Acciones']" 
+            searchbar=true 
+            perPage=6
+        />
     @endplaceholder
     <livewire:searchbar
         placeholder="Buscar por nombre de trabajador o motivo..."

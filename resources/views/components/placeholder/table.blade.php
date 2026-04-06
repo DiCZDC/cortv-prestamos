@@ -1,4 +1,4 @@
-@props(['header' => [], 'filter' => false, 'searchbar' => false])
+@props(['header' => [], 'filter' => false, 'searchbar' => false, 'perPage' => 5])
 
 <div>
     <!-- The only way to do great work is to love what you do. - Steve Jobs -->
@@ -17,7 +17,7 @@
                     <flux:table.column>{{ $column }}</flux:table.column>
                 @endforeach
             </flux:table.columns>
-            @for($i = 0; $i < 5; $i++)
+            @for($i = 0; $i < $perPage; $i++)
                 <flux:table.rows>
                     @foreach($header as $column)
                         @if ($loop->first)
