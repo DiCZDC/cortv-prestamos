@@ -43,7 +43,9 @@ new class extends Component
 
     
     public function unidades_equipo($id){
-        return Unidad_Equipo::where('id_equipo', $id)->get();
+        return Unidad_Equipo::where('id_equipo', $id)
+        ->where('estado', 'Disponible')           
+        ->get();
     }
 
     public function agregar()

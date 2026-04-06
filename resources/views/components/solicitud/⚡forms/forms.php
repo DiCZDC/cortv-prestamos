@@ -98,7 +98,7 @@ new class extends Component
                 }
 
                 $solicitud->unidades()->attach($unidad_id);
-                $unidad->update(['estado' => 'prestada']);
+                $unidad->update(['estado' => 'Prestado']);
             }
 
         }, attempts: 3);
@@ -142,7 +142,7 @@ new class extends Component
                 $solicitud->unidades()->attach($unidad_id);
 
                 // 6. Actualizar estado de la unidad
-                $unidad->update(['estado' => 'prestada']);
+                $unidad->update(['estado' => 'Prestado']);
             }
 
         }, attempts: 3);
