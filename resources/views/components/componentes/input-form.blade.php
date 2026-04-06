@@ -58,8 +58,7 @@
     @endif
 
     @if(filled($model))
-        @error($model)
-            <span class="text-rojo_claro text-sm">{{ $message }}</span>
-        @enderror
-    @endif
+        <flux:error name="{{ $model }}" />
+    @endif 
+     
 </flux:field>

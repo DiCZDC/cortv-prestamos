@@ -51,11 +51,6 @@ new class extends Component
         $this->validate();
         $this->dispatch('equipo-agregado', unidad_id: $this->nombre_unidad_equipo);
         $this->reset(['nombre_equipo', 'nombre_unidad_equipo']);
-        Flux::toast(
-            heading: 'Equipo agregado',
-            text: 'El equipo ha sido agregado a la solicitud correctamente.',
-            variant: 'success',
-        );
     }
     
 };

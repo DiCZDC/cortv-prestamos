@@ -12,8 +12,8 @@ class Unidad_Equipo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'equipo_id',
-        'numero_serie',
+        'id_equipo',
+        'sicipo',
         'estado',
     ];
 
@@ -21,4 +21,9 @@ class Unidad_Equipo extends Model
     {
         return $this->belongsTo(Equipo::class, 'id_equipo');
     }
+    
+    public function solicitudes()
+    {
+        return $this->belongsToMany(Solicitud::class);
+    } 
 }
