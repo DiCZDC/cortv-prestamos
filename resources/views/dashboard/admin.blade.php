@@ -24,7 +24,7 @@
                 </div>
                                 
                 <div class="pt-3 px-10 pb-6" >
-                    @livewire('proximos_prestamos.tabla')
+                    <livewire:proximos_prestamos.tabla lazy/>
                 </div>
         </div>
 
@@ -35,7 +35,7 @@
             </div>
                                 
             <div class="pt-3 px-10 pb-6" >
-                    @livewire('prestamos_atrasados.tabla')
+                    <livewire:prestamos_atrasados.tabla lazy/>
             </div>
         </div>
         

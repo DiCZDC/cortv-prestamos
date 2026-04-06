@@ -1,12 +1,12 @@
 @php
-    $motivo = \App\Models\Solicitud::find($id)->motivo;
+    $Solicitud = \App\Models\Solicitud::find($id);
 @endphp
 
 <x-layouts::app title="Mostrar Préstamo">
-    <a href="{{ route('prestamos.index') }}" class="inline-flex items-center gap-2 text-rojo_claro hover:text-rojo_claro/80 mb-4">
-        <flux:icon name="arrow-left" class="size-5" />
-        <span>{{ __('Volver') }}</span>
-    </a>
+    <flux:breadcrumbs class="mb-4">
+        <flux:breadcrumbs.item href="{{ route('prestamo.index') }}">Archivo</flux:breadcrumbs.item>
+        <flux:breadcrumbs.item href="#">{{ $Solicitud->motivo. ' - ' . $Solicitud->fecha_prestamo }}</flux:breadcrumbs.item>
+    </flux:breadcrumbs>
     {{-- header --}}
     <div class="flex w-full pr-5 justify-between mb-4 ">
         {{-- info de la vista --}}
@@ -20,14 +20,15 @@
             <div class="flex items-center gap-3 text-gris_claro pl-1.5">
                 <flux:icon name="airplay" class="inline size-9" />
                 <span class="text-2xl text-gris_claro font-semibold " >
-                    {{ __('Equipo solicitado para:') }} {{ $motivo }}
+                    {{ __('Equipo solicitado para:') }} {{ $Solicitud->motivo }}
                 </span>
             </div>
         </div>
     </div>
     <div class="flex flex-row gap-20">
         <div class="w-1/2 rounded-lg shadow-md p-8">
-            @livewire('prestamos.tabla_detalles', ['solicitudId' => $id])
+            <livewire:prestamo.tabla_detalles :solicitudId="$id" lazy/>
+            {{-- @livewire('prestamo.tabla_detalles', ['solicitudId' => $id]) --}}
         </div>
         <div class="flex flex-col">
             <div class="flex items-center gap-3 text-rojo_claro mt-8">

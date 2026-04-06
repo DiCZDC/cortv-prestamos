@@ -1,5 +1,12 @@
 <div>
     {{-- It is never too late to be what you might have been. - George Eliot --}}
+    @placeholder
+        <x-placeholder.table 
+            :header="['ID', 'Nombre', 'Correo', 'Rol', 'Acciones']" 
+            filter=true 
+            perPage=10
+        />
+    @endplaceholder
     
     <livewire:searchbar
         placeholder="Buscar por nombre de trabajador o correo..."
