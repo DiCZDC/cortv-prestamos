@@ -12,16 +12,13 @@ class Solicitud_Equipo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'equipo_id',
-        'usuario_id',
-        'fecha_solicitud',
-        'fecha_devolucion',
-        'estado',
+        'id_solicitud',
+        'id_unidad_equipo',        
     ];
 
     public function unidad_equipo()
     {
-        return $this->belongsTo(Unidad_Equipo::class, 'id_unidad_Equipo');
+        return $this->belongsTo(Unidad_Equipo::class, 'id_unidad_equipo');
     }
 
     public function solicitud()

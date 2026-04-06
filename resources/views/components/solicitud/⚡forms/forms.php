@@ -4,7 +4,7 @@ use Livewire\Attributes\Validate;
 use App\Models\Equipo;
 use App\Models\Unidad_Equipo;
 use App\Models\Solicitud;
-
+use App\Models\Solicitud_Equipo;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -86,7 +86,7 @@ new class extends Component
 
                 $unidad = Unidad_Equipo::lockForUpdate()->find($unidad_id);
 
-                if (!$unidad || $unidad->estado !== 'disponible') {
+                if ($unidad->estado !== 'Disponible') {
                     throw new \Exception(
                         "La unidad con SICIPO '{$unidad->sicipo}' ya no está disponible."
                     );
@@ -97,13 +97,21 @@ new class extends Component
                     );
                 }
 
-                $solicitud->unidades()->attach($unidad_id);
-                $unidad->update(['estado' => 'Prestado']);
+                // $solicitud->unidades()->attach($unidad_id);
+                Solicitud_Equipo::create([
+                    'id_solicitud' => $solicitud->id,
+                    'id_unidad_equipo' => $unidad_id,
+                ]);
+                
             }
 
         }, attempts: 3);
 
-        Flux::toast(heading: 'Solicitud autorizada', variant: 'success');
+       Flux::toast(
+                heading: 'Solicitud creada y autorizada',
+                text: 'La solicitud ha sido creada y autorizada correctamente.',
+                variant: 'success',
+            );
         $this->reset(['motivo', 'fecha_prestamo', 'fecha_devolucion', 
                       'equipos_seleccionados', 'trabajador']);
 
@@ -139,7 +147,10 @@ new class extends Component
                 }
 
                 // 5. Crear el registro en solicitud__equipos
-                $solicitud->unidades()->attach($unidad_id);
+                Solicitud_Equipo::create([
+                    'id_solicitud' => $solicitud->id,
+                    'id_unidad_equipo' => $unidad_id,
+                ]);
 
                 // 6. Actualizar estado de la unidad
                 $unidad->update(['estado' => 'Prestado']);

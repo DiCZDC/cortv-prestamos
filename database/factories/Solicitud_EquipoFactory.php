@@ -22,7 +22,7 @@ class Solicitud_EquipoFactory extends Factory
 
         return [
             'id_solicitud' => Solicitud::query()->inRandomOrder()->value('id'),
-            'id_unidad_Equipo' => Equipo::query()->inRandomOrder()->value('id'),
+            'id_unidad_equipo' => Equipo::query()->inRandomOrder()->value('id'),
         ];
     }
 }
