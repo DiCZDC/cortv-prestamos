@@ -29,7 +29,7 @@
                 
             </div> 
 
-            @livewire('prestamos.table')            
+            <livewire:prestamos.table lazy />
         </div>
 
         {{-- boton  --}}

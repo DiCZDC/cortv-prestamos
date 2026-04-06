@@ -7,6 +7,11 @@
 
     @endphp
     {{-- Simplicity is the consequence of refined emotions. - Jean D'Alembert --}}
+    
+    @placeholder
+        <x-placeholder.table :header="['','ID', 'Marca', 'Modelo', 'Unidades totales', 'Acciones']"  filter=true/>
+    @endplaceholder
+    
     <livewire:searchbar 
         placeholder="Buscar por marca o modelo..."
         :filters="$this->filters" />

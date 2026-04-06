@@ -1,15 +1,15 @@
 <div>
-<flux:table :paginate="$this->atrasados">
+    @placeholder
+        <x-placeholder.table :header="['','Equipo', 'Solicitante', 'Fecha']"/>
+    @endplaceholder
+    <flux:table :paginate="$this->atrasados">
         <flux:table.columns>
-            
-        <flux:table.column class="hidden md:block"></flux:table.column>
-
+            <flux:table.column class="hidden md:block"></flux:table.column>
             <x-componentes.header_table> Equipo </x-componentes.header_table>
             <x-componentes.header_table> Solicitante </x-componentes.header_table>
             <x-componentes.header_table> Fecha </x-componentes.header_table>    
-            
         </flux:table.columns>
-        
+        <flux:table.row>
             @forelse ($this->atrasados as $prestamo)
             
             @php
@@ -36,12 +36,11 @@
             </flux:table.row>
         
 
-        @empty
-            <flux:table.rows>
-                <flux:table.row>
-                    <flux:table.cell colspan="4" class="text-center">No hay prestamos atrasados</flux:table.cell>
-                </flux:table.row>
-            </flux:table.rows>
-        @endforelse
+            @empty
+                <flux:table.rows>
+                        <flux:table.cell colspan="4" class="text-center">No hay prestamos atrasados</flux:table.cell>
+                    </flux:table.row>
+            @endforelse
+        </flux:table.rows>
     </flux:table>
 </div>
