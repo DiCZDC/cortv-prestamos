@@ -21,9 +21,5 @@ class Unidad_Equipo extends Model
     {
         return $this->belongsTo(Equipo::class, 'id_equipo');
     }
-    
-    public function solicitudes()
-    {
-        return $this->belongsToMany(Solicitud::class);
-    } 
+        
 }
