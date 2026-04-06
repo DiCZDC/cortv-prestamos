@@ -12,16 +12,16 @@ class Solicitud extends Model
     use HasFactory;
 
     protected $fillable = [
-        'usuario_id',
-        'fecha_solicitud',
+        'id_trabajador',
+        'id_admin',
+        'motivo',
         'estado',
+        'fecha_prestamo',
+        'fecha_devolucion',
+        'fecha_entrega',
     ];
 
-    public function solicitud_equipos()
-    {
-        return $this->hasMany(Solicitud_Equipo::class);
-    }
-
+    
     public function usuario()
     {
         return $this->belongsTo(User::class);
@@ -29,6 +29,6 @@ class Solicitud extends Model
 
     public function unidad_equipos()
     {
-        return $this->hasManyThrough(Unidad_Equipo::class);
+        return $this->BelongsToMany(Unidad_Equipo::class);
     }
 }
