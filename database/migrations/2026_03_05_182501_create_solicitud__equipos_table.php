@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('id_solicitud');
-            $table->integer('id_unidad_Equipo');
+            $table->integer('id_unidad_equipo');
 
             $table->foreign('id_solicitud')->references('id')->on('solicituds');
-            $table->foreign('id_unidad_Equipo')->references('id')->on('unidad__equipos');
+            $table->foreign('id_unidad_equipo')->references('id')->on('unidad__equipos');
 
         });
     }

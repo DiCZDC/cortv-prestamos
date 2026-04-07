@@ -26,7 +26,7 @@ new class extends Component
         $hoy = now()->toDateString();
 
         $total = Solicitud::join('solicitud__equipos', 'solicituds.id', '=', 'solicitud__equipos.id_solicitud')
-            ->join('unidad__equipos', 'unidad__equipos.id', '=', 'solicitud__equipos.id_unidad_Equipo')
+            ->join('unidad__equipos', 'unidad__equipos.id', '=', 'solicitud__equipos.id_unidad_equipo')
             ->where('solicituds.estado', 'Autorizada')
             ->where('unidad__equipos.id', $id_equipo)
             ->whereRaw('? BETWEEN solicituds.fecha_prestamo AND solicituds.fecha_entrega', [$hoy])

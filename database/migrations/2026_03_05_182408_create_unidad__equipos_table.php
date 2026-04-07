@@ -22,10 +22,11 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations. holiwi
      */
     public function down(): void
     {
         Schema::dropIfExists('unidad__equipos');
+
     }
 };
