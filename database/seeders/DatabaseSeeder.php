@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'trabajador']);
         $usuarios = User::factory(10)->create();
         $usuarios->each->assignRole('trabajador');
 
@@ -27,8 +29,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'trabajador']);
         $usuario->assignRole('admin');
 
         Categoria::factory(10)->create();

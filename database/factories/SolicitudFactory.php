@@ -19,15 +19,15 @@ class SolicitudFactory extends Factory
     public function definition(): array
     {
         $estado = fake()->randomElement(['Pendiente', 'Autorizada', 'Entregada', 'Rechazada', 'Devuelta']);
-        $fecha_prestamo = fake()->dateTimeBetween('-2 year', '-1 year');
-        $fecha_devolucion = fake()->dateTimeBetween($fecha_prestamo, '+1 year');
+        $fecha_prestamo = fake()->dateTimeBetween('-1 month', '+1 month');
+        $fecha_devolucion = fake()->dateTimeBetween($fecha_prestamo, '+1 month');
         $fecha_entrega = null;
 
         if ($estado === 'Devuelta') {
             $fecha_entrega = fake()->dateTimeBetween($fecha_devolucion->format('Y-m-d H:i:s').' -1 month', $fecha_devolucion->format('Y-m-d H:i:s').' +1 month');
         } elseif ($estado === 'Autorizada') {
             $fecha_prestamo = fake()->dateTimeBetween('now', '+1 month');
-            $fecha_devolucion = fake()->dateTimeBetween($fecha_prestamo, $fecha_prestamo->format('Y-m-d H:i:s').' +1 month');
+            $fecha_devolucion = fake()->dateTimeBetween($fecha_prestamo->format('Y-m-d H:i:s').'+1 day', $fecha_prestamo->format('Y-m-d H:i:s').' +1 month');
         }
 
         return [
