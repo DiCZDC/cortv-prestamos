@@ -4,11 +4,11 @@
             <x-app-logo/>
         </div>
         <h1 class="text-6xl font-bold">
-            ERROR 403
+            ERROR 404
         </h1>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7WJ4FnCwJRkO5QwGR1y5879riyH8f7ccG6oQqc9IIbYDBOWGtgNWCpIgZ0nkdZoqTHSR9CcLJZiCKlrbfdslfkOwi84pU&s&ec=121584914" alt="Error403">
         <p class="text-lg text-neutral-600 dark:text-neutral-400">
-            {{ __('No tienes permiso para acceder a esta página.') }}
+            {{ __('Esta página no existe.') }}
         </p>
         <flux:button href="{{ route('dashboard') }}" wire:navigate>
                 Volver al inicio
