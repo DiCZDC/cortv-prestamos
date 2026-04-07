@@ -86,17 +86,6 @@ new class extends Component
 
                 $unidad = Unidad_Equipo::lockForUpdate()->find($unidad_id);
 
-                if ($unidad->estado !== 'Disponible') {
-                    throw new \Exception(
-                        "La unidad con SICIPO '{$unidad->sicipo}' ya no está disponible."
-                    );
-                    Flux::toast(
-                        heading: 'Error al crear solicitud',
-                        text: 'El equipo que intentas agregar ya ha sido seleccionado.',
-                        variant: 'warning',
-                    );
-                }
-
                 // $solicitud->unidades()->attach($unidad_id);
                 Solicitud_Equipo::create([
                     'id_solicitud' => $solicitud->id,
@@ -139,12 +128,6 @@ new class extends Component
                 // 3. Bloquear la fila de unidad_equipo (aquí está el estado mutable)
                 $unidad = Unidad_Equipo::lockForUpdate()->find($unidad_id);
 
-                // 4. Verificar que sigue disponible (otro usuario pudo tomarla)
-                if (!$unidad || $unidad->estado !== 'disponible') {
-                    throw new \Exception(
-                        "La unidad con SICIPO '{$unidad->sicipo}' ya no está disponible."
-                    );
-                }
 
                 // 5. Crear el registro en solicitud__equipos
                 Solicitud_Equipo::create([
@@ -152,8 +135,6 @@ new class extends Component
                     'id_unidad_equipo' => $unidad_id,
                 ]);
 
-                // 6. Actualizar estado de la unidad
-                $unidad->update(['estado' => 'Prestado']);
             }
 
         }, attempts: 3);

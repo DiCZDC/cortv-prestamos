@@ -6,9 +6,15 @@ use Livewire\Component;
 use Livewire\Attributes\Computed;
 use App\Models\Equipo;
 use App\Models\Unidad_Equipo;
+use App\Models\Solicitud;
+use App\Models\Solicitud_Equipo;
 
 new class extends Component
 { 
+    
+    public $from;
+    public $to;
+
      #[Validate('required',message: 'Por favor selecciona un equipo')]  
     public $nombre_equipo; 
 
@@ -41,10 +47,29 @@ new class extends Component
         return Equipo::all();
     }
 
-    
+    public function equipos_ocupados($id){
+        if (empty($this->from) || empty($this->to)) {
+            return collect();
+        }
+
+        $prestados_1 = Solicitud::whereIn('estado',['Entregada','Autorizada'])->whereBetween('fecha_prestamo', [$this->from,$this->to])->pluck('id');
+        $prestados_2 = Solicitud::whereIn('estado',['Entregada','Autorizada'])->whereBetween('fecha_devolucion', [$this->from,$this->to])->pluck('id');
+        $prestados_3 = Solicitud::whereIn('estado',['Autorizada','Entregada'])->where('fecha_prestamo','<',$this->from)->where('fecha_devolucion','>',$this->to)->pluck('id');
+        $prestados = $prestados_1->merge($prestados_2)->merge($prestados_3)->unique();
+
+        return Solicitud_Equipo::whereIn('id_solicitud', $prestados)
+            ->pluck('id_unidad_equipo')
+            ->unique();
+    }
+
     public function unidades_equipo($id){
-        return Unidad_Equipo::where('id_equipo', $id)
-        ->where('estado', 'Disponible')           
+        if (empty($id) || empty($this->from) || empty($this->to)) {
+            return collect();
+        }
+
+        $Equipo_Actual = Unidad_Equipo::where('id_equipo', $id);
+
+        return $Equipo_Actual->whereNotIn('id', $this->equipos_ocupados($id))
         ->get();
     }
 
@@ -79,7 +104,7 @@ new class extends Component
                     <span class="text-gris_claro text-base font-semibold">Equipo</span>
                 </flux:label>
 
-                <flux:select wire:model.live="nombre_equipo">
+                <flux:select wire:model.live="nombre_equipo" :disabled="empty($from) || empty($to)">
                 
                     <flux:select.option value="">Seleccione un equipo</flux:select.option>
                 
@@ -118,7 +143,7 @@ new class extends Component
                 <flux:error name="nombre_unidad_equipo" />
             </flux:field>
                 
-            <flux:button wire:click="agregar" variant="primary" class="border-none w-full !bg-rojo_claro ">Agregar Equipo</flux:button>
+            <flux:button wire:click="agregar" variant="primary" class="border-none w-full bg-rojo_claro!">Agregar Equipo</flux:button>
         </div>
       
 </div>  

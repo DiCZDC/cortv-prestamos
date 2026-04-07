@@ -30,14 +30,20 @@
                         <flux:description class="!mt-0">El motivo del prestamo debe tener al menos 10 caracteres y 255 como maximo </flux:description>
                     </flux:field>
 
-                    <x-componentes.input-form type="date" badge="Requerido" label="Fecha de Préstamo" placeholder="Seleccione la fecha de préstamo" model="fecha_prestamo" />
-                    <x-componentes.input-form type="date" badge="Requerido" label="Fecha de Devolución" placeholder="Seleccione la fecha de devolución" model="fecha_devolucion" />
+                    <flux:input type="date" wire:model.live="fecha_prestamo" badge="Requerido" label="Fecha de Préstamo" placeholder="Seleccione la fecha de préstamo" min="{{ now()->toDateString() }}" />
+                    <flux:input type="date" wire:model.live="fecha_devolucion" badge="Requerido" label="Fecha de Devolución" placeholder="Seleccione la fecha de devolución" min="{{ $fecha_prestamo ?? now()->toDateString() }}" />
+                    {{-- <x-componentes.input-form type="date" badge="Requerido" label="Fecha de Préstamo" placeholder="Seleccione la fecha de préstamo" model="fecha_prestamo" />
+                    <x-componentes.input-form type="date" badge="Requerido" label="Fecha de Devolución" placeholder="Seleccione la fecha de devolución" model="fecha_devolucion" /> --}}
                 </div>
                 
             </div>
             
             {{-- segunda parte del formulario --}}
-            @livewire('solicitud.seleccion_unidad_form')
+            <livewire:solicitud.seleccion_unidad_form
+                :from="$fecha_prestamo"
+                :to="$fecha_devolucion"
+                :key="'seleccion-unidad-'.$fecha_prestamo.'-'.$fecha_devolucion"
+            />
             
         </section>
 

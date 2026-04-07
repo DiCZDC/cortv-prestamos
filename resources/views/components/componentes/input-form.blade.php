@@ -9,7 +9,7 @@
     'disabled' => false,
     // Valores soportados: live.blur, live, defer, normal.
     'wire' => 'live.blur',
-    ''
+    'init_date' => null
 ])
 
 @php
@@ -35,12 +35,6 @@
                 <flux:input wire:model.live="{{ $model }}" icon:trailing="{{ $icon }}" placeholder="{{ $placeholder }}" type="{{ $type }}" :required="$required" :disabled="$disabled" />
             @else
                 <flux:input wire:model.live="{{ $model }}" placeholder="{{ $placeholder }}" type="{{ $type }}" :required="$required" :disabled="$disabled" />
-            @endif
-        @elseif($wire === 'defer')
-            @if(filled($icon))
-                <flux:input wire:model.defer="{{ $model }}" icon:trailing="{{ $icon }}" placeholder="{{ $placeholder }}" type="{{ $type }}" :required="$required" :disabled="$disabled" />
-            @else
-                <flux:input wire:model.defer="{{ $model }}" placeholder="{{ $placeholder }}" type="{{ $type }}" :required="$required" :disabled="$disabled" />
             @endif
         @else
             @if(filled($icon))
