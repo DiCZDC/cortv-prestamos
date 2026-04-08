@@ -5,6 +5,7 @@ use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\RecepcionController;
+use App\Http\Controllers\CalendarioController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
@@ -29,6 +30,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 Route::get('/{id}', 'show')->name('show');
             });
 
+        });
+        Route::prefix('calendario')->name('calendario.')->group(function () {
+            Route::controller(CalendarioController::class)->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/{id}', 'show')->name('show');
+            });
         });
 
         Route::prefix('recepcion')->name('recepcion.')->group(function () {

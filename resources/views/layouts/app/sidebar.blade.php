@@ -19,6 +19,9 @@
                             {{ __('Inicio') }}
                         </flux:sidebar.item>
                         @role('admin')
+                            <flux:sidebar.item icon="calendar" :href="route('calendario.index')" :current="request()->routeIs('calendario.index')" wire:navigate>
+                                {{ __('Calendario') }}
+                            </flux:sidebar.item>
                             <flux:sidebar.item icon="file" :href="route('prestamo.index')" :current="request()->routeIs('prestamo.index')" wire:navigate>
                                 {{ __('Prestamos Pendientes') }}
                             </flux:sidebar.item>
