@@ -13,8 +13,11 @@ new class extends LivewireCalendar
     public function events(): Collection
     {
         $solicitudes = Solicitud::query()
-            ->whereBetween('fecha_prestamo', [now()->startOfMonth(), now()->endOfMonth()])
-            ->orWhereBetween('fecha_devolucion', [now()->startOfMonth(), now()->endOfMonth()])
+            ->where(function ($query) {
+                $query->whereBetween('fecha_prestamo', [now()->startOfMonth(), now()->endOfMonth()])
+                    ->orWhereBetween('fecha_devolucion', [now()->startOfMonth(), now()->endOfMonth()]);
+            })
+            ->whereNotIn('estado',['Rechazada','Pendiente'])
             // ->where('fecha_prestamo', '>=', now())
             ->get();
         $entregas = $solicitudes

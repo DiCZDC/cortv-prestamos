@@ -17,8 +17,8 @@
     <div class=" pt-2 w-full gap-6">
         {{-- Cabecera principal --}}
         <div class="flex flex-col justify-center gap-8.5 pl-3 mb-8 ">
-            <x-componentes.titulo icono="calendar" texto="Calendario" />
-            <x-componentes.subtitulo class="w-full" icono="database" texto="Prestamos y Recepciones Este Mes" />
+            <x-componentes.titulo icono="calendar-days" texto="Calendario" />
+            <x-componentes.subtitulo class="w-full" icono="box" texto="Prestamos y Recepciones Este Mes" />
         </div>
     </div>
 
