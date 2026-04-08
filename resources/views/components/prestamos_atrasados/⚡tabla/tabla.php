@@ -17,7 +17,7 @@ new class extends Component
             // Filtrar por fecha de devolución menor a la fecha actual y mayor o igual a 30 días atrás
             ->where('solicituds.fecha_devolucion', '<', now())
             ->where('solicituds.fecha_devolucion', '>=', now()->subDays(30))
-            //La solicitud debe estar en estado "Entregada" y no "Devuelta"
+            // La solicitud debe estar en estado "Entregada" y no "Devuelta"
             ->where('solicituds.estado', 'Entregada')
             ->join('users', 'solicituds.id_trabajador', '=', 'users.id')
             ->select('solicitud__equipos.*', 'users.name as nombre_trabajador')

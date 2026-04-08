@@ -9,7 +9,6 @@ use App\Models\Solicitud_Equipo;
 use App\Models\Unidad_Equipo;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Spatie\Permission\Models\Role;
 

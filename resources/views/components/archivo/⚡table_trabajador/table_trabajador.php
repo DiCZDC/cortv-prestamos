@@ -33,7 +33,7 @@ new class extends Component
     #[Computed]
     public function prestamos()
     {
-        return Solicitud::query()->where('id_trabajador',auth()->id())
+        return Solicitud::query()->where('id_trabajador', auth()->id())
             ->orderBy("solicituds.{$this->sortBy}", $this->sortDirection)
             ->join('users', 'solicituds.id_admin', '=', 'users.id')
             ->select('solicituds.*', 'users.name as admin_name')

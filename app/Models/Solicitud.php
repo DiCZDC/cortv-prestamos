@@ -6,7 +6,6 @@ use Database\Factories\SolicitudFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
 class Solicitud extends Model
 {
     /** @use HasFactory<SolicitudFactory> */
@@ -26,10 +25,10 @@ class Solicitud extends Model
     {
         return $this->hasMany(Solicitud_Equipo::class);
     }
-    
-    public function usuario()
+
+    public function trabajador()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_trabajador');
     }
 
     public function unidad_equipos()

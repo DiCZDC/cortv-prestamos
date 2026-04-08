@@ -13,7 +13,7 @@ class Solicitud_Equipo extends Model
 
     protected $fillable = [
         'id_solicitud',
-        'id_unidad_equipo',        
+        'id_unidad_equipo',
     ];
 
     public function unidad_equipo()

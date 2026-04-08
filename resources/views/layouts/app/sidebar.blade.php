@@ -14,47 +14,53 @@
 
             <flux:sidebar.nav>
                 <flux:sidebar.group :heading="__('Ventanas')" class="grid">
-                    <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Inicio') }}
-                    </flux:sidebar.item>
-                    
-                    @role('admin')
-                        <flux:sidebar.item icon="file" :href="route('prestamo.index')" :current="request()->routeIs('prestamo.index')" wire:navigate>
-                            {{ __('Prestamos Pendientes') }}
+                    @auth
+                        <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
+                            {{ __('Inicio') }}
                         </flux:sidebar.item>
-                        <flux:sidebar.item icon="truck" :href="route('recepcion.index')" :current="request()->routeIs('recepcion.index')" wire:navigate>
-                            {{ __('Recepción') }}
-                        </flux:sidebar.item>
-                    @endrole
-                        <flux:sidebar.item icon="archive" :href="route('archivo.index')" :current="request()->routeIs('archivo.index')" wire:navigate>
-                            {{ __('Archivo') }}
-                        </flux:sidebar.item>
-                    @role('admin')
-                        
-                        <flux:sidebar.item icon="users" :href="route('personal.index')" :current="request()->routeIs('personal.index')" wire:navigate>
-                            {{ __('Personal') }}
-                        </flux:sidebar.item>
-                        <flux:sidebar.item icon="airplay" :href="route('equipo.index')" :current="request()->routeIs('equipo.index')" wire:navigate>
-                            {{ __('Equipo') }}
-                        </flux:sidebar.item>
-                    @endrole
-
+                        @role('admin')
+                            <flux:sidebar.item icon="calendar" :href="route('calendario.index')" :current="request()->routeIs('calendario.index')" wire:navigate>
+                                {{ __('Calendario') }}
+                            </flux:sidebar.item>
+                            <flux:sidebar.item icon="file" :href="route('prestamo.index')" :current="request()->routeIs('prestamo.index')" wire:navigate>
+                                {{ __('Prestamos Pendientes') }}
+                            </flux:sidebar.item>
+                            <flux:sidebar.item icon="truck" :href="route('recepcion.index')" :current="request()->routeIs('recepcion.index')" wire:navigate>
+                                {{ __('Recepción') }}
+                            </flux:sidebar.item>
+                        @endrole
+                            <flux:sidebar.item icon="archive" :href="route('archivo.index')" :current="request()->routeIs('archivo.index')" wire:navigate>
+                                {{ __('Archivo') }}
+                            </flux:sidebar.item>
+                        @role('admin')
+                            
+                            <flux:sidebar.item icon="users" :href="route('personal.index')" :current="request()->routeIs('personal.index')" wire:navigate>
+                                {{ __('Personal') }}
+                            </flux:sidebar.item>
+                            <flux:sidebar.item icon="airplay" :href="route('equipo.index')" :current="request()->routeIs('equipo.index')" wire:navigate>
+                                {{ __('Equipo') }}
+                            </flux:sidebar.item>
+                        @endrole
+                    @endauth
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 
            <flux:spacer />
 
             <flux:sidebar.nav>
-                <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                    {{ __('Repository') }}
-                </flux:sidebar.item>
+                @auth
+                    <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
+                        {{ __('Repository') }}
+                    </flux:sidebar.item>
 
-                <flux:sidebar.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                    {{ __('Documentation') }}
-                </flux:sidebar.item>
+                    <flux:sidebar.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
+                        {{ __('Documentation') }}
+                    </flux:sidebar.item>
+                @endauth
             </flux:sidebar.nav>
-
-            <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
+            @auth
+                <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
+            @endauth
         </flux:sidebar>
 
         <!-- Mobile User Menu -->
@@ -62,7 +68,7 @@
             <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
             <flux:spacer />
-
+            @auth
             <flux:dropdown position="top" align="end">
                 <flux:profile
                     :initials="auth()->user()->initials()"
@@ -110,6 +116,7 @@
                     </form>
                 </flux:menu>
             </flux:dropdown>
+            @endauth
         </flux:header>
         
         {{ $slot }}
