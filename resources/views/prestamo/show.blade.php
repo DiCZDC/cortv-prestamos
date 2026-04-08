@@ -3,49 +3,39 @@
 @endphp
 
 <x-layouts::app title="Mostrar Préstamo">
-    <flux:breadcrumbs class="mb-4">
-        <flux:breadcrumbs.item href="{{ route('prestamo.index') }}">Archivo</flux:breadcrumbs.item>
-        <flux:breadcrumbs.item href="#">{{ $Solicitud->motivo. ' - ' . $Solicitud->fecha_prestamo }}</flux:breadcrumbs.item>
-    </flux:breadcrumbs>
-    {{-- header --}}
-    <div class="flex w-full pr-5 justify-between mb-4 ">
-        {{-- info de la vista --}}
-        <div class="flex flex-col justify-center gap-8.5 pl-3 ">
-            <div class="flex items-center gap-3 text-rojo_claro">
-                <flux:icon name="file" class="inline size-13" />
-                <h1 class="text-5xl font-bold inline">
-                    Detalles de la solicitud
-                </h1>
-            </div>
-            <div class="flex items-center gap-3 text-gris_claro pl-1.5">
-                <flux:icon name="airplay" class="inline size-9" />
-                <span class="text-2xl text-gris_claro font-semibold " >
-                    {{ __('Equipo solicitado para:') }} {{ $Solicitud->motivo }}
-                </span>
-            </div>
+       
+    {{-- div general --}}
+    <div class="px-1">
+        {{-- navegacion interna --}}
+        <flux:breadcrumbs>
+            <flux:breadcrumbs.item href="{{ route('prestamo.index') }}"><span class="!text-gris_claro">Préstamos</span></flux:breadcrumbs.item>
+            <flux:breadcrumbs.item href="#"><span class="!text-gris_claro">{{ $Solicitud->motivo. ' - ' . $Solicitud->fecha_prestamo }}</span>    </flux:breadcrumbs.item>
+        </flux:breadcrumbs>
+
+        {{-- header --}}
+        <div class="flex w-full pr-5 mb-3 mt-7 
+            md:flex-row md:gap-8">
+            {{-- info de la vista --}}
+            <div class="flex flex-col justify-center gap-8 pl-3 ">               
+                <x-componentes.titulo icono="book-marked" texto="Detalles de la solicitud" />
+                <x-componentes.subtitulo icono="airplay" texto=" {{ __('Solicitud para:') }} {{ $Solicitud->motivo }}" />
+            </div>        
         </div>
-    </div>
-    <div class="flex flex-row gap-20">
-        <div class="w-1/2 rounded-lg shadow-md p-8">
-            <livewire:prestamo.tabla_detalles :solicitudId="$id" lazy/>
-            {{-- @livewire('prestamo.tabla_detalles', ['solicitudId' => $id]) --}}
-        </div>
-        <div class="flex flex-col">
-            <div class="flex items-center gap-3 text-rojo_claro mt-8">
-                Aki ba el candelario
-                <flux:text>
-                    Periodo de prestamo
-                </span>
-            </div>
+
+        {{-- cuerpo del chow   --}}
+        <section>
+            
             <div>
-               <livewire:card
-                :titulo="'Asignar equipos'"
-                :descripcion="'Selecciona los equipos que deseas asignar a esta solicitud'"
-                :icono="'thumbs-up'"
-                :color_bg="'bg-verde_mid'"
-                :color_text="'text-hueso'"
-               />
+
             </div>
-        </div>
+
+            <div>
+
+            </div>
+        
+        </section>
+
+
     </div>
+    
 </x-layouts::app >
