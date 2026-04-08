@@ -23,14 +23,17 @@
         </div>
 
         {{-- cuerpo del chow   --}}
-        <section>
+        <section class="flex gap-12 px-5 mt-10">
             
-            <div>
-
+            <div class="bg-white rounded-lg shadow-md p-8 w-1/2">
+                <span class="font-bold text-xl text-gris_claro ml-7">Resumen de la solicitud</span>  
+                <div class="px-7 py-5">
+                    <livewire:prestamo.tabla_detalles :solicitudId="$id" lazy/>
+                </div>
             </div>
 
-            <div>
-
+            <div class="bg-white rounded-lg shadow-md p-8 w-1/2">
+                
             </div>
         
         </section>
