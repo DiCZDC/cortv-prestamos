@@ -24,15 +24,17 @@ new class extends LivewireCalendar
                     'title' => 'Entrega de préstamo para: '.Str::limit((string) $solicitud->motivo, 15, '...'),
                     'description' => "Solicitante: {$solicitud->trabajador->name} ",
                     'date' => Carbon::parse($solicitud->fecha_prestamo)->toDateString(),
+                    'estado' => $solicitud->estado,
                 ];
             });
         $devoluciones = $solicitudes
             ->map(function (Solicitud $solicitud) {
                 return [
                     'id' => $solicitud->id,
-                    'title' => 'Devolución de préstamo para: '.Str::limit((string) $solicitud->motivo, 15, '...'),
+                    'title' => 'Recepción de devolución para: '.Str::limit((string) $solicitud->motivo, 15, '...'),
                     'description' => "Solicitante: {$solicitud->trabajador->name} ",
                     'date' => Carbon::parse($solicitud->fecha_devolucion)->toDateString(),
+                    'estado' => $solicitud->estado,
                 ];
             });
 
