@@ -6,12 +6,16 @@ class EquipoController extends Controller
 {
     public function index()
     {
-        return view('equipo.index');
+        return view('vistas.equipo.index');
     }
 
     public function show($id)
     {
-        // Aquí puedes agregar la lógica para mostrar los detalles de un préstamo específico
-        return view('equipo.show', ['id' => $id]);
+        return view('vistas.equipo.show', ['id' => $id]);
+    }
+    public function create()
+    {
+        return view('vistas.equipo.create');
+
     }
 }

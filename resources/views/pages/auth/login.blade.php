@@ -1,4 +1,4 @@
-<x-layouts::auth :title="__('Log in')">
+<x-layouts::auth :title="__('Iniciar Sesión')">
     <div class="flex flex-col gap-6">
         <x-auth-header :title="__('Inicia Sesión')" :description="__('Ingresa tu Correo Electrónico y Contraseña para acceder a tu cuenta')" />
 
