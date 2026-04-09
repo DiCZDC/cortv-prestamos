@@ -14,26 +14,59 @@ use Livewire\Component;
 
 new class extends Component
 {
-    #[Validate('required', message: 'Ingrese un motivo de préstamo')]
-    #[Validate('min:10', message: 'El motivo es demasiado corto')]
-    #[Validate('max:255', message: 'El motivo es demasiado largo')]
+    // #[Validate('required', message: 'Ingrese un motivo de préstamo')]
+    // #[Validate('min:10', message: 'El motivo es demasiado corto')]
+    // #[Validate('max:255', message: 'El motivo es demasiado largo')]
     public $motivo;
 
-    #[Validate('required', message: 'Seleccione una fecha de inicio del préstamo')]
+    // #[Validate('required', message: 'Seleccione una fecha de inicio del préstamo')]
     public $fecha_prestamo;
 
     public $estado = 'Pendiente';
 
-    #[Validate('required', message: 'Seleccione una fecha de devolución')]
+    // #[Validate('required', message: 'Seleccione una fecha de devolución')]
     public $fecha_devolucion;
 
-    #[Validate('required', message: 'Seleccione al menos un equipo para el préstamo')]
-    #[Validate('array')]
-    #[Validate('min:1', message: 'Debe seleccionar al menos un equipo para el préstamo')]
+    // #[Validate('required', message: 'Seleccione al menos un equipo para el préstamo')]
+    // #[Validate('array')]
+    // #[Validate('min:1', message: 'Debe seleccionar al menos un equipo para el préstamo')]
     public $equipos_seleccionados = [];
 
-    #[Validate('required', message: 'Seleccione un trabajador para el préstamo')]
-    public $trabajador;
+    // #[Validate('required', message: 'Seleccione un trabajador para el préstamo')]
+    public $trabajador = null;
+
+    public function rules()
+    {
+        $rules = [
+            'motivo' => ['required', 'min:10', 'max:255'],
+            'fecha_prestamo' => ['required'],
+            'fecha_devolucion' => ['required'],
+            'equipos_seleccionados' => ['required', 'array', 'min:1'],
+        ];
+
+        // Condición dinâmica: Solo si es admin agregamos la regla para el trabajador
+        if (Auth::user()->hasRole('admin')) {
+            $rules['trabajador'] = ['required', 'exists:users,id'];
+        }
+
+        return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+            'motivo.required' => 'Ingrese un motivo de préstamo',
+            'motivo.min' => 'El motivo es demasiado corto',
+            'motivo.max' => 'El motivo es demasiado largo',
+            'fecha_prestamo.required' => 'Seleccione una fecha de inicio del préstamo',
+            'fecha_devolucion.required' => 'Seleccione una fecha de devolución',
+            'equipos_seleccionados.required' => 'Seleccione al menos un equipo para el préstamo',
+            'equipos_seleccionados.min' => 'Debe seleccionar al menos un equipo para el préstamo',
+            'trabajador.required' => 'Seleccione un trabajador para el préstamo',
+            'trabajador.exists' => 'El trabajador seleccionado no es válido',
+        ];
+    }
+
 
     #[On('equipo-agregado')]
     public function agregar_equipo($unidad_id)
@@ -59,13 +92,17 @@ new class extends Component
     // funcion maestra no tocar
     public function save()
     {
-        $this->validate();
         $usuario = Auth::user();
+
+        // Esto evaluará automáticamente TODAS las reglas definidas en rules()
+        $this->validate();
+
         if ($usuario->hasRole('admin')) {
             $this->guardarAdmin();
-        } else {
-            $this->guardarTrabajador();
+            return;
         }
+
+        $this->guardarTrabajador();
     }
 
     public function guardarAdmin()
@@ -117,6 +154,7 @@ new class extends Component
                 // 1. Crear la solicitud
                 $solicitud = Solicitud::create([
                     'id_trabajador' => Auth::user()->id,
+                    'id_admin' => null,
                     'motivo' => $this->motivo,
                     'estado' => 'Pendiente',
                     'fecha_prestamo' => $this->fecha_prestamo,

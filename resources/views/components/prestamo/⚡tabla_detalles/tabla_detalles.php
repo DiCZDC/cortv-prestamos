@@ -2,6 +2,7 @@
 
 use App\Models\Solicitud;
 use App\Models\Solicitud_Equipo;
+use App\Models\Unidad_Equipo;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
@@ -35,4 +36,35 @@ new class extends Component
 
         return $total == 0 ? true : false;
     }
+
+    #[Computed]
+    public function equipos_ocupados($id){
+        if (empty($this->from) || empty($this->to)) {
+            return collect();
+        }
+
+        $prestados_1 = Solicitud::whereIn('estado',['Entregada','Autorizada'])->whereBetween('fecha_prestamo', [$this->from,$this->to])->pluck('id');
+        $prestados_2 = Solicitud::whereIn('estado',['Entregada','Autorizada'])->whereBetween('fecha_devolucion', [$this->from,$this->to])->pluck('id');
+        $prestados_3 = Solicitud::whereIn('estado',['Autorizada','Entregada'])->where('fecha_prestamo','<',$this->from)->where('fecha_devolucion','>',$this->to)->pluck('id');
+        $prestados = $prestados_1->merge($prestados_2)->merge($prestados_3)->unique();
+
+        return Solicitud_Equipo::whereIn('id_solicitud', $prestados)
+            ->pluck('id_unidad_equipo')
+            ->unique();
+    }
+
+    #[Computed]
+    public function verificar_unidades_equipo()
+    {   
+        if (empty($id) || empty($this->from) || empty($this->to)) {
+            return collect();
+        }
+
+        $Equipo_Actual = Unidad_Equipo::where('id_equipo', $id);
+
+        return $Equipo_Actual->whereIn('id', $this->equipos_ocupados($id))->get();
+    }
+ 
+
+
 };
