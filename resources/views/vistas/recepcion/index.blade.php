@@ -28,6 +28,6 @@
         </div>
     </div>  
     <div class="mt-10">
-        <livewire:recepcion.table lazy />
+        <livewire:recepcion.index.table lazy />
     </div>
 </x-layouts::app>

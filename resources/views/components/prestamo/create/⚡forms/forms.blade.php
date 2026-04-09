@@ -41,7 +41,7 @@
             </div>
             
             {{-- segunda parte del formulario --}}
-            <livewire:solicitud.seleccion_unidad_form
+            <livewire:prestamo.create.seleccion_unidad_form
                 :from="$fecha_prestamo"
                 :to="$fecha_devolucion"
                 :key="'seleccion-unidad-'.$fecha_prestamo.'-'.$fecha_devolucion"

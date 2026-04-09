@@ -28,7 +28,7 @@
             <div class="bg-white rounded-lg shadow-md p-8 w-1/2">
                 <span class="font-bold text-xl text-gris_claro ml-7">Resumen de la solicitud</span>  
                 <div class="px-7 py-5">
-                    <livewire:prestamo.tabla_detalles :solicitudId="$id" lazy/>
+                    <livewire:prestamo.show.table :solicitudId="$id" lazy/>
                 </div>
             </div>
 

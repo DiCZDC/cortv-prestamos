@@ -6,5 +6,5 @@
             <flux:breadcrumbs.item href="#"><span class="!text-gris_claro dark:!text-hueso">Crear Préstamo</span>    </flux:breadcrumbs.item>
         </flux:breadcrumbs>
     @endrole
-        <livewire:solicitud.forms title="Initial Title" />  
+        <livewire:prestamo.create.forms title="Initial Title" />  
 </x-layouts::app >

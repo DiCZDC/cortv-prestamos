@@ -29,7 +29,7 @@
                 
             </div> 
 
-            <livewire:prestamo.table lazy />
+            <livewire:prestamo.index.table lazy />
         </div>
 
         {{-- boton  --}}

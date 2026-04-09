@@ -105,7 +105,7 @@
                     </div>
                                     
                     <div class="pt-3 px-10 pb-6" >
-                        <livewire:dashboard.index.prestamos.tabla lazy/>
+                        <livewire:dashboard.index.prestamos.table lazy/>
                     </div>
             </div>
 
@@ -116,7 +116,7 @@
                 </div>
                                     
                 <div class="pt-3 px-10 pb-6" >
-                        <livewire:dashboard.index.devoluciones.tabla lazy/>
+                        <livewire:dashboard.index.devoluciones.table lazy/>
                 </div>
             </div>
             
