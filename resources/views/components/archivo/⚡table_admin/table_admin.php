@@ -49,6 +49,7 @@ new class extends Component
             ->orderBy("solicituds.{$this->sortBy}", $this->sortDirection)
             ->join('users as trabajador', 'solicituds.id_trabajador', '=', 'trabajador.id')
             ->select('solicituds.*', 'trabajador.name as nombre_trabajador')
+            
             ->join('users as admin', 'solicituds.id_admin', '=', 'admin.id')
             ->select('solicituds.*', 'trabajador.name as nombre_trabajador', 'admin.name as nombre_admin')
             ->when($this->search !== '', function ($query) {

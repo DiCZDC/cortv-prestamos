@@ -38,12 +38,6 @@
                                 {{ __('Recepción') }}
                             </flux:sidebar.item>
                         @endrole
-                    {{-- Archivo --}}
-                        @hasanyrole('admin|trabajador')
-                            <flux:sidebar.item icon="archive" :href="route('archivo.index')" :current="request()->routeIs('archivo.index')" wire:navigate>
-                                {{ __('Archivo') }}
-                            </flux:sidebar.item>
-                        @endrole
                     {{-- Personal --}}
                         @role('admin')
                             <flux:sidebar.item icon="users" :href="route('personal.index')" :current="request()->routeIs('personal.index')" wire:navigate>
@@ -54,6 +48,12 @@
                         @role('admin')
                             <flux:sidebar.item icon="airplay" :href="route('equipo.index')" :current="request()->routeIs('equipo.index')" wire:navigate>
                                 {{ __('Equipo') }}
+                            </flux:sidebar.item>
+                        @endrole
+                    {{-- Archivo --}}
+                        @hasanyrole('admin|trabajador')
+                            <flux:sidebar.item icon="archive" :href="route('archivo.index')" :current="request()->routeIs('archivo.index')" wire:navigate>
+                                {{ __('Archivo') }}
                             </flux:sidebar.item>
                         @endrole
                     @endauth
