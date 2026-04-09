@@ -8,10 +8,10 @@ class CalendarioController extends Controller
 {
     public function index()
     {
-        return view('calendario.index');
+        return view('vistas.calendario.index');
     }
     public function show($id)
     {
-        return view('calendario.show', ['id' => $id]);
+        return view('vistas.calendario.show', ['id' => $id]);
     }
 }

@@ -9,7 +9,7 @@ class PrestamoController extends Controller
      */
     public function index()
     {
-        return view('prestamo.index');
+        return view('vistas.prestamo.index');
     }
 
     /**
@@ -17,7 +17,7 @@ class PrestamoController extends Controller
      */
     public function create()
     {
-        return view('prestamo.create');
+        return view('vistas.prestamo.create');
     }
 
     /**
@@ -25,6 +25,6 @@ class PrestamoController extends Controller
      */
     public function show($id)
     {
-        return view('prestamo.show', ['id' => $id]);
+        return view('vistas.prestamo.show', ['id' => $id]);
     }
 }

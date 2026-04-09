@@ -1,8 +1,8 @@
 <x-layouts::app :title="__('Inicio')">
     @role('admin')
-        @include('dashboard.admin')
+        @include('vistas.inicio.admin')
     @elserole('trabajador')
-        @include('dashboard.trabajador')
+        @include('vistas.inicio.trabajador')
     @else
         JAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJA
         JAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJAJA

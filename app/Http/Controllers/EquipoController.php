@@ -6,16 +6,16 @@ class EquipoController extends Controller
 {
     public function index()
     {
-        return view('equipo.index');
+        return view('vistas.equipo.index');
     }
 
     public function show($id)
     {
-        return view('equipo.show', ['id' => $id]);
+        return view('vistas.equipo.show', ['id' => $id]);
     }
     public function create()
     {
-        return view('equipo.create');
+        return view('vistas.equipo.create');
 
     }
 }

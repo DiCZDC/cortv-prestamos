@@ -1,5 +1,5 @@
 <x-layouts::app title="Crear Préstamo">
-    @role('admin'))
+    @role('admin')
     {{-- navegacion interna --}}
         <flux:breadcrumbs>
             <flux:breadcrumbs.item href="{{ route('prestamo.index') }}"><span class="!text-gris_claro dark:!text-hueso">Préstamos</span></flux:breadcrumbs.item>

@@ -13,7 +13,7 @@
 
     <div class="flex flex-col justify-center items-center">
         <div >
-            <livewire:calendario_admin  
+            <livewire:calendario.big  
                 initial-year="{{ now()->year }}"
                 initial-month="{{ now()->month }}"
             />

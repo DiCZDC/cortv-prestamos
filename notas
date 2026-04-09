@@ -34,7 +34,7 @@
         <div class="flex flex-col">
             <div class="flex items-center gap-3 text-rojo_claro mt-8">
                 
-                <livewire:calendario.calendar :id="$id"/>
+                <livewire:calendario.small :id="$id"/>
                 
             </div>
             <div>
