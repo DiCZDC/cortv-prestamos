@@ -10,9 +10,10 @@
     
     @if ($this->verificar_unidades_equipo()->isNotEmpty())
      
-    <flux:callout variant="warning" icon="exclamation-circle" heading="Please verify your account to unlock all features." />
+        <flux:callout variant="warning" icon="exclamation-circle" heading="Please verify your account to unlock all features." />
 
     @else
+    
     <flux:callout variant="success" icon="check-circle" heading="La solicitud no tiene conflictos con otros préstamos" text="Todos los equipos solicitados están disponibles.
     Puede autorizarse de manera inmediata la solicitud." />
          
