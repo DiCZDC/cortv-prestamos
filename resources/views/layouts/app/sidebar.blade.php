@@ -19,14 +19,18 @@
                         <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                             {{ __('Inicio') }}
                         </flux:sidebar.item>
-                        
-                    {{-- Calendario --}}
-                        @hasanyrole('admin|trabajador')
-                            <flux:sidebar.item icon="calendar" :href="route('calendario.index')" :current="request()->routeIs('calendario.index')" wire:navigate>
-                                {{ __('Calendario') }}
+                        {{-- Calendario --}}
+                            @hasanyrole('admin|trabajador')
+                                <flux:sidebar.item icon="calendar" :href="route('calendario.index')" :current="request()->routeIs('calendario.index')" wire:navigate>
+                                    {{ __('Calendario') }}
+                                </flux:sidebar.item>
+                            @endrole
+                    {{-- Prestamos --}}
+                        @role('trabajador')
+                            <flux:sidebar.item icon="file-user" :href="route('prestamo.create')" :current="request()->routeIs('prestamo.create')" wire:navigate>
+                                {{ __('Prestamo') }}
                             </flux:sidebar.item>
                         @endrole
-                    {{-- Prestamos --}}
                         @role('admin')
                             <flux:sidebar.item icon="file" :href="route('prestamo.index')" :current="request()->routeIs('prestamo.index')" wire:navigate>
                                 {{ __('Prestamos Pendientes') }}

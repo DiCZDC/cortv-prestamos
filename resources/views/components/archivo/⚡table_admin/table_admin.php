@@ -49,9 +49,9 @@ new class extends Component
             ->orderBy("solicituds.{$this->sortBy}", $this->sortDirection)
             ->join('users as trabajador', 'solicituds.id_trabajador', '=', 'trabajador.id')
             ->select('solicituds.*', 'trabajador.name as nombre_trabajador')
-            
             ->join('users as admin', 'solicituds.id_admin', '=', 'admin.id')
             ->select('solicituds.*', 'trabajador.name as nombre_trabajador', 'admin.name as nombre_admin')
+            ->where('solicituds.estado', '!=', 'Pendiente')
             ->when($this->search !== '', function ($query) {
                 $query->whereRaw('LOWER(admin.name) like ?', ['%'.strtolower($this->search).'%'])
                     ->orWhereRaw('LOWER(trabajador.name) like ?', ['%'.strtolower($this->search).'%'])
