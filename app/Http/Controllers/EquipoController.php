@@ -11,7 +11,11 @@ class EquipoController extends Controller
 
     public function show($id)
     {
-        // Aquí puedes agregar la lógica para mostrar los detalles de un préstamo específico
         return view('equipo.show', ['id' => $id]);
+    }
+    public function create()
+    {
+        return view('equipo.create');
+
     }
 }

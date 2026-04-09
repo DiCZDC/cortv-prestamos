@@ -56,6 +56,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::prefix('equipo')->name('equipo.')->group(function () {
             Route::controller(EquipoController::class)->group(function () {
                 Route::get('/', 'index')->name('index');
+                Route::get('/create', 'create')->name('create');
                 Route::get('/{id}', 'show')->name('show');
             });
         });

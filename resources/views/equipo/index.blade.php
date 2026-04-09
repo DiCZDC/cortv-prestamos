@@ -9,4 +9,8 @@
         </div>
     </div>
     <livewire:equipo.table lazy/>
+    {{-- boton  --}}
+    <div class="flex w-full justify-end mt-4 pr-1">
+        <x-componentes.boton-href ruta="equipo.create" texto="Añadir un nuevo equipo" icon="square-plus" color="rojo_claro" />
+    </div>
 </x-layouts::app>
