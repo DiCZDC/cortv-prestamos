@@ -2,6 +2,7 @@
 
 use Livewire\Component;
 use App\Models\Categoria;
+use App\Models\Equipo;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Validate;
 new class extends Component
@@ -20,5 +21,25 @@ new class extends Component
     #[Computed]
     public function categorias(){
         return Categoria::all();
+    }
+    
+    public function save(){
+        $this->validate();
+
+        $equipo = Equipo::create([
+            'marca' => $this->marca,
+            'modelo' => $this->modelo,
+            'id_categoria' => $this->categoria,
+        ]);
+        
+        Flux::toast(
+            heading: 'Equipo creado',
+            text: 'El equipo ha sido creado exitosamente.',
+            variant: 'success',
+        );
+        $this->reset(['marca', 'modelo', 'categoria']);
+    }
+    public function cancel(){
+        $this->reset(['marca', 'modelo', 'categoria']);
     }
 };

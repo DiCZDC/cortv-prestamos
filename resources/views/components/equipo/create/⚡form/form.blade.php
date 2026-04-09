@@ -1,9 +1,7 @@
 <form wire:submit="save">
     <section class="w-full flex flex-col items-start justify-center gap-4 py-1 
-                    md:px-1/10
-                    lg:px-[6%] lg:w-1/2
             ">
-        <div class="flex flex-col bg-white shadow-2xl rounded-2xl px-12 py-9 w-full
+        <div class="flex flex-col px-6 py-4 w-full
                     dark:bg-neutral-800
         ">  
 
@@ -36,9 +34,9 @@
                 
             </div>
             
-            <div class="flex  gap-15 row-reverse justify-center mt-6">
-                <x-componentes.btnsformulario type="submit" texto="Crear" color="verde_mid" icon="send" />
-                <x-componentes.btnsformulario type="button" texto="Cancelar" color="rojo_claro" icon="circle-x" />  
+            <div class="flex gap-15 row-reverse justify-center mt-12">
+                <x-componentes.btnsformulario type="submit" texto="Crear" color="verde_mid" icon="circle-check" />
+                <x-componentes.btnsformulario type="button" texto="Cancelar" color="rojo_claro" icon="circle-x" wire:click="cancel" />  
             </div>
         </div>
         

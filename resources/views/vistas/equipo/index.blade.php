@@ -11,6 +11,14 @@
     <livewire:equipo.index.table lazy/>
     {{-- boton  --}}
     <div class="flex w-full justify-end mt-4 pr-1">
-        <x-componentes.boton-href ruta="equipo.create" texto="Añadir un nuevo equipo" icon="square-plus" color="rojo_claro" />
+        <flux:modal.trigger name="create-equipo">
+            <flux:button class="!bg-rojo_claro !text-white hover:!bg-rojo_oscuro ">
+                <flux:icon name="square-plus" />
+                Añadir un nuevo equipo
+            </flux:button>
+        </flux:modal.trigger>
     </div>
+    <flux:modal name="create-equipo">
+        <livewire:equipo.create.form />
+    </flux:modal>
 </x-layouts::app>

@@ -14,9 +14,6 @@ use Livewire\Component;
 
 new class extends Component
 {
-    // #[Validate('required', message: 'Ingrese un motivo de préstamo')]
-    // #[Validate('min:10', message: 'El motivo es demasiado corto')]
-    // #[Validate('max:255', message: 'El motivo es demasiado largo')]
     public $motivo;
     public $fecha_prestamo;
     public $estado = 'Pendiente';
