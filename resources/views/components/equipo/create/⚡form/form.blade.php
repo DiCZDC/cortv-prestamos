@@ -1,7 +1,7 @@
 <form wire:submit="save">
     <section class="w-full flex flex-col items-start justify-center gap-4 py-1 
             ">
-        <div class="flex flex-col px-6 py-4 w-full
+        <div class="flex flex-col px-2 py-4 w-full
                     dark:bg-neutral-800
         ">  
 

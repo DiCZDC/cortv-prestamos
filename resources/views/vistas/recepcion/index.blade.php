@@ -11,7 +11,7 @@
         
         
         {{-- Cabecera principal --}}
-        <div class="flex flex-col pt-2 w-auto gap-4 pl-3    
+        <div class="flex flex-col pt-2 w-auto gap-8 pl-3    
         ">
             <x-componentes.titulo icono="truck" texto="Recepción de Prestamos" />
             <x-componentes.subtitulo icono="database" texto="Devoluciones de productos" />
