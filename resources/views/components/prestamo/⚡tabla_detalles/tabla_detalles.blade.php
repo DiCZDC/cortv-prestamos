@@ -1,5 +1,5 @@
-
-<div class="flex flex-col gap-4">
+<form wire:submit="actualizar">
+<div class="flex flex-col gap-6">
      {{-- The only way to do great work is to love what you do. - Steve Jobs --}}
 
     {{-- The only way to do great work is to love what you do. - Steve Jobs --}}
@@ -20,8 +20,8 @@
     @endif
 
 
-    <flux:table>
-        <flux:table.columns>
+    <flux:table container:class="max-h-[225px]">
+        <flux:table.columns sticky class="bg-white dark:bg-zinc-900">
             <x-componentes.header_table icon="hard-drive"> Equipo </x-componentes.header_table> 
             <x-componentes.header_table icon="binary"> Sicipo </x-componentes.header_table> 
             <x-componentes.header_table icon="chart-no-axes-column-increasing"> Disponibilidad </x-componentes.header_table>
@@ -36,7 +36,7 @@
                     <flux:table.cell>
                         {{ $detalle->Unidad_Equipo->sicipo }}
                     </flux:table.cell>
-                    <flux:table.cell>
+                    <flux:table.cell class="!px-15" >
                         {{-- {{ $detalle->Unidad_Equipo->Equipo->id}} --}}
                         {{ $this->solicitud($detalle->Unidad_Equipo->Equipo->id) ? 'Disponible' : 'Equipo no disponible' }}
                     </flux:table.cell>
@@ -51,12 +51,9 @@
         </flux:table.rows>
     </flux:table>
 
-    <div class="flex align-middle justify-evenly">
-        <flux:button variant="outline" icon="check" color="rojo_claro" class="mt-4" wire:click="asignarEquipos">
-            Aceptar prestamo
-        </flux:button>
-        <flux:button variant="outline" icon="x" color="gris_claro" class="mt-4 ml-2" wire:click="cancelarAsignacion">
-            Rechazar prestamo
-        </flux:button>
+    <div class="flex align-middle justify-evenly mt-5">
+        <x-componentes.btnsformulario type="submit" texto="Aprobar" color="verde_mid" icon="clipboard-check" />
+        <x-componentes.btnsformulario type="button" texto="Rechazar" color="rojo_claro" icon="circle-x" />  
     </div>
 </div>
+</form>

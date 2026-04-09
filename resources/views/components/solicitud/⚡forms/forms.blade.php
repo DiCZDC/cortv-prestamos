@@ -143,8 +143,8 @@
                     
                 
                 <div class="flex  gap-15 row-reverse justify-center mt-2">
-                    <x-componentes.btnsformulario type="submit" texto="Enviar" color="verde_mid" icon="send" />
-                    <x-componentes.btnsformulario type="button" texto="Cancelar" color="rojo_claro" icon="circle-x" />  
+                    <x-componentes.btnsformulario type="submit" texto="Enviar" color="verde_mid" icon="send" :trailing="true"/>
+                    <x-componentes.btnsformulario type="button" texto="Cancelar" color="rojo_claro" icon="circle-x" :trailing="true"/>  
                 </div>
             </div>
 

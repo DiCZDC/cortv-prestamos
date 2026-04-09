@@ -18,11 +18,13 @@
                         <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                             {{ __('Inicio') }}
                         </flux:sidebar.item>
+
                         @role('trabajador')
                             <flux:sidebar.item icon="file-user" :href="route('prestamo.create')" :current="request()->routeIs('prestamo.create')" wire:navigate>
                                 {{ __('Préstamos') }}
                             </flux:sidebar.item>
                         @endrole
+                        
                         @role('admin')
                             <flux:sidebar.item icon="calendar" :href="route('calendario.index')" :current="request()->routeIs('calendario.index')" wire:navigate>
                                 {{ __('Calendario') }}
