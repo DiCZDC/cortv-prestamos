@@ -11,7 +11,9 @@
                         lg:px-[6%] lg:w-1/2
                 ">
                 {{-- div de la primera parte del formulario --}}
-            <div class="flex flex-col bg-white shadow-2xl rounded-2xl px-12 py-9 w-full">  
+            <div class="flex flex-col bg-white shadow-2xl rounded-2xl px-12 py-9 w-full
+                        dark:bg-neutral-800
+            ">  
 
                 <div class="flex justify-center items-center gap-3 mb-1 text-rojo_claro">
                     <flux:icon name="file" class="inline 
@@ -53,7 +55,9 @@
                 ">
             
             {{-- tabla --}}
-            <div class="flex flex-col bg-white shadow-2xl rounded-2xl items-center py-6 max-h-160">
+            <div class="flex flex-col bg-white shadow-2xl rounded-2xl items-center py-6 max-h-160
+                        dark:bg-neutral-800
+            ">
                 {{-- titulo de la tabla y del contenedor --}}
                 <div class="flex justify-center items-center gap-5 mb-2 text-rojo_claro">
                     <flux:icon name="scroll-text" class="inline size-8 md:size-12" />
@@ -65,7 +69,10 @@
 
                 <div class="py-3 px-5 w-8/10">
                     <flux:table container:class="max-h-[513px]">
-                        <flux:table.columns sticky class="bg-white dark:bg-zinc-900">
+                        <flux:table.columns sticky 
+                        class="bg-white 
+                                dark:bg-neutral-800
+                        ">
                             <x-componentes.header_table icon="hard-drive"> Equipo </x-componentes.header_table>
                             <x-componentes.header_table icon="tags">Sicipo </x-componentes.header_table>
                             <flux:table.column></flux:table.column>                           

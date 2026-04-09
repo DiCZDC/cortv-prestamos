@@ -20,7 +20,8 @@
             <flux:table.column>Trabajador</flux:table.column>
             <flux:table.column>Administrador</flux:table.column>
             <flux:table.column>Motivo</flux:table.column>
-            <flux:table.column>Estado</flux:table.column>
+            <flux:table.column sortable :sorted="$sortBy === 'created_at'" :direction="$sortDirection" wire:click="sort('created_at')">Fecha de Solicitud</flux:table.column>
+            <flux:table.column>Estado del Préstamo</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'fecha_prestamo'" :direction="$sortDirection" wire:click="sort('fecha_prestamo')">Fecha Préstamo</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'fecha_devolucion'" :direction="$sortDirection" wire:click="sort('fecha_devolucion')">Fecha Devolución</flux:table.column>
             <flux:table.column sortable :sorted="$sortBy === 'fecha_entrega'" :direction="$sortDirection" wire:click="sort('fecha_entrega')">Fecha Real de Entrega</flux:table.column>
@@ -46,7 +47,7 @@
                     <flux:table.cell class="whitespace-nowrap">
                         {{ Str::limit($prestamo->motivo, 30, '...') }}
                     </flux:table.cell>
-
+                    <flux:table.cell variant="strong">{{ $prestamo->created_at->format('Y-m-d') }}</flux:table.cell>
                     {{-- Estado del préstamo --}}
                     <flux:table.cell>
                         <flux:badge
@@ -78,7 +79,7 @@
                             }}
                         </flux:badge>
                         @elseif ($prestamo->estado === 'Entregada')
-                            <span class="text-sm text-gris_claro">En espera de devolución</span>
+                            <span class="text-sm text-gris_claro">En espera</span>
                         @else
                             <span class="text-sm text-gris_claro">No entregado</span>
                         @endif

@@ -5,8 +5,9 @@ use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Omnia\LivewireCalendar\LivewireCalendar;
+use Livewire\Attributes\Lazy;
 
-new class extends LivewireCalendar
+new #[Lazy]class extends LivewireCalendar
 {
     public $events = [];
 
@@ -49,5 +50,5 @@ new class extends LivewireCalendar
         if ($solicitud) {
             return redirect()->route('archivo.show', $solicitud->id);
         }
-    }   
+    }
 };

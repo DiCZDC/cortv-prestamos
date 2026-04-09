@@ -15,34 +15,45 @@
             <flux:sidebar.nav>
                 <flux:sidebar.group :heading="__('Ventanas')" class="grid">
                     @auth
+                    {{-- Inicio --}}
                         <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                             {{ __('Inicio') }}
                         </flux:sidebar.item>
-                        @role('trabajador')
-                            <flux:sidebar.item icon="file-user" :href="route('prestamo.create')" :current="request()->routeIs('prestamo.create')" wire:navigate>
-                                {{ __('Préstamos') }}
-                            </flux:sidebar.item>
-                        @endrole
-                        @role('admin')
+                        
+                    {{-- Calendario --}}
+                        @hasanyrole('admin|trabajador')
                             <flux:sidebar.item icon="calendar" :href="route('calendario.index')" :current="request()->routeIs('calendario.index')" wire:navigate>
                                 {{ __('Calendario') }}
                             </flux:sidebar.item>
+                        @endrole
+                    {{-- Prestamos --}}
+                        @role('admin')
                             <flux:sidebar.item icon="file" :href="route('prestamo.index')" :current="request()->routeIs('prestamo.index')" wire:navigate>
                                 {{ __('Prestamos Pendientes') }}
                             </flux:sidebar.item>
+                        @endrole
+                    {{-- Recepción --}}
+                        @role('admin')
                             <flux:sidebar.item icon="truck" :href="route('recepcion.index')" :current="request()->routeIs('recepcion.index')" wire:navigate>
                                 {{ __('Recepción') }}
                             </flux:sidebar.item>
                         @endrole
-                            <flux:sidebar.item icon="archive" :href="route('archivo.index')" :current="request()->routeIs('archivo.index')" wire:navigate>
-                                {{ __('Archivo') }}
-                            </flux:sidebar.item>
+                    {{-- Personal --}}
                         @role('admin')
                             <flux:sidebar.item icon="users" :href="route('personal.index')" :current="request()->routeIs('personal.index')" wire:navigate>
                                 {{ __('Personal') }}
                             </flux:sidebar.item>
+                        @endrole
+                    {{-- Equipo --}}
+                        @role('admin')
                             <flux:sidebar.item icon="airplay" :href="route('equipo.index')" :current="request()->routeIs('equipo.index')" wire:navigate>
                                 {{ __('Equipo') }}
+                            </flux:sidebar.item>
+                        @endrole
+                    {{-- Archivo --}}
+                        @hasanyrole('admin|trabajador')
+                            <flux:sidebar.item icon="archive" :href="route('archivo.index')" :current="request()->routeIs('archivo.index')" wire:navigate>
+                                {{ __('Archivo') }}
                             </flux:sidebar.item>
                         @endrole
                     @endauth

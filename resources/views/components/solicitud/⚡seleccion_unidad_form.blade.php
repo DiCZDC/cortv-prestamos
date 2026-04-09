@@ -82,7 +82,9 @@ new class extends Component
     
 };
 ?>
-<div class="flex flex-col bg-white shadow-2xl rounded-2xl px-12 py-6 w-full mt-9">  
+<div class="flex flex-col bg-white shadow-2xl rounded-2xl px-12 py-6 w-full mt-9
+            dark:bg-neutral-800
+">  
         {{-- titulo --}}
         <div class="flex justify-center items-center gap-5 mb-2 text-rojo_claro">
             <flux:icon name="command" class="inline 
@@ -143,7 +145,10 @@ new class extends Component
                 <flux:error name="nombre_unidad_equipo" />
             </flux:field>
                 
-            <flux:button wire:click="agregar" variant="primary" class="border-none w-full bg-rojo_claro!">Agregar Equipo</flux:button>
+            <flux:button wire:click="agregar" variant="primary" 
+            class="border-none w-full bg-rojo_claro!
+                    text-hueso        
+            ">Agregar Equipo</flux:button>
         </div>
       
 </div>  
