@@ -1,17 +1,29 @@
 @php
-
-    $devoluciones_totales = App\Models\Solicitud::where('id_trabajador', auth()->user()->id)
+    $solicitudes = App\Models\Solicitud::where('id_trabajador', auth()->user()->id)->get();
+    $devoluciones_totales = $solicitudes
                             ->where('estado','Devuelta')
                             ->count();
-    $devoluciones_en_tiempo = App\Models\Solicitud::where('id_trabajador', auth()->user()->id)
-                            ->where('estado','Devuelta')
-                            ->whereColumn('fecha_devolucion','<','fecha_entrega')
+    $devoluciones_en_tiempo = $solicitudes
+                            ->filter(function ($solicitud) {
+                                return $solicitud->estado === 'Devuelta'
+                                    && \Illuminate\Support\Carbon::parse($solicitud->fecha_devolucion)
+                                        ->lt(\Illuminate\Support\Carbon::parse($solicitud->fecha_entrega));
+                            })
                             ->count();
-    $porcentaje_cumplimiento = $devoluciones_totales > 0 ? (($devoluciones_totales-$devoluciones_en_tiempo )/ $devoluciones_totales) * 100 : 0; // Ejemplo de porcentaje de cumplimiento
-    $devoluciones_atrasadas = App\Models\Solicitud::where('id_trabajador', auth()->user()->id)
-                            ->where('estado','Entregada')
-                            ->where('fecha_devolucion','<',now())
+    $porcentaje_cumplimiento =  
+                $solicitudes->count() != 0 ?
+                number_format($devoluciones_totales > 0 ? (($devoluciones_totales-$devoluciones_en_tiempo )/ $devoluciones_totales) * 100 : 0, 2).'%'
+                :'Sin préstamos'
+                ;
+    $devoluciones_atrasadas = $solicitudes
+                            ->filter(function ($solicitud) {
+                                return $solicitud->estado === 'Entregada'
+                                    && \Illuminate\Support\Carbon::parse($solicitud->fecha_devolucion)->lt(now());
+                            })
                             ->count();
+    $prestamo_en_curso = App\Models\Solicitud::where('id_trabajador', auth()->user()->id)
+                            ->where('estado','Autorizada')
+                            ->first();
 
 @endphp
 <div class="h-full  overflow-hidden ">
@@ -36,12 +48,38 @@
         <div class="grid auto-rows-min gap-4 grid-cols-1 place-items-center content-center
                         lg:grid-cols-2
                 ">
-            <div class="h-full w-[84%] relative rounded-xl shadow-xl">
-                    Prestamo en curso
+            <div class="h-full w-[84%] relative rounded-xl shadow-xl flex-col ">
+                    <div class="flex flex-row items-center gap-3 px-8 pt-10 justify-center">
+                        <flux:icon name="package" class="w-10 h-10 text-black dark:text-hueso" />
+                        <h1 class="text-2xl font-bold text-center">Prestamo en curso</h1>
+                    </div>
+                    @if($prestamo_en_curso)
+                        <h2 class="text-lg  text-center mt-4">
+                            <span class="font-semibold">
+                                Motivo:
+                            </span>
+                            {{$prestamo_en_curso->motivo}}</h2>
+                        <h2 class="text-lg text-center mt-4">
+                            <span class="font-semibold">
+                                Fecha de devolución:
+                            </span>
+                            {{$prestamo_en_curso->fecha_devolucion }}</h2>
+                            <div class="align-middle w-max mt-6 mx-auto pb-6">
+                                <x-componentes.boton-href 
+                                    ruta="prestamo.show" 
+                                    texto="Ver" 
+                                    icon="eye" 
+                                    :id="$prestamo_en_curso->id" 
+                                    color="azul_saturado" 
+                                    />    
+                            </div>
+                    @else
+                        <h2 class="text-lg  text-center mt-4">No tienes prestamos en curso</h2>
+                    @endif
             </div>
             <div class="w-[84%] flex  justify-around">
                 <livewire:card 
-                    titulo='{{number_format($porcentaje_cumplimiento, 2)}}%' 
+                    titulo='{{ $porcentaje_cumplimiento }}' 
                     descripcion='Tasa de cumplimiento'
                     icono='box' 
                     color_text='text-hueso' 

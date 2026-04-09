@@ -45,7 +45,7 @@ new class extends Component
 
     public function cant_equipos($id)
     {
-        return Unidad_Equipo::where('id_equipo', $id)->where('estado', 'Disponible')->count();
+        return Unidad_Equipo::where('id_equipo', $id)->count();
     }
 
     #[Computed]
