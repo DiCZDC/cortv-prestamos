@@ -16,7 +16,7 @@
         />
     @endplaceholder
     
-    <livewire:searchbar 
+    <livewire:componentes.searchbar 
         placeholder="Buscar por marca o modelo..."
         :filters="$this->filters" />
     <flux:table :paginate="$this->equipos">

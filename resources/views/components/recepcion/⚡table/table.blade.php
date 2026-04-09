@@ -6,7 +6,7 @@
             perPage=10 
             />
     @endplaceholder
-    <livewire:searchbar 
+    <livewire:componentes.searchbar 
         placeholder="Buscar por nombre de trabajador, administrador o motivo..."
         :filters="[
             'all' => 'Todos', 

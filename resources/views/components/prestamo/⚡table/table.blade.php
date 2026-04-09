@@ -6,7 +6,7 @@
             perPage=6
         />
     @endplaceholder
-    <livewire:searchbar
+    <livewire:componentes.searchbar
         placeholder="Buscar por nombre de trabajador o motivo..."
     />
     <flux:table :paginate="$this->prestamos" pagination:scroll-to   >

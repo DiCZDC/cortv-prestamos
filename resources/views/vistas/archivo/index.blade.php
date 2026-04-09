@@ -7,9 +7,8 @@
         </div>
     </div>
     @role('admin')
-        <livewire:archivo.table_admin lazy/>
-    @endrole
-    @role('trabajador')
-        <livewire:archivo.table_trabajador lazy/>
+        <livewire:archivo.index.admin.table lazy/>
+    @elserole('trabajador')
+        <livewire:archivo.index.trabajador.table lazy/>
     @endrole
 </x-layouts::app>

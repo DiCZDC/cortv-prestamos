@@ -16,7 +16,7 @@
             {{-- card --}}
             
             <div>
-                <livewire:card titulo='4 Prestamos' descripcion='Pendientes de entrega' icono='box' color_text='black'/>    
+                <livewire:componentes.card titulo='4 Prestamos' descripcion='Pendientes de entrega' icono='box' color_text='black'/>    
             </div>
         
         

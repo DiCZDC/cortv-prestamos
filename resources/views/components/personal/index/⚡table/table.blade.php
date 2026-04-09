@@ -8,7 +8,7 @@
         />
     @endplaceholder
     
-    <livewire:searchbar
+    <livewire:componentes.searchbar
         placeholder="Buscar por nombre de trabajador o correo..."
     />
     

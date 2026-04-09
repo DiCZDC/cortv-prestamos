@@ -22,8 +22,8 @@
             md:justify-evenly
             lg:w-[40%] md:flex-row 
         ">
-            <livewire:card titulo='{{$cant_esperados}} equipos' descripcion='esperados hoy' icono='inbox' color_text='black'/>    
-            <livewire:card titulo='{{$cant_atrasados}} Prestamos' descripcion='atrasados' icono='clock' color_text='black'/>    
+            <livewire:componentes.card titulo='{{$cant_esperados}} equipos' descripcion='esperados hoy' icono='inbox' color_text='black'/>    
+            <livewire:componentes.card titulo='{{$cant_atrasados}} Prestamos' descripcion='atrasados' icono='clock' color_text='black'/>    
         
         </div>
     </div>  

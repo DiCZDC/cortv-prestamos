@@ -78,14 +78,14 @@
                     @endif
             </div>
             <div class="w-[84%] flex  justify-around">
-                <livewire:card 
+                <livewire:componentes.card 
                     titulo='{{ $porcentaje_cumplimiento }}' 
                     descripcion='Tasa de cumplimiento'
                     icono='box' 
                     color_text='text-hueso' 
                     color_bg='bg-verde_mid'
                     />
-                <livewire:card 
+                <livewire:componentes.card 
                     titulo='Faltan' 
                     descripcion='{{ $devoluciones_atrasadas }} devoluciones' 
                     icono='triangle-alert' 

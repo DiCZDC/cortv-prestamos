@@ -5,7 +5,7 @@
                 lg:grid-cols-2 md:rows-1
                 ">
     
-        @livewire('4cards')
+        @livewire('dashboard.index.4cards')
         
         <div class="h-full relative rounded-xl">
             <livewire:grafica.dashboard />
@@ -24,7 +24,7 @@
                 </div>
                                 
                 <div class="pt-3 px-10 pb-6" >
-                    <livewire:proximos_prestamos.tabla lazy/>
+                    <livewire:dashboard.index.prestamos.tabla lazy/>
                 </div>
         </div>
 
@@ -35,7 +35,7 @@
             </div>
                                 
             <div class="pt-3 px-10 pb-6" >
-                    <livewire:prestamos_atrasados.tabla lazy/>
+                    <livewire:dashboard.index.devoluciones.tabla lazy/>
             </div>
         </div>
         

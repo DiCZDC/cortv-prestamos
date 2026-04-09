@@ -40,10 +40,3 @@ new class extends Component
             ->paginate(10);
     }
 };
-/*
-        Solicitud::query()->where('id_trabajador', 1)
-            ->orderBy("solicituds.id", 'asc')
-            ->join('users', 'solicituds.id_admin', '=', 'users.id')
-            ->select('solicituds.*', 'users.name as admin_name')
-            ->paginate(10);
- */
