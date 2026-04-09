@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-md p-8 w-1/2">
+            <div class="bg-red rounded-lg shadow-md p-8 w-1/2 h-1/2">
                 
             </div>
         

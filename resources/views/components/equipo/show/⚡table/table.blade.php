@@ -1,3 +1,9 @@
+@placeholder
+    <x-placeholder.table
+        :header="['ID', 'SICIPO', 'Estatus']"
+        perPage=10
+    />
+@endplaceholder
 <div>
     <flux:table :paginate="$this->productos" pagination:scroll-to   >
         <flux:table.columns>
