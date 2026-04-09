@@ -1,4 +1,4 @@
-<x-layouts::app :title="__('Dashboard')">
+<x-layouts::app :title="__('Inicio')">
     @role('admin')
         @include('dashboard.admin')
 

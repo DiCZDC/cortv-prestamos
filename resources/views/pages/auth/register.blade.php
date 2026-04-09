@@ -1,4 +1,4 @@
-<x-layouts::auth :title="__('Register')">
+<x-layouts::auth :title="__('Registrate')">
     <div class="flex flex-col gap-6">
         <x-auth-header :title="__('Crea una cuenta')" :description="__('Ingresa tus datos a continuación para crear tu cuenta')" />
 
