@@ -67,12 +67,7 @@ new class extends Component
             return collect();
         }
 
-        $Equipo_Actual = Unidad_Equipo::where('id_equipo', $id);
-
-        return $Equipo_Actual->whereNotIn('id', $this->equipos_ocupados($id))
-        ->get();
-    }
-
+        
     public function agregar()
     {
         $this->validate();
