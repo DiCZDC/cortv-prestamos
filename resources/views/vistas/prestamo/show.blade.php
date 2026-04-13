@@ -24,7 +24,7 @@
             <div class="bg-white rounded-lg shadow-md px-5 py-6.5 justify-end ">
                 <span class="font-bold text-2xl text-gris_claro ml-7">Resumen de la solicitud</span>  
                 <div class="px-11 py-5">
-                    <livewire:prestamo.tabla_detalles :solicitudId="$id" lazy/>
+                    <livewire:prestamo.show.table :solicitudId="$id" lazy/>
                 </div>
                
             </div>
@@ -34,7 +34,7 @@
         {{-- div grande pt2 --}}
         <section class="w-1/2 flex flex-col items-center gap-15">
             <div class="-mt-8" >
-                <livewire:card
+                <livewire:componentes.card
                 :titulo="'Asignar equipos'"
                 :descripcion="'Selecciona los equipos que deseas asignar a esta solicitud'"
                 :icono="'thumbs-up'"
@@ -48,7 +48,7 @@
                     <span class="font-bold text-3xl text-black">Periodo de préstamo</span>
                 </div>
                 
-                <livewire:calendario.calendar :id="$id"/>
+                <livewire:calendario.small :id="$id"/>
                                 
             </div>
 
