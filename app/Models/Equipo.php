@@ -12,9 +12,9 @@ class Equipo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nombre',
-        'descripcion',
-        'categoria_id',
+        'marca',
+        'modelo',
+        'id_categoria',
     ];
 
     public function categoria()

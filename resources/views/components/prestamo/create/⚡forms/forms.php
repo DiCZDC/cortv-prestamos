@@ -14,25 +14,11 @@ use Livewire\Component;
 
 new class extends Component
 {
-    // #[Validate('required', message: 'Ingrese un motivo de préstamo')]
-    // #[Validate('min:10', message: 'El motivo es demasiado corto')]
-    // #[Validate('max:255', message: 'El motivo es demasiado largo')]
     public $motivo;
-
-    // #[Validate('required', message: 'Seleccione una fecha de inicio del préstamo')]
     public $fecha_prestamo;
-
     public $estado = 'Pendiente';
-
-    // #[Validate('required', message: 'Seleccione una fecha de devolución')]
     public $fecha_devolucion;
-
-    // #[Validate('required', message: 'Seleccione al menos un equipo para el préstamo')]
-    // #[Validate('array')]
-    // #[Validate('min:1', message: 'Debe seleccionar al menos un equipo para el préstamo')]
     public $equipos_seleccionados = [];
-
-    // #[Validate('required', message: 'Seleccione un trabajador para el préstamo')]
     public $trabajador = null;
 
     public function rules()
