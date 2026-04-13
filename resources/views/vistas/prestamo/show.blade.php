@@ -24,7 +24,7 @@
             <div class="bg-white rounded-lg shadow-md px-5 py-6.5 justify-end ">
                 <span class="font-bold text-2xl text-gris_claro ml-7">Resumen de la solicitud</span>  
                 <div class="px-11 py-5">
-                    <livewire:prestamo.show.table :solicitudId="$id" lazy/>
+                    <livewire:prestamo.show.table from="{{ $Solicitud->fecha_prestamo }}" to="{{ $Solicitud->fecha_devolucion }}" :solicitudId="$id" lazy/>
                 </div>
                
             </div>

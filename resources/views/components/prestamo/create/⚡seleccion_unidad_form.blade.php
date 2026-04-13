@@ -46,8 +46,8 @@ new class extends Component
     {
         return Equipo::all();
     }
-
-    public function equipos_ocupados($id){
+    #[Computed]
+    public function equipos_ocupados(){
         if (empty($this->from) || empty($this->to)) {
             return collect();
         }
@@ -66,6 +66,10 @@ new class extends Component
         if (empty($id) || empty($this->from) || empty($this->to)) {
             return collect();
         }
+        return Unidad_Equipo::where('id_equipo', $id)
+            ->whereNotIn('id', $this->equipos_ocupados($id))
+            ->get();
+    }
 
         
     public function agregar()

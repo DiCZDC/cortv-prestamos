@@ -9,13 +9,23 @@ use Illuminate\Support\Facades\Auth;
 
 new class extends Component
 {
+
+    public $from;
+    public $to;
+
     public $solicitudId;
+
+    public $valido = true; 
 
     public function mount($solicitudId)
     {
         $solicitud = Solicitud::findOrFail($solicitudId);
     }
-
+    #[Computed]
+    public function solicitudInfo()
+    {
+        return Solicitud::findOrFail($this->solicitudId);
+    }
     #[Computed]
     public function detalles()
     {
@@ -37,9 +47,9 @@ new class extends Component
 
         return $total == 0 ? true : false;
     }
-
+    
     #[Computed]
-    public function equipos_ocupados($id){
+    public function equipos_ocupados(){
         if (empty($this->from) || empty($this->to)) {
             return collect();
         }
@@ -54,16 +64,10 @@ new class extends Component
             ->unique();
     }
 
-    #[Computed]
-    public function verificar_unidades_equipo()
-    {   
-        if (empty($id) || empty($this->from) || empty($this->to)) {
-            return collect();
-        }
-
-        $Equipo_Actual = Unidad_Equipo::where('id_equipo', $id);
-
-        return $Equipo_Actual->whereIn('id', $this->equipos_ocupados($id))->get();
+    public function equipos_libres($id){
+        return Unidad_Equipo::where('id_equipo', $id)
+            ->whereNotIn('id', $this->equipos_ocupados())
+            ->get();
     }
  
     public function actualizar(){

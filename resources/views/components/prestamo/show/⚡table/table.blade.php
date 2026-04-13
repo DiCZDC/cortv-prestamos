@@ -8,9 +8,9 @@
             :header="['Fecha Préstamo', 'Sicipo', 'Disponibilidad']" />
     @endplaceholder
     
-    @if ($this->verificar_unidades_equipo()->isNotEmpty())
+    @if ($this->valido)
      
-        <flux:callout variant="warning" icon="exclamation-circle" heading="Please verify your account to unlock all features." />
+        <flux:callout variant="warning" icon="exclamation-circle" heading="La solicitud tiene conflictos con otros prestamos" text="Resuelve los conflictos antes de autorizar la solicitud." />
 
     @else
     
@@ -18,7 +18,6 @@
     Puede autorizarse de manera inmediata la solicitud." />
          
     @endif
-
 
     <flux:table container:class="max-h-[225px]">
         <flux:table.columns sticky class="bg-white dark:bg-zinc-900">
@@ -37,8 +36,16 @@
                         {{ $detalle->Unidad_Equipo->sicipo }}
                     </flux:table.cell>
                     <flux:table.cell class="!px-15" >
-                        {{-- {{ $detalle->Unidad_Equipo->Equipo->id}} --}}
-                        {{ $this->solicitud($detalle->Unidad_Equipo->Equipo->id) ? 'Disponible' : 'Equipo no disponible' }}
+                        @if($this->equipos_libres($detalle->Unidad_Equipo->Equipo->id)->pluck('id')->contains($detalle->Unidad_Equipo->id))
+                            <flux:badge color="green" class="!text-sm">
+                                Disponible
+                            </flux:badge>
+                        @else
+                            {{$valido = false}}
+                            <flux:badge color="red" class="!text-sm">
+                                No disponible
+                            </flux:badge>
+                        @endif
                     </flux:table.cell>
                 </flux:table.row>
             @empty
@@ -50,10 +57,11 @@
             @endforelse
         </flux:table.rows>
     </flux:table>
-
-    <div class="flex align-middle justify-evenly mt-5">
-        <x-componentes.btnsformulario type="submit" texto="Aprobar" color="verde_mid" icon="clipboard-check" />
-        <x-componentes.btnsformulario type="button" texto="Rechazar" color="rojo_claro" icon="circle-x" />  
-    </div>
+    @if($this->SolicitudInfo()->estado === 'Pendiente')
+        <div class="flex align-middle justify-evenly mt-5">
+            <x-componentes.btnsformulario type="submit" texto="Aprobar" color="verde_mid" icon="clipboard-check" />
+            <x-componentes.btnsformulario type="button" texto="Rechazar" color="rojo_claro" icon="circle-x" />  
+        </div>
+    @endif
 </div>
 </form>
