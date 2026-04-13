@@ -137,9 +137,9 @@ new class extends Component
 
     {{-- Periodo seleccionado --}}
     
-    <div class="mt-3 text-xs text-zinc-600 border-t pt-2 flex flex-col gap-1">
-        <p><span class="font-bold ">Inicio del prestamo:</span> {{ $this->solicitud()->fecha_prestamo }}</p>
-        <p><span class="font-bold">Fin del prestamo:</span>   {{ $this->solicitud()->fecha_devolucion }}</p>
+    <div class="mt-3 text-xs text-zinc-600 border-t pt-3 flex flex-col gap-1">
+        <p class="inline-flex items-center gap-3"> <flux:icon.calendars /> <span class="font-bold ">Inicio del prestamo:</span> <span>{{ $this->solicitud()->fecha_prestamo }}</span></p>
+        <p class="inline-flex items-center gap-3">  <flux:icon.calendar-clock /> <span class="font-bold">Fin del prestamo:</span> <span>{{ $this->solicitud()->fecha_devolucion }}</span></p>
     </div>
     
 </div>

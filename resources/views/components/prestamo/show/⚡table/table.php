@@ -1,10 +1,11 @@
 <?php
-
+use Flux\Flux;
 use App\Models\Solicitud;
 use App\Models\Solicitud_Equipo;
 use App\Models\Unidad_Equipo;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 new class extends Component
 {
@@ -12,7 +13,7 @@ new class extends Component
 
     public function mount($solicitudId)
     {
-        $this->solicitudId = $solicitudId;
+        $solicitud = Solicitud::findOrFail($solicitudId);
     }
 
     #[Computed]
@@ -65,6 +66,20 @@ new class extends Component
         return $Equipo_Actual->whereIn('id', $this->equipos_ocupados($id))->get();
     }
  
+    public function actualizar(){
+        $solicitud = Solicitud::findOrFail($this->solicitudId);
+        $id_admin = Auth::user()->id;
+        
+        $solicitud->update([
+            'estado'      => 'Autorizada',
+            'id_admin' => $id_admin,
+        ]);
 
+        Flux::toast(
+            heading: 'Solicitud aprobada',
+            text: 'La solicitud de préstamo de ' . $solicitud->trabajador->name . ' fue aprobada correctamente.',
+            variant: 'success',
+        );
+    }
 
 };
