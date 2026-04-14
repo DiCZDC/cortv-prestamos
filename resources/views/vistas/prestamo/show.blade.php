@@ -3,37 +3,43 @@
 @endphp
 
 <x-layouts::app title="Mostrar Préstamo">
-       
-    {{-- div general --}}
-    <div class="px-4">
-        {{-- navegacion interna --}}
+    
+    <div class = "px-9.5">
         <flux:breadcrumbs>
             <flux:breadcrumbs.item href="{{ route('prestamo.index') }}"><span class="!text-gris_claro">Préstamos</span></flux:breadcrumbs.item>
             <flux:breadcrumbs.item href="#"><span class="!text-gris_claro">{{ $Solicitud->motivo. ' - ' . $Solicitud->fecha_prestamo }}</span>    </flux:breadcrumbs.item>
         </flux:breadcrumbs>
-
-        <div class="w-full flex py-8">
+    </div>
+    
+    {{-- div general --}}
+    <div class=" flex w-full h-[90%] items-center justify-around pt-2">
+        
         {{-- div grande 1 --}}
-       <section class="w-1/2 flex flex-col gap-10 ">
-            {{-- info de la vista --}}
-            <div class="flex flex-col items-start justify-center gap-8 pl-3 ">               
+       <section class="flex flex-col self-start pt-8 gap-18 w-[55%] h-full ">
+                
+        {{-- info de la vista --}}
+            <div class="flex flex-col items-start justify-center gap-8 pl-3  ">               
                 <x-componentes.titulo icono="book-marked" texto="Detalles de la solicitud" />
                 <x-componentes.subtitulo icono="airplay" texto=" {{ __('Solicitud para:') }} {{ $Solicitud->motivo }}" />
             </div>
 
-            <div class="bg-white rounded-lg shadow-md px-5 py-6.5 justify-end ">
-                <span class="font-bold text-2xl text-gris_claro ml-7">Resumen de la solicitud</span>  
+            <div class="bg-white rounded-lg shadow-md px-5 py-6.5 flex flex-col gap-2 ">
+                
+                <div class="inline-flex items-center text-gris_claro gap-2 ml-5">
+                    <flux:icon.clipboard-paste class="size-8" />
+                    <span class="font-bold text-2xl">Resumen de la solicitud</span>  
+                </div>
+                
                 <div class="px-5 py-3 h-9/10">
                     <livewire:prestamo.show.table from="{{ $Solicitud->fecha_prestamo }}" to="{{ $Solicitud->fecha_devolucion }}" :solicitudId="$id" lazy/>
                 </div>
-               
             </div>
 
         </section> 
 
         {{-- div grande pt2 --}}
-        <section class="w-1/2 flex flex-col items-center gap-15">
-            <div class="-mt-8" >
+        <section class="w-[40%] h-full flex flex-col justify-start items-center gap-9.5 ">
+            <div >
                 <livewire:componentes.card
                 :titulo="'Asignar equipos'"
                 :descripcion="'Selecciona los equipos que deseas asignar a esta solicitud'"
