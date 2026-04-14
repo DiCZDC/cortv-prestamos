@@ -1,6 +1,7 @@
 @php
-    $Activo = $this->detalles()->pluck('Disponible')->contains(false);
+    $Prestamo_Activo = $this->detalles()->pluck('Disponible')->contains(false);
 @endphp
+
 <form wire:submit="actualizar">
     <div class="flex flex-col gap-6">
      {{-- The only way to do great work is to love what you do. - Steve Jobs --}}
@@ -8,15 +9,16 @@
             <x-placeholder.table 
                 :header="['Fecha Préstamo', 'Sicipo', 'Disponibilidad']" />
         @endplaceholder
+
         @if( $this->SolicitudInfo()->estado === 'Pendiente')
             <flux:callout 
-                variant="{{$Activo ? 'warning' : 'success'}}" 
-                icon="{{$Activo ? 'exclamation-circle' : 'check-circle'}}" 
-                heading="{{$Activo ? 
+                variant="{{$Prestamo_Activo ? 'warning' : 'success'}}" 
+                icon="{{$Prestamo_Activo ? 'exclamation-circle' : 'check-circle'}}" 
+                heading="{{$Prestamo_Activo ? 
                             'La solicitud tiene conflictos con otros prestamos' : 
                             'La solicitud no tiene conflictos con otros préstamos'
                         }}" 
-                text="{{$Activo ? 
+                text="{{$Prestamo_Activo ? 
                             'Resuelve los conflictos antes de autorizar la solicitud.' : 
                             'Todos los equipos solicitados están disponibles. Puede autorizarse de manera inmediata la solicitud.'
                         }}" 
@@ -53,12 +55,17 @@
                 @endforelse
             </flux:table.rows>
         </flux:table>
+        
         @if($this->SolicitudInfo()->estado === 'Pendiente')
-            <div class="flex align-middle justify-evenly mt-5">
+            <div class="flex align-middle justify-evenly mt-5">               
+                @if(!$Prestamo_Activo)
                 <x-componentes.btnsformulario 
                 type="submit" texto="Aprobar" color="verde_mid" icon="clipboard-check" />
                 <x-componentes.btnsformulario type="button" texto="Rechazar" color="rojo_claro" icon="circle-x" />  
+                
+                @endif
             </div>
         @endif
+    
     </div>
 </form>

@@ -20,20 +20,22 @@ new class extends Component
         $solicitud = Solicitud::findOrFail($solicitudId);
     }
 
-
     #[Computed]
     public function solicitudInfo()
     {
         return Solicitud::findOrFail($this->solicitudId);
     }
+
     #[Computed]
     public function detalles()
     {
-        return Solicitud_Equipo::where('id_solicitud', $this->solicitudId)->get()->map(function ($detalle) {
+        return Solicitud_Equipo::where('id_solicitud', $this->solicitudId)->get()
+        ->map(function ($detalle) {
             $detalle->Disponible = $this->equipos_libres($detalle->Unidad_Equipo->Equipo->id)->pluck('id')->contains($detalle->Unidad_Equipo->id);
             return $detalle;
         });
     }
+
     #[Computed]
     public function solicitud($id_equipo)
     {
@@ -55,7 +57,6 @@ new class extends Component
         if (empty($this->from) || empty($this->to)) {
             return collect();
         }
-
         $prestados_1 = Solicitud::whereIn('estado',['Entregada','Autorizada'])->whereBetween('fecha_prestamo', [$this->from,$this->to])->pluck('id');
         $prestados_2 = Solicitud::whereIn('estado',['Entregada','Autorizada'])->whereBetween('fecha_devolucion', [$this->from,$this->to])->pluck('id');
         $prestados_3 = Solicitud::whereIn('estado',['Autorizada','Entregada'])->where('fecha_prestamo','<',$this->from)->where('fecha_devolucion','>',$this->to)->pluck('id');
