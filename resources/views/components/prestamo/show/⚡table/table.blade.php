@@ -5,11 +5,21 @@
             <x-placeholder.table 
                 :header="['Fecha Préstamo', 'Sicipo', 'Disponibilidad']" />
         @endplaceholder
-        
-        @if (!$this->valido)
-            <flux:callout variant="warning" icon="exclamation-circle" heading="La solicitud tiene conflictos con otros prestamos" text="Resuelve los conflictos antes de autorizar la solicitud." />
+
+        @if ($this->detalles()->pluck('Disponible')->contains(false))
+            <flux:callout 
+                variant="warning" 
+                icon="exclamation-circle" 
+                heading="La solicitud tiene conflictos con otros prestamos" 
+                text="Resuelve los conflictos antes de autorizar la solicitud." 
+                />
         @else
-            <flux:callout variant="success" icon="check-circle" heading="La solicitud no tiene conflictos con otros préstamos" text="Todos los equipos solicitados están disponibles. Puede autorizarse de manera inmediata la solicitud." />
+            <flux:callout 
+                variant="success" 
+                icon="check-circle" 
+                heading="La solicitud no tiene conflictos con otros préstamos" 
+                text="Todos los equipos solicitados están disponibles. Puede autorizarse de manera inmediata la solicitud." 
+                />
         @endif
 
         <flux:table container:class="max-h-[225px]">
@@ -29,15 +39,9 @@
                             {{ $detalle->Unidad_Equipo->sicipo }}
                         </flux:table.cell>
                         <flux:table.cell class="!px-15" >
-                            @if($this->equipos_libres($detalle->Unidad_Equipo->Equipo->id)->pluck('id')->contains($detalle->Unidad_Equipo->id))
-                                <flux:badge color="green" class="!text-sm">
-                                    Disponible
-                                </flux:badge>
-                            @else
-                                <flux:badge color="red" class="!text-sm">
-                                    No disponible
-                                </flux:badge>
-                            @endif
+                            <flux:badge color="{{$detalle->Disponible ? 'green' : 'red'}}" class="!text-sm">
+                                {{$detalle->Disponible ? 'Disponible' : 'No disponible'}}
+                            </flux:badge>
                         </flux:table.cell>
                     </flux:table.row>
                 @empty

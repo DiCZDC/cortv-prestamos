@@ -15,12 +15,12 @@ new class extends Component
 
     public $solicitudId;
 
-    public $valido = true; 
-
     public function mount($solicitudId)
     {
         $solicitud = Solicitud::findOrFail($solicitudId);
     }
+
+
     #[Computed]
     public function solicitudInfo()
     {
@@ -29,9 +29,11 @@ new class extends Component
     #[Computed]
     public function detalles()
     {
-        return Solicitud_Equipo::where('id_solicitud', $this->solicitudId)->get();
+        return Solicitud_Equipo::where('id_solicitud', $this->solicitudId)->get()->map(function ($detalle) {
+            $detalle->Disponible = $this->equipos_libres($detalle->Unidad_Equipo->Equipo->id)->pluck('id')->contains($detalle->Unidad_Equipo->id);
+            return $detalle;
+        });
     }
-
     #[Computed]
     public function solicitud($id_equipo)
     {
