@@ -4,15 +4,15 @@ use App\Models\Solicitud_Equipo;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
-
+use App\Models\User;
 new class extends Component
 {
     use WithPagination;
-
+    public $id_user = null;
     #[Computed]
     public function prestamos()
     {
-        $user = auth()->user();
+        $user = $this->id_user ? User::find($this->id_user) : auth()->user();
         return Solicitud_Equipo::query()
             ->join('solicituds', 'solicitud__equipos.id_solicitud', '=', 'solicituds.id')
             ->where('solicituds.estado', 'Autorizada')

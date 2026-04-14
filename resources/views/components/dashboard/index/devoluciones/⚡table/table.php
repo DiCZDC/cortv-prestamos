@@ -4,14 +4,15 @@ use App\Models\Solicitud_Equipo;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
-
+use App\Models\User;
 new class extends Component
 {
     use WithPagination;
-
+    public $id_user = null;
     #[Computed]
     public function atrasados()
     {
+        $user = $this->id_user ? User::find($this->id_user) : auth()->user();
         return Solicitud_Equipo::query()
             ->join('solicituds', 'solicitud__equipos.id_solicitud', '=', 'solicituds.id')
             // Filtrar por fecha de devolución menor a la fecha actual y mayor o igual a 30 días atrás
@@ -22,8 +23,8 @@ new class extends Component
             ->join('users', 'solicituds.id_trabajador', '=', 'users.id')
             ->select('solicitud__equipos.*', 'users.name as nombre_trabajador')
             ->orderBy('solicituds.fecha_devolucion', 'asc')
-            ->when(auth()->user()->hasRole('trabajador'), function ($query) {
-                $query->where('solicituds.id_trabajador', auth()->user()->id);
+            ->when($user->hasRole('trabajador'), function ($query) use($user) {
+                $query->where('solicituds.id_trabajador', $user->id);
             })
             ->paginate(5);
     }
