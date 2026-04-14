@@ -1,5 +1,5 @@
 @php
-    $Prestamo_Activo = $this->detalles()->pluck('Disponible')->contains(false);
+    $Prestamo_Activo = $this->conflictosPendientes();
 @endphp
 
 <form wire:submit="actualizar">
@@ -16,11 +16,11 @@
                 icon="{{$Prestamo_Activo ? 'exclamation-circle' : 'check-circle'}}" 
                 heading="{{$Prestamo_Activo ? 
                             'La solicitud tiene conflictos con otros prestamos' : 
-                            'La solicitud no tiene conflictos con otros préstamos'
+                            'La solicitud no tiene conflictos pendientes'
                         }}" 
                 text="{{$Prestamo_Activo ? 
-                            'Resuelve los conflictos antes de autorizar la solicitud.' : 
-                            'Todos los equipos solicitados están disponibles. Puede autorizarse de manera inmediata la solicitud.'
+                            'Selecciona una unidad disponible y marca su confirmación para cada equipo en conflicto antes de autorizar.' : 
+                            'Todos los equipos solicitados están disponibles o ya tienen un reemplazo confirmado. Puede autorizarse la solicitud.'
                         }}" 
             />
         @endif
@@ -38,15 +38,50 @@
                             {{ $detalle->Unidad_Equipo->Equipo->marca }} {{ $detalle->Unidad_Equipo->Equipo->modelo }}
                         </flux:table.cell>
                         <flux:table.cell>
-                            {{ $detalle->Unidad_Equipo->sicipo }}
+                            @if ($detalle->Disponible)
+                                {{ $detalle->Unidad_Equipo->sicipo }}
+                            @else
+                                @php
+                                    $equiposDisponibles = $this->equipos_libres($detalle->Unidad_Equipo->Equipo->id);
+                                    $unidadSeleccionada = (int) ($this->unidadesSeleccionadas[$detalle->id] ?? $detalle->Unidad_Equipo->id);
+                                    $seleccionValida = $equiposDisponibles->pluck('id')->contains($unidadSeleccionada)
+                                        && $unidadSeleccionada !== (int) $detalle->Unidad_Equipo->id;
+                                @endphp
+
+                                <div class="flex items-center gap-3 max-sm:flex-col max-sm:items-start">
+                                    <div class="w-full">
+                                        <flux:select wire:model.live="unidadesSeleccionadas.{{ $detalle->id }}" wire:key="selector-unidad-{{ $detalle->id }}">
+                                            <flux:select.option value="{{ $detalle->Unidad_Equipo->id }}">
+                                                {{ $detalle->Unidad_Equipo->sicipo }} (actual)
+                                            </flux:select.option>
+
+                                            @forelse ($equiposDisponibles as $unidad)
+                                                <flux:select.option value="{{ $unidad->id }}">{{ $unidad->sicipo }}</flux:select.option>
+                                            @empty
+                                                <flux:select.option disabled>No hay unidades disponibles</flux:select.option>
+                                            @endforelse
+                                        </flux:select>
+                                    </div>
+
+                                    <flux:field variant="inline" class="shrink-0">
+                                        <flux:checkbox
+                                            wire:model.live="detallesConfirmados.{{ $detalle->id }}"
+                                            :disabled="!$seleccionValida"
+                                            wire:key="confirmacion-unidad-{{ $detalle->id }}"
+                                        />
+                                        <flux:label>Confirmar</flux:label>
+                                    </flux:field>
+                                </div>
+                            @endif
                         </flux:table.cell>
-                        <flux:table.cell class="!px-15" >
-                            <flux:badge color="{{$detalle->Disponible ? 'green' : 'red'}}" class="!text-sm">
+                        <flux:table.cell class="px-15!" >
+                            <flux:badge color="{{$detalle->Disponible ? 'green' : 'red'}}" class="text-sm!">
                                 {{$detalle->Disponible ? 'Disponible' : 'No disponible'}}
                             </flux:badge>
                         </flux:table.cell>
                     </flux:table.row>
                 @empty
+
                     <flux:table.row>
                         <flux:table.cell colspan="3" class="text-center py-4">
                             No hay detalles disponibles.
@@ -58,12 +93,10 @@
         
         @if($this->SolicitudInfo()->estado === 'Pendiente')
             <div class="flex align-middle justify-evenly mt-5">               
-                @if(!$Prestamo_Activo)
-                <x-componentes.btnsformulario 
+                <x-componentes.btnsformulario :disabled="$Prestamo_Activo"
                 type="submit" texto="Aprobar" color="verde_mid" icon="clipboard-check" />
-                <x-componentes.btnsformulario type="button" texto="Rechazar" color="rojo_claro" icon="circle-x" />  
+                <x-componentes.btnsformulario type="button" texto="Rechazar" color="rojo_claro" icon="circle-x" />
                 
-                @endif
             </div>
         @endif
     

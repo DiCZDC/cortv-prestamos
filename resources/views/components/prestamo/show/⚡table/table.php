@@ -15,9 +15,50 @@ new class extends Component
 
     public $solicitudId;
 
+    public array $unidadesSeleccionadas = [];
+    public array $detallesConfirmados = [];
+
     public function mount($solicitudId)
     {
-        $solicitud = Solicitud::findOrFail($solicitudId);
+        Solicitud::findOrFail($solicitudId);
+        $this->solicitudId = $solicitudId;
+
+        $this->inicializarReemplazos();
+    }
+
+    protected function inicializarReemplazos(): void
+    {
+        $detalles = Solicitud_Equipo::where('id_solicitud', $this->solicitudId)->get();
+
+        foreach ($detalles as $detalle) {
+            $detalleId = (string) $detalle->id;
+            $this->unidadesSeleccionadas[$detalleId] = (int) $detalle->Unidad_Equipo->id;
+            $this->detallesConfirmados[$detalleId] = false;
+        }
+    }
+
+    protected function esReemplazoValido($detalle, int $unidadSeleccionadaId): bool
+    {
+        if ($unidadSeleccionadaId === (int) $detalle->Unidad_Equipo->id) {
+            return false;
+        }
+
+        return $this->equipos_libres($detalle->Unidad_Equipo->Equipo->id)
+            ->pluck('id')
+            ->contains($unidadSeleccionadaId);
+    }
+
+    public function updatedUnidadesSeleccionadas($value, $key): void
+    {
+        $detalle = Solicitud_Equipo::find($key);
+
+        if (! $detalle) {
+            return;
+        }
+
+        if (! $this->esReemplazoValido($detalle, (int) $value)) {
+            $this->detallesConfirmados[$key] = false;
+        }
     }
 
     #[Computed]
@@ -33,6 +74,26 @@ new class extends Component
         ->map(function ($detalle) {
             $detalle->Disponible = $this->equipos_libres($detalle->Unidad_Equipo->Equipo->id)->pluck('id')->contains($detalle->Unidad_Equipo->id);
             return $detalle;
+        });
+    }
+
+    #[Computed]
+    public function conflictosPendientes()
+    {
+        return $this->detalles()->contains(function ($detalle) {
+            if ($detalle->Disponible) {
+                return false;
+            }
+
+            $detalleId = (string) $detalle->id;
+            $unidadSeleccionadaId = (int) ($this->unidadesSeleccionadas[$detalleId] ?? $detalle->Unidad_Equipo->id);
+            $confirmado = (bool) ($this->detallesConfirmados[$detalleId] ?? false);
+
+            if (! $confirmado) {
+                return true;
+            }
+
+            return ! $this->esReemplazoValido($detalle, $unidadSeleccionadaId);
         });
     }
 
@@ -74,6 +135,28 @@ new class extends Component
     }
  
     public function actualizar(){
+        if ($this->conflictosPendientes()) {
+            Flux::toast(
+                heading: 'Conflictos pendientes',
+                text: 'Selecciona y confirma una unidad disponible para cada equipo en conflicto.',
+                variant: 'warning',
+            );
+
+            return;
+        }
+
+        foreach ($this->detalles() as $detalle) {
+           
+            $detalleId = (string) $detalle->id;
+            $unidadSeleccionadaId = (int) ($this->unidadesSeleccionadas[$detalleId] ?? $detalle->Unidad_Equipo->id);
+
+            if ($this->esReemplazoValido($detalle, $unidadSeleccionadaId)) {
+                Solicitud_Equipo::where('id', $detalle->id)->update([
+                    'id_unidad_equipo' => $unidadSeleccionadaId,
+                ]);
+            }
+        }
+
         $solicitud = Solicitud::findOrFail($this->solicitudId);
         $id_admin = Auth::user()->id;
         
