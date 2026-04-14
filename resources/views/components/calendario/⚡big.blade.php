@@ -6,13 +6,13 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Omnia\LivewireCalendar\LivewireCalendar;
 use Livewire\Attributes\Lazy;
-
 new #[Lazy]class extends LivewireCalendar
 {
     public $events = [];
 
     public function events(): Collection
     {
+
         $solicitudes = Solicitud::query()
             ->where(function ($query) {
                 $query->whereBetween('fecha_prestamo', [now()->startOfMonth(), now()->endOfMonth()])
@@ -21,6 +21,12 @@ new #[Lazy]class extends LivewireCalendar
             ->whereNotIn('estado',['Rechazada','Pendiente'])
             // ->where('fecha_prestamo', '>=', now())
             ->get();
+
+        $user = auth()->user();
+        if ($user->hasRole('trabajador')) {
+            $solicitudes = $solicitudes->where('id_trabajador', $user->id)->whereNotIn('estado',['Devuelta','Rechazada','Pendiente']);
+        }
+
         $entregas = $solicitudes
             ->map(function (Solicitud $solicitud) {
                 return [

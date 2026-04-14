@@ -22,6 +22,9 @@ new class extends Component
             ->join('users', 'solicituds.id_trabajador', '=', 'users.id')
             ->select('solicitud__equipos.*', 'users.name as nombre_trabajador')
             ->orderBy('solicituds.fecha_devolucion', 'asc')
+            ->when(auth()->user()->hasRole('trabajador'), function ($query) {
+                $query->where('solicituds.id_trabajador', auth()->user()->id);
+            })
             ->paginate(5);
     }
 };

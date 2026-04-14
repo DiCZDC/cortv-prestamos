@@ -66,7 +66,7 @@
                             {{$prestamo_en_curso->fecha_devolucion }}</h2>
                             <div class="align-middle w-max mt-6 mx-auto pb-6">
                                 <x-componentes.boton-href 
-                                    ruta="prestamo.show" 
+                                    ruta="archivo.show" 
                                     texto="Ver" 
                                     icon="eye" 
                                     :id="$prestamo_en_curso->id" 

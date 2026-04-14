@@ -29,15 +29,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
     });    
 
+    Route::prefix('calendario')->name('calendario.')->group(function () {
+        Route::controller(CalendarioController::class)->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/{id}', 'show')->name('show');
+        });
+    });
 
     Route::middleware(['auth', 'role:admin'])->group(function () {
         
-        Route::prefix('calendario')->name('calendario.')->group(function () {
-            Route::controller(CalendarioController::class)->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::get('/{id}', 'show')->name('show');
-            });
-        });
 
         Route::prefix('recepcion')->name('recepcion.')->group(function () {
             Route::controller(RecepcionController::class)->group(function () {

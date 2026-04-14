@@ -6,7 +6,9 @@
         <flux:table.columns>
             <flux:table.column class="hidden md:block"></flux:table.column>
             <x-componentes.header_table> Equipo </x-componentes.header_table>
-            <x-componentes.header_table> Solicitante </x-componentes.header_table>
+            @role('admin')
+                <x-componentes.header_table> Solicitante </x-componentes.header_table>
+            @endrole
             <x-componentes.header_table> Fecha </x-componentes.header_table>    
             
         </flux:table.columns>
@@ -20,7 +22,9 @@
                         <flux:icon name="video" />
                     </flux:table.cell>
                     <flux:table.cell class="text-balance!">{{ $prestamo->unidad_equipo->equipo->marca . ' ' . $prestamo->unidad_equipo->equipo->modelo }}</flux:table.cell>
-                    <flux:table.cell class="text-balance!">{{ $prestamo->nombre_trabajador }}</flux:table.cell>
+                    @role('admin')
+                        <flux:table.cell class="text-balance!">{{ $prestamo->nombre_trabajador }}</flux:table.cell>
+                    @endrole
                     <flux:table.cell>  
                         <x-componentes.badgeTable :dias="$dias" > 
                             @php
@@ -36,7 +40,11 @@
                 </flux:table.row>
             @empty
                 <flux:table.row>
-                    <flux:table.cell colspan="4" class="text-center">No hay prestamos proximos a vencer</flux:table.cell>
+                    @if(auth()->user()->hasRole('trabajador'))
+                        <flux:table.cell colspan="4" class="text-center">No tienes prestamos proximos a recibir</flux:table.cell>
+                    @else
+                         <flux:table.cell colspan="4" class="text-center">No hay prestamos proximos a vencer</flux:table.cell>
+                    @endif
                 </flux:table.row>
             @endforelse
         </flux:table.rows>
