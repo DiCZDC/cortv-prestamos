@@ -21,18 +21,7 @@ new class extends Component
         $this->color_text = $color_text;
         $this->nombre_modal = $nombre_modal;
     }
-
-    #[Computed()]
-    public function mas_deudas()
-    {
-        
-        return Solicitud::whereNotNull('fecha_entrega')->
-                    whereColumn('fecha_devolucion', '<', 'fecha_entrega')->
-                    join('users', 'users.id', '=', 'solicituds.id_trabajador')->
-                    select('users.name', DB::raw('count(*) as total'))->
-                    groupBy('users.name')->orderByDesc('total')->limit(5)->
-                    get();
-    }
+    
 };
 ?>
 
