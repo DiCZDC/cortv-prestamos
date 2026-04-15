@@ -12,7 +12,7 @@ new class extends Component
     #[Computed()]
     public function cant_mantenimiento()
     {
-        return Unidad_Equipo::where('estado', '=', 'En reparación')->count();
+        return Unidad_Equipo::where('mantenimiento', true)->count();
     }
 
     #[Computed()]

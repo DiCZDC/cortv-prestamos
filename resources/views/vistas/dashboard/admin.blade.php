@@ -8,7 +8,7 @@
         @livewire('dashboard.index.4cards')
         
         <div class="h-full relative rounded-xl">
-            <livewire:grafica.dashboard />
+            {{-- <livewire:grafica.dashboard /> --}}
         </div>
     </div>
 

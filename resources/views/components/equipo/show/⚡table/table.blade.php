@@ -10,6 +10,7 @@
             <x-componentes.header_table icon="hashtag"> ID </x-componentes.header_table>
             <x-componentes.header_table icon="tag"> SICIPO </x-componentes.header_table>
             <x-componentes.header_table icon="info"> Estatus </x-componentes.header_table>
+            <x-componentes.header_table icon="eye"> Acciones </x-componentes.header_table>
         </flux:table.columns>
 
         <flux:table.rows >
@@ -24,17 +25,16 @@
                     <flux:table.cell class="whitespace-nowrap">
                         <flux:badge
                             size="sm"
-                            :color="$producto->estado === 'Prestado' ? 'orange' 
-                            : ($producto->estado === 'Reservado' ? 'blue' 
-                            : ($producto->estado === 'Pendiente' ? 'yellow' 
-                            :($producto->estado === 'En reparación' ? 'red' : 'cyan')))"
+                            :color="$producto->mantenimiento ? 'yellow' : 'green'"
                             inset="top bottom"
                         >
-                            {{ $producto->estado }}
-                        </flux:badge>    
-                    {{-- <flux:badge color="{{ $producto->estado === 'Disponible' ? 'verde_claro' : 'rojo_claro' }}">
-                            {{ $producto->estado }}
-                        </flux:badge> --}}
+                            {{ $producto->mantenimiento ? 'En Mantenimiento' : 'Disponible' }}
+                        </flux:badge>
+                    </flux:table.cell>
+                    <flux:table.cell class="whitespace-nowrap">
+                        <flux:button size="sm" variant="primary" class="bg-azul_saturado" color="sky" wire:click="toggleMantenimiento({{ $producto->id }})">
+                            Cambiar Estado
+                        </flux:button>
                     </flux:table.cell>
                 </flux:table.row>
             @empty
