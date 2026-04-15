@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArchivoController;
+use App\Http\Controllers\EntregaController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\PrestamoController;
@@ -41,6 +42,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::prefix('recepcion')->name('recepcion.')->group(function () {
             Route::controller(RecepcionController::class)->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/{id}', 'show')->name('show');
+            });
+        });
+        Route::prefix('entrega')->name('entrega.')->group(function () {
+            Route::controller(EntregaController::class)->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::get('/{id}', 'show')->name('show');
             });

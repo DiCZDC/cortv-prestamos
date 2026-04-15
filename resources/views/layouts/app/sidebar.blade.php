@@ -36,6 +36,12 @@
                                 {{ __('Prestamos Pendientes') }}
                             </flux:sidebar.item>
                         @endrole
+                    {{-- Entrega --}}
+                    @role('admin')
+                        <flux:sidebar.item icon="box" :href="route('entrega.index')" :current="request()->routeIs('entrega.index')" wire:navigate>
+                            {{ __('Entrega') }}
+                        </flux:sidebar.item>
+                    @endrole
                     {{-- Recepción --}}
                         @role('admin')
                             <flux:sidebar.item icon="truck" :href="route('recepcion.index')" :current="request()->routeIs('recepcion.index')" wire:navigate>
