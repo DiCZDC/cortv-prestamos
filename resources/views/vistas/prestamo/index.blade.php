@@ -23,7 +23,7 @@
         </div>
 
         {{-- tabla --}}
-        <div class="w-full not-dark:bg-white rounded-lg not-dark:shadow-md  p-8">
+        <div class="w-full not-dark:bg-white rounded-lg not-dark:shadow-md p-8">
             {{-- filtros de busqueda --}}
             <div>
                 

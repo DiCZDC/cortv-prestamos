@@ -134,10 +134,10 @@
                     </flux:text>
                 </div>
                 
-                <div class="flex gap-2">
-                    <flux:spacer />
+                <div class="flex flex-row-reverse justify-around">
+                    {{-- <flux:spacer /> --}}
                     <flux:modal.close>
-                        <flux:button variant="ghost">Regresar</flux:button>
+                        <flux:button>Regresar</flux:button>
                     </flux:modal.close>
                     
                     <flux:modal.close>
@@ -157,10 +157,9 @@
                     </flux:text>
                 </div>
                 
-                <div class="flex gap-2">
-                    <flux:spacer />
+                <div class="flex justify-around">
                     <flux:modal.close>
-                        <flux:button variant="ghost">Regresar</flux:button>
+                        <flux:button >Regresar</flux:button>
                     </flux:modal.close>
                     
                     <flux:modal.close>

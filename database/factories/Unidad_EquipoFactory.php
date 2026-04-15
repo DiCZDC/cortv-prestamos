@@ -21,7 +21,7 @@ class Unidad_EquipoFactory extends Factory
         return [
             'id_equipo' => Equipo::query()->inRandomOrder()->value('id'),
             'sicipo' => fake()->unique()->numerify('SICIPO-####'),
-            'estado' => fake()->randomElement(['Disponible', 'Prestado', 'En reparación', 'Reservado']),
+            'mantenimiento' => fake()->boolean(20), // 20% de probabilidad de ser true
         ];
     }
 }

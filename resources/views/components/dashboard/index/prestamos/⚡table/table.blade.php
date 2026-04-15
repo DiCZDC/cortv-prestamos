@@ -2,7 +2,7 @@
     @placeholder
         <x-placeholder.table :header="['','Equipo', 'Solicitante', 'Fecha']" />
     @endplaceholder
-    <flux:table :paginate="$this->prestamos">
+    <flux:table :paginate="$this->prestamos" >
         <flux:table.columns>
             <flux:table.column class="hidden md:block"></flux:table.column>
             <x-componentes.header_table> Equipo </x-componentes.header_table>

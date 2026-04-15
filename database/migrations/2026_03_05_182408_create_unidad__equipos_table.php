@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('id_equipo');
             $table->string('sicipo');
-            $table->string('estado');
+            $table->boolean('mantenimiento')->default(false);
             $table->foreign('id_equipo')->references('id')->on('equipos');
         });
     }
