@@ -5,7 +5,7 @@
     ondragleave="onLivewireCalendarEventDragLeave(event, '{{ $componentId }}', '{{ $day }}', '{{ $dragAndDropClasses }}');"
     ondragover="onLivewireCalendarEventDragOver(event);"
     ondrop="onLivewireCalendarEventDrop(event, '{{ $componentId }}', '{{ $day }}', {{ $day->year }}, {{ $day->month }}, {{ $day->day }}, '{{ $dragAndDropClasses }}');"
-    class="flex-1 h-40 lg:h-48 border border-gray-200 dark:border-gray-900 -mt-px -ml-px"
+    class="flex-1 h-40 lg:h-37 border border-gray-200 dark:border-gray-900 -mt-px -ml-px"
     style="min-width: 10rem;">
     {{-- Wrapper for Drag and Drop --}}
     <div
@@ -22,10 +22,10 @@
 
             {{-- Number of Day --}}
             <div class="flex items-center">
-                <p class="text-sm {{ $dayInMonth ? ' font-medium ' : '' }}">
+                <p class="text-sm text-accent-content {{ $dayInMonth ? ' font-medium ' : '' }}">
                     {{ $day->format('j') }}
                 </p>
-                <p class="text-xs text-gray-600 dark:text-gray-400 ml-4">
+                <p class="text-sm text-gray-600 dark:text-gray-400 ml-4">
                     @if($events->isNotEmpty())
                         {{ $events->count() }} {{ Str::plural('Evento', $events->count()) }}
                     @endif
