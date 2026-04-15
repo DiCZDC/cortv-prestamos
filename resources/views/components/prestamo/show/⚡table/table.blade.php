@@ -6,7 +6,7 @@
      {{-- The only way to do great work is to love what you do. - Steve Jobs --}}
         @placeholder
             <x-placeholder.table 
-                :header="['Fecha Préstamo', 'Sicipo', 'Disponibilidad']" />
+                :header="['Equipo', 'Sicipo', 'Disponibilidad']" />
         @endplaceholder
 
         @if( $this->SolicitudInfo()->estado === 'Pendiente')

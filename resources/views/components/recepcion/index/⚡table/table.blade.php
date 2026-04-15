@@ -1,7 +1,7 @@
 <div>    
     @placeholder
         <x-placeholder.table 
-            :header="['ID', 'Trabajador', 'Administrador', 'Motivo', 'Fecha Préstamo', 'Fecha Devolución', 'Estado del Prestamo', 'Acciones']" 
+            :header="['ID', 'Trabajador', 'Administrador', 'Motivo', 'Fecha Préstamo', 'Fecha Devolución', 'Estado ', 'Acciones']" 
             filter=true 
             perPage=10 
             />
@@ -17,15 +17,14 @@
         
     <flux:table :paginate="$this->prestamos" pagination:scroll-to   >
         <flux:table.columns>
-            <flux:table.column sortable :sorted="$sortBy === 'id'" :direction="$sortDirection" wire:click="sort('id')">ID</flux:table.column>
-            <flux:table.column>Trabajador</flux:table.column>
-            <flux:table.column>Administrador</flux:table.column>
-            <flux:table.column>Motivo</flux:table.column>
-            <flux:table.column sortable :sorted="$sortBy === 'fecha_prestamo'" :direction="$sortDirection" wire:click="sort('fecha_prestamo')">Fecha Préstamo</flux:table.column>
-            <flux:table.column sortable :sorted="$sortBy === 'fecha_devolucion'" :direction="$sortDirection" wire:click="sort('fecha_devolucion')">Fecha Devolución</flux:table.column>
-            <flux:table.column>Estado del Prestamo</flux:table.column>
-            <flux:table.column>Acciones</flux:table.column>
-
+            <x-componentes.header_table sortable="id" :sortBy="$sortBy" :sortDirection="$sortDirection"> ID </x-componentes.header_table>
+            <x-componentes.header_table icon="book-user"> Solicitante </x-componentes.header_table>
+            <x-componentes.header_table icon="shield-user"> Aprobado por </x-componentes.header_table>
+            <x-componentes.header_table icon="scroll-text"> Motivo </x-componentes.header_table>
+            <x-componentes.header_table icon="calendar-1" sortable="fecha_prestamo" :sortBy="$sortBy" :sortDirection="$sortDirection"> Fecha Préstamo </x-componentes.header_table>
+            <x-componentes.header_table icon="calendar-off" sortable="fecha_devolucion" :sortBy="$sortBy" :sortDirection="$sortDirection"> Fecha Devolución </x-componentes.header_table>
+            <x-componentes.header_table icon="info"> Estado </x-componentes.header_table>
+            <x-componentes.header_table icon="target"> Acciones </x-componentes.header_table>
         
         </flux:table.columns>
         <flux:table.rows>
@@ -48,8 +47,8 @@
                         {{ Str::limit($prestamo->motivo, 30, '...') }}
                     </flux:table.cell>
 
-                    <flux:table.cell variant="strong">{{ $prestamo->fecha_prestamo }}</flux:table.cell>
-                    <flux:table.cell variant="strong">{{ $prestamo->fecha_devolucion }}</flux:table.cell>
+                    <flux:table.cell variant="strong">  <flux:badge> {{ $prestamo->fecha_prestamo }} </flux:badge></flux:table.cell>
+                    <flux:table.cell variant="strong"> <flux:badge> {{ $prestamo->fecha_devolucion }} </flux:badge></flux:table.cell>
 
                     {{-- Fecha real de entrega --}}
                     <flux:table.cell variant="strong">
