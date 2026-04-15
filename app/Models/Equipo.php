@@ -19,7 +19,7 @@ class Equipo extends Model
 
     public function categoria()
     {
-        return $this->belongsTo(Categoria::class);
+        return $this->belongsTo(Categoria::class, 'id_categoria');
     }
 
     public function unidad_equipos()

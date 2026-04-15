@@ -11,9 +11,20 @@ new class extends Component
 
     public $id;
 
+
+    public function toggleMantenimiento($id_producto)
+    {
+        $producto = Unidad_Equipo::find($id_producto);
+        if ($producto) {
+            $producto->mantenimiento = !$producto->mantenimiento;
+            $producto->save();
+        }
+    }
     #[Computed]
     public function productos()
     {
-        return Unidad_Equipo::where('id_equipo', $this->id)->paginate(10);
+        return Unidad_Equipo::where('id_equipo', $this->id)
+            ->orderBy('id', 'asc')
+            ->paginate(10);
     }
 };
