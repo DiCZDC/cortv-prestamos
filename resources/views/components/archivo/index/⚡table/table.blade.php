@@ -92,7 +92,7 @@
                     </flux:table.cell>
 
                     <flux:table.cell>
-                        <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom" />
+                        <x-componentes.boton-href ruta="archivo.show" texto="Ver" icon="eye" :id="$prestamo->id" color="azul_saturado" />    
                     </flux:table.cell>
 
                 </flux:table.row>
