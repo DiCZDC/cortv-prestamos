@@ -134,17 +134,6 @@ new class extends Component
             ->get();
     }
 
-    #[Computed()]
-    public function mas_deudas()
-    {
-        
-        return Solicitud::whereNotNull('fecha_entrega')->
-                    whereColumn('fecha_devolucion', '<', 'fecha_entrega')->
-                    join('users', 'users.id', '=', 'solicituds.id_trabajador')->
-                    select('users.name', DB::raw('count(*) as total'))->
-                    groupBy('users.name')->orderByDesc('total')->limit(5)->
-                    get();
-    }
  
     public function actualizar(){
         if ($this->conflictosPendientes()) {

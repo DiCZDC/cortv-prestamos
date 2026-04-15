@@ -1,5 +1,24 @@
 @php
     $Solicitud = \App\Models\Solicitud::find($id);
+    $totalSolicitudes = \App\Models\Solicitud::where('id_trabajador', $Solicitud->id_trabajador)->count();
+
+    $entregadasEnTiempo = \App\Models\Solicitud::where('id_trabajador', $Solicitud->id_trabajador)
+    ->whereNotNull('fecha_entrega')
+    ->whereColumn('fecha_entrega', '<=', 'fecha_devolucion')
+    ->count();
+
+    $porcentajeCumplimiento = $totalSolicitudes > 0
+    ? round(($entregadasEnTiempo * 100) / $totalSolicitudes, 1)
+    : 0.0;
+
+    $cumple = $porcentajeCumplimiento >= 70;
+
+    $tituloCard = 'Cumplimiento del solicitante';
+    $descripcionCard = $cumple
+    ? 'El solicitante cumple en tiempo y forma'
+    : 'El solicitante no cumple en tiempo y forma';
+    $iconoCard = $cumple ? 'thumbs-up' : 'thumbs-down';
+    $colorBgCard = $cumple ? 'bg-verde_mid' : 'bg-rojo_claro';
 @endphp
 
 <x-layouts::app title="Mostrar Préstamo">
@@ -41,12 +60,12 @@
         <section class="w-[40%] h-full flex flex-col justify-start items-center gap-9.5 ">
             <div >
                 <livewire:componentes.card
-                :titulo="''"
-                :descripcion="'Selecciona los equipos que deseas asignar a esta solicitud'"
-                :icono="'thumbs-up'"
-                :color_bg="'bg-verde_mid'"
-                :color_text="'text-hueso'"
-               />
+                    :titulo="$tituloCard"
+                    :descripcion="$descripcionCard . ' (' . $porcentajeCumplimiento . '%)'"
+                    :icono="$iconoCard"
+                    :color_bg="$colorBgCard"
+                    :color_text="'text-hueso'"
+                    />
             </div>
 
             <div class="flex flex-col items-center justify-start gap-10 py-1 ">
