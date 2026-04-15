@@ -11,7 +11,7 @@
         </flux:breadcrumbs>
     </div>
     
-    {{-- div general --}}
+    {{-- div general --}}   
     <div class=" flex w-full h-[90%] items-center justify-around pt-2">
         
         {{-- div grande 1 --}}
@@ -20,7 +20,7 @@
         {{-- info de la vista --}}
             <div class="flex flex-col items-start justify-center gap-8 pl-3  ">               
                 <x-componentes.titulo icono="book-marked" texto="Detalles de la solicitud" />
-                <x-componentes.subtitulo icono="airplay" texto=" {{ __('Solicitud para:') }} {{ $Solicitud->motivo }}" />
+                <x-componentes.subtitulo icono="square-user-round" texto=" {{ __('Solicitud de:') }} {{ $Solicitud->trabajador->name }}" />
             </div>
 
             <div class="bg-white rounded-lg shadow-md px-5 py-6.5 flex flex-col gap-2 ">
@@ -41,7 +41,7 @@
         <section class="w-[40%] h-full flex flex-col justify-start items-center gap-9.5 ">
             <div >
                 <livewire:componentes.card
-                :titulo="'Asignar equipos'"
+                :titulo="''"
                 :descripcion="'Selecciona los equipos que deseas asignar a esta solicitud'"
                 :icono="'thumbs-up'"
                 :color_bg="'bg-verde_mid'"

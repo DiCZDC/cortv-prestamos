@@ -2,7 +2,6 @@
     $Prestamo_Activo = $this->conflictosPendientes();
 @endphp
 
-<form wire:submit="actualizar">
     <div class="flex flex-col gap-6">
      {{-- The only way to do great work is to love what you do. - Steve Jobs --}}
         @placeholder
@@ -100,21 +99,75 @@
         
         @if($this->SolicitudInfo()->estado === 'Pendiente')
             <div class="flex justify-center gap-30 mt-5">               
-               
-                <x-btn-wire wire="actualizar" texto="Aprobar" color="verde_mid" icon="clipboard-check"
-                 :disabled="$Prestamo_Activo" />
+                
+                <flux:modal.trigger name="Confirmar">
+                    <x-btn-wire wire="" texto="Aprobar" color="verde_mid" icon="book-up" :disabled="$Prestamo_Activo" />
+                </flux:modal.trigger>
 
-                <x-btn-wire wire="rechazar" texto="Rechazar" color="rojo_claro" icon="circle-x"/>
+
+                <flux:modal.trigger name="Rechazar">
+                    <x-btn-wire wire="" texto="Rechazar" color="rojo_claro" icon="book-alert"/>
+                </flux:modal.trigger>
             
             </div>
         
          @else
+            @if($this->SolicitudInfo()->estado === 'Autorizada')
             <div class="flex justify-center">
                 <flux:button disabled variant="primary" icon="clipboard-check" class="w-9/10 !bg-verde_mid border-none !text-white">Solicitud Aprobada</flux:button>
             </div>
-         @endif
+            @else
+            <div class="flex justify-center">
+                <flux:button disabled variant="primary" icon="book-x" class="w-9/10 !bg-rojo_claro border-none !text-white">Solicitud Rechazada</flux:button>
+            </div>
+            @endif
+        @endif    
 
+     
+        <flux:modal name="Confirmar" class="min-w-[22rem]">
+            <div class="space-y-6">
+                <div>
+                    <flux:heading size="lg">Aprobar solicitud</flux:heading>
+                    <flux:text class="mt-2">
+                        Estás a punto de aprobar esta solicitud.<br>
+                        Esta acción no se puede deshacer.
+                    </flux:text>
+                </div>
+                
+                <div class="flex gap-2">
+                    <flux:spacer />
+                    <flux:modal.close>
+                        <flux:button variant="ghost">Regresar</flux:button>
+                    </flux:modal.close>
+                    
+                    <flux:modal.close>
+                        <x-btn-wire wire="actualizar" texto="Aprobar" color="verde_mid" icon="book-lock" :disabled="$Prestamo_Activo" />
+                    </flux:modal.close>
+                </div>
+            </div>
+        </flux:modal>
 
-    
+        <flux:modal name="Rechazar" class="min-w-[22rem]">
+            <div class="space-y-6">
+                <div>
+                    <flux:heading size="lg">Rechazar solicitud</flux:heading>
+                    <flux:text class="mt-2">
+                        Estás a punto de rechazar esta solicitud.<br>
+                        Esta acción no se puede deshacer.
+                    </flux:text>
+                </div>
+                
+                <div class="flex gap-2">
+                    <flux:spacer />
+                    <flux:modal.close>
+                        <flux:button variant="ghost">Regresar</flux:button>
+                    </flux:modal.close>
+                    
+                    <flux:modal.close>
+                        <x-btn-wire wire="actualizar" texto="Rechazar" color="rojo_claro" icon="book-x" />
+                    </flux:modal.close>
+                </div>
+            </div>
+        </flux:modal>
+
     </div>
-</form>

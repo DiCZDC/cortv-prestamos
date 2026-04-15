@@ -133,6 +133,18 @@ new class extends Component
             ->whereNotIn('id', $this->equipos_ocupados())
             ->get();
     }
+
+    #[Computed()]
+    public function mas_deudas()
+    {
+        
+        return Solicitud::whereNotNull('fecha_entrega')->
+                    whereColumn('fecha_devolucion', '<', 'fecha_entrega')->
+                    join('users', 'users.id', '=', 'solicituds.id_trabajador')->
+                    select('users.name', DB::raw('count(*) as total'))->
+                    groupBy('users.name')->orderByDesc('total')->limit(5)->
+                    get();
+    }
  
     public function actualizar(){
         if ($this->conflictosPendientes()) {
@@ -169,6 +181,22 @@ new class extends Component
             heading: 'Solicitud aprobada',
             text: 'La solicitud de préstamo de ' . $solicitud->trabajador->name . ' fue aprobada correctamente.',
             variant: 'success',
+        );
+    }
+
+    public function rechazar(){
+        $solicitud = Solicitud::findOrFail($this->solicitudId);
+        $id_admin = Auth::user()->id;
+
+        $solicitud->update([
+            'estado'      => 'Rechazada',
+            'id_admin' => $id_admin,
+        ]);
+
+        Flux::toast(
+            heading: 'Solicitud rechazada',
+            text: 'La solicitud de préstamo de ' . $solicitud->trabajador->name . ' fue rechazada.',
+            variant: 'danger',
         );
     }
 
