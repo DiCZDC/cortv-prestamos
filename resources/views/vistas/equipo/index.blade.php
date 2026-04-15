@@ -8,17 +8,19 @@
             </div>
         </div>
     </div>
-    <livewire:equipo.index.table lazy/>
-    {{-- boton  --}}
-    <div class="flex w-full justify-end mt-4 pr-1">
-        <flux:modal.trigger name="create-equipo">
-            <flux:button class="!bg-rojo_claro !text-white hover:!bg-rojo_oscuro ">
-                <flux:icon name="square-plus" />
-                Añadir un nuevo equipo
-            </flux:button>
-        </flux:modal.trigger>
+    <div class="w-full not-dark:bg-white rounded-lg not-dark:shadow-md  p-8">
+        <livewire:equipo.index.table lazy/>
+        {{-- boton  --}}
+        <div class="flex w-full justify-end mt-4 pr-1">
+            <flux:modal.trigger name="create-equipo">
+                <flux:button class="!bg-rojo_claro !text-white hover:!bg-rojo_oscuro ">
+                    <flux:icon name="square-plus" />
+                    Añadir un nuevo equipo
+                </flux:button>
+            </flux:modal.trigger>
+        </div>
+        <flux:modal name="create-equipo">
+            <livewire:equipo.create.form />
+        </flux:modal>
     </div>
-    <flux:modal name="create-equipo">
-        <livewire:equipo.create.form />
-    </flux:modal>
 </x-layouts::app>

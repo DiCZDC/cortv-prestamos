@@ -55,9 +55,9 @@
         @endforelse
     </flux:table>
     <flux:select size="sm" class="w-full sm:w-auto" wire:model.live="perPage">
-        <flux:select.option value="10">10</flux:select.option>
-        <flux:select.option value="25">25</flux:select.option>
-        <flux:select.option value="50">50</flux:select.option>
-        <flux:select.option value="100">100</flux:select.option>
+        <flux:select.option value="6">6</flux:select.option>
+        <flux:select.option value="12">12</flux:select.option>
+        <flux:select.option value="24">24</flux:select.option>
+        <flux:select.option value="48">48</flux:select.option>
     </flux:select>
 </div>

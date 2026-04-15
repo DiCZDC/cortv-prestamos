@@ -6,5 +6,7 @@
                 <x-componentes.subtitulo icono="database" texto="Personal registrado" />
             </div>
         </div>
-        <livewire:personal.index.table lazy/>
+        <div class="w-full not-dark:bg-white rounded-lg not-dark:shadow-md  p-8">
+            <livewire:personal.index.table lazy/>
+        </div>
 </x-layouts::app>
