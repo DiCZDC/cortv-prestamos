@@ -15,10 +15,17 @@ new class extends Component
         return Solicitud::find($this->id);
     }
 
-    public function mount()
-    {
-        $this->mes  = now()->month;
-        $this->anio = now()->year;
+    public function mount($id)
+    { 
+        $this->id = $id;
+
+        $solicitud = Solicitud::findOrFail($id);
+        $fechaPrestamo = $solicitud?->fecha_prestamo
+        ? Carbon::parse($solicitud->fecha_prestamo)
+        : now();
+
+        $this->mes  = $fechaPrestamo->month;
+        $this->anio = $fechaPrestamo->year;
     }
 
     public function mesAnterior()

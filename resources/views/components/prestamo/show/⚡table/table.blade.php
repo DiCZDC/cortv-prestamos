@@ -100,10 +100,12 @@
         
         @if($this->SolicitudInfo()->estado === 'Pendiente')
             <div class="flex justify-center gap-30 mt-5">               
-                <x-componentes.btnsformulario :disabled="$Prestamo_Activo"
-                type="submit" texto="Aprobar" color="verde_mid" icon="clipboard-check" />
-                <x-componentes.btnsformulario type="button" texto="Rechazar" color="rojo_claro" icon="circle-x" />
-                
+               
+                <x-btn-wire wire="actualizar" texto="Aprobar" color="verde_mid" icon="clipboard-check"
+                 :disabled="$Prestamo_Activo" />
+
+                <x-btn-wire wire="rechazar" texto="Rechazar" color="rojo_claro" icon="circle-x"/>
+            
             </div>
         
          @else
