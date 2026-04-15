@@ -92,7 +92,7 @@
                     </flux:table.cell>
 
                     <flux:table.cell>
-                        <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom" />
+                        <x-componentes.boton-href ruta="archivo.show" texto="Ver" icon="eye" :id="$prestamo->id" color="azul_saturado" />    
                     </flux:table.cell>
 
                 </flux:table.row>
@@ -106,9 +106,9 @@
         </flux:table.rows>
     </flux:table>
     <flux:select size="sm" class="w-full sm:w-auto" wire:model.live="perPage">
-        <flux:select.option value="10">10</flux:select.option>
-        <flux:select.option value="25">25</flux:select.option>
-        <flux:select.option value="50">50</flux:select.option>
-        <flux:select.option value="100">100</flux:select.option>
+        <flux:select.option value="8">8</flux:select.option>
+        <flux:select.option value="16">16</flux:select.option>
+        <flux:select.option value="32">32</flux:select.option>
+        <flux:select.option value="64">64</flux:select.option>
     </flux:select>
 </div>

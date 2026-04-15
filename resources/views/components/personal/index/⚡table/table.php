@@ -26,7 +26,7 @@ new class extends Component
                     ->orWhereRaw('LOWER(users.email) like ?', ['%'.strtolower($this->search).'%']);
                 // ->orWhereRaw('LOWER(solicituds.motivo) like ?', ['%' . strtolower($this->search) . '%']);
             })
-            ->paginate(10);
+            ->paginate(8);
     }
 
     // User::whereHas('roles', function ($query) {    $query->where('name', 'admin');})->get();

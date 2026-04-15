@@ -19,7 +19,7 @@ new class extends Component
 
     public $filter;
 
-    public $perPage = 10;
+    public $perPage = 6;
 
     #[On('searchUpdated')]
     public function updateSearch($value)

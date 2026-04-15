@@ -27,7 +27,8 @@
         
         </div>
     </div>  
-    <div class="mt-10">
-        <livewire:recepcion.index.table lazy />
+    <div class="mt-10 w-full not-dark:bg-white rounded-lg not-dark:shadow-md  p-8">
+            <livewire:recepcion.index.table lazy />
+        </div>
     </div>
 </x-layouts::app>
