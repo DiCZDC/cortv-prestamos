@@ -23,6 +23,7 @@
                         }}" 
             />
         @endif
+        
         <flux:table container:class="max-h-[225px]">
             <flux:table.columns sticky class="bg-white dark:bg-zinc-900">
                 <x-componentes.header_table icon="hard-drive"> Equipo </x-componentes.header_table> 
@@ -113,11 +114,11 @@
         
          @else
             @if($this->SolicitudInfo()->estado === 'Autorizada')
-            <div class="flex justify-center">
+            <div class="flex justify-center mt-5">
                 <flux:button disabled variant="primary" icon="clipboard-check" class="w-9/10 !bg-verde_mid border-none !text-white">Solicitud Aprobada</flux:button>
             </div>
             @else
-            <div class="flex justify-center">
+            <div class="flex justify-center mt-5">
                 <flux:button disabled variant="primary" icon="book-x" class="w-9/10 !bg-rojo_claro border-none !text-white">Solicitud Rechazada</flux:button>
             </div>
             @endif

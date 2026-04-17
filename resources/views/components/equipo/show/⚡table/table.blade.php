@@ -32,7 +32,7 @@
                         </flux:badge>
                     </flux:table.cell>
                     <flux:table.cell class="whitespace-nowrap">
-                        <flux:button size="sm" variant="primary" class="bg-azul_saturado" color="sky" wire:click="toggleMantenimiento({{ $producto->id }})">
+                        <flux:button size="sm" variant="primary" class="bg-azul_saturado border-none!" color="sky" wire:click="toggleMantenimiento({{ $producto->id }})">
                             Cambiar Estado
                         </flux:button>
                     </flux:table.cell>
