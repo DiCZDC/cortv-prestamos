@@ -10,7 +10,7 @@
         placeholder="Buscar por nombre de trabajador o motivo..."
     />
     <flux:table :paginate="$this->prestamos" pagination:scroll-to   >
-        <flux:table.columns class="bg-white">
+        <flux:table.columns>
             <x-componentes.header_table sortable="id" :sortBy="$sortBy" :sortDirection="$sortDirection"> ID </x-componentes.header_table>
             <x-componentes.header_table icon="contact-round"> Trabajador </x-componentes.header_table>
             <x-componentes.header_table icon="library-big"> Motivo </x-componentes.header_table>
