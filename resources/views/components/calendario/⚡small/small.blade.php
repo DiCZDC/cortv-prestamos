@@ -17,25 +17,28 @@
     $puedeIrSiguiente = $abarcaMasDeUnMes && $mesVista->lessThan($finMes);
 @endphp
 
-<div class="bg-white rounded-xl shadow-xl p-4 w-72">
+<div class="bg-white rounded-xl shadow-xl p-4 w-72 dark:bg-transparent ">
 
     {{-- Cabecera mes/año --}}
     <div class="flex items-center justify-around mb-3">
         
         <button wire:click="mesAnterior"
-            class="p-1 hover:bg-gray-100 rounded {{ ! $puedeIrAnterior ? 'cursor-not-allowed opacity-50' : '' }}"
+            class="p-1 hover:bg-gray-100 rounded {{ ! $puedeIrAnterior ? 'cursor-not-allowed opacity-50' : '' }}
+            dark:hover:bg-gray-700/50
+            "
+            
             {{ ! $puedeIrAnterior ? 'disabled' : '' }}>
-            <flux:icon.chevron-left class="!text-black"/>
+            <flux:icon.chevron-left class="text-black dark:text-hueso"/>
         </button>
 
-        <span class="font-semibold text-md capitalize text-black">
+        <span class="font-semibold text-md capitalize text-black dark:text-hueso">
             {{ ucfirst($nombreMes) }} {{ $anio }}
         </span>
         
         <button wire:click="mesSiguiente"
-            class="p-1 hover:bg-gray-100 rounded {{ ! $puedeIrSiguiente ? 'cursor-not-allowed opacity-50' : '' }}"
+            class="p-1 hover:bg-gray-100 rounded {{ ! $puedeIrSiguiente ? 'cursor-not-allowed opacity-50' : '' }} dark:hover:bg-gray-700/50"
             {{ ! $puedeIrSiguiente ? 'disabled' : '' }}>
-            <flux:icon.chevron-right class="!text-black"/>
+            <flux:icon.chevron-right class="text-black dark:text-hueso"/>
         </button>
     </div>
 
@@ -47,7 +50,7 @@
     </div>
 
     {{-- Días del mes --}}
-    <div class="grid grid-cols-7 gap-0.5 text-center text-sm text-black">
+    <div class="grid grid-cols-7 gap-0.5 text-center text-sm text-black dark:text-hueso">
         @foreach($dias as $dia)
             @if($dia === null)
                 <div></div>
@@ -63,7 +66,7 @@
 
                 <div class="h-8 w-8 mx-auto rounded-xl text-sm transition-colors flex items-center justify-center
                         {{ $esInicio || $esFin ? 'bg-azul_oscuro text-white font-bold' : '' }}
-                        {{ $enRango ? 'bg-azul_oscuro/8 text-black rounded-xl' : '' }}
+                        {{ $enRango ? 'bg-azul_oscuro/8 text-black rounded-xl dark:text-hueso' : '' }}
                         {{ $esHoy  ? 'border border-azul_oscuro text-azul_oscuro' : '' }}"> 
                     {{ $dia }}
                 </div>
@@ -73,7 +76,7 @@
 
     {{-- Periodo seleccionado --}}
     
-    <div class="mt-3 text-xs text-zinc-600 border-t pt-3 flex flex-col gap-1">
+    <div class="mt-3 text-xs text-zinc-600 dark:text-hueso dark:border-t pt-3 flex flex-col gap-1">
         <p class="inline-flex items-center gap-3"> <flux:icon.calendars /> <span class="font-bold ">Inicio del prestamo:</span> <span>{{ $this->solicitud()->fecha_prestamo }}</span></p>
         <p class="inline-flex items-center gap-3">  <flux:icon.calendar-clock /> <span class="font-bold">Fin del prestamo:</span> <span>{{ $this->solicitud()->fecha_devolucion }}</span></p>
     </div>

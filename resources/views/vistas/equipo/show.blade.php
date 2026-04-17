@@ -12,7 +12,10 @@
             <x-componentes.titulo icono="airplay" texto="Equipo" />
             <x-componentes.subtitulo icono="{{ $producto->categoria->icono }}" texto="{{ $producto->marca . ' ' . $producto->modelo }}" />
         </div>
-    <div class="flex gap-12 mt-10 flex-col lg:flex-row lg:flex-row-reverse">
+    <div class="flex gap-12 mt-10 flex-col lg:flex-row ">
+        <div class="w-full lg:w-2/3 rounded-lg shadow-md p-8 bg-white dark:bg-transparent">
+            <livewire:equipo.show.table :id="$id" lazy/>
+        </div>
         <div class="flex flex-col w-auto  p-8 items-center justify-center  ">
             <h1 class="font-bold text-center text-xl text-gris_claro mb-5 
                 dark:text-hueso
@@ -20,9 +23,6 @@
                 Fechas Apartadas
             </h1>
             <livewire:calendario.multidate_small lazy/>
-        </div>
-        <div class="w-full lg:w-2/3 rounded-lg shadow-md p-8 bg-white dark:bg-transparent">
-            <livewire:equipo.show.table :id="$id" lazy/>
         </div>
     </div>
 </x-layouts::app>

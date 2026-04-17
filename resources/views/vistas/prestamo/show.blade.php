@@ -42,9 +42,9 @@
                 <x-componentes.subtitulo icono="square-user-round" texto=" {{ __('Solicitud de:') }} {{ $Solicitud->trabajador->name }}" />
             </div>
 
-            <div class="bg-white rounded-lg shadow-md px-5 py-6.5 flex flex-col gap-2 ">
+            <div class="bg-white rounded-lg shadow-md px-5 py-6.5 flex flex-col gap-2 dark:bg-transparent ">
                 
-                <div class="inline-flex items-center text-gris_claro gap-2 ml-5">
+                <div class="inline-flex items-center text-gris_claro gap-2 ml-5 ">
                     <flux:icon.clipboard-paste class="size-8" />
                     <span class="font-bold text-2xl">Resumen de la solicitud</span>  
                 </div>
@@ -70,7 +70,7 @@
 
             <div class="flex flex-col items-center justify-start gap-10 py-1 ">
                 <div>
-                    <span class="font-bold text-3xl text-black">Periodo de préstamo</span>
+                    <span class="font-bold text-3xl text-black dark:text-hueso">Periodo de préstamo</span>
                 </div>
                 
                 <livewire:calendario.small :id="$id"/>
