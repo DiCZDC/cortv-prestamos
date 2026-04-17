@@ -18,10 +18,29 @@ new class extends Component
         $this->mes   = now()->month;
     }
 
-    // #[Computed()]
-    
+    #[Computed()]
+    public function fechasApartadas()
+    {
+        $inicio = Carbon::createFromDate(now()->subMonths($this->range)->year, now()->subMonths($this->range)->month, 1)->startOfMonth();
+        $fin    = Carbon::createFromDate(now()->addMonths($this->range)->year, now()->addMonths($this->range)->month, 1)->endOfMonth();
 
+        return Solicitud_Equipo::query()
+            ->join('solicituds', 'solicitud__equipos.id_solicitud', '=', 'solicituds.id')
+            ->where('solicituds.estado', 'Autorizada')
+            ->whereBetween('solicituds.fecha_prestamo', [$inicio, $fin])
+            ->select('solicituds.fecha_prestamo', DB::raw('COUNT(solicitud__equipos.id) as total_equipos'))
+            ->groupBy('solicituds.fecha_prestamo')
+            ->get()
+            ->keyBy(function($item) {
+                return Carbon::parse($item->fecha_prestamo)->format('Y-m-d');
+            });
+    }
 
+    public function createDate($dia, $mes, $anio)
+    {
+        return Carbon::createFromDate($anio, $mes, $dia)->toDateString();
+
+    }
     public function mesAnterior()
     {
         $minDate = now()->subMonths($this->range);

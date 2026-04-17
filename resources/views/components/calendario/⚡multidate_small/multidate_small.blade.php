@@ -43,15 +43,43 @@
             @if($dia === null)
                 <div></div>
             @else
+                @php
+                    $cant = $dia ? $this->fechasApartadas->get($this->createDate($dia, $mes, $anio))->total_equipos ?? 0 : 0;
+                @endphp
                 <div class="h-8 w-8 mx-auto rounded-xl text-sm transition-colors flex items-center justify-center
-                        {{-- {{ $esInicio || $esFin ? 'bg-azul_oscuro text-white font-bold' : '' }}
-                        {{ $enRango ? 'bg-azul_oscuro/8 text-black rounded-xl' : '' }} --}}
-                        {{ now()->toDateString() === \Carbon\Carbon::createFromDate($anio, $mes, $dia)->toDateString() ? ' bg-azul_oscuro  text-hueso' : '' }}
+                        {{  now()->toDateString() === $this->createDate($dia, $mes, $anio) ? ' bg-azul_oscuro  text-hueso' :
+                            ($cant >= 5 ? 'bg-rose-100' :
+                                ($cant >= 3 ? 'bg-emerald-100' :
+                                    ($cant > 0 ? 'bg-amber-100' : '')))
+                        }}
+                        {{-- {{ $esInicio || $esFin ? 'bg-azul_oscuro text-white font-bold' : '' }} --}}
+                        {{-- {{ $enRango ? 'bg-azul_oscuro/8 text-black rounded-xl' : '' }} --}}
                          "> 
-                    {{ $dia }}
+                    {{ $dia}}
                 </div>
             @endif
         @endforeach
+    </div>
+    <div class="mt-4">
+        <h1>
+            Cantidad de equipos a entregar por dia:
+        </h1>
+        <p class="text-sm text-gray-500 mt-2">
+            <span class="inline-flex items-center gap-5">
+                <span class="h-4 w-4 bg-amber-300 rounded-sm"></span>
+                1-2 equipos por entregar
+            </span>
+            <br>
+            <span class="inline-flex items-center gap-5">
+                <span class="h-4 w-4 bg-emerald-300 rounded-sm"></span>
+                3-4 equipos por entregar
+            </span>
+            <br>
+            <span class="inline-flex items-center gap-5">
+                <span class="h-4 w-4 bg-rose-300 rounded-sm"></span>
+                5 o más equipos por entregar
+            </span>
+        </p>
     </div>
     
 </div>

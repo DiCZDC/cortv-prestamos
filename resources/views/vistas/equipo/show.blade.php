@@ -16,7 +16,7 @@
         <div class="w-2/3 rounded-lg shadow-md p-8 bg-white">
             <livewire:equipo.show.table :id="$id" lazy/>
         </div>
-        <div class="w-auto h-150 rounded-lg shadow-md p-8  bg-white">
+        <div class="w-auto  p-8   ">
             <h1 class="font-bold text-center text-xl text-gris_claro mb-5">Fechas Apartadas</h1>
             <livewire:calendario.multidate_small lazy/>
         </div>

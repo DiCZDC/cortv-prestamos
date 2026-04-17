@@ -18,11 +18,11 @@ class CategoriaFactory extends Factory
     public function definition(): array
     {
         $lucideIcons = [
-            'home', 'settings', 'user', 'mail', 'calendar', 'camera', 'bell', 'heart',
-            'star', 'search', 'menu', 'check', 'x', 'alert', 'info', 'help-circle',
-            'clock', 'trending-up', 'download', 'upload', 'share', 'eye', 'lock',
-            'unlock', 'key', 'credit-card', 'dollar-sign', 'shopping-cart', 'gift',
-            'package', 'map', 'phone', 'volume', 'wifi', 'battery', 'sun', 'moon',
+            'home', 'user', 'mail', 'calendar', 'camera', 'bell', 'heart',
+            'star', 'search', 'menu', 'check', 'x', 'info', 'help-circle',
+            'clock', 'trending-up', 'download', 'upload', 'share', 'eye',
+            'key', 'credit-card', 'shopping-cart', 'gift',
+            'package', 'map', 'phone', 'wifi', 'battery', 'sun', 'moon',
         ];
 
         return [
