@@ -4,7 +4,7 @@
         perPage=10
     />
 @endplaceholder
-<div>
+<div class="w-full">
     <flux:table :paginate="$this->productos" pagination:scroll-to   >
         <flux:table.columns>
             <x-componentes.header_table icon="hashtag"> ID </x-componentes.header_table>
