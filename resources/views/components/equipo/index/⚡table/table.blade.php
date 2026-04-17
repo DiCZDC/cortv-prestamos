@@ -27,6 +27,7 @@
             <flux:table.column sortable :sorted="$this->sortBy === 'marca'" :direction="$this->sortDirection" wire:click="sort('marca')">Marca</flux:table.column>
             <flux:table.column sortable :sorted="$this->sortBy === 'modelo'" :direction="$this->sortDirection" wire:click="sort('modelo')">Modelo</flux:table.column>
             <flux:table.column>Unidades totales</flux:table.column>
+            <flux:table.column></flux:table.column>
         </flux:table.columns>
         
         @forelse ($this->equipos as $equipo )
