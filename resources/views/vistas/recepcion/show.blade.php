@@ -17,8 +17,11 @@
                 
         {{-- info de la vista --}}
             <div class="flex flex-col items-start justify-center gap-8 pl-3  ">               
-                <x-componentes.titulo icono="book-marked" texto="Detalles de la solicitud" />
+                <x-componentes.titulo icono="book-marked" texto="Detalles de la recepción" />
                 <x-componentes.subtitulo icono="square-user-round" texto=" {{ __('Solicitud de:') }} {{ $prestamo->trabajador->name }}" />
+                {{ __('Autorizada por:') }} {{ $prestamo->admin->name }}
+                {{-- <x-componentes.subtitulo icono="square-user-round" texto=" {{ __('Autorizada por:') }} {{ $prestamo->admin->name }}" /> --}}
+
             </div>
 
             <div class="bg-white rounded-lg shadow-md px-5 py-9 flex flex-col gap-5 h-112.5">
