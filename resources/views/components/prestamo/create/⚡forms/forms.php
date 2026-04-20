@@ -9,16 +9,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 new class extends Component
 {
     public $motivo;
+
     public $fecha_prestamo;
+
     public $estado = 'Pendiente';
+
     public $fecha_devolucion;
+
     public $equipos_seleccionados = [];
+
     public $trabajador = null;
 
     public function rules()
@@ -53,7 +57,6 @@ new class extends Component
         ];
     }
 
-
     #[On('equipo-agregado')]
     public function agregar_equipo($unidad_id)
     {
@@ -85,6 +88,7 @@ new class extends Component
 
         if ($usuario->hasRole('admin')) {
             $this->guardarAdmin();
+
             return;
         }
 

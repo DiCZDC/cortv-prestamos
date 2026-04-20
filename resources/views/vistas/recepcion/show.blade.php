@@ -17,20 +17,23 @@
                 
         {{-- info de la vista --}}
             <div class="flex flex-col items-start justify-center gap-8 pl-3  ">               
-                <x-componentes.titulo icono="book-marked" texto="Detalles de la solicitud" />
+                <x-componentes.titulo icono="book-marked" texto="Detalles de la recepción" />
                 <x-componentes.subtitulo icono="square-user-round" texto=" {{ __('Solicitud de:') }} {{ $prestamo->trabajador->name }}" />
+                {{ __('Autorizada por:') }} {{ $prestamo->admin->name }}
+                {{-- <x-componentes.subtitulo icono="square-user-round" texto=" {{ __('Autorizada por:') }} {{ $prestamo->admin->name }}" /> --}}
+
             </div>
 
             <div class="bg-white rounded-lg shadow-md px-5 py-9 flex flex-col gap-5 h-112.5">
                 
-                <div class="inline-flex items-center text-gris_claro gap-3 ml-5">
+                <div class="inline-flex items-center text-gris_claro gap-3 ml-5 mb-2">
                     <flux:icon.clipboard-paste class="size-10" />
                     <span class="font-bold text-3xl">Resumen de la solicitud</span>  
                 </div>
 
                 
                 <div class="px-6 h-9/10">
-                    <livewire:prestamo.show.table from="{{ $prestamo->fecha_prestamo }}" to="{{ $prestamo->fecha_devolucion }}" :solicitudId="$id" lazy/>
+                    <livewire:recepcion.show.table from="{{ $prestamo->fecha_prestamo }}" to="{{ $prestamo->fecha_devolucion }}" :solicitudId="$id" lazy/>
                 </div>
             </div>
 

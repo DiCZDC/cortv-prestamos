@@ -164,7 +164,7 @@
                     </flux:modal.close>
                     
                     <flux:modal.close>
-                        <x-btn-wire wire="actualizar" texto="Rechazar" color="rojo_claro" icon="book-x" />
+                        <x-btn-wire wire="rechazar" texto="Rechazar" color="rojo_claro" icon="book-x" />
                     </flux:modal.close>
                 </div>
             </div>

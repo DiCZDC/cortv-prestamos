@@ -1,28 +1,29 @@
 <?php
 
-use Livewire\Component;
-use Carbon\Carbon;
-use App\Models\Solicitud;
 use App\Models\Solicitud_Equipo;
+use Carbon\Carbon;
 use Livewire\Attributes\Computed;
+use Livewire\Component;
+
 new class extends Component
 {
     public $anio;
-    public $mes;
-    public $range = 3; // Rango de meses a mostrar antes y después del mes actual
 
+    public $mes;
+
+    public $range = 3; // Rango de meses a mostrar antes y después del mes actual
 
     public function mount()
     {
         $this->anio = now()->year;
-        $this->mes   = now()->month;
+        $this->mes = now()->month;
     }
 
     #[Computed()]
     public function fechasApartadas()
     {
         $inicio = Carbon::createFromDate(now()->subMonths($this->range)->year, now()->subMonths($this->range)->month, 1)->startOfMonth();
-        $fin    = Carbon::createFromDate(now()->addMonths($this->range)->year, now()->addMonths($this->range)->month, 1)->endOfMonth();
+        $fin = Carbon::createFromDate(now()->addMonths($this->range)->year, now()->addMonths($this->range)->month, 1)->endOfMonth();
 
         return Solicitud_Equipo::query()
             ->join('solicituds', 'solicitud__equipos.id_solicitud', '=', 'solicituds.id')
@@ -31,7 +32,7 @@ new class extends Component
             ->select('solicituds.fecha_prestamo', DB::raw('COUNT(solicitud__equipos.id) as total_equipos'))
             ->groupBy('solicituds.fecha_prestamo')
             ->get()
-            ->keyBy(function($item) {
+            ->keyBy(function ($item) {
                 return Carbon::parse($item->fecha_prestamo)->format('Y-m-d');
             });
     }
@@ -41,12 +42,13 @@ new class extends Component
         return Carbon::createFromDate($anio, $mes, $dia)->toDateString();
 
     }
+
     public function mesAnterior()
     {
         $minDate = now()->subMonths($this->range);
-        if($minDate->month < $this->mes || $minDate->year < $this->anio) {
+        if ($minDate->month < $this->mes || $minDate->year < $this->anio) {
             $fecha = Carbon::createFromDate($this->anio, $this->mes, 1)->subMonth();
-            $this->mes  = $fecha->month;
+            $this->mes = $fecha->month;
             $this->anio = $fecha->year;
         }
     }
@@ -54,17 +56,17 @@ new class extends Component
     public function mesSiguiente()
     {
         $maxDate = now()->addMonths($this->range);
-        if($maxDate->month > $this->mes || $maxDate->year > $this->anio) {
+        if ($maxDate->month > $this->mes || $maxDate->year > $this->anio) {
             $fecha = Carbon::createFromDate($this->anio, $this->mes, 1)->addMonth();
-            $this->mes  = $fecha->month;
+            $this->mes = $fecha->month;
             $this->anio = $fecha->year;
         }
     }
 
     public function with(): array
     {
-        $primerDia   = Carbon::createFromDate($this->anio, $this->mes, 1);
-        $diasEnMes   = $primerDia->daysInMonth;
+        $primerDia = Carbon::createFromDate($this->anio, $this->mes, 1);
+        $diasEnMes = $primerDia->daysInMonth;
         $inicioSemana = $primerDia->dayOfWeek; // 0=Dom
 
         $dias = [];
@@ -80,7 +82,7 @@ new class extends Component
 
         return [
             'nombreMes' => $primerDia->locale('es')->translatedFormat('F'),
-            'dias'      => $dias,
+            'dias' => $dias,
         ];
     }
 };

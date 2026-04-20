@@ -13,6 +13,7 @@ class EquipoController extends Controller
     {
         return view('vistas.equipo.show', ['id' => $id]);
     }
+
     public function create()
     {
         return view('vistas.equipo.create');
