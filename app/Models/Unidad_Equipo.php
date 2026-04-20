@@ -15,6 +15,7 @@ class Unidad_Equipo extends Model
         'id_equipo',
         'sicipo',
         'estado',
+        'mantenimiento',
     ];
 
     public function equipo()

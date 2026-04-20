@@ -9,7 +9,24 @@
         <flux:table.columns sticky class="bg-white dark:bg-zinc-900">
             <x-componentes.header_table icon="hard-drive"> Equipo </x-componentes.header_table> 
             <x-componentes.header_table icon="binary"> Sicipo </x-componentes.header_table> 
-            <x-componentes.header_table icon="chart-no-axes-column-increasing"> Estado </x-componentes.header_table>
+            
+            <flux:table.column> 
+            
+            <div class="flex flex-col">
+                <div>
+                    <span class="inline-flex items-center gap-2 whitespace-nowrap text-gris_claro text-base font-semibold">
+            
+                        <flux:icon.unplug class="text-gris_claro!" />  Mantenimiento  
+                    </span>
+                </div>
+                <div class="pl-8">
+                    <span class="text-gris_claro text-xs font-light">¿El equipo requiere mantenimiento?</span>
+                </div>      
+
+            </div>
+            
+            
+            </flux:table.column>  
         </flux:table.columns>
 
         <flux:table.rows>
@@ -24,8 +41,13 @@
                             {{ $detalle->Unidad_Equipo->sicipo }}
                     </flux:table.cell>
                     
-                    <flux:table.cell class="px-15!" >
+                    <flux:table.cell >
                         
+                        <div class="flex items-center gap-3 px-8! ">
+                            <span>Si</span>
+                            <flux:checkbox value="english" />
+                        </div>    
+                    
                     </flux:table.cell>
 
                 </flux:table.row>

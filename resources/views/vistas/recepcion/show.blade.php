@@ -23,14 +23,14 @@
 
             <div class="bg-white rounded-lg shadow-md px-5 py-9 flex flex-col gap-5 h-112.5">
                 
-                <div class="inline-flex items-center text-gris_claro gap-3 ml-5">
+                <div class="inline-flex items-center text-gris_claro gap-3 ml-5 mb-2">
                     <flux:icon.clipboard-paste class="size-10" />
                     <span class="font-bold text-3xl">Resumen de la solicitud</span>  
                 </div>
 
                 
                 <div class="px-6 h-9/10">
-                    <livewire:prestamo.show.table from="{{ $prestamo->fecha_prestamo }}" to="{{ $prestamo->fecha_devolucion }}" :solicitudId="$id" lazy/>
+                    <livewire:recepcion.show.table from="{{ $prestamo->fecha_prestamo }}" to="{{ $prestamo->fecha_devolucion }}" :solicitudId="$id" lazy/>
                 </div>
             </div>
 
