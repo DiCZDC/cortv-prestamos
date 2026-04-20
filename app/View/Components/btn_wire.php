@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class btn-wire extends Component
+class btn_wire extends Component
 {
     /**
      * Create a new component instance.
@@ -18,7 +18,7 @@ class btn-wire extends Component
 
     /**
      * Get the view / contents that represent the component.
-     */
+     */btn_ire
     public function render(): View|Closure|string
     {
         return view('components.btn-wire');
