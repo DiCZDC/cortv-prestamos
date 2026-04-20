@@ -6,6 +6,7 @@ use App\Models\Unidad_Equipo;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Notifications\Notification;
 
 new class extends Component
 {

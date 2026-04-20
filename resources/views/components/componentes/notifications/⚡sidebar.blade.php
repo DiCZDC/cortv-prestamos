@@ -1,3 +1,13 @@
+<?php
+
+use Livewire\Component;
+
+new class extends Component
+{
+    //
+};
+?>
+
 <div class="w-full">
     <flux:modal.trigger name="notifications-bar">
         <flux:button class="w-full">
@@ -18,16 +28,22 @@
                 </flux:text>
             </div>
             
-            <flux:button class="w-full">
+            <flux:button {{ Auth::user()->unreadNotifications->count() === 0 ? 'disabled' : '' }} class="w-full">
                 <flux:icon.check-check />
                 Marcar todas como leídas
             </flux:button>
-
+            
             <flux:separator />
             
-            @for($i = 0; $i < 5; $i++)
-                <livewire:componentes.notifications.item :key="$i" />
-            @endfor
+            @forelse (Auth::user()->notifications as $notification)
+                <livewire:componentes.notifications.item :key="$notification->id" header="{{ $notification->data['header'] ?? '' }}" subtitle="{{ $notification->data['subtitle'] ?? '' }}" />
+            @empty
+                <flux:card>
+                    <flux:text>
+                        No tienes notificaciones.
+                    </flux:text>
+                </flux:card>
+            @endforelse
         </div>
     </flux:modal>
 </div>

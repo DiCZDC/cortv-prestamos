@@ -4,7 +4,9 @@ use App\Models\Solicitud;
 use App\Models\Solicitud_Equipo;
 use App\Models\Unidad_Equipo;
 use App\Models\User;
+use App\Http\Controllers\PrestamoController;
 use Flux\Flux;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
@@ -85,10 +87,8 @@ new class extends Component
 
         // Esto evaluará automáticamente TODAS las reglas definidas en rules()
         $this->validate();
-
         if ($usuario->hasRole('admin')) {
             $this->guardarAdmin();
-
             return;
         }
 
@@ -98,30 +98,14 @@ new class extends Component
     public function guardarAdmin()
     {
         try {
-            DB::transaction(function () {
-
-                $solicitud = Solicitud::create([
-                    'id_trabajador' => $this->trabajador,
-                    'id_admin' => Auth::user()->id,
-                    'motivo' => $this->motivo,
-                    'estado' => 'Autorizada',
-                    'fecha_prestamo' => $this->fecha_prestamo,
-                    'fecha_devolucion' => $this->fecha_devolucion,
-                ]);
-
-                foreach ($this->equipos_seleccionados as $unidad_id) {
-
-                    $unidad = Unidad_Equipo::lockForUpdate()->find($unidad_id);
-
-                    // $solicitud->unidades()->attach($unidad_id);
-                    Solicitud_Equipo::create([
-                        'id_solicitud' => $solicitud->id,
-                        'id_unidad_equipo' => $unidad_id,
-                    ]);
-
-                }
-
-            }, attempts: 3);
+            app(PrestamoController::class)->store(new Request([
+                'motivo' => $this->motivo,
+                'fecha_prestamo' => $this->fecha_prestamo,
+                'fecha_devolucion' => $this->fecha_devolucion,
+                'equipos_seleccionados' => $this->equipos_seleccionados,
+                'trabajador' => $this->trabajador,
+                'estado' => 'Autorizada',
+            ]));
 
             Flux::toast(
                 heading: 'Solicitud creada y autorizada',
@@ -139,33 +123,15 @@ new class extends Component
     public function guardarTrabajador()
     {
         try {
-            DB::transaction(function () {
-
-                // 1. Crear la solicitud
-                $solicitud = Solicitud::create([
-                    'id_trabajador' => Auth::user()->id,
-                    'id_admin' => null,
-                    'motivo' => $this->motivo,
-                    'estado' => 'Pendiente',
-                    'fecha_prestamo' => $this->fecha_prestamo,
-                    'fecha_devolucion' => $this->fecha_devolucion,
-                ]);
-
-                // 2. Por cada unidad seleccionada
-                foreach ($this->equipos_seleccionados as $unidad_id) {
-
-                    // 3. Bloquear la fila de unidad_equipo (aquí está el estado mutable)
-                    $unidad = Unidad_Equipo::lockForUpdate()->find($unidad_id);
-
-                    // 5. Crear el registro en solicitud__equipos
-                    Solicitud_Equipo::create([
-                        'id_solicitud' => $solicitud->id,
-                        'id_unidad_equipo' => $unidad_id,
-                    ]);
-
-                }
-
-            }, attempts: 3);
+            
+            app(PrestamoController::class)->store(new Request([
+                'motivo' => $this->motivo,
+                'fecha_prestamo' => $this->fecha_prestamo,
+                'fecha_devolucion' => $this->fecha_devolucion,
+                'equipos_seleccionados' => $this->equipos_seleccionados,
+                'trabajador' => Auth::user()->id,
+                'estado' => 'Pendiente',
+            ]));
 
             Flux::toast(
                 heading: 'Solicitud enviada',
