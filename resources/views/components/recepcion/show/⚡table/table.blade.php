@@ -65,7 +65,7 @@
         <div class="flex justify-center gap-30 mt-5">               
             
             <flux:modal.trigger name="Confirmar">
-                <x-btn-wire wire="" texto="Aprobar" color="verde_mid" icon="book-up"/>
+                <x-btn-wire wire="" texto="Recibir" color="verde_mid" icon="luggage"/>
             </flux:modal.trigger>
 
         </div>
@@ -77,9 +77,9 @@
     <flux:modal name="Confirmar" class="min-w-[22rem]">
         <div class="space-y-6">
             <div>
-                <flux:heading size="lg">Aprobar solicitud</flux:heading>
+                <flux:heading size="lg">Aprobar rececpción</flux:heading>
                 <flux:text class="mt-2">
-                    Estás a punto de aprobar esta solicitud.<br>
+                    Estás a punto de aprobar esta recepción.<br>
                     Esta acción no se puede deshacer.
                 </flux:text>
             </div>
@@ -91,7 +91,7 @@
                 </flux:modal.close>
                 
                 <flux:modal.close>
-                    <x-btn-wire wire="actualizar" texto="Aprobar" color="verde_mid" icon="book-lock" />
+                    <x-btn-wire wire="actualizar" texto="Recibir" color="verde_mid" icon="luggage" />
                 </flux:modal.close>
             </div>
         </div>
