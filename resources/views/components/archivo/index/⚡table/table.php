@@ -46,6 +46,7 @@ new class extends Component
     public function prestamos()
     {
         $user = auth()->user();
+
         return Solicitud::query()
             ->orderBy("solicituds.{$this->sortBy}", $this->sortDirection)
             ->join('users as trabajador', 'solicituds.id_trabajador', '=', 'trabajador.id')

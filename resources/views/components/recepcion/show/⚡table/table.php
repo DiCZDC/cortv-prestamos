@@ -1,21 +1,23 @@
 <?php
-use Flux\Flux;
+
 use App\Models\Solicitud;
 use App\Models\Solicitud_Equipo;
 use App\Models\Unidad_Equipo;
+use Flux\Flux;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
 
 new class extends Component
 {
-
     public $from;
+
     public $to;
 
     public $solicitudId;
 
     public array $unidadesSeleccionadas = [];
+
     public array $detallesConfirmados = [];
 
     public function mount($solicitudId)
@@ -71,10 +73,11 @@ new class extends Component
     public function detalles()
     {
         return Solicitud_Equipo::where('id_solicitud', $this->solicitudId)->get()
-        ->map(function ($detalle) {
-            $detalle->Disponible = $this->equipos_libres($detalle->Unidad_Equipo->Equipo->id)->pluck('id')->contains($detalle->Unidad_Equipo->id);
-            return $detalle;
-        });
+            ->map(function ($detalle) {
+                $detalle->Disponible = $this->equipos_libres($detalle->Unidad_Equipo->Equipo->id)->pluck('id')->contains($detalle->Unidad_Equipo->id);
+
+                return $detalle;
+            });
     }
 
     #[Computed]
@@ -112,15 +115,16 @@ new class extends Component
 
         return $total == 0 ? true : false;
     }
-    
+
     #[Computed]
-    public function equipos_ocupados(){
+    public function equipos_ocupados()
+    {
         if (empty($this->from) || empty($this->to)) {
             return collect();
         }
-        $prestados_1 = Solicitud::whereIn('estado',['Entregada','Autorizada'])->whereBetween('fecha_prestamo', [$this->from,$this->to])->pluck('id');
-        $prestados_2 = Solicitud::whereIn('estado',['Entregada','Autorizada'])->whereBetween('fecha_devolucion', [$this->from,$this->to])->pluck('id');
-        $prestados_3 = Solicitud::whereIn('estado',['Autorizada','Entregada'])->where('fecha_prestamo','<',$this->from)->where('fecha_devolucion','>',$this->to)->pluck('id');
+        $prestados_1 = Solicitud::whereIn('estado', ['Entregada', 'Autorizada'])->whereBetween('fecha_prestamo', [$this->from, $this->to])->pluck('id');
+        $prestados_2 = Solicitud::whereIn('estado', ['Entregada', 'Autorizada'])->whereBetween('fecha_devolucion', [$this->from, $this->to])->pluck('id');
+        $prestados_3 = Solicitud::whereIn('estado', ['Autorizada', 'Entregada'])->where('fecha_prestamo', '<', $this->from)->where('fecha_devolucion', '>', $this->to)->pluck('id');
         $prestados = $prestados_1->merge($prestados_2)->merge($prestados_3)->unique();
 
         return Solicitud_Equipo::whereIn('id_solicitud', $prestados)
@@ -128,14 +132,15 @@ new class extends Component
             ->unique();
     }
 
-    public function equipos_libres($id){
+    public function equipos_libres($id)
+    {
         return Unidad_Equipo::where('id_equipo', $id)
             ->whereNotIn('id', $this->equipos_ocupados())
             ->get();
     }
 
- 
-    public function actualizar(){
+    public function actualizar()
+    {
         if ($this->conflictosPendientes()) {
             Flux::toast(
                 heading: 'Conflictos pendientes',
@@ -147,7 +152,7 @@ new class extends Component
         }
 
         foreach ($this->detalles() as $detalle) {
-           
+
             $detalleId = (string) $detalle->id;
             $unidadSeleccionadaId = (int) ($this->unidadesSeleccionadas[$detalleId] ?? $detalle->Unidad_Equipo->id);
 
@@ -160,33 +165,33 @@ new class extends Component
 
         $solicitud = Solicitud::findOrFail($this->solicitudId);
         $id_admin = Auth::user()->id;
-        
+
         $solicitud->update([
-            'estado'      => 'Autorizada',
+            'estado' => 'Autorizada',
             'id_admin' => $id_admin,
         ]);
 
         Flux::toast(
             heading: 'Solicitud aprobada',
-            text: 'La solicitud de préstamo de ' . $solicitud->trabajador->name . ' fue aprobada correctamente.',
+            text: 'La solicitud de préstamo de '.$solicitud->trabajador->name.' fue aprobada correctamente.',
             variant: 'success',
         );
     }
 
-    public function rechazar(){
+    public function rechazar()
+    {
         $solicitud = Solicitud::findOrFail($this->solicitudId);
         $id_admin = Auth::user()->id;
 
         $solicitud->update([
-            'estado'      => 'Rechazada',
+            'estado' => 'Rechazada',
             'id_admin' => $id_admin,
         ]);
 
         Flux::toast(
             heading: 'Solicitud rechazada',
-            text: 'La solicitud de préstamo de ' . $solicitud->trabajador->name . ' fue rechazada.',
+            text: 'La solicitud de préstamo de '.$solicitud->trabajador->name.' fue rechazada.',
             variant: 'danger',
         );
     }
-
 };

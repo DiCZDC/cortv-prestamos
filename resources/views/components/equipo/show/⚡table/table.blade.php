@@ -25,16 +25,27 @@
                     <flux:table.cell class="whitespace-nowrap">
                         <flux:badge
                             size="sm"
-                            :color="$producto->mantenimiento ? 'yellow' : 'green'"
+                            :color="!$producto->mantenimiento ? 'green' : (
+                                $this->equipos_prestados()->contains($producto->id) ? 'red' :
+                                'yellow')"
                             inset="top bottom"
                         >
-                            {{ $producto->mantenimiento ? 'En Mantenimiento' : 'Disponible' }}
+                            {{ !$producto->mantenimiento ? 'Disponible' : 
+                               ($this->equipos_prestados()->contains($producto->id) ? 'Prestado' :
+                                'En Mantenimiento') 
+                            }}
                         </flux:badge>
                     </flux:table.cell>
                     <flux:table.cell class="whitespace-nowrap">
-                        <flux:button size="sm" variant="primary" class="bg-azul_saturado border-none!" color="sky" wire:click="toggleMantenimiento({{ $producto->id }})">
-                            Cambiar Estado
-                        </flux:button>
+                        @if(!$this->equipos_prestados()->contains($producto->id))
+                            <flux:button size="sm" variant="primary" class="bg-azul_saturado border-none!" color="sky" wire:click="toggleMantenimiento({{ $producto->id }})">
+                                Cambiar Estado
+                            </flux:button>
+                        @else
+                            <flux:button disabled size="sm" variant="primary" class="bg-azul_saturado border-none!" color="sky" wire:click="toggleMantenimiento({{ $producto->id }})">
+                                Cambiar Estado
+                            </flux:button>
+                        @endif
                     </flux:table.cell>
                 </flux:table.row>
             @empty
