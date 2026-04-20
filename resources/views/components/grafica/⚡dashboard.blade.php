@@ -8,15 +8,16 @@ new class extends Component
 {
     public function getChartProperty():DonutChart
     {
-        return app()->make(donut::class, ['datos' => [$this->filter_unidad('Disponible'),$this->filter_unidad('Prestado'),$this->filter_unidad('Reservado'),$this->filter_unidad('En reparación')]])->build();
+        return app()->make(donut::class, ['datos' => [
+            Unidad_Equipo::where('mantenimiento',true)->count(),
+            Unidad_Equipo::where('mantenimiento',false)->count(),
+
+        ]])->build();
     }
 
     public function getChartCdnProperty(): string
     {
         return $this->chart->cdn();
-    }
-    public function filter_unidad($tipo):int{
-        return Unidad_Equipo::where('estado','=',$tipo)->count();
     }
 };
 ?>
