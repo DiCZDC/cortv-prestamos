@@ -19,6 +19,12 @@ new class extends Component
         if ($producto) {
             $producto->mantenimiento = ! $producto->mantenimiento;
             $producto->save();
+            
+            Flux::toast(
+                heading: 'Equipo Actualizado',
+                text: $producto->mantenimiento ? 'El equipo ha entrado en mantenimiento.' : 'El equipo ha salido del mantenimiento.',
+                variant: $producto->mantenimiento ? 'warning' : 'success',
+            );
         }
     }
 
