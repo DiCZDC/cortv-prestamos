@@ -27,7 +27,7 @@ new class extends Component
                     Maneja tus notificaciones.
                 </flux:text>
             </div>
-            
+            {{-- Corregir esto --}}
             <flux:button {{ Auth::user()->unreadNotifications->count() === 0 ? 'disabled' : '' }} class="w-full">
                 <flux:icon.check-check />
                 Marcar todas como leídas
