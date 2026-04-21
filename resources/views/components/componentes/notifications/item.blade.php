@@ -11,6 +11,7 @@ new class extends Component
     public function markAsRead()
     {
         $this->notification->markAsRead();
+        $this->dispatch('notifications-updated');
     }
 };
 ?>

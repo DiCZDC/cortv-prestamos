@@ -74,7 +74,7 @@
 
             <flux:sidebar.nav>
                 @auth
-                <livewire:componentes.notifications.sidebar />               
+                <livewire:componentes.notifications.sidebar/>               
                 @endauth
             </flux:sidebar.nav>
             @auth
