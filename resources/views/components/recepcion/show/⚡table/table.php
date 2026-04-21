@@ -16,51 +16,23 @@ new class extends Component
 
     public $solicitudId;
 
-    public array $unidadesSeleccionadas = [];
+    public array $mantenimiento = [];
 
-    public array $detallesConfirmados = [];
 
     public function mount($solicitudId)
     {
         Solicitud::findOrFail($solicitudId);
         $this->solicitudId = $solicitudId;
 
-        $this->inicializarReemplazos();
-    }
-
-    protected function inicializarReemplazos(): void
-    {
-        $detalles = Solicitud_Equipo::where('id_solicitud', $this->solicitudId)->get();
+        $detalles = Solicitud_Equipo::where('id_solicitud', $this->solicitudId)
+            ->with('unidad_equipo')
+            ->get();
 
         foreach ($detalles as $detalle) {
-            $detalleId = (string) $detalle->id;
-            $this->unidadesSeleccionadas[$detalleId] = (int) $detalle->Unidad_Equipo->id;
-            $this->detallesConfirmados[$detalleId] = false;
-        }
-    }
-
-    protected function esReemplazoValido($detalle, int $unidadSeleccionadaId): bool
-    {
-        if ($unidadSeleccionadaId === (int) $detalle->Unidad_Equipo->id) {
-            return false;
+            $idUnidad = (string) $detalle->id_unidad_equipo;
+            $this->mantenimiento[$idUnidad] = (bool) $detalle->unidad_equipo->mantenimiento;
         }
 
-        return $this->equipos_libres($detalle->Unidad_Equipo->Equipo->id)
-            ->pluck('id')
-            ->contains($unidadSeleccionadaId);
-    }
-
-    public function updatedUnidadesSeleccionadas($value, $key): void
-    {
-        $detalle = Solicitud_Equipo::find($key);
-
-        if (! $detalle) {
-            return;
-        }
-
-        if (! $this->esReemplazoValido($detalle, (int) $value)) {
-            $this->detallesConfirmados[$key] = false;
-        }
     }
 
     #[Computed]
@@ -72,126 +44,34 @@ new class extends Component
     #[Computed]
     public function detalles()
     {
-        return Solicitud_Equipo::where('id_solicitud', $this->solicitudId)->get()
-            ->map(function ($detalle) {
-                $detalle->Disponible = $this->equipos_libres($detalle->Unidad_Equipo->Equipo->id)->pluck('id')->contains($detalle->Unidad_Equipo->id);
-
-                return $detalle;
-            });
+        return Solicitud_Equipo::where('id_solicitud', $this->solicitudId) ->get();
     }
-
-    #[Computed]
-    public function conflictosPendientes()
+    
+    public function recibir()
     {
-        return $this->detalles()->contains(function ($detalle) {
-            if ($detalle->Disponible) {
-                return false;
-            }
+        DB::transaction(function () {
+            foreach ($this->detalles() as $detalle) {
+                $idUnidad = (string) $detalle->id_unidad_equipo;
 
-            $detalleId = (string) $detalle->id;
-            $unidadSeleccionadaId = (int) ($this->unidadesSeleccionadas[$detalleId] ?? $detalle->Unidad_Equipo->id);
-            $confirmado = (bool) ($this->detallesConfirmados[$detalleId] ?? false);
-
-            if (! $confirmado) {
-                return true;
-            }
-
-            return ! $this->esReemplazoValido($detalle, $unidadSeleccionadaId);
-        });
-    }
-
-    #[Computed]
-    public function solicitud($id_equipo)
-    {
-        $hoy = now()->toDateString();
-
-        $total = Solicitud::join('solicitud__equipos', 'solicituds.id', '=', 'solicitud__equipos.id_solicitud')
-            ->join('unidad__equipos', 'unidad__equipos.id', '=', 'solicitud__equipos.id_unidad_equipo')
-            ->where('solicituds.estado', 'Autorizada')
-            ->where('unidad__equipos.id', $id_equipo)
-            ->whereRaw('? BETWEEN solicituds.fecha_prestamo AND solicituds.fecha_entrega', [$hoy])
-            ->distinct('solicituds.id')
-            ->count('solicituds.id');
-
-        return $total == 0 ? true : false;
-    }
-
-    #[Computed]
-    public function equipos_ocupados()
-    {
-        if (empty($this->from) || empty($this->to)) {
-            return collect();
-        }
-        $prestados_1 = Solicitud::whereIn('estado', ['Entregada', 'Autorizada'])->whereBetween('fecha_prestamo', [$this->from, $this->to])->pluck('id');
-        $prestados_2 = Solicitud::whereIn('estado', ['Entregada', 'Autorizada'])->whereBetween('fecha_devolucion', [$this->from, $this->to])->pluck('id');
-        $prestados_3 = Solicitud::whereIn('estado', ['Autorizada', 'Entregada'])->where('fecha_prestamo', '<', $this->from)->where('fecha_devolucion', '>', $this->to)->pluck('id');
-        $prestados = $prestados_1->merge($prestados_2)->merge($prestados_3)->unique();
-
-        return Solicitud_Equipo::whereIn('id_solicitud', $prestados)
-            ->pluck('id_unidad_equipo')
-            ->unique();
-    }
-
-    public function equipos_libres($id)
-    {
-        return Unidad_Equipo::where('id_equipo', $id)
-            ->whereNotIn('id', $this->equipos_ocupados())
-            ->get();
-    }
-
-    public function actualizar()
-    {
-        if ($this->conflictosPendientes()) {
-            Flux::toast(
-                heading: 'Conflictos pendientes',
-                text: 'Selecciona y confirma una unidad disponible para cada equipo en conflicto.',
-                variant: 'warning',
-            );
-
-            return;
-        }
-
-        foreach ($this->detalles() as $detalle) {
-
-            $detalleId = (string) $detalle->id;
-            $unidadSeleccionadaId = (int) ($this->unidadesSeleccionadas[$detalleId] ?? $detalle->Unidad_Equipo->id);
-
-            if ($this->esReemplazoValido($detalle, $unidadSeleccionadaId)) {
-                Solicitud_Equipo::where('id', $detalle->id)->update([
-                    'id_unidad_equipo' => $unidadSeleccionadaId,
+                Unidad_Equipo::whereKey($idUnidad)->update([
+                    'mantenimiento' => (bool) ($this->mantenimientos[$idUnidad] ?? false),
+                    // 'estado' => (bool) ($this->mantenimientos[$idUnidad] ?? false) ? 'En mantenimiento' : 'Disponible',
                 ]);
             }
-        }
+
+            Solicitud::whereKey($this->solicitudId)->update([
+                'estado' => 'Devuelta',
+                'fecha_entrega' => '2026-04-19',
+            ]);
+        });
 
         $solicitud = Solicitud::findOrFail($this->solicitudId);
-        $id_admin = Auth::user()->id;
-
-        $solicitud->update([
-            'estado' => 'Autorizada',
-            'id_admin' => $id_admin,
-        ]);
 
         Flux::toast(
-            heading: 'Solicitud aprobada',
-            text: 'La solicitud de préstamo de '.$solicitud->trabajador->name.' fue aprobada correctamente.',
+            heading: 'Recepción aprobada',
+            text: 'El equipo de la solicitud de préstamo de '.$solicitud->trabajador->name.' fue recibida correctamente.',
             variant: 'success',
         );
     }
-
-    public function rechazar()
-    {
-        $solicitud = Solicitud::findOrFail($this->solicitudId);
-        $id_admin = Auth::user()->id;
-
-        $solicitud->update([
-            'estado' => 'Rechazada',
-            'id_admin' => $id_admin,
-        ]);
-
-        Flux::toast(
-            heading: 'Solicitud rechazada',
-            text: 'La solicitud de préstamo de '.$solicitud->trabajador->name.' fue rechazada.',
-            variant: 'danger',
-        );
-    }
+    
 };

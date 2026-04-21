@@ -1,11 +1,11 @@
-<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-5 max-h-[101.25px]">
      {{-- The only way to do great work is to love what you do. - Steve Jobs --}}
     @placeholder
         <x-placeholder.table 
-            :header="['Equipo', 'Sicipo', 'Estado']" />
+            :header="['Equipo', 'Sicipo', 'Mantenimiento']" />
     @endplaceholder
     
-    <flux:table container:class="max-h-[225px]">
+    <flux:table container:class="max-h-[300px]">
         <flux:table.columns sticky class="bg-white dark:bg-zinc-900">
             <x-componentes.header_table icon="hard-drive"> Equipo </x-componentes.header_table> 
             <x-componentes.header_table icon="binary"> Sicipo </x-componentes.header_table> 
@@ -15,7 +15,6 @@
             <div class="flex flex-col">
                 <div>
                     <span class="inline-flex items-center gap-2 whitespace-nowrap text-gris_claro text-base font-semibold">
-            
                         <flux:icon.unplug class="text-gris_claro!" />  Mantenimiento  
                     </span>
                 </div>
@@ -30,7 +29,7 @@
         </flux:table.columns>
 
         <flux:table.rows>
-            @forelse ($this->detalles as $detalle)
+            @forelse ($this->detalles() as $detalle)
                 <flux:table.row>
                     
                     <flux:table.cell>
@@ -38,14 +37,17 @@
                     </flux:table.cell>
                     
                     <flux:table.cell>
-                            {{ $detalle->Unidad_Equipo->sicipo }}
+                     <flux:badge color="blue" class="text-azul_oscuro! ">{{ $detalle->Unidad_Equipo->sicipo }} </flux:badge>       
                     </flux:table.cell>
                     
                     <flux:table.cell >
                         
                         <div class="flex items-center gap-3 px-8! ">
                             <span>Si</span>
-                            <flux:checkbox value="english" />
+                            <flux:checkbox
+                                wire:model.live="mantenimientos.{{ $detalle->id_unidad_equipo }}"
+                                wire:key="mantenimiento-{{ $detalle->id_unidad_equipo }}"
+                            />
                         </div>    
                     
                     </flux:table.cell>
@@ -62,10 +64,10 @@
         </flux:table.rows>
     </flux:table>
     
-        <div class="flex justify-center gap-30 mt-5">               
+        <div class="flex justify-center gap-30 ">               
             
             <flux:modal.trigger name="Confirmar">
-                <x-btn-wire wire="" texto="Recibir" color="verde_mid" icon="luggage"/>
+                <x-btn-wire wire="" texto="Recibir" color="verde_mid" icon="package-check"/>
             </flux:modal.trigger>
 
         </div>
@@ -91,7 +93,7 @@
                 </flux:modal.close>
                 
                 <flux:modal.close>
-                    <x-btn-wire wire="actualizar" texto="Recibir" color="verde_mid" icon="luggage" />
+                    <x-btn-wire wire="recibir" texto="Recibir" color="verde_mid" icon="luggage" />
                 </flux:modal.close>
             </div>
         </div>
@@ -114,7 +116,7 @@
                 </flux:modal.close>
                 
                 <flux:modal.close>
-                    <x-btn-wire wire="actualizar" texto="Rechazar" color="rojo_claro" icon="book-x" />
+                    <x-btn-wire wire="rechazar" texto="Rechazar" color="rojo_claro" icon="book-x" />
                 </flux:modal.close>
             </div>
         </div>

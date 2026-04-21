@@ -13,26 +13,31 @@
     <div class=" flex w-full h-[90%] items-center justify-around pt-2">
         
         {{-- div grande 1 --}}
-       <section class="flex flex-col self-start pt-8 gap-18 w-[55%] h-full ">
+       <section class="flex flex-col self-start pt-8 gap-15 w-[55%] h-full ">
                 
         {{-- info de la vista --}}
+            
+        <div class="flex flex-col items-start justify-center gap-4 ">               
+                
             <div class="flex flex-col items-start justify-center gap-8 pl-3  ">               
+                
                 <x-componentes.titulo icono="book-marked" texto="Detalles de la recepción" />
                 <x-componentes.subtitulo icono="square-user-round" texto=" {{ __('Solicitud de:') }} {{ $prestamo->trabajador->name }}" />
-                {{ __('Autorizada por:') }} {{ $prestamo->admin->name }}
-                {{-- <x-componentes.subtitulo icono="square-user-round" texto=" {{ __('Autorizada por:') }} {{ $prestamo->admin->name }}" /> --}}
-
+            </div> 
+            <div class="pl-3">
+                <x-componentes.subtitulo icono="shield-user" texto=" {{ __('Autorizada por:') }} {{ $prestamo->admin->name }}" />
             </div>
+        </div>
 
-            <div class="bg-white rounded-lg shadow-md px-5 py-9 flex flex-col gap-5 h-112.5">
+            <div class="bg-white rounded-lg shadow-md px-5 py-7 flex flex-col gap-3 h-112.5">
                 
-                <div class="inline-flex items-center text-gris_claro gap-3 ml-5 mb-2">
+                <div class="inline-flex items-center text-gris_claro gap-3 ml-5">
                     <flux:icon.clipboard-paste class="size-10" />
-                    <span class="font-bold text-3xl">Resumen de la solicitud</span>  
+                    <span class="font-medium text-3xl">Resumen de la solicitud</span>  
                 </div>
 
                 
-                <div class="px-6 h-9/10">
+                <div class="px-10 h-9/10 w-full ">
                     <livewire:recepcion.show.table from="{{ $prestamo->fecha_prestamo }}" to="{{ $prestamo->fecha_devolucion }}" :solicitudId="$id" lazy/>
                 </div>
             </div>
@@ -40,8 +45,8 @@
         </section> 
 
         {{-- div grande pt2 --}}
-        <section class="w-[40%] h-full flex flex-col justify-start items-center gap-9.5 ">
-            <div >
+        <section class="w-[40%] h-full flex flex-col justify-start items-center gap-14 pt-6 ">
+            <div>
                 <livewire:componentes.card titulo='4 Prestamos' descripcion='Pendientes de entrega' 
                 icono='box' color_text='black'/>    
                 
