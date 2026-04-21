@@ -53,6 +53,8 @@
 
     --color-rojo_hover: #C9686C;
     --color-fondo: #F4F7F9;
+    --color-rojo-texto:#C20006;
+    --color-rojo-si:#ffe0e1;
 }
 
 @layer theme {

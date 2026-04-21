@@ -24,15 +24,6 @@ new class extends Component
         Solicitud::findOrFail($solicitudId);
         $this->solicitudId = $solicitudId;
 
-        $detalles = Solicitud_Equipo::where('id_solicitud', $this->solicitudId)
-            ->with('unidad_equipo')
-            ->get();
-
-        foreach ($detalles as $detalle) {
-            $idUnidad = (string) $detalle->id_unidad_equipo;
-            $this->mantenimiento[$idUnidad] = (bool) $detalle->unidad_equipo->mantenimiento;
-        }
-
     }
 
     #[Computed]
@@ -49,27 +40,34 @@ new class extends Component
     
     public function recibir()
     {
-        DB::transaction(function () {
-            foreach ($this->detalles() as $detalle) {
-                $idUnidad = (string) $detalle->id_unidad_equipo;
+        $idsSeleccionadas = collect($this->mantenimiento)
+        ->filter(fn ($checked) => (bool) $checked)
+        ->keys()
+        ->map(fn ($id) => (int) $id)
+        ->all();
 
-                Unidad_Equipo::whereKey($idUnidad)->update([
-                    'mantenimiento' => (bool) ($this->mantenimientos[$idUnidad] ?? false),
-                    // 'estado' => (bool) ($this->mantenimientos[$idUnidad] ?? false) ? 'En mantenimiento' : 'Disponible',
-                ]);
-            }
+    // Seguridad: solo IDs que realmente pertenecen a esta solicitud
+        $idsValidas = $this->detalles()
+            ->pluck('id_unidad_equipo')
+            ->map(fn ($id) => (int) $id)
+            ->all();
 
-            Solicitud::whereKey($this->solicitudId)->update([
-                'estado' => 'Devuelta',
-                'fecha_entrega' => '2026-04-19',
+        $idsSeleccionadas = array_values(array_intersect($idsSeleccionadas, $idsValidas));
+
+        if (!empty($idsSeleccionadas)) {
+            Unidad_Equipo::whereIn('id', $idsSeleccionadas)->update([
+                'mantenimiento' => true,
             ]);
-        });
+        }
 
-        $solicitud = Solicitud::findOrFail($this->solicitudId);
+        Solicitud::whereKey($this->solicitudId)->update([
+            'estado' => 'Devuelta',
+            'fecha_entrega' => now()->toDateString(),
+        ]);
 
         Flux::toast(
             heading: 'Recepción aprobada',
-            text: 'El equipo de la solicitud de préstamo de '.$solicitud->trabajador->name.' fue recibida correctamente.',
+            text: 'El equipo de la solicitud de préstamo de '.$this->detalles()->solicitud->trabajador->name.' fue recibida correctamente.',
             variant: 'success',
         );
     }
