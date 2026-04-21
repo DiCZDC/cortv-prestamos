@@ -28,33 +28,79 @@ class PrestamoController extends Controller
             'estado' => ['required', 'in:Pendiente,Autorizada,Rechazada,Entregada,Devuelta'],
         ]);
 
-        $user = User::find($request->trabajador);
-
-        DB::transaction(function () use ($validated) {
-            $solicitud = Solicitud::create([
+        
+            $solicitud = DB::transaction(function () use ($validated) {
+                $solicitud = Solicitud::create([
                 'id_trabajador' => $validated['trabajador'],
                 'id_admin' => $validated['estado'] === 'Autorizada' ? Auth::user()->id : null,
                 'motivo' => $validated['motivo'],
                 'estado' => $validated['estado'],
                 'fecha_prestamo' => $validated['fecha_prestamo'],
                 'fecha_devolucion' => $validated['fecha_devolucion'],
-            ]);
+                ]);
 
-            foreach ($validated['equipos_seleccionados'] as $unidad_id) {
-                $unidad = Unidad_Equipo::lockForUpdate()->find($unidad_id);
+                foreach ($validated['equipos_seleccionados'] as $unidad_id) {
+                $unidad = Unidad_Equipo::lockForUpdate()->findOrFail($unidad_id);
 
                 Solicitud_Equipo::create([
                     'id_solicitud' => $solicitud->id,
-                    'id_unidad_equipo' => $unidad_id,
+                    'id_unidad_equipo' => $unidad->id,
                 ]);
-            }
-        }, attempts: 3);
-        $header = "Tu solicitud de préstamo ha sido {$validated['estado']}";
-        $subtitle = "Motivo: {$validated['motivo']}";
-        Notification::send($user, new solicitud_notification($header, $subtitle));
+                }
+
+                return $solicitud;
+            }, attempts: 3);
+
+
+        if(Auth::user()->hasRole('admin')) {
+            Notification::send(
+                User::find($validated['trabajador']), 
+                new solicitud_notification(
+                    "Tu solicitud de préstamo ha sido creada y autorizada por: ".Auth::user()->name,
+                    "Motivo: {$validated['motivo']}",
+                    "archivo/{$solicitud->id}"
+            ));
+
+
+        }elseif(Auth::user()->hasRole('trabajador')) {
+            $trabajador = User::find($validated['trabajador']);
+            Notification::send(
+                User::role('admin')->get(), 
+                new solicitud_notification(
+                    "{$trabajador->name} ha enviado una solicitud de préstamo",
+                    "Motivo: {$validated['motivo']}",
+                    "prestamo/{$solicitud->id}"
+            ));
+        }
     }
 
+    public function update(Request $request){
+        $validated = $request->validate([
+            'solicitud_id' => ['required', 'exists:solicituds,id'],
+            'estado' => ['required', 'in:Pendiente,Autorizada,Rechazada,Entregada,Devuelta'],
+            'id_admin' => ['required', 'exists:users,id'],
+        ]);
 
+        $estado = $validated['estado'];
+        Solicitud::where('id', $validated['solicitud_id'])->update([
+            'estado' => $estado,
+            'id_admin' => $validated['id_admin'],
+        ]);
+
+        Notification::send(
+            Solicitud::find($validated['solicitud_id'])->trabajador, 
+            new solicitud_notification(
+                "Tu solicitud de préstamo ha sido {$estado} por ".Auth::user()->name,
+                "Motivo: ".Solicitud::find($validated['solicitud_id'])->motivo,
+                "archivo/{$validated['solicitud_id']}"
+        ));
+
+        if (!in_array($estado, ['Autorizada', 'Rechazada'])) {
+            return response()->json(['error' => 'Estado no válido para esta acción.'], 400);
+        }
+    }
+
+    
     /**
      * Display a listing of the resource.
      */

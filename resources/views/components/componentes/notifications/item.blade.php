@@ -4,31 +4,44 @@ use Livewire\Component;
 
 new class extends Component
 {
-    public $header = 'This is a notification message.';
-    public $subtitle = 'This is the subtitle for the notification message.';
+
+    public $notification;
+
+
+    public function markAsRead()
+    {
+        $this->notification->markAsRead();
+    }
 };
 ?>
 
 <div>
     <flux:card>
-        <div class="flex items-start space-x-4">
+        <div class="flex flex-row items-start space-x-4">
             <flux:avatar 
                 :name="auth()->user()->name"
                 :initials="auth()->user()->initials()"
                 size="md" 
             />
-            
-            <div class="min-w-0 flex-1">
-                <flux:heading size="sm">
-                    {{ $header }}
-                </flux:heading>
-                <flux:text>
-                    {{ $subtitle }}
-                </flux:text>
+            <div class="flex flex-col items-start gap-4 w-full">
+                <div class="min-w-0 flex-1">
+                    <flux:heading size="sm">
+                        {{ $notification->data['header'] ?? 'Sin título' }}
+                    </flux:heading>
+                    <flux:text>
+                        {{ $notification->data['subtitle'] ?? 'Sin subtítulo' }}
+                    </flux:text>
+                </div>
+                
+                <div class="flex flex-row gap-4">
+                    <flux:button href="{{ $notification->data['url'] ?? '#' }}" target="_blank">
+                        Ver detalles
+                    </flux:button>
+                    <flux:button wire:click="markAsRead" wire:loading.attr="disabled">
+                        Marcar como leído
+                    </flux:button>
+                </div>
             </div>
-            <flex:button variant="ghost" size="sm">
-                <flux:icon.x />
-            </flex:button>
         </div>
     </flux:card>
 </div>

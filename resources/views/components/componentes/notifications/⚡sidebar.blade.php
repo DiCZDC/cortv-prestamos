@@ -35,8 +35,8 @@ new class extends Component
             
             <flux:separator />
             
-            @forelse (Auth::user()->notifications as $notification)
-                <livewire:componentes.notifications.item :key="$notification->id" header="{{ $notification->data['header'] ?? '' }}" subtitle="{{ $notification->data['subtitle'] ?? '' }}" />
+            @forelse (Auth::user()->unreadNotifications as $notification)
+                <livewire:componentes.notifications.item :key="$notification->id" :notification=$notification />
             @empty
                 <flux:card>
                     <flux:text>

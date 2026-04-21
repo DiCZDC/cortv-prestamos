@@ -14,10 +14,11 @@ class solicitud_notification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct($header, $subtitle)
+    public function __construct($header, $subtitle, $url)
     {
         $this->header = $header;
         $this->subtitle = $subtitle;
+        $this->url = url($url); 
     }
 
     /**
@@ -51,6 +52,7 @@ class solicitud_notification extends Notification
         return [
             'header'=>$this->header,
             'subtitle'=>$this->subtitle,
+            'url'=>$this->url,
         ];
     }
 }

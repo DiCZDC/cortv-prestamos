@@ -3,7 +3,9 @@
 use App\Models\Solicitud;
 use App\Models\Solicitud_Equipo;
 use App\Models\Unidad_Equipo;
+use App\http\Controllers\PrestamoController;
 use Flux\Flux;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -139,8 +141,8 @@ new class extends Component
             ->get();
     }
 
-    public function actualizar()
-    {
+    public function autorizar()
+    {   
         if ($this->conflictosPendientes()) {
             Flux::toast(
                 heading: 'Conflictos pendientes',
@@ -150,7 +152,6 @@ new class extends Component
 
             return;
         }
-
         foreach ($this->detalles() as $detalle) {
 
             $detalleId = (string) $detalle->id;
@@ -163,35 +164,33 @@ new class extends Component
             }
         }
 
-        $solicitud = Solicitud::findOrFail($this->solicitudId);
-        $id_admin = Auth::user()->id;
+        try {
+            $this->actualizar('Autorizada');
 
-        $solicitud->update([
-            'estado' => 'Autorizada',
-            'id_admin' => $id_admin,
-        ]);
-
-        Flux::toast(
-            heading: 'Solicitud aprobada',
-            text: 'La solicitud de préstamo de '.$solicitud->trabajador->name.' fue aprobada correctamente.',
-            variant: 'success',
-        );
+        } catch (Exception $e) {
+            Flux::toast(heading: 'Error', text: $e->getMessage(), variant: 'danger');
+        }
     }
-
     public function rechazar()
     {
-        $solicitud = Solicitud::findOrFail($this->solicitudId);
-        $id_admin = Auth::user()->id;
-
-        $solicitud->update([
-            'estado' => 'Rechazada',
-            'id_admin' => $id_admin,
-        ]);
-
+        try{
+            $this->actualizar('Rechazada');
+        } catch (Exception $e) {
+            Flux::toast(heading: 'Error', text: $e->getMessage(), variant: 'danger');
+        }
+    }
+    
+    public function actualizar($estado){
+        app(PrestamoController::class)->update(new Request([
+            'solicitud_id' => $this->solicitudId,
+            'estado' => $estado,
+            'id_admin' => Auth::user()->id,
+        ]));
+        $solicitud = Solicitud::find($this->solicitudId);
         Flux::toast(
-            heading: 'Solicitud rechazada',
-            text: 'La solicitud de préstamo de '.$solicitud->trabajador->name.' fue rechazada.',
-            variant: 'danger',
+            heading: $estado === 'Autorizada' ? 'Solicitud autorizada' : 'Solicitud rechazada',
+            text: 'La solicitud de préstamo de '.$solicitud->trabajador->name.' fue '.($estado === 'Autorizada' ? 'autorizada' : 'rechazada').'.',
+            variant: $estado === 'Autorizada' ? 'success' : 'danger',
         );
     }
 };
