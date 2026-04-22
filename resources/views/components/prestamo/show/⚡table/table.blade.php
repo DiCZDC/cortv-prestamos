@@ -142,7 +142,7 @@
                     </flux:modal.close>
                     
                     <flux:modal.close>
-                        <x-btn-wire wire="actualizar" texto="Aprobar" color="verde_mid" icon="book-lock" :disabled="$Prestamo_Activo" />
+                        <x-btn-wire wire="autorizar" texto="Aprobar" color="verde_mid" icon="book-lock" :disabled="$Prestamo_Activo" />
                     </flux:modal.close>
                 </div>
             </div>
