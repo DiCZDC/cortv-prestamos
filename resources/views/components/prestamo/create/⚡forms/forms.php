@@ -1,14 +1,11 @@
 <?php
 
-use App\Models\Solicitud;
-use App\Models\Solicitud_Equipo;
+use App\Http\Controllers\PrestamoController;
 use App\Models\Unidad_Equipo;
 use App\Models\User;
-use App\Http\Controllers\PrestamoController;
 use Flux\Flux;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -89,6 +86,7 @@ new class extends Component
         $this->validate();
         if ($usuario->hasRole('admin')) {
             $this->guardarAdmin();
+
             return;
         }
 
@@ -123,7 +121,7 @@ new class extends Component
     public function guardarTrabajador()
     {
         try {
-            
+
             app(PrestamoController::class)->store(new Request([
                 'motivo' => $this->motivo,
                 'fecha_prestamo' => $this->fecha_prestamo,

@@ -23,7 +23,7 @@
                             @endrole
                     {{-- Prestamos --}}
                         @role('trabajador')
-                            <x-item-sidebar icon="file" ruta="prestamo.index" texto="Prestamos" />
+                            <x-item-sidebar icon="file" ruta="prestamo.create" texto="Prestamos" />
                         @endrole
                         @role('admin')
                             <x-item-sidebar icon="file" ruta="prestamo.index" texto="Prestamos" />

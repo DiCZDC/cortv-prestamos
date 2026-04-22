@@ -6,7 +6,6 @@ use App\Models\Unidad_Equipo;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Illuminate\Notifications\Notification;
 
 new class extends Component
 {
@@ -20,7 +19,7 @@ new class extends Component
         if ($producto) {
             $producto->mantenimiento = ! $producto->mantenimiento;
             $producto->save();
-            
+
             Flux::toast(
                 heading: 'Equipo Actualizado',
                 text: $producto->mantenimiento ? 'El equipo ha entrado en mantenimiento.' : 'El equipo ha salido del mantenimiento.',

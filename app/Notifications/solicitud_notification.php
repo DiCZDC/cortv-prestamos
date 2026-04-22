@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -18,7 +17,7 @@ class solicitud_notification extends Notification
     {
         $this->header = $header;
         $this->subtitle = $subtitle;
-        $this->url = url($url); 
+        $this->url = url($url);
     }
 
     /**
@@ -50,9 +49,9 @@ class solicitud_notification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'header'=>$this->header,
-            'subtitle'=>$this->subtitle,
-            'url'=>$this->url,
+            'header' => $this->header,
+            'subtitle' => $this->subtitle,
+            'url' => $this->url,
         ];
     }
 }

@@ -18,7 +18,7 @@ class btn_wire extends Component
 
     /**
      * Get the view / contents that represent the component.
-     */btn_ire
+     */
     public function render(): View|Closure|string
     {
         return view('components.btn-wire');

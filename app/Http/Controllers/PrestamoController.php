@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Solicitud;
 use App\Models\Solicitud_Equipo;
 use App\Models\Unidad_Equipo;
+use App\Models\User;
+use App\Notifications\solicitud_notification;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use App\Notifications\solicitud_notification;
-use App\Models\User;
 use Illuminate\Support\Facades\Notification;
 
 class PrestamoController extends Controller
@@ -28,53 +28,51 @@ class PrestamoController extends Controller
             'estado' => ['required', 'in:Pendiente,Autorizada,Rechazada,Entregada,Devuelta'],
         ]);
 
-        
-            $solicitud = DB::transaction(function () use ($validated) {
-                $solicitud = Solicitud::create([
+        $solicitud = DB::transaction(function () use ($validated) {
+            $solicitud = Solicitud::create([
                 'id_trabajador' => $validated['trabajador'],
                 'id_admin' => $validated['estado'] === 'Autorizada' ? Auth::user()->id : null,
                 'motivo' => $validated['motivo'],
                 'estado' => $validated['estado'],
                 'fecha_prestamo' => $validated['fecha_prestamo'],
                 'fecha_devolucion' => $validated['fecha_devolucion'],
-                ]);
+            ]);
 
-                foreach ($validated['equipos_seleccionados'] as $unidad_id) {
+            foreach ($validated['equipos_seleccionados'] as $unidad_id) {
                 $unidad = Unidad_Equipo::lockForUpdate()->findOrFail($unidad_id);
 
                 Solicitud_Equipo::create([
                     'id_solicitud' => $solicitud->id,
                     'id_unidad_equipo' => $unidad->id,
                 ]);
-                }
+            }
 
-                return $solicitud;
-            }, attempts: 3);
+            return $solicitud;
+        }, attempts: 3);
 
-
-        if(Auth::user()->hasRole('admin')) {
+        if (Auth::user()->hasRole('admin')) {
             Notification::send(
-                User::find($validated['trabajador']), 
+                User::find($validated['trabajador']),
                 new solicitud_notification(
-                    "Tu solicitud de préstamo ha sido creada y autorizada por: ".Auth::user()->name,
+                    'Tu solicitud de préstamo ha sido creada y autorizada por: '.Auth::user()->name,
                     "Motivo: {$validated['motivo']}",
                     "archivo/{$solicitud->id}"
-            ));
+                ));
 
-
-        }elseif(Auth::user()->hasRole('trabajador')) {
+        } elseif (Auth::user()->hasRole('trabajador')) {
             $trabajador = User::find($validated['trabajador']);
             Notification::send(
-                User::role('admin')->get(), 
+                User::role('admin')->get(),
                 new solicitud_notification(
                     "{$trabajador->name} ha enviado una solicitud de préstamo",
                     "Motivo: {$validated['motivo']}",
                     "prestamo/{$solicitud->id}"
-            ));
+                ));
         }
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $validated = $request->validate([
             'solicitud_id' => ['required', 'exists:solicituds,id'],
             'estado' => ['required', 'in:Pendiente,Autorizada,Rechazada,Entregada,Devuelta'],
@@ -88,19 +86,18 @@ class PrestamoController extends Controller
         ]);
 
         Notification::send(
-            Solicitud::find($validated['solicitud_id'])->trabajador, 
+            Solicitud::find($validated['solicitud_id'])->trabajador,
             new solicitud_notification(
                 "Tu solicitud de préstamo ha sido {$estado} por ".Auth::user()->name,
-                "Motivo: ".Solicitud::find($validated['solicitud_id'])->motivo,
+                'Motivo: '.Solicitud::find($validated['solicitud_id'])->motivo,
                 "archivo/{$validated['solicitud_id']}"
-        ));
+            ));
 
-        if (!in_array($estado, ['Autorizada', 'Rechazada'])) {
+        if (! in_array($estado, ['Autorizada', 'Rechazada'])) {
             return response()->json(['error' => 'Estado no válido para esta acción.'], 400);
         }
     }
 
-    
     /**
      * Display a listing of the resource.
      */

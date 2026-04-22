@@ -35,6 +35,7 @@ class Solicitud extends Model
     {
         return $this->hasManyThrough(Unidad_Equipo::class);
     }
+
     public function admin()
     {
         return $this->belongsTo(User::class, 'id_admin');

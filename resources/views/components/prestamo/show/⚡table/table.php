@@ -1,9 +1,9 @@
 <?php
 
+use App\http\Controllers\PrestamoController;
 use App\Models\Solicitud;
 use App\Models\Solicitud_Equipo;
 use App\Models\Unidad_Equipo;
-use App\http\Controllers\PrestamoController;
 use Flux\Flux;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -142,7 +142,7 @@ new class extends Component
     }
 
     public function autorizar()
-    {   
+    {
         if ($this->conflictosPendientes()) {
             Flux::toast(
                 heading: 'Conflictos pendientes',
@@ -171,16 +171,18 @@ new class extends Component
             Flux::toast(heading: 'Error', text: $e->getMessage(), variant: 'danger');
         }
     }
+
     public function rechazar()
     {
-        try{
+        try {
             $this->actualizar('Rechazada');
         } catch (Exception $e) {
             Flux::toast(heading: 'Error', text: $e->getMessage(), variant: 'danger');
         }
     }
-    
-    public function actualizar($estado){
+
+    public function actualizar($estado)
+    {
         app(PrestamoController::class)->update(new Request([
             'solicitud_id' => $this->solicitudId,
             'estado' => $estado,
