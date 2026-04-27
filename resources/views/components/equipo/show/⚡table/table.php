@@ -32,7 +32,7 @@ new class extends Component
     public function equipos_prestados()
     {
         $prestados = Solicitud::whereIn('estado', ['Entregada'])
-            ->where('fecha_prestamo', '<=', now())
+            // ->where('fecha_prestamo', '<=', now())
             ->where('fecha_devolucion', '>=', now())
             ->pluck('id');
 
