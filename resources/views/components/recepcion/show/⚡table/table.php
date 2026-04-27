@@ -65,7 +65,7 @@ new class extends Component
 
         Flux::toast(
             heading: 'Recepción aprobada',
-            text: 'El equipo de la solicitud de préstamo de '.$this->detalles()->solicitud->trabajador->name.' fue recibida correctamente.',
+            text: 'El equipo de la solicitud de préstamo de '.$this->solicitudInfo()->trabajador->name.' fue recibida correctamente.',
             variant: 'success',
         );
     }
