@@ -5,9 +5,7 @@
     'wire' => '',
     'disabled' => false,
 ])
-
- 
-    
+  
     @if($disabled)
     <flux:button
         disabled

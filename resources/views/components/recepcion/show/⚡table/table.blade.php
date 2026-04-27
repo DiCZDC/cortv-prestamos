@@ -1,6 +1,6 @@
 
 <div>
-    <div class="flex flex-col gap-4 ">
+    <div class="flex flex-col gap-5 ">
      {{-- The only way to do great work is to love what you do. - Steve Jobs --}}
     @placeholder
         <x-placeholder.table 
@@ -69,7 +69,17 @@
     
         <div class="flex justify-center gap-30 ">               
             <flux:modal.trigger name="Confirmar">
-                <x-btn-wire texto="Recibir" color="verde_mid" icon="package-check" />
+
+            <flux:button 
+                icon="package-check" 
+                class="w-1/5 bg-[#e7fac0]! text-[#3c6300]! font-bold text-sm! border-none!
+                hover:bg-[#BFF056]! 
+                hover:text-[#253D00]! 
+                transition-all duration-200 ease-out 
+                hover:-translate-y-1.5 active:scale-95 cursor-pointer">
+                Recibir
+            </flux:button>
+
             </flux:modal.trigger>            
         </div>
     </div>
