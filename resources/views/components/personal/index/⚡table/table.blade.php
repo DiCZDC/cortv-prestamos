@@ -15,11 +15,11 @@
     <flux:table :paginate="$this->personal">
     {{-- header de la tabla --}}
         <flux:table.columns>
-            <flux:table.column>ID</flux:table.column>
-            <flux:table.column>Nombre</flux:table.column>
-            <flux:table.column>Correo</flux:table.column>
-            <flux:table.column>Rol</flux:table.column>
-            <flux:table.column>Acciones</flux:table.column>
+            <x-componentes.header_table> ID </x-componentes.header_table>
+            <x-componentes.header_table icon="id-card">Nombre</x-componentes.header_table>
+            <x-componentes.header_table icon="mail">Correo</x-componentes.header_table>
+            <x-componentes.header_table icon="contact-round">Rol</x-componentes.header_table>
+            <x-componentes.header_table icon="target">Acciones</x-componentes.header_table>
         </flux:table.columns>
     {{-- contenido de la tabla --}}
         <flux:table.rows>

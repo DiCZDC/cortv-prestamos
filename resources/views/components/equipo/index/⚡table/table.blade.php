@@ -21,13 +21,12 @@
         :filters="$this->filters" />
     <flux:table :paginate="$this->equipos">
         <flux:table.columns>
-            <flux:table.column></flux:table.column>
-
-            <flux:table.column sortable :sorted="$this->sortBy === 'id'" :direction="$this->sortDirection" wire:click="sort('id')">ID</flux:table.column>
-            <flux:table.column sortable :sorted="$this->sortBy === 'marca'" :direction="$this->sortDirection" wire:click="sort('marca')">Marca</flux:table.column>
-            <flux:table.column sortable :sorted="$this->sortBy === 'modelo'" :direction="$this->sortDirection" wire:click="sort('modelo')">Modelo</flux:table.column>
-            <flux:table.column>Unidades totales</flux:table.column>
-            <flux:table.column></flux:table.column>
+            <x-componentes.header_table/>
+            <x-componentes.header_table sortable="id" :sortBy="$sortBy" :sortDirection="$sortDirection"> ID </x-componentes.header_table>            
+            <x-componentes.header_table sortable="marca" :sortBy="$sortBy" :sortDirection="$sortDirection" icon="tag">Marca</x-componentes.header_table>
+            <x-componentes.header_table sortable="modelo" :sortBy="$sortBy" :sortDirection="$sortDirection" icon="cog">Modelo</x-componentes.header_table>
+            <x-componentes.header_table icon="tool-case">Unidades totales</x-componentes.header_table>
+            <x-componentes.header_table icon="target">Acciones</x-componentes.header_table>
         </flux:table.columns>
         
         @forelse ($this->equipos as $equipo )
