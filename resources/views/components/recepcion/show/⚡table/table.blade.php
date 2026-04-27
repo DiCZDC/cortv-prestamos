@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-5 max-h-[101.25px]">
+<div class="flex flex-col gap-5 ">
      {{-- The only way to do great work is to love what you do. - Steve Jobs --}}
     @placeholder
         <x-placeholder.table 
@@ -73,9 +73,6 @@
 
         </div>
            
-       
-        
-
     
     <flux:modal name="Confirmar" class="min-w-[22rem]">
         <div class="space-y-6">
@@ -95,29 +92,6 @@
                 
                 <flux:modal.close>
                     <x-btn-wire wire="recibir" texto="Recibir" color="verde_mid" icon="luggage" />
-                </flux:modal.close>
-            </div>
-        </div>
-    </flux:modal>
-
-    <flux:modal name="Rechazar" class="min-w-[22rem]">
-        <div class="space-y-6">
-            <div>
-                <flux:heading size="lg">Rechazar solicitud</flux:heading>
-                <flux:text class="mt-2">
-                    Estás a punto de rechazar esta solicitud.<br>
-                    Esta acción no se puede deshacer.
-                </flux:text>
-            </div>
-            
-            <div class="flex gap-2">
-                <flux:spacer />
-                <flux:modal.close>
-                    <flux:button variant="ghost">Regresar</flux:button>
-                </flux:modal.close>
-                
-                <flux:modal.close>
-                    <x-btn-wire wire="rechazar" texto="Rechazar" color="rojo_claro" icon="book-x" />
                 </flux:modal.close>
             </div>
         </div>
