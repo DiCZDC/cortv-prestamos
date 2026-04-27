@@ -19,7 +19,7 @@ class CategoriaFactory extends Factory
     {
         $lucideIcons = [
             'home', 'user', 'mail', 'calendar', 'camera', 'bell', 'heart',
-            'star', 'search', 'menu', 'check', 'x', 'info', 'help-circle',
+            'star', 'search', 'menu', 'check', 'x', 'info',
             'clock', 'trending-up', 'download', 'upload', 'share', 'eye',
             'key', 'credit-card', 'shopping-cart', 'gift',
             'package', 'map', 'phone', 'wifi', 'battery', 'sun', 'moon',

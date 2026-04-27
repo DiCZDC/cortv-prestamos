@@ -25,14 +25,15 @@
                     <flux:table.cell class="whitespace-nowrap">
                         <flux:badge
                             size="sm"
-                            :color="!$producto->mantenimiento ? 'green' : (
-                                $this->equipos_prestados()->contains($producto->id) ? 'red' :
-                                'yellow')"
+                            :color=" 
+                                $this->equipos_prestados()->contains($producto->id) ? 'red' :(
+                                !$producto->mantenimiento ? 'green' : 'yellow'
+                                )"
                             inset="top bottom"
                         >
-                            {{ !$producto->mantenimiento ? 'Disponible' : 
-                               ($this->equipos_prestados()->contains($producto->id) ? 'Prestado' :
-                                'En Mantenimiento') 
+                            {{ 
+                               $this->equipos_prestados()->contains($producto->id) ? 'Prestado' :(
+                                !$producto->mantenimiento ? 'Disponible' :  'En Mantenimiento')
                             }}
                         </flux:badge>
                     </flux:table.cell>
