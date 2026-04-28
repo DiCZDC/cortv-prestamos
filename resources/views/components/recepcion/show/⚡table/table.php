@@ -9,10 +9,6 @@ use Livewire\Component;
 
 new class extends Component
 {
-    public $from;
-
-    public $to;
-
     public $solicitudId;
 
     public array $mantenimiento = [];
@@ -64,7 +60,7 @@ new class extends Component
         ]);
 
         Flux::toast(
-            heading: 'Recepción aprobada',
+            heading: 'Recepción correcta',
             text: 'El equipo de la solicitud de préstamo de '.$this->solicitudInfo()->trabajador->name.' fue recibida correctamente.',
             variant: 'success',
         );
