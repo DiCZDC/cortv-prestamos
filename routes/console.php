@@ -8,7 +8,10 @@ use App\Http\Controllers\RecordatorioController;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
 Schedule::call(function () {
-    RecordatorioController::recordatorios();
-})->everyMinute();
+    new RecordatorioController();
+})->everyTenSeconds();
+
+// Schedule::command('inspire')->everyTenSeconds();
 
