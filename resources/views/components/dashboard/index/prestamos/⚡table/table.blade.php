@@ -4,7 +4,7 @@
     @endplaceholder
     <flux:table :paginate="$this->prestamos" >
         <flux:table.columns>
-            <flux:table.column class="hidden md:block"></flux:table.column>
+            <flux:table.column class="hidden md:block" ></flux:table.column>
             <x-componentes.header_table> Equipo </x-componentes.header_table>
             @role('admin')
                 <x-componentes.header_table> Solicitante </x-componentes.header_table>
