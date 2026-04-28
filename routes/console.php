@@ -9,9 +9,7 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::call(function () {
-    new RecordatorioController();
-})->everyTenSeconds();
+//Componlo w, paro
+Schedule::call(fn () => (new RecordatorioController())->recordatorios())->everyTenSeconds();
 
-// Schedule::command('inspire')->everyTenSeconds();
 
