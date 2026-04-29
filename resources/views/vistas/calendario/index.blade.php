@@ -1,6 +1,5 @@
 @php
     $meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-
 @endphp
 <x-layouts::app :title="__('Calendario')">
     <div class=" pt-2 w-full gap-6">
