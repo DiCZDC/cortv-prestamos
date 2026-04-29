@@ -53,7 +53,7 @@ new class extends Component
 };
 ?>
 
-<div wire:ignore class="rounded-2xl">
+<div wire:ignore class="rounded-2xl bg-blue-500 p-7 w-3/4">
     {!! $this->chart->container() !!}
 </div>
 

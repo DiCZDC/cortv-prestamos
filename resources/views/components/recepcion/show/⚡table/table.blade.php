@@ -47,6 +47,7 @@
                         <div class="flex items-center gap-3 px-8! ">
                             <span>Si</span>
                             <flux:checkbox
+                                class="accent-pink-500!"
                                 value 
                                 wire:model.live="mantenimiento.{{ $detalle->id_unidad_equipo }}"
                                 wire:key="mantenimiento-{{ $detalle->id_unidad_equipo }}"
