@@ -10,10 +10,9 @@ new class extends Component
         $this->dispatch('$refresh');
     }
 
-    #[On('notifications-updated')]
-    public function reloadNotifications()
+    public function markAllAsRead()
     {
-        $this->skipRender();
+        auth()->user()->unreadNotifications->markAsRead();
     }
 };
 ?>
@@ -21,8 +20,12 @@ new class extends Component
 <div class="w-full">
     <flux:modal.trigger name="notifications-bar">
         <flux:button class="w-full">
-                <flux:icon.bell/>
-                Notificaciones
+                @if (Auth::user()->unreadNotifications()->count() != 0)
+                    <flux:icon.bell-dot class="text-rojo-texto"/>
+                @else
+                    <flux:icon.bell/>    
+                @endif
+                Notificaciones 
         </flux:button>
     </flux:modal.trigger>
 
@@ -37,15 +40,27 @@ new class extends Component
                     Maneja tus notificaciones.
                 </flux:text>
             </div>
-            {{-- Corregir esto --}}
-            <flux:button :disabled="Auth::user()->unreadNotifications->count() === 0" class="w-full">
-                <flux:icon.check-check />
-                Marcar todas como leídas
-            </flux:button>
             
+            <flux:button :disabled="Auth::user()->unreadNotifications->count() === 0" 
+                class="w-full"
+                wire:click="markAllAsRead"    
+                >
+                <div class="flex flew-row items-center justify-center gap-2">
+                    <flux:icon.check-check />
+                    Marcar todas como leídas
+                </div>
+            </flux:button>
+            <div class="w-full flex items-center justify-between"> 
+                <flux:text>
+                    Tienes: <b>{{ Auth::user()->unreadNotifications->count() }}</b> notificaciones pendientes.
+                </flux:text>
+                <flux:button wire:click="$refresh" variant="ghost" size="sm">
+                    <flux:icon.rotate-ccw />        
+                </flux:button>
+            </div>
             <flux:separator />
             
-            <div wire:poll.30s >
+            <div wire:poll.30s class="gap-3"> 
                 @php($unreadNotifications = Auth::user()->fresh()->unreadNotifications()->latest()->get())
                 @forelse ($unreadNotifications as $notification)
                     <livewire:componentes.notifications.item

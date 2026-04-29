@@ -24,7 +24,7 @@ new class extends Component
                 :initials="auth()->user()->initials()"
                 size="md" 
             />
-            <div class="flex flex-col items-start gap-4 w-full">
+            <div class="flex flex-col items-start gap-4 w-full max-w-xs">
                 <div class="min-w-0 flex-1">
                     <flux:heading size="sm">
                         {{ $notification->data['header'] ?? 'Sin título' }}

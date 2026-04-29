@@ -3,13 +3,14 @@
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
-use App\Http\Controllers\RecordatorioController;
+use App\Jobs\ProcesarRecordatorios;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-//Componlo w, paro
-Schedule::call(fn () => (new RecordatorioController())->recordatorios())->everyTenSeconds();
-
+Schedule::job(new ProcesarRecordatorios())
+    ->dailyAt('08:00')
+    // ->everyMinute()
+    ->withoutOverlapping();
 
