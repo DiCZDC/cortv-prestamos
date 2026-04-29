@@ -93,3 +93,19 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+/* Move ApexCharts legend below and align it to the right without resizing the chart. */
+.apexcharts-legend.apx-legend-position-right {
+    top: auto !important;
+    bottom: 8px !important;
+    right: -5px !important;
+    left: auto !important;
+    justify-content: flex-center !important;
+    width: auto !important;
+    max-width: 100% !important;
+}
+
+/* Add space between legend marker and label text. */
+.apexcharts-legend-series .apexcharts-legend-marker {
+    margin-right: 7px !important;
+}

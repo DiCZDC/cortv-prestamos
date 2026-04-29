@@ -7,7 +7,7 @@
     
         @livewire('dashboard.index.4cards')
         
-        <div class="h-full relative rounded-xl">
+        <div class="rounded-xl flex items-center justify-center ">
             <livewire:grafica.dashboard />
         </div>
     </div>

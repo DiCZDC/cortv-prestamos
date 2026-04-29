@@ -49,9 +49,9 @@
                 <livewire:componentes.card 
                 :titulo="$titulo" 
                 :descripcion="$descripcion" 
-                icono='clock-alert' 
+                :icono="$icono"     
+                color_bg='bg-hueso!'
                 :color_text="$color_text"/>    
-                
             </div>
 
             <div class="flex flex-col items-center justify-start gap-10 py-1 ">
