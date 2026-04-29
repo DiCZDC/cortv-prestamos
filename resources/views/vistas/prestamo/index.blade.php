@@ -16,7 +16,11 @@
             {{-- card --}}
             
             <div>
-                <livewire:componentes.card titulo='4 Prestamos' descripcion='Pendientes de entrega' icono='box' color_text='black'/>    
+                @php
+
+                    $prestamos_pendientes = App\Models\Solicitud::where('estado', 'Pendiente')->count();
+                @endphp
+                <livewire:componentes.card titulo="{{ $prestamos_pendientes }} Prestamos" descripcion='Pendientes de entrega' icono='box' color_text='black'/>    
             </div>
         
         
