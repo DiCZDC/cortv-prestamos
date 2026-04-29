@@ -10,7 +10,7 @@
         :color="$event['estado'] === 'Autorizada' ? 'green' 
         : ($event['estado'] === 'Entregada' ? 'cyan' 
         : ($event['estado'] === 'Pendiente' ? 'yellow' 
-        :($event['estado'] === 'Rechazada' ? 'red' : 'blue')))"
+        : ($event['estado'] === 'Rechazada' ? 'red' : 'blue')))"
         inset="top bottom"
         >
         {{$event['estado'] ?? 'Sin estado'}}
