@@ -68,10 +68,10 @@ new class extends Component
             </div>
             <flux:separator />
             
-            <div wire:poll.30s class="gap-3"> 
+            <div wire:poll.30s class="flex flex-col gap-5"> 
                 @php($unreadNotifications = Auth::user()->fresh()->unreadNotifications()->latest()->get())
                 @forelse ($unreadNotifications as $notification)
-                    <livewire:componentes.notifications.item
+                    <livewire:componentes.notifications.item 
                         :key="'notification-'.$notification->id.'-'.optional($notification->updated_at)->timestamp"
                         :notification="$notification"
                     />
