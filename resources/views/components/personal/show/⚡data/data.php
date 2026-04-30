@@ -58,26 +58,5 @@ new class extends Component
                                     && Carbon::parse($solicitud->fecha_devolucion)->lt(Carbon::now());
                             })
                             ->count();
-    }   
-    // $devoluciones_totales = $solicitudes
-    //                         ->where('estado','Devuelta')
-    //                         ->count();
-    // $devoluciones_en_tiempo = $solicitudes
-    //                         ->filter(function ($solicitud) {
-    //                             return $solicitud->estado === 'Devuelta'
-    //                                 && Carbon::parse($solicitud->fecha_devolucion)
-    //                                     ->lt(Carbon::parse($solicitud->fecha_entrega));
-    //                         })
-    //                         ->count();
-    // $porcentaje_cumplimiento =  
-    //             $solicitudes->count() != 0 ?
-    //             number_format($devoluciones_totales > 0 ? (($devoluciones_totales-$devoluciones_en_tiempo )/ $devoluciones_totales) * 100 : 0, 2).'%'
-    //             :'Sin préstamos'
-    //             ;
-    // $devoluciones_atrasadas = $solicitudes
-    //                         ->filter(function ($solicitud) {
-    //                             return $solicitud->estado === 'Entregada'
-    //                                 && Carbon::parse($solicitud->fecha_devolucion)->lt(Carbon::now());
-    //                         })
-    //                         ->count();
+    }
 };
