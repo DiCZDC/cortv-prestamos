@@ -8,14 +8,16 @@
             </flux:breadcrumbs>
     </div>
     {{-- div general --}}   
-    <div class=" flex w-full h-[90%] items-center justify-around pt-2">
+    <div class=" flex w-full h-[90%] items-center justify-around pt-2 flex-col 
+                md:flex-row ">
         
         {{-- div grande 1 --}}
-       <section class="flex flex-col self-start pt-8 gap-19 w-[55%] h-full ">
+       <section class="flex flex-col self-start pt-8 gap-19  h-full w-full
+                md:w-[55%]">
                 
         {{-- info de la vista --}}
             
-        <div class="flex flex-col items-start justify-center gap-4 pt-1">               
+        <div class="flex flex-col items-start justify-center gap-4 pt-1 ">               
                 
             <div class="flex flex-col items-start justify-center gap-7 pl-3  ">               
                 
@@ -56,7 +58,10 @@
 
             <div class="flex flex-col items-center justify-start gap-10 py-1 ">
                 <div>
-                    <span class="font-bold text-3xl text-black">Periodo de préstamo</span>
+                    <span class="font-bold text-black text-2xl
+                    md:text-3xl
+                    ">
+                        Periodo de préstamo</span>
                 </div>
                 
                 <livewire:calendario.small :id="$id"/>
