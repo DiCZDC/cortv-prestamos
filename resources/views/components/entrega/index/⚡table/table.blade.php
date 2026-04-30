@@ -65,9 +65,9 @@
         </flux:table.rows>
     </flux:table>
     <flux:select size="sm" class="w-full sm:w-auto" wire:model.live="perPage">
-        <flux:select.option value="8">8</flux:select.option>
-        <flux:select.option value="12">12</flux:select.option>
-        <flux:select.option value="24">24</flux:select.option>
-        <flux:select.option value="48">48</flux:select.option>
+        <flux:select.option value="7">7</flux:select.option>
+        <flux:select.option value="14">14</flux:select.option>
+        <flux:select.option value="35">35</flux:select.option>
+        <flux:select.option value="56">56</flux:select.option>
     </flux:select>
 </div>

@@ -16,7 +16,7 @@ new class extends Component
 
     public $search = '';
 
-    public $perPage = 8;
+    public $perPage = 7;
 
     public function sort($column)
     {
