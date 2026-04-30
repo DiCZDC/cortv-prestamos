@@ -99,7 +99,7 @@
         </flux:table>
         
         @if($this->SolicitudInfo()->estado === 'Pendiente')
-            <div class="flex justify-center gap-30 mt-5">               
+            <div class="flex justify-around mt-5">               
                 
                 <flux:modal.trigger name="Confirmar">
                     <x-btn-wire wire="" texto="Aprobar" color="verde_mid" icon="book-up" :disabled="$Prestamo_Activo" />
@@ -113,6 +113,7 @@
             </div>
         
          @else
+            
             @if($this->SolicitudInfo()->estado === 'Autorizada')
             <div class="flex justify-center mt-5">
                 <flux:button disabled variant="primary" icon="clipboard-check" class="w-9/10 !bg-verde_mid border-none !text-white">Solicitud Aprobada</flux:button>
@@ -124,7 +125,6 @@
             @endif
         @endif    
 
-     
         <flux:modal name="Confirmar" class="min-w-[22rem]">
             <div class="space-y-6">
                 <div>

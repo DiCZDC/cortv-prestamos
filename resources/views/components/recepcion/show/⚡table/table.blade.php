@@ -73,11 +73,10 @@
 
             <flux:button 
                 icon="package-check" 
-                class=" bg-[#e7fac0]! text-[#3c6300]! font-bold text-sm! border-none!
+                class="bg-[#e7fac0]! text-[#3c6300]! font-bold text-sm! border-none!
                 hover:bg-[#BFF056]! 
                 hover:text-[#253D00]! 
                 transition-all duration-200 ease-out 
-                xl:w-1/5
                 hover:-translate-y-1.5 active:scale-95 cursor-pointer">
                 Recibir
             </flux:button>

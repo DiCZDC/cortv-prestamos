@@ -31,10 +31,16 @@
     </div>
     
     {{-- div general --}}   
-    <div class=" flex w-full h-[90%] items-center justify-around pt-2">
+    <div class=" flex w-full h-[90%] items-center justify-around pt-2
+        flex-col gap-10
+        md:flex-row md:gap-0
+
+    ">
         
         {{-- div grande 1 --}}
-       <section class="flex flex-col self-start pt-8 gap-18 w-[55%] h-full ">
+       <section class="flex flex-col self-start pt-8 gap-18 h-full 
+            w-full md:w-[55%]
+       ">
                 
         {{-- info de la vista --}}
             <div class="flex flex-col items-start justify-center gap-8 pl-3  ">               
@@ -46,7 +52,9 @@
                 
                 <div class="inline-flex items-center text-gris_claro gap-2 ml-5 ">
                     <flux:icon.clipboard-paste class="size-8" />
-                    <span class="font-bold text-2xl">Resumen de la solicitud</span>  
+                    <span class="font-bold 
+                    text-xl
+                    md:text-2xl">Resumen de la solicitud</span>  
                 </div>
                 
                 <div class="px-5 py-3 h-9/10">
@@ -70,7 +78,12 @@
 
             <div class="flex flex-col items-center justify-start gap-10 py-1 ">
                 <div>
-                    <span class="font-bold text-3xl text-black dark:text-hueso">Periodo de préstamo</span>
+                    <span class="font-bold 
+                    text-black text-2xl
+                    
+                    dark:text-hueso
+                    md:text-3xl 
+                    ">Periodo de préstamo</span>
                 </div>
                 
                 <livewire:calendario.small :id="$id"/>
