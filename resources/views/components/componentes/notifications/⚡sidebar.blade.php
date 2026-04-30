@@ -20,12 +20,20 @@ new class extends Component
 <div class="w-full">
     <flux:modal.trigger name="notifications-bar">
         <flux:button class="w-full">
-                @if (Auth::user()->unreadNotifications()->count() != 0)
-                    <flux:icon.bell-dot class="text-rojo-texto"/>
-                @else
-                    <flux:icon.bell/>    
-                @endif
-                Notificaciones 
+            <div class="flex items-center justify-center gap-2">
+                <span class="relative inline-flex">
+                    @if (Auth::user()->unreadNotifications()->count() != 0)
+                        <span class="absolute -top-1 -right-1 flex size-3">
+                            <span class="absolute inline-flex size-2.5 animate-ping rounded-full bg-rojo_claro opacity-75"></span>
+                            <span class="relative inline-flex size-2.5 rounded-full bg-rojo_claro"></span>
+                        </span>
+                        <flux:icon.bell class="text-rojo-texto" />
+                    @else
+                        <flux:icon.bell />
+                    @endif
+                </span>
+                Notificaciones
+            </div>
         </flux:button>
     </flux:modal.trigger>
 
