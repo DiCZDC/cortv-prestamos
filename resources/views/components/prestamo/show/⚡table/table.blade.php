@@ -1,7 +1,7 @@
 @php
     $Prestamo_Activo = $this->conflictosPendientes();
 @endphp
-
+<div>
     <div class="flex flex-col gap-6">
      {{-- The only way to do great work is to love what you do. - Steve Jobs --}}
         @placeholder
@@ -19,12 +19,12 @@
                         }}" 
                 text="{{$Prestamo_Activo ? 
                             'Selecciona una unidad disponible y marca su confirmación para cada equipo en conflicto antes de autorizar.' : 
-                            'Todos los equipos solicitados están disponibles o ya tienen un reemplazo confirmado. Puede autorizarse la solicitud.'
+                            'Todos los equipos solicitados están disponibles o ya tienen un reemplazo confirmado.'
                         }}" 
             />
         @endif
         
-        <flux:table container:class="max-h-[225px]">
+        <flux:table container:class="max-h-[240px]">
             <flux:table.columns sticky class="bg-white dark:bg-[#262626]">
                 <x-componentes.header_table icon="hard-drive"> Equipo </x-componentes.header_table> 
                 <x-componentes.header_table icon="binary"> Sicipo </x-componentes.header_table> 
@@ -102,13 +102,29 @@
             <div class="flex justify-around mt-5">               
                 
                 <flux:modal.trigger name="Confirmar">
-                    <x-btn-wire wire="" texto="Aprobar" color="verde_mid" icon="book-up" :disabled="$Prestamo_Activo" />
+                    <flux:button 
+                        :disabled="$Prestamo_Activo"
+                        icon="book-up" 
+                        class=" bg-[#e7fac0]! text-[#3c6300]! font-bold text-sm! border-none!
+                        hover:bg-[#BFF056]! 
+                        hover:text-[#253D00]! 
+                        transition-all duration-200 ease-out 
+                        hover:-translate-y-1.5 active:scale-95 cursor-pointer">
+                        Aprobar
+                    </flux:button>
                 </flux:modal.trigger>
-
 
                 <flux:modal.trigger name="Rechazar">
-                    <x-btn-wire wire="" texto="Rechazar" color="rojo_claro" icon="book-alert"/>
-                </flux:modal.trigger>
+                    <flux:button 
+                        icon="book-alert" 
+                        class=" bg-rojo-si! text-[#c10007]! font-bold text-sm! border-none!
+                        hover:bg-[#c10007]! 
+                        hover:text-hueso! 
+                        transition-all duration-200 ease-out 
+                        hover:-translate-y-1.5 active:scale-95 cursor-pointer">
+                        Rechazar
+                    </flux:button>
+                </flux:modal.trigger>   
             
             </div>
         
@@ -124,50 +140,53 @@
             </div>
             @endif
         @endif    
-
-        <flux:modal name="Confirmar" class="min-w-[22rem]">
-            <div class="space-y-6">
-                <div>
-                    <flux:heading size="lg">Aprobar solicitud</flux:heading>
-                    <flux:text class="mt-2">
-                        Estás a punto de aprobar esta solicitud.<br>
-                        Esta acción no se puede deshacer.
-                    </flux:text>
-                </div>
-                
-                <div class="flex flex-row-reverse justify-around">
-                    {{-- <flux:spacer /> --}}
-                    <flux:modal.close>
-                        <flux:button>Regresar</flux:button>
-                    </flux:modal.close>
-                    
-                    <flux:modal.close>
-                        <x-btn-wire wire="autorizar" texto="Aprobar" color="verde_mid" icon="book-lock" :disabled="$Prestamo_Activo" />
-                    </flux:modal.close>
-                </div>
-            </div>
-        </flux:modal>
-
-        <flux:modal name="Rechazar" class="min-w-[22rem]">
-            <div class="space-y-6">
-                <div>
-                    <flux:heading size="lg">Rechazar solicitud</flux:heading>
-                    <flux:text class="mt-2">
-                        Estás a punto de rechazar esta solicitud.<br>
-                        Esta acción no se puede deshacer.
-                    </flux:text>
-                </div>
-                
-                <div class="flex justify-around">
-                    <flux:modal.close>
-                        <flux:button >Regresar</flux:button>
-                    </flux:modal.close>
-                    
-                    <flux:modal.close>
-                        <x-btn-wire wire="rechazar" texto="Rechazar" color="rojo_claro" icon="book-x" />
-                    </flux:modal.close>
-                </div>
-            </div>
-        </flux:modal>
-
+            
     </div>
+     
+    <flux:modal name="Confirmar" class="min-w-[22rem]">
+        <div class="space-y-6">
+            <div>
+                <flux:heading size="lg">Aprobar solicitud</flux:heading>
+                <flux:text class="mt-2">
+                    Estás a punto de aprobar esta solicitud.<br>
+                    Esta acción no se puede deshacer.
+                </flux:text>
+            </div>
+            
+            <div class="flex flex-row-reverse justify-around">
+                {{-- <flux:spacer /> --}}
+                <flux:modal.close>
+                    <flux:button>Regresar</flux:button>
+                </flux:modal.close>
+                
+                <flux:modal.close>
+                    <x-btn-wire wire="autorizar" texto="Aprobar" color="verde_mid" icon="book-lock" :disabled="$Prestamo_Activo" />
+                </flux:modal.close>
+            </div>
+        </div>
+    </flux:modal>
+
+    <flux:modal name="Rechazar" class="min-w-[22rem]">
+        <div class="space-y-6">
+            <div>
+                <flux:heading size="lg">Rechazar solicitud</flux:heading>
+                <flux:text class="mt-2">
+                    Estás a punto de rechazar esta solicitud.<br>
+                    Esta acción no se puede deshacer.
+                </flux:text>
+            </div>
+            
+            <div class="flex justify-around">
+                <flux:modal.close>
+                    <flux:button >Regresar</flux:button>
+                </flux:modal.close>
+                
+                <flux:modal.close>
+                    <x-btn-wire wire="rechazar" texto="Rechazar" color="rojo_claro" icon="book-x" />
+                </flux:modal.close>
+            </div>
+        </div>
+    </flux:modal>
+
+    
+</div>

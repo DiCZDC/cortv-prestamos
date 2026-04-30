@@ -24,7 +24,8 @@ class donut
             ->setLabels(['Mantenimiento', 'Disponibles', 'Prestados', 'Se entregan hoy'])
             ->setFontFamily('Instrument Sans, ui-sans-serif')
             ->setXAxis([' Equipos en total  '])
-            ->setColors(['#76D245', '#AE2B2F', '#279AF1', '#EEC33B']);
+            ->setColors(['#279AF1', '#76D245', '#AE2B2F', '#EEC33B']);
+
         //  ,
     }
 }

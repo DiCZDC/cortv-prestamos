@@ -106,10 +106,10 @@
                         <x-btn-wire wire="recibir" texto="Recibir" color="verde_mid" icon="luggage" />
                     </flux:modal.close>
                 </div>
-            </div>
-        </flux:modal>
+          </div>
+     </flux:modal>
         
-    </div>
+ </div>
 
     
     

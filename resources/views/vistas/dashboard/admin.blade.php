@@ -1,5 +1,5 @@
 <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
-    <div class="grid 
+    <div class="grid place-items-center 
                 gap-4
                 grid-cols-1
                 lg:grid-cols-2 md:rows-1
@@ -7,7 +7,7 @@
     
         @livewire('dashboard.index.4cards')
         
-        <div class="rounded-xl flex items-center justify-center ">
+        <div class="rounded-xl flex self-center items-center justify-center w-3/4 ">
             <livewire:grafica.dashboard />
         </div>
     </div>

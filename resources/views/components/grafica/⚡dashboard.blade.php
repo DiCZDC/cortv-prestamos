@@ -1,5 +1,4 @@
 <?php
-
 use Livewire\Component;
 use App\Charts\donut;
 use ArielMejiaDev\LarapexCharts\DonutChart;
@@ -11,6 +10,13 @@ use App\Models\Solicitud_Equipo;
 
 new class extends Component
 {
+    public $fecha_actual;
+
+    public function mount(): void
+    {
+        $this->fecha_actual = now()->format('d-m-Y');
+    }
+
     public function getChartProperty():DonutChart
     {
         return app()->make(donut::class, ['datos' => [
@@ -53,7 +59,10 @@ new class extends Component
 };
 ?>
 
-<div wire:ignore class="rounded-2xl bg-blue-500 p-7 w-3/4">
+<div wire:ignore class="rounded-2xl py-7 px-9 w-full  bg-hueso shadow-2xl">
+    <span class="font-semibold text-black text-2xl  dark:text-hueso">
+        Estado de los equipos hoy  {{ $fecha_actual }} 
+    </span>
     {!! $this->chart->container() !!}
 </div>
 
