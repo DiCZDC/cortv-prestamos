@@ -52,7 +52,7 @@
 
                     {{-- Fecha real de entrega --}}
                     <flux:table.cell variant="strong">
-                        <flux:badge
+                        {{-- <flux:badge
                             size="sm"
                             :color="$prestamo->fecha_devolucion < now() ?  'red' : 'green'"
                             inset="top bottom"
@@ -60,6 +60,13 @@
                             {{
                                 $prestamo->fecha_devolucion < now() ? "Prestamo atrasado" : "Prestamo en tiempo"
                             }}
+                        </flux:badge> --}}
+                        @php
+                            $fecha = \Carbon\Carbon::parse($prestamo->fecha_devolucion);
+                            $atrasado = $fecha->lt(now()->startOfDay()); // solo si es antes de hoy
+                        @endphp
+                        <flux:badge size="sm" inset="top bottom" :color="$atrasado ? 'red' : 'green'">
+                            {{ $atrasado ? 'Prestamo atrasado' : 'Prestamo en tiempo' }}
                         </flux:badge>
                     </flux:table.cell>
 

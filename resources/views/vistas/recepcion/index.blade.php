@@ -1,5 +1,5 @@
 @php
-    $cant_esperados = App\Models\Solicitud::where('fecha_devolucion','=',now())->count();
+    $cant_esperados = App\Models\Solicitud::where('fecha_devolucion','=',now())->where('estado','=','Entregada')->count();
     $cant_atrasados = App\Models\Solicitud::where('fecha_devolucion','<',now())->where('estado','=','Entregada')->count();
 
 @endphp

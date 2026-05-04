@@ -6,12 +6,12 @@
         lg:flex-row
         ">
     
-        <section class="w-full flex flex-col items-start justify-center gap-4 py-1 
+        <section class="w-full flex flex-col items-start justify-center gap-4 py-7 
                         md:px-1/10
                         lg:px-[6%] lg:w-1/2
                 ">
                 {{-- div de la primera parte del formulario --}}
-            <div class="flex flex-col bg-white shadow-2xl rounded-2xl px-12 py-9 w-full
+            <div class="flex flex-col bg-white shadow-xl rounded-2xl px-12 py-9 w-full
                         dark:bg-neutral-800
             ">  
 
@@ -26,16 +26,17 @@
                 </div>
 
 
-                <div class="gap-5 flex flex-col mt-7">
+                <div class="gap-8 flex flex-col mt-7">
                     <flux:field>
                         <x-componentes.input-form badge="Requerido" label="Motivo" placeholder="Ingrese el motivo del préstamo" model="motivo" icon="library-big" />
                         <flux:description class="!mt-0">El motivo del prestamo debe tener al menos 10 caracteres y 255 como maximo </flux:description>
                     </flux:field>
 
-                    <flux:input type="date" wire:model.live="fecha_prestamo" badge="Requerido" label="Fecha de Préstamo" placeholder="Seleccione la fecha de préstamo" min="{{ now()->toDateString() }}" />
-                    <flux:input type="date" wire:model.live="fecha_devolucion" badge="Requerido" label="Fecha de Devolución" placeholder="Seleccione la fecha de devolución" min="{{ $fecha_prestamo ?? now()->toDateString() }}" />
-                    {{-- <x-componentes.input-form type="date" badge="Requerido" label="Fecha de Préstamo" placeholder="Seleccione la fecha de préstamo" model="fecha_prestamo" />
-                    <x-componentes.input-form type="date" badge="Requerido" label="Fecha de Devolución" placeholder="Seleccione la fecha de devolución" model="fecha_devolucion" /> --}}
+                    <div class="grid grid-cols-2 gap-4">
+                        <flux:input type="date" wire:model.live="fecha_prestamo" badge="Requerido" label="Fecha de Préstamo" placeholder="Seleccione la fecha de préstamo" min="{{ now()->toDateString() }}" />
+                        <flux:input type="date" wire:model.live="fecha_devolucion" badge="Requerido" label="Fecha de Devolución" placeholder="Seleccione la fecha de devolución" min="{{ $fecha_prestamo ?? now()->toDateString() }}" />
+                    </div>
+                
                 </div>
                 
             </div>
@@ -55,7 +56,7 @@
                 ">
             
             {{-- tabla --}}
-            <div class="flex flex-col bg-white shadow-2xl rounded-2xl items-center py-6 max-h-160
+            <div class="flex flex-col bg-white shadow-xl rounded-2xl items-center py-6 max-h-160
                         dark:bg-neutral-800
             ">
                 {{-- titulo de la tabla y del contenedor --}}
@@ -122,7 +123,7 @@
                 </div>
 
              @role('admin')
-                <div class="flex flex-col items-center justify-start gap-4">
+                <div class="flex flex-col items-center justify-start gap-4 mt-2">
                     <flux:field>
                         <flux:label badge="Requerido">
                             <span class="text-gris_claro text-base font-semibold">Trabajador</span>

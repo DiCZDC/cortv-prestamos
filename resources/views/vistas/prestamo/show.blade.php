@@ -38,7 +38,7 @@
     ">
         
         {{-- div grande 1 --}}
-       <section class="flex flex-col self-start pt-8 gap-18 h-full 
+       <section class="flex flex-col self-start pt-8 gap-7 h-full 
             w-full md:w-[55%]
        ">
                 
@@ -48,24 +48,14 @@
                 <x-componentes.subtitulo icono="square-user-round" texto=" {{ __('Solicitud de:') }} {{ $Solicitud->trabajador->name }}" />
             </div>
 
-            <div class="bg-white rounded-lg shadow-md px-5 py-6.5 flex flex-col gap-2 dark:bg-transparent ">
-                
-                <div class="inline-flex items-center text-gris_claro gap-2 ml-5 ">
-                    <flux:icon.clipboard-paste class="size-8" />
-                    <span class="font-bold 
-                    text-xl
-                    md:text-2xl">Resumen de la solicitud</span>  
-                </div>
-                
-                <div class="px-5 py-3 h-9/10">
-                    <livewire:prestamo.show.table from="{{ $Solicitud->fecha_prestamo }}" to="{{ $Solicitud->fecha_devolucion }}" :solicitudId="$id" lazy/>
-                </div>
+            <div class="pl-3"> 
+                <livewire:prestamo.show.table from="{{ $Solicitud->fecha_prestamo }}" to="{{ $Solicitud->fecha_devolucion }}" :solicitudId="$id" lazy/>
             </div>
 
         </section> 
 
         {{-- div grande pt2 --}}
-        <section class="w-[40%] h-full flex flex-col justify-start items-center gap-9.5 ">
+        <section class="w-[40%] h-full flex flex-col justify-start items-center gap-13 pt-6 ">
             <div >
                 <livewire:componentes.card
                     :titulo="$tituloCard"
