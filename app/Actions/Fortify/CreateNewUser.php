@@ -31,11 +31,11 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $input['password'],
         ]);
 
-        $defaultRole = Role::firstOrCreate([
-            'name' => 'trabajador',
-        ]);
+        // $defaultRole = Role::firstOrCreate([
+        //     'name' => 'trabajador',
+        // ]);
 
-        $user->assignRole($defaultRole);
+        // $user->assignRole($defaultRole);
 
         return $user;
     }
