@@ -8,7 +8,7 @@
         :filters="[
             '' => 'Todos',
             'Autorizada' => 'Autorizada',
-            // 'Pendiente' => 'Pendiente',
+            'Pendiente' => 'Pendiente',
             'Entregada' => 'Entregada',
             'Devuelta' => 'Devuelta',
             'Rechazada' => 'Rechazada',

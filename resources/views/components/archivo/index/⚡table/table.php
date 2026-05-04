@@ -53,7 +53,7 @@ new class extends Component
             ->select('solicituds.*', 'trabajador.name as nombre_trabajador')
             ->join('users as admin', 'solicituds.id_admin', '=', 'admin.id')
             ->select('solicituds.*', 'trabajador.name as nombre_trabajador', 'admin.name as nombre_admin')
-            ->where('solicituds.estado', '!=', 'Pendiente')
+            // ->where('solicituds.estado', '!=', 'Pendiente')
             ->when($user && $user->hasRole('trabajador'), function ($query) use ($user) {
                 $query->where('solicituds.id_trabajador', $user->id);
             })
