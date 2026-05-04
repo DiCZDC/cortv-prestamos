@@ -14,7 +14,9 @@
             <x-componentes.titulo icono="id-card-lanyard" texto="Usuario" />
             <x-componentes.subtitulo icono="user" texto="{{ $user->name }}" />
         </div>
-        
+        {{-- <div class="flex gap-4 my-6">
+            <flux:button>Button</flux:button>
+        </div> --}}
         @if($user->hasRole('trabajador'))
             <livewire:personal.show.data :id="$id" />
         @endif
