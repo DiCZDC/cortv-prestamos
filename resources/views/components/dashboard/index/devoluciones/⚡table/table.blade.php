@@ -1,4 +1,4 @@
-<div class="bg-hueso rounded-xl ">
+<div class="bg-hueso rounded-xl dark:bg-zinc-900">
     <div class="flex flex-row justify-start items-center gap-3 px-8 pt-8">
         <flux:icon name="clock-alert" class="w-9! h-9! text-black dark:text-hueso" />
         <span class="font-semibold text-[24px] text-black [word-spacing:0.3rem] dark:text-hueso"> Prestamos Atrasados</span>

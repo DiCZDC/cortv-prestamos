@@ -29,7 +29,7 @@
             </div>
         </div>
 
-            <div class="bg-white rounded-lg shadow-md px-5 py-7 flex flex-col gap-3 ">
+            <div class="bg-white dark:bg-zinc-900 rounded-lg shadow-md px-5 py-7 flex flex-col gap-3 ">
                 
                 <div class="inline-flex items-center text-gris_claro gap-3 ml-5">
                     <flux:icon.clipboard-paste class="size-10" />

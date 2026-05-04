@@ -53,9 +53,9 @@
         <div class="grid auto-rows-min gap-4 grid-cols-1 place-items-center content-center
                 lg:grid-cols-2
         ">
-            <div class="w-[84%] relative rounded-xl shadow-xl">
+            <div class="w-[84%] relative rounded-xl shadow-xl ">
             <!-- Titulo de la tabla -->
-                    <livewire:dashboard.index.prestamos.table :id_user='$id' lazy/>
+                <livewire:dashboard.index.prestamos.table :id_user='$id' lazy/>
             </div>
 
             <div class="w-[84%] relative shadow-xl rounded-xl ">

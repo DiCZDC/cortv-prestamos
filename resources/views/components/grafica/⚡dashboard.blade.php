@@ -59,7 +59,9 @@ new class extends Component
 };
 ?>
 
-<div wire:ignore class="rounded-2xl py-7 px-9 w-full  bg-hueso shadow-xl">
+<div wire:ignore class="rounded-2xl py-7 px-9 w-full  bg-hueso shadow-xl
+    dark:bg-zinc-900
+">
     <span class="font-semibold text-black text-2xl  dark:text-hueso">
         Estado de los equipos hoy  {{ $fecha_actual }} 
     </span>
