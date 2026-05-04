@@ -3,13 +3,14 @@
     <div class="grid auto-rows-min gap-4 grid-cols-1 place-items-center content-center
                             lg:grid-cols-2
         ">  
-        <div class="h-full w-[84%] relative rounded-xl shadow-xl flex flex-col ">
+        <div class="h-full w-[84%] rounded-xl shadow-xl flex flex-col mb-12 px-5 justify-center
+        ">
             <div class="flex flex-row items-center gap-3 px-8 pt-10 justify-center">
                 <flux:icon name="package" class="w-10 h-10 text-black dark:text-hueso" />
                 <h1 class="text-2xl font-bold text-center">Prestamo en curso</h1>
             </div>
             @if($this->prestamo_en_curso)
-                <h2 class="text-lg  text-center mt-4">
+                <h2 class="text-lg  text-center mt-4 ">
                     <span class="font-semibold">
                         Motivo:
                     </span>
@@ -53,9 +54,9 @@
         <div class="grid auto-rows-min gap-4 grid-cols-1 place-items-center content-center
                 lg:grid-cols-2
         ">
-            <div class="w-[84%] relative rounded-xl shadow-xl">
+            <div class="w-[84%] relative rounded-xl shadow-xl ">
             <!-- Titulo de la tabla -->
-                    <livewire:dashboard.index.prestamos.table :id_user='$id' lazy/>
+                <livewire:dashboard.index.prestamos.table :id_user='$id' lazy/>
             </div>
 
             <div class="w-[84%] relative shadow-xl rounded-xl ">

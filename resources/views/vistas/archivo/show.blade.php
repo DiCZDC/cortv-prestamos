@@ -18,11 +18,18 @@
             </div>
     </div>
     
-    <div class="w-full flex justify-around">
-        <div class="bg-white rounded-lg shadow-md  flex flex-col gap-3 px-5 py-7 w-1/2">
+    <div class="w-full flex justify-around md:flex-row flex-col 
+    gap-5
+    
+    ">
+        <div class="bg-white rounded-lg shadow-md  flex flex-col  px-5 py-7 w-full    
+        md:w-1/2 md:gap-3
+                dark:bg-zinc-900
+        ">
                 <div class="inline-flex items-center text-gris_claro gap-3 ml-5">
-                    <flux:icon.clipboard-paste class="size-10" />
-                    <span class="font-medium text-3xl">Equipo Solicitado</span>  
+                    <flux:icon.clipboard-paste class="size-10 
+                    dark:text-hueso" />
+                    <span class="font-medium text-3xl dark:text-hueso">Equipo Solicitado</span>  
                 </div>
                 <div class="px-10 w-full">
                     <livewire:archivo.show.table :solicitudId="$id" lazy/>

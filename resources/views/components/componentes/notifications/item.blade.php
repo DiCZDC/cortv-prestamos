@@ -23,6 +23,9 @@ new class extends Component
                 :name="auth()->user()->name"
                 :initials="auth()->user()->initials()"
                 size="md" 
+                color="auto"
+                color:seed={{ auth()->user()->id }}
+
             />
             <div class="flex flex-col items-start gap-4 w-full max-w-xs">
                 <div class="min-w-0 flex-1">

@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,7 +17,10 @@ new class extends Component
     {
         $this->search = $value;
     }
-
+    #[On('ActualizarPadre')]
+    public function actualizar(){
+        $this->dispatch('$refresh');
+    }
     #[Computed]
     public function personal()
     {

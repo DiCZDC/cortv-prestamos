@@ -36,9 +36,14 @@
                         {{ $persona->roles->first()?->name ?? 'Sin rol' }}
                     </flux:table.cell>
                     
-                    <flux:table.cell>
-                        {{-- <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button> --}}
+                    <flux:table.cell class="flex-row  gap-4">
                         <x-componentes.boton-href ruta="personal.show" texto="Ver" icon="eye" :id="$persona->id" />    
+                        <flux:modal.trigger name="update-role.{{ $persona->id }}">
+                            <flux:button>
+                                Actualizar rol
+                            </flux:button>
+                        </flux:modal.trigger>
+                        <livewire:personal.index.modal :persona="$persona" />
                     </flux:table.cell>
                 </flux:table.row>
             @empty

@@ -9,8 +9,8 @@
         
         <flux:table container:class="max-h-[295px]">
             <flux:table.columns sticky class="bg-white dark:bg-zinc-900">
-                <x-componentes.header_table icon="hard-drive"> Equipo </x-componentes.header_table> 
-                <x-componentes.header_table icon="binary"> Sicipo </x-componentes.header_table>  
+                <x-componentes.header_table icon="hard-drive" class="dark:text-hueso"> Equipo </x-componentes.header_table> 
+                <x-componentes.header_table icon="binary" class="dark:text-hueso"> Sicipo </x-componentes.header_table>  
             </flux:table.columns>
 
             <flux:table.rows>
