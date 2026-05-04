@@ -43,7 +43,7 @@
                 <flux:table.cell>{{ $this->cant_equipos($equipo->id) }}</flux:table.cell>
                 <flux:table.cell>
                     {{-- <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button> --}}
-                    <x-componentes.boton-href ruta="equipo.show" texto="Ver" icon="eye" :id="$equipo->id" color="azul_saturado" />    
+                    <x-componentes.boton-href ruta="equipo.show" texto="Ver" icon="eye" :id="$equipo->id" />    
                 </flux:table.cell>
             </flux:table.row>
         @empty

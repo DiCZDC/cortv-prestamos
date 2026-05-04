@@ -27,7 +27,6 @@
                         texto="Ver" 
                         icon="eye" 
                         :id="$this->prestamo_en_curso->id" 
-                        color="azul_saturado" 
                         />    
                 </div>
             @else

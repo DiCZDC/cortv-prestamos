@@ -64,7 +64,7 @@
                     </flux:table.cell>
 
                     <flux:table.cell>
-                        <x-componentes.boton-href ruta="recepcion.show" texto="Ver" icon="eye" :id="$prestamo->id" color="azul_saturado" />    
+                        <x-componentes.boton-href ruta="recepcion.show" texto="Ver" icon="eye" :id="$prestamo->id" />    
                     </flux:table.cell>
 
                 </flux:table.row>

@@ -26,7 +26,7 @@
                             <x-item-sidebar icon="file" ruta="prestamo.create" texto="Prestamos" />
                         @endrole
                         @role('admin')
-                            <x-item-sidebar icon="file" ruta="prestamo.index" texto="Prestamos" />
+                            <x-item-sidebar icon="file-box" ruta="prestamo.index" texto="Prestamos" />
                         @endrole
                     {{-- Entrega --}}
                     @role('admin')
