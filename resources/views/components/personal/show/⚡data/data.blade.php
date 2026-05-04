@@ -3,7 +3,7 @@
     <div class="grid auto-rows-min gap-4 grid-cols-1 place-items-center content-center
                             lg:grid-cols-2
         ">  
-        <div class="h-full w-[84%] relative rounded-xl shadow-xl flex-col mb-12">
+        <div class="h-full w-[84%] relative rounded-xl shadow-xl flex flex-col ">
             <div class="flex flex-row items-center gap-3 px-8 pt-10 justify-center">
                 <flux:icon name="package" class="w-10 h-10 text-black dark:text-hueso" />
                 <h1 class="text-2xl font-bold text-center">Prestamo en curso</h1>
