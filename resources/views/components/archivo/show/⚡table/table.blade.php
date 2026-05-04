@@ -42,7 +42,7 @@
                 class="bg-[#e7fac0]! text-[#3c6300]! font-bold text-sm! border-none!
                 hover:bg-[#BFF056]! 
                 hover:text-[#253D00]! 
-                transition-all duration-200 ease-out 
+                transition-all duration-200 delay-100 ease-out 
                 hover:-translate-y-1.5 active:scale-95 cursor-pointer">
                 Recibir
             </flux:button>

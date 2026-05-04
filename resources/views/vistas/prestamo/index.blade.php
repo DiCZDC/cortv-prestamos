@@ -20,7 +20,7 @@
                             class=" bg-rojo-si! text-[#c10007]! font-bold text-sm! border-none!
                             hover:bg-[#c10007]! 
                             hover:text-hueso! 
-                            transition-all duration-200 ease-out 
+                            transition-all duration-200 ease-out delay-150
                             hover:-translate-y-1.5 active:scale-95 cursor-pointer">
                             Crear nuevo prestamo
                         </flux:button>
