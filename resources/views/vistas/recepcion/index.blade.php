@@ -1,5 +1,5 @@
 @php
-    $cant_esperados = App\Models\Solicitud::where('fecha_devolucion','=',now())->count();
+    $cant_esperados = App\Models\Solicitud::where('fecha_devolucion','=',now())->where('estado','=','Entregada')->count();
     $cant_atrasados = App\Models\Solicitud::where('fecha_devolucion','<',now())->where('estado','=','Entregada')->count();
 
 @endphp
@@ -22,8 +22,8 @@
                 md:justify-evenly
                 lg:w-[40%] md:flex-row 
             ">
-                <livewire:componentes.card titulo='{{$cant_esperados}} equipos' descripcion='esperados hoy' icono='hard-drive-download' color_text='black' color_bg='bg-white dark:bg-transparent'/>    
-                <livewire:componentes.card titulo='{{$cant_atrasados}} Prestamos' descripcion='atrasados' icono='file-clock' color_text='black' color_bg='bg-white dark:bg-transparent'/>    
+                <livewire:componentes.card titulo='{{$cant_esperados}} prestamos' descripcion='se devuelven hoy' icono='boxes' color_text='black' color_bg='bg-white dark:bg-transparent'/>    
+                <livewire:componentes.card titulo='{{$cant_atrasados}} prestamos' descripcion='atrasados' icono='file-clock' color_text='black' color_bg='bg-white dark:bg-transparent'/>    
             
             </div>
         </div>

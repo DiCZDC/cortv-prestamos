@@ -9,7 +9,7 @@
             {{-- info de la vista --}}
             <div class="flex flex-col justify-center gap-6 pl-3 w-full">
                 
-                <x-componentes.titulo icono="book-copy" texto="Prestamos" />
+                <x-componentes.titulo icono="layers" texto="Prestamos" />
                 
                 <div class="flex w-full justify-between pr-5 ">
                         <x-componentes.subtitulo icono="book-alert" texto="Prestamos pendientes de aprobar" />
@@ -20,7 +20,7 @@
                             class=" bg-rojo-si! text-[#c10007]! font-bold text-sm! border-none!
                             hover:bg-[#c10007]! 
                             hover:text-hueso! 
-                            transition-all duration-200 ease-out 
+                            transition-all duration-200 ease-out delay-150
                             hover:-translate-y-1.5 active:scale-95 cursor-pointer">
                             Crear nuevo prestamo
                         </flux:button>

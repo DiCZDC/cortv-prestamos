@@ -81,7 +81,7 @@ new class extends Component
     
 };
 ?>
-<div class="flex flex-col bg-white shadow-2xl rounded-2xl px-12 py-6 w-full mt-9
+<div class="flex flex-col bg-white shadow-xl rounded-2xl px-12 py-6 w-full mt-9
             dark:bg-neutral-800
 ">  
         {{-- titulo --}}
@@ -93,7 +93,7 @@ new class extends Component
             <h1 class="font-bold inline text-center text-wrap
                     text-2xl
                     md:text-4xl
-            ">Agrega equipo <br> a la solicitud</h1>
+            ">Agrega un equipo <br> a la solicitud</h1>
         </div>
         
         {{-- campos --}}
@@ -144,9 +144,12 @@ new class extends Component
                 <flux:error name="nombre_unidad_equipo" />
             </flux:field>
                 
-            <flux:button wire:click="agregar" variant="primary" 
-            class="border-none w-full bg-rojo_claro!
-                    text-hueso        
+            <flux:button wire:click="agregar" variant="primary" icon="layers-plus" :disabled="empty($nombre_equipo) || empty($nombre_unidad_equipo) || empty($from) || empty($to)"
+            class=" bg-rojo-si! text-[#c10007]! font-bold text-sm! border-none!
+                                hover:bg-[#c10007]! 
+                                hover:text-hueso! 
+                                transition-all duration-200 ease-out delay-100
+                                hover:-translate-y-1.5 active:scale-95 cursor-pointer     
             ">Agregar Equipo</flux:button>
         </div>
       

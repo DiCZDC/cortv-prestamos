@@ -10,7 +10,7 @@ new class extends Component
 {
     use WithPagination;
 
-    public $sortBy = 'id';
+    public $sortBy = 'fecha_devolucion';
 
     public $sortDirection = 'ASC';
 
@@ -50,9 +50,9 @@ new class extends Component
             ->whereNull('fecha_entrega')
             ->when($this->filter !== '', function ($query) {
                 if ($this->filter == 'atrasado') {
-                    $query->where('fecha_devolucion', '<=', now()->toDateString());
+                    $query->whereDate('fecha_devolucion', '<', now()->toDateString());
                 } elseif ($this->filter == 'tiempo') {
-                    $query->where('fecha_devolucion', '>', now()->toDateString());
+                    $query->whereDate('fecha_devolucion', '>=', now()->toDateString());
                 }
                 // dd($this->filter);
             })

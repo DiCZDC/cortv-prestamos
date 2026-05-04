@@ -38,13 +38,13 @@
 
                     
                     <flux:table.cell variant="strong">
-                        <flux:badge color="sky">
+                        <flux:badge color="blue">
                             {{ $prestamo->fecha_prestamo }}
                         </flux:badge>
                     </flux:table.cell>
                     
                     <flux:table.cell variant="strong">
-                        <flux:badge color="sky">
+                        <flux:badge color="amber">
                             {{ $prestamo->fecha_devolucion }}
                         </flux:badge>
                     </flux:table.cell>
