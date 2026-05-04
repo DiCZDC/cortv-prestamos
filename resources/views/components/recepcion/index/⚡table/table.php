@@ -10,7 +10,7 @@ new class extends Component
 {
     use WithPagination;
 
-    public $sortBy = 'id';
+    public $sortBy = 'fecha_devolucion';
 
     public $sortDirection = 'ASC';
 

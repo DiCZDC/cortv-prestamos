@@ -47,8 +47,8 @@
                         {{ Str::limit($prestamo->motivo, 30, '...') }}
                     </flux:table.cell>
 
-                    <flux:table.cell variant="strong">  <flux:badge> {{ $prestamo->fecha_prestamo }} </flux:badge></flux:table.cell>
-                    <flux:table.cell variant="strong"> <flux:badge> {{ $prestamo->fecha_devolucion }} </flux:badge></flux:table.cell>
+                    <flux:table.cell variant="strong">  <flux:badge color="blue"> {{ $prestamo->fecha_prestamo }} </flux:badge></flux:table.cell>
+                    <flux:table.cell variant="strong"> <flux:badge color="amber"> {{ $prestamo->fecha_devolucion }} </flux:badge></flux:table.cell>
 
                     {{-- Fecha real de entrega --}}
                     <flux:table.cell variant="strong">
