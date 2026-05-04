@@ -30,6 +30,6 @@ new class extends Component
             ->when($user->hasRole('trabajador'), function ($query) use ($user) {
                 $query->where('solicituds.id_trabajador', $user->id);
             })
-            ->paginate(5);
+            ->paginate(4);
     }
 };

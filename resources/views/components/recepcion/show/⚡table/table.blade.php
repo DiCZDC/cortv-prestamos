@@ -67,20 +67,29 @@
             @endforelse
         </flux:table.rows>
     </flux:table>
-    
-        <div class="flex justify-center gap-30 ">               
+        <div class="flex justify-center gap-30">               
             <flux:modal.trigger name="Confirmar">
-
-            <flux:button 
-                icon="package-check" 
-                class="bg-[#e7fac0]! text-[#3c6300]! font-bold text-sm! border-none!
-                hover:bg-[#BFF056]! 
-                hover:text-[#253D00]! 
-                transition-all duration-200 ease-out 
-                hover:-translate-y-1.5 active:scale-95 cursor-pointer">
-                Recibir
-            </flux:button>
-
+            @if($this->solicitudInfo->estado === 'Entregada')
+                <flux:button 
+                    :disabled="$this->solicitudInfo->estado !== 'Entregada'"
+                    icon="package-check" 
+                    class="bg-[#e7fac0]! text-[#3c6300]! font-bold text-sm! border-none!
+                    hover:bg-[#BFF056]! 
+                    hover:text-[#253D00]! 
+                    transition-all duration-200 ease-out 
+                    hover:-translate-y-1.5 active:scale-95 cursor-pointer">
+                    Recibir
+                </flux:button>
+            @else
+                <flux:button
+                    disabled
+                    icon="package-check" 
+                    class="bg-gray-700! text-hueso! font-bold text-sm! border-none! w-full
+                    transition-all duration-200 ease-out 
+                    hover:-translate-y-1.5 active:scale-95 cursor-not-allowed">
+                    {{ $this->solicitudInfo->estado }}
+                </flux:button>
+            @endif
             </flux:modal.trigger>            
         </div>
     </div>
