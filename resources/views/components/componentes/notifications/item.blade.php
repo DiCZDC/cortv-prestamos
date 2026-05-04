@@ -26,10 +26,15 @@ new class extends Component
             />
             <div class="flex flex-col items-start gap-4 w-full max-w-xs">
                 <div class="min-w-0 flex-1">
-                    <flux:heading size="sm">
-                        {{ $notification->data['header'] ?? 'Sin título' }}
-                    </flux:heading>
-                    <flux:text>
+                    <div class= "flex items-center justify-between gap-2 mb-2">
+                        <flux:heading size="sm">
+                            {{ $notification->data['header'] ?? 'Sin título' }}
+                        </flux:heading>
+                        <flux:badge color="lime" size="sm">
+                            {{ $notification->created_at->locale('es')->diffForHumans() }}
+                        </flux:badge>
+                    </div>
+                    <flux:text class="text-justify">
                         {{ $notification->data['subtitle'] ?? 'Sin subtítulo' }}
                     </flux:text>
                 </div>
