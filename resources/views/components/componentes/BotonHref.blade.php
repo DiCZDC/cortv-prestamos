@@ -7,7 +7,8 @@
 <flux:button 
     href="{{ $routeUrl }}"      
     icon:trailing="{{ $icon }}" 
-    class="!bg-{{ $color }} !text-white hover:!bg-{{ $color }}/90 transition delay-150 duration-300 ease-in-out  hover:scale-107"
+    class="!bg-{{ $color }} !text-white hover:!bg-{{ $color }}/90 transition delay-150 duration-300 ease-in-out  hover:scale-107
+     border-none"
 >
     {{ __($texto) }}
 </flux:button>
