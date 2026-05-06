@@ -1,5 +1,6 @@
 @php
     $producto = App\Models\Equipo::find($id);
+    $unidad = '';
 @endphp
 
 <x-layouts::app title="Equipo">
@@ -14,6 +15,19 @@
         </div>
     <div class="flex gap-12 mt-10 flex-col lg:flex-row ">
         <div class="w-full lg:w-2/3 rounded-lg shadow-md p-8 bg-white dark:bg-transparent">
+            <div class="w-full flex items-center justify-end mb-3">
+                <flux:modal.trigger name="create-unidad">
+                    <flux:button 
+                        icon="book-up" 
+                        class=" bg-rojo-si! text-[#c10007]! font-bold text-sm! border-none!
+                        hover:bg-[#c10007]! 
+                        hover:text-hueso! 
+                        transition-all duration-200 ease-out delay-150
+                        hover:-translate-y-1.5 active:scale-95 cursor-pointer">
+                        Crear nuevo prestamo
+                    </flux:button>
+                </flux:modal.trigger>
+            </div>
             <livewire:equipo.show.table :id="$id" lazy/>
         </div>
         <div class="flex flex-col w-auto  p-8 items-center justify-center  ">
@@ -25,4 +39,5 @@
             <livewire:calendario.multidate_small lazy/>
         </div>
     </div>
+    <livewire:equipo.show.agregar_unidades :producto="$producto"/>
 </x-layouts::app>

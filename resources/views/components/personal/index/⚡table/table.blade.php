@@ -39,7 +39,9 @@
                     <flux:table.cell class="flex-row  gap-4">
                         <x-componentes.boton-href ruta="personal.show" texto="Ver" icon="eye" :id="$persona->id" />    
                         <flux:modal.trigger name="update-role.{{ $persona->id }}">
-                            <flux:button>
+                            <flux:button variant="outline" 
+                                        icon:trailing="user-pen" 
+                                        class="text-azul_oscuro border-azul_oscuro hover:bg-azul_oscuro/10 cursor-pointer">
                                 Actualizar rol
                             </flux:button>
                         </flux:modal.trigger>
