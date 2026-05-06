@@ -5,18 +5,24 @@
 <div class="flex flex-col gap-6">
 
     <div>
+        @if( $this->SolicitudInfo()->estado === 'Autorizada' )
         <flux:callout 
             variant="{{$Prestamo_Activo ? 'warning' : 'success'}}" 
             icon="{{$Prestamo_Activo ? 'exclamation-circle' : 'check-circle'}}" 
             heading="{{$Prestamo_Activo ? 
-                        'La solicitud tiene conflictos con otros prestamos' : 
-                        'La solicitud no tiene conflictos pendientes'
+                        'El equipo de la solicitud tiene conflictos para la entrega' : 
+                        'La solicitud no tiene conflictos para la entrega'
                     }}" 
             text="{{$Prestamo_Activo ? 
-                        'Selecciona una unidad disponible y marca su confirmación para cada equipo en conflicto antes de autorizar.' : 
-                        'Todos los equipos solicitados están disponibles o ya tienen un reemplazo confirmado.'
+                        'Selecciona una unidad disponible y marca su confirmación para cada equipo en conflicto antes de entregar.' : 
+                        'Todos los equipos solicitados están disponibles o ya tienen un reemplazo valido.'
                     }}" 
         />
+        @elseif ($this->SolicitudInfo()->estado === 'Entregada')
+            <flux:callout color="green" icon="information-circle" heading="El equipo ha sido entregado correctamente." />
+        @endif
+
+
     </div>
 
     <div class="bg-white rounded-lg shadow-md px-5 py-6.5 flex flex-col dark:bg-transparent">
@@ -132,7 +138,7 @@
                 
                     @if($this->SolicitudInfo()->estado === 'Entregada')
                     <div class="flex justify-center mt-5">
-                        <flux:button disabled variant="primary" icon="clipboard-check" class="w-9/10 !bg-verde_mid border-none !text-white">Solicitud Entregada</flux:button>
+                        <flux:button disabled variant="primary" icon="package-check" class="w-9/10 !bg-[#00a661] border-none !text-[#f0fdf4]">Solicitud Entregada</flux:button>
                     </div>
                     @else
                     <div class="flex justify-center mt-5">
