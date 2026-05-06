@@ -97,6 +97,7 @@ new class extends Component
             if (! $confirmado) {
                 return true;
             }
+
             return ! $this->esReemplazoValido($detalle, $unidadSeleccionadaId);
         });
     }
@@ -137,10 +138,10 @@ new class extends Component
     {
         return Unidad_Equipo::where('id_equipo', $id)
             ->whereNotIn('id', $this->equipos_ocupados())
-            ->where('mantenimiento', false)  
+            ->where('mantenimiento', false)
             ->get();
     }
-  
+
     public function actualizar($estado)
     {
         app(PrestamoController::class)->update(new Request([
@@ -156,7 +157,8 @@ new class extends Component
         );
     }
 
-    public function entregar(){
+    public function entregar()
+    {
         if ($this->conflictosPendientes()) {
             Flux::toast(
                 heading: 'Conflictos pendientes',
@@ -185,5 +187,4 @@ new class extends Component
             Flux::toast(heading: 'Error', text: $e->getMessage(), variant: 'danger');
         }
     }
-    
 };

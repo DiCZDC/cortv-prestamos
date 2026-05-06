@@ -97,6 +97,7 @@ new class extends Component
             if (! $confirmado) {
                 return true;
             }
+
             return ! $this->esReemplazoValido($detalle, $unidadSeleccionadaId);
         });
     }
@@ -137,7 +138,7 @@ new class extends Component
     {
         return Unidad_Equipo::where('id_equipo', $id)
             ->whereNotIn('id', $this->equipos_ocupados())
-            ->where('mantenimiento', false)  
+            ->where('mantenimiento', false)
             ->get();
     }
 
@@ -194,5 +195,5 @@ new class extends Component
             text: 'La solicitud de préstamo de '.$solicitud->trabajador->name.' fue '.($estado === 'Autorizada' ? 'autorizada' : 'rechazada').'.',
             variant: $estado === 'Autorizada' ? 'success' : 'danger',
         );
-    }   
+    }
 };
