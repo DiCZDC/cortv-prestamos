@@ -31,7 +31,6 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $input['password'],
         ]);
 
-
         return $user;
     }
 }

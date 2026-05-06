@@ -140,9 +140,23 @@ new class extends Component
             ->where('mantenimiento', false)  
             ->get();
     }
-
-    public function autorizar()
+  
+    public function actualizar($estado)
     {
+        app(PrestamoController::class)->update(new Request([
+            'solicitud_id' => $this->solicitudId,
+            'estado' => $estado,
+            'id_admin' => Auth::user()->id,
+        ]));
+        $solicitud = Solicitud::find($this->solicitudId);
+        Flux::toast(
+            heading: $estado === 'Autorizada' ? 'Solicitud autorizada' : 'Solicitud rechazada',
+            text: 'La solicitud de préstamo de '.$solicitud->trabajador->name.' fue '.($estado === 'Autorizada' ? 'autorizada' : 'rechazada').'.',
+            variant: $estado === 'Autorizada' ? 'success' : 'danger',
+        );
+    }
+
+    public function entregar(){
         if ($this->conflictosPendientes()) {
             Flux::toast(
                 heading: 'Conflictos pendientes',
@@ -165,34 +179,11 @@ new class extends Component
         }
 
         try {
-            $this->actualizar('Autorizada');
+            $this->actualizar('Entregada');
 
         } catch (Exception $e) {
             Flux::toast(heading: 'Error', text: $e->getMessage(), variant: 'danger');
         }
     }
-
-    public function rechazar()
-    {
-        try {
-            $this->actualizar('Rechazada');
-        } catch (Exception $e) {
-            Flux::toast(heading: 'Error', text: $e->getMessage(), variant: 'danger');
-        }
-    }
-
-    public function actualizar($estado)
-    {
-        app(PrestamoController::class)->update(new Request([
-            'solicitud_id' => $this->solicitudId,
-            'estado' => $estado,
-            'id_admin' => Auth::user()->id,
-        ]));
-        $solicitud = Solicitud::find($this->solicitudId);
-        Flux::toast(
-            heading: $estado === 'Autorizada' ? 'Solicitud autorizada' : 'Solicitud rechazada',
-            text: 'La solicitud de préstamo de '.$solicitud->trabajador->name.' fue '.($estado === 'Autorizada' ? 'autorizada' : 'rechazada').'.',
-            variant: $estado === 'Autorizada' ? 'success' : 'danger',
-        );
-    }   
+    
 };

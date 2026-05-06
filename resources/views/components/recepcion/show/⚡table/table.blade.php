@@ -23,9 +23,7 @@
                 <div class="pl-8">
                     <span class="text-gris_claro text-xs font-light">¿El equipo requiere mantenimiento?</span>
                 </div>      
-
             </div>
-            
             
             </flux:table.column>  
         </flux:table.columns>
@@ -55,7 +53,6 @@
                         </div>    
                     
                     </flux:table.cell>
-
                 </flux:table.row>
             @empty
 
@@ -73,9 +70,9 @@
                 <flux:button 
                     :disabled="$this->solicitudInfo->estado !== 'Entregada'"
                     icon="package-check" 
-                    class="bg-[#e7fac0]! text-[#3c6300]! font-bold text-sm! border-none!
-                    hover:bg-[#BFF056]! 
-                    hover:text-[#253D00]! 
+                    class="bg-[#f0fdf4]! text-[#00a661]! font-bold text-sm! border-none!
+                    hover:bg-[#00a661]! 
+                    hover:text-[#f0fdf4]! 
                     transition-all duration-200 ease-out delay-100
                     hover:-translate-y-1.5 active:scale-95 cursor-pointer">
                     Recibir

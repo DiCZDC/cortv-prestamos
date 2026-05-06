@@ -5,18 +5,24 @@
 <div class="flex flex-col gap-6">
 
     <div>
+        @if( $this->SolicitudInfo()->estado === 'Autorizada' )
         <flux:callout 
             variant="{{$Prestamo_Activo ? 'warning' : 'success'}}" 
             icon="{{$Prestamo_Activo ? 'exclamation-circle' : 'check-circle'}}" 
             heading="{{$Prestamo_Activo ? 
-                        'La solicitud tiene conflictos con otros prestamos' : 
-                        'La solicitud no tiene conflictos pendientes'
+                        'El equipo de la solicitud tiene conflictos para la entrega' : 
+                        'La solicitud no tiene conflictos para la entrega'
                     }}" 
             text="{{$Prestamo_Activo ? 
-                        'Selecciona una unidad disponible y marca su confirmación para cada equipo en conflicto antes de autorizar.' : 
-                        'Todos los equipos solicitados están disponibles o ya tienen un reemplazo confirmado.'
+                        'Selecciona una unidad disponible y marca su confirmación para cada equipo en conflicto antes de entregar.' : 
+                        'Todos los equipos solicitados están disponibles o ya tienen un reemplazo valido.'
                     }}" 
         />
+        @elseif ($this->SolicitudInfo()->estado === 'Entregada')
+            <flux:callout color="green" icon="information-circle" heading="El equipo ha sido entregado correctamente." />
+        @endif
+
+
     </div>
 
     <div class="bg-white rounded-lg shadow-md px-5 py-6.5 flex flex-col dark:bg-transparent">
@@ -69,7 +75,7 @@
                                                 <div class="w-full">
                                                     
                                                     <flux:select wire:model.live="unidadesSeleccionadas.{{ $detalle->id }}" 
-                                                        wire:key="selector-unidad-{{ $detalle->id }}" :disabled="$this->solicitudInfo()->estado !== 'Pendiente'">
+                                                        wire:key="selector-unidad-{{ $detalle->id }}" :disabled="$this->solicitudInfo()->estado !== 'Autorizada'">
                                                         <flux:select.option value="{{ $detalle->Unidad_Equipo->id }}">
                                                             {{ $detalle->Unidad_Equipo->sicipo }} (actual)
                                                         </flux:select.option>
@@ -111,7 +117,7 @@
                     </flux:table.rows>
                 </flux:table>
                 
-                @if($this->SolicitudInfo()->estado === 'Pendiente')
+                @if($this->SolicitudInfo()->estado === 'Autorizada')
                     <div class="flex justify-around mt-5">               
                         
                         <flux:modal.trigger name="Confirmar">
@@ -123,32 +129,20 @@
                                 hover:text-[#f0fdf4]! 
                                 transition-all duration-200 ease-out delay-100
                                 hover:-translate-y-1.5 active:scale-95 cursor-pointer">
-                                Aprobar
+                                Entregar
                             </flux:button>
                         </flux:modal.trigger>
-
-                        <flux:modal.trigger name="Rechazar">
-                            <flux:button 
-                                icon="book-alert" 
-                                class=" bg-rojo-si! text-[#c10007]! font-bold text-sm! border-none!
-                                hover:bg-[#c10007]! 
-                                hover:text-hueso! 
-                                transition-all duration-200 ease-out delay-100
-                                hover:-translate-y-1.5 active:scale-95 cursor-pointer">
-                                Rechazar
-                            </flux:button>
-                        </flux:modal.trigger>   
                     
                     </div>
                 @else
                 
-                    @if($this->SolicitudInfo()->estado === 'Autorizada')
+                    @if($this->SolicitudInfo()->estado === 'Entregada')
                     <div class="flex justify-center mt-5">
-                        <flux:button disabled variant="primary" icon="clipboard-check" class="w-9/10 !bg-verde_mid border-none !text-white">Solicitud Aprobada</flux:button>
+                        <flux:button disabled variant="primary" icon="package-check" class="w-9/10 !bg-[#00a661] border-none !text-[#f0fdf4]">Solicitud Entregada</flux:button>
                     </div>
                     @else
                     <div class="flex justify-center mt-5">
-                        <flux:button disabled variant="primary" icon="book-x" class="w-9/10 !bg-rojo_claro border-none !text-white">Solicitud Rechazada</flux:button>
+                        <flux:button disabled variant="primary" icon="book-x" class="w-9/10 !bg-rojo_claro border-none !text-white">LIMBO DE PRUEBAS</flux:button>
                     </div>
                     @endif
                 @endif    
@@ -158,9 +152,9 @@
             <flux:modal name="Confirmar" class="min-w-[22rem]">
                 <div class="space-y-6">
                     <div>
-                        <flux:heading size="lg">Aprobar solicitud</flux:heading>
+                        <flux:heading size="lg">Entregar equipo de la solicitud</flux:heading>
                         <flux:text class="mt-2">
-                            Estás a punto de aprobar esta solicitud.<br>
+                            Estás a punto de entregar los equipos de esta solicitud.<br>
                             Esta acción no se puede deshacer.
                         </flux:text>
                     </div>
@@ -172,32 +166,10 @@
                         </flux:modal.close>
                         
                         <flux:modal.close>
-                            <x-btn-wire wire="autorizar" texto="Aprobar" color="verde_mid" icon="book-lock" :disabled="$Prestamo_Activo" />
+                            <x-btn-wire wire="entregar" texto="Entregar" color="verde_mid" icon="book-lock" :disabled="$Prestamo_Activo" />
                         </flux:modal.close>
                     </div>
                 </div>
             </flux:modal>
 
-            <flux:modal name="Rechazar" class="min-w-[22rem]">
-                <div class="space-y-6">
-                    <div>
-                        <flux:heading size="lg">Rechazar solicitud</flux:heading>
-                        <flux:text class="mt-2">
-                            Estás a punto de rechazar esta solicitud.<br>
-                            Esta acción no se puede deshacer.
-                        </flux:text>
-                    </div>
-                    
-                    <div class="flex justify-around">
-                        <flux:modal.close>
-                            <flux:button >Regresar</flux:button>
-                        </flux:modal.close>
-                        
-                        <flux:modal.close>
-                            <x-btn-wire wire="rechazar" texto="Rechazar" color="rojo_claro" icon="book-x" />
-                        </flux:modal.close>
-                    </div>
-                </div>
-            </flux:modal>
-    
 </div>
