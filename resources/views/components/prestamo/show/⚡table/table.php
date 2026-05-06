@@ -138,6 +138,7 @@ new class extends Component
     {
         return Unidad_Equipo::where('id_equipo', $id)
             ->whereNotIn('id', $this->equipos_ocupados())
+            ->where('mantenimiento', false)  
             ->get();
     }
 

@@ -16,7 +16,7 @@
             ">  
 
                 <div class="flex justify-center items-center gap-3 mb-1 text-rojo_claro">
-                    <flux:icon name="file" class="inline 
+                    <flux:icon name="file-box" class="inline 
                     size-8
                     md:size-12" />
                     <h1 class="font-bold inline
@@ -151,8 +151,8 @@
                     
                 
                 <div class="flex  gap-15 row-reverse justify-center mt-2">
-                    <x-componentes.btnsformulario type="submit" texto="Enviar" color="verde_mid" icon="send" :trailing="true"/>
-                    <x-componentes.btnsformulario type="button" texto="Cancelar" color="rojo_claro" icon="circle-x" :trailing="true"/>  
+                    <x-componentes.btnsformulario type="submit" texto="Enviar" tipo="aceptar" icon="send" :trailing="true"/>
+                    <x-componentes.btnsformulario type="button" texto="Cancelar" tipo="cancelar" icon="circle-x" :trailing="true"/>  
                 </div>
             </div>
 

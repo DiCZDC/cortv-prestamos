@@ -44,8 +44,6 @@ class RecepcionController extends Controller
             $icono = 'clock-check'; 
         }
 
-
-
-        return view('vistas.recepcion.show', ['id' => $id,  'prestamo' => $prestamo, 'titulo' => $titulo, 'descripcion' => $descripcion, 'color_text' => $color_text, 'icono' => $icono]);
+        return view('vistas.recepcion.show', compact('id', 'prestamo', 'titulo', 'descripcion', 'color_text', 'icono'));
     }
 }

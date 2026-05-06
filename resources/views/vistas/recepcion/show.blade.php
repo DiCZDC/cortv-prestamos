@@ -1,4 +1,3 @@
-
 <x-layouts::app title="Mostrar Préstamo">
     <div class="px-4">
         {{-- navegacion interna --}}
@@ -21,7 +20,7 @@
                 
             <div class="flex flex-col items-start justify-center gap-7 pl-3  ">               
                 
-                <x-componentes.titulo icono="book-marked" texto="Detalles de la recepción" />
+                <x-componentes.titulo icono="package-open" texto="Detalles de la recepción" />
                 <x-componentes.subtitulo icono="square-user-round" texto=" {{ __('Solicitud de:') }} {{ $prestamo->trabajador->name }}" />
             </div> 
             <div class="pl-3 mt-2">

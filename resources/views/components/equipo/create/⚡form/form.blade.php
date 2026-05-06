@@ -35,8 +35,8 @@
             </div>
             
             <div class="flex gap-15 row-reverse justify-center mt-12">
-                <x-componentes.btnsformulario type="submit" texto="Crear" color="verde_mid" icon="circle-check" />
-                <x-componentes.btnsformulario type="button" texto="Cancelar" color="rojo_claro" icon="circle-x" wire:click="cancel" />  
+                <x-componentes.btnsformulario type="submit" texto="Crear" tipo="aceptar" icon="circle-check" />
+                <x-componentes.btnsformulario type="button" texto="Cancelar" tipo="cancelar" icon="circle-x" wire:click="cancel" />  
             </div>
         </div>
         
