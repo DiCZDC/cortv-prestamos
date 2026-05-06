@@ -124,9 +124,9 @@
                             <flux:button 
                                 :disabled="$Prestamo_Activo"
                                 icon="book-up" 
-                                class=" bg-[#f0fdf4]! text-[#00a661]! font-bold text-sm! border-none!
-                                hover:bg-[#00a661]! 
-                                hover:text-[#f0fdf4]! 
+                                class=" bg-verde-hover! text-verde-confirmacion! font-bold text-sm! border-none!
+                                hover:bg-verde-confirmacion! 
+                                hover:text-verde-hover! 
                                 transition-all duration-200 ease-out delay-100
                                 hover:-translate-y-1.5 active:scale-95 cursor-pointer">
                                 Entregar
@@ -138,7 +138,7 @@
                 
                     @if($this->SolicitudInfo()->estado === 'Entregada')
                     <div class="flex justify-center mt-5">
-                        <flux:button disabled variant="primary" icon="package-check" class="w-9/10 !bg-[#00a661] border-none !text-[#f0fdf4]">Solicitud Entregada</flux:button>
+                        <flux:button disabled variant="primary" icon="package-check" class="w-9/10 !bg-verde-confirmacion border-none !text-verde-hover">Solicitud Entregada</flux:button>
                     </div>
                     @else
                     <div class="flex justify-center mt-5">

@@ -118,9 +118,9 @@
                             <flux:button 
                                 :disabled="$Prestamo_Activo"
                                 icon="book-up" 
-                                class=" bg-[#f0fdf4]! text-[#00a661]! font-bold text-sm! border-none!
-                                hover:bg-[#00a661]! 
-                                hover:text-[#f0fdf4]! 
+                                class=" bg-verde-hover! text-verde-confirmacion! font-bold text-sm! border-none!
+                                hover:bg-verde-confirmacion! 
+                                hover:text-verde-hover! 
                                 transition-all duration-200 ease-out delay-100
                                 hover:-translate-y-1.5 active:scale-95 cursor-pointer">
                                 Aprobar
@@ -130,8 +130,8 @@
                         <flux:modal.trigger name="Rechazar">
                             <flux:button 
                                 icon="book-alert" 
-                                class=" bg-rojo-si! text-[#c10007]! font-bold text-sm! border-none!
-                                hover:bg-[#c10007]! 
+                                class=" bg-rojo-si! text-rojo-negacion! font-bold text-sm! border-none!
+                                hover:bg-rojo-negacion! 
                                 hover:text-hueso! 
                                 transition-all duration-200 ease-out delay-100
                                 hover:-translate-y-1.5 active:scale-95 cursor-pointer">
