@@ -15,7 +15,7 @@
                 md:flex-row ">
         
         {{-- div grande 1 --}}
-       <section class="flex flex-col self-start pt-8 gap-19  h-full w-full
+       <section class="flex flex-col self-start pt-8 gap-11  h-full w-full
                 md:w-[55%]">
                 
         {{-- info de la vista --}}
@@ -31,18 +31,10 @@
                 <x-componentes.subtitulo icono="shield-user" texto=" {{ __('Autorizada por:') }} {{ $prestamo->admin->name }}" />
             </div>
         </div>
-
-            <div class="bg-white dark:bg-zinc-900 rounded-lg shadow-md px-5 py-7 flex flex-col gap-3 ">
                 
-                <div class="inline-flex items-center text-gris_claro gap-3 ml-5">
-                    <flux:icon.clipboard-paste class="size-10" />
-                    <span class="font-medium text-3xl">Resumen de la solicitud</span>  
-                </div>
-                
-                <div class="px-10 h-9/10 w-full ">
-                    <livewire:recepcion.show.table from="{{ $prestamo->fecha_prestamo }}" to="{{ $prestamo->fecha_devolucion }}" :solicitudId="$id" lazy/>
-                </div>
-            </div>
+        <div class="pl-3"> 
+                <livewire:entrega.show.table from="{{ $prestamo->fecha_prestamo }}" to="{{ $prestamo->fecha_devolucion }}" :solicitudId="$id" lazy/>
+        </div>
 
         </section> 
 

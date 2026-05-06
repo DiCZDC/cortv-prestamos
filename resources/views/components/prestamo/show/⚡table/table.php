@@ -97,7 +97,6 @@ new class extends Component
             if (! $confirmado) {
                 return true;
             }
-
             return ! $this->esReemplazoValido($detalle, $unidadSeleccionadaId);
         });
     }
@@ -195,5 +194,5 @@ new class extends Component
             text: 'La solicitud de préstamo de '.$solicitud->trabajador->name.' fue '.($estado === 'Autorizada' ? 'autorizada' : 'rechazada').'.',
             variant: $estado === 'Autorizada' ? 'success' : 'danger',
         );
-    }
+    }   
 };

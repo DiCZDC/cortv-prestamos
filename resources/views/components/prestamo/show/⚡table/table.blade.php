@@ -140,9 +140,8 @@
                         </flux:modal.trigger>   
                     
                     </div>
-                
                 @else
-                    
+                
                     @if($this->SolicitudInfo()->estado === 'Autorizada')
                     <div class="flex justify-center mt-5">
                         <flux:button disabled variant="primary" icon="clipboard-check" class="w-9/10 !bg-verde_mid border-none !text-white">Solicitud Aprobada</flux:button>
