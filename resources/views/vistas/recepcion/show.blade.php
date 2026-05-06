@@ -37,7 +37,7 @@
 
                 
                 <div class="px-10 h-9/10 w-full ">
-                    <livewire:recepcion.show.table from="{{ $prestamo->fecha_prestamo }}" to="{{ $prestamo->fecha_devolucion }}" :solicitudId="$id" lazy/>
+                    <livewire:recepcion.show.table :solicitudId="$id" lazy/>
                 </div>
             </div>
 

@@ -5,20 +5,18 @@
 <div class="flex flex-col gap-6">
 
     <div>
-        @if( $this->SolicitudInfo()->estado === 'Pendiente')
-                        <flux:callout 
-                            variant="{{$Prestamo_Activo ? 'warning' : 'success'}}" 
-                            icon="{{$Prestamo_Activo ? 'exclamation-circle' : 'check-circle'}}" 
-                            heading="{{$Prestamo_Activo ? 
-                                        'La solicitud tiene conflictos con otros prestamos' : 
-                                        'La solicitud no tiene conflictos pendientes'
-                                    }}" 
-                            text="{{$Prestamo_Activo ? 
-                                        'Selecciona una unidad disponible y marca su confirmación para cada equipo en conflicto antes de autorizar.' : 
-                                        'Todos los equipos solicitados están disponibles o ya tienen un reemplazo confirmado.'
-                                    }}" 
-                        />
-                    @endif
+        <flux:callout 
+            variant="{{$Prestamo_Activo ? 'warning' : 'success'}}" 
+            icon="{{$Prestamo_Activo ? 'exclamation-circle' : 'check-circle'}}" 
+            heading="{{$Prestamo_Activo ? 
+                        'La solicitud tiene conflictos con otros prestamos' : 
+                        'La solicitud no tiene conflictos pendientes'
+                    }}" 
+            text="{{$Prestamo_Activo ? 
+                        'Selecciona una unidad disponible y marca su confirmación para cada equipo en conflicto antes de autorizar.' : 
+                        'Todos los equipos solicitados están disponibles o ya tienen un reemplazo confirmado.'
+                    }}" 
+        />
     </div>
 
     <div class="bg-white rounded-lg shadow-md px-5 py-6.5 flex flex-col dark:bg-transparent">
@@ -57,7 +55,7 @@
                                         $estadoBadgeDisponible = $detalle->Disponible;
                                     @endphp
                                         @if ($detalle->Disponible)
-                                            {{ $detalle->Unidad_Equipo->sicipo }}
+                                             <flux:badge color="blue" class="text-azul_oscuro! ">{{ $detalle->Unidad_Equipo->sicipo }} </flux:badge>       
                                         @else
                                             @php
                                                 $equiposDisponibles = $this->equipos_libres($detalle->Unidad_Equipo->Equipo->id);
