@@ -23,7 +23,7 @@
             <x-componentes.header_table> ID </x-componentes.header_table>
             <x-componentes.header_table icon="id-card">Nombre</x-componentes.header_table>
             <x-componentes.header_table icon="mail">Correo</x-componentes.header_table>
-            <x-componentes.header_table icon="contact-round" sortable="rol" :sortBy="$sortBy" :sortDirection="$sortDirection">Rol</x-componentes.header_table>
+            <x-componentes.header_table icon="user-round-key" sortable="rol" :sortBy="$sortBy" :sortDirection="$sortDirection">Rol</x-componentes.header_table>
             <x-componentes.header_table icon="target">Acciones</x-componentes.header_table>
         </flux:table.columns>
     {{-- contenido de la tabla --}}
@@ -48,7 +48,7 @@
 
                             <flux:icon :name="match($persona->roles->first()?->name) {
                                 'admin' => 'shield-user',
-                                'trabajador' => 'user-round',
+                                'trabajador' => 'contact-round',
                                 default => 'user-round-x'
                             }"
                             
