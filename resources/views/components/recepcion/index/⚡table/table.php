@@ -48,19 +48,22 @@ new class extends Component
         return Solicitud::query()
             ->where('estado', 'Entregada')
             ->whereNull('fecha_entrega')
+
             ->when($this->filter !== '', function ($query) {
                 if ($this->filter == 'atrasado') {
                     $query->whereDate('fecha_devolucion', '<', now()->toDateString());
                 } elseif ($this->filter == 'tiempo') {
                     $query->whereDate('fecha_devolucion', '>=', now()->toDateString());
                 }
-                // dd($this->filter);
             })
+
             ->orderBy("solicituds.{$this->sortBy}", $this->sortDirection)
+
             ->join('users', 'solicituds.id_trabajador', '=', 'users.id')
             ->select('solicituds.*', 'users.name as nombre_trabajador')
             ->join('users as admin', 'solicituds.id_admin', '=', 'admin.id')
             ->select('solicituds.*', 'users.name as nombre_trabajador', 'admin.name as nombre_admin')
+
             ->when($this->search !== '', function ($query) {
                 $query
                     ->whereRaw('LOWER(users.name) like ?', ['%'.strtolower($this->search).'%'])
