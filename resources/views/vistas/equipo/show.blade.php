@@ -24,7 +24,7 @@
                         hover:text-hueso! 
                         transition-all duration-200 ease-out delay-150
                         hover:-translate-y-1.5 active:scale-95 cursor-pointer">
-                        Crear nuevo prestamo
+                        Agregar una nueva unidad
                     </flux:button>
                 </flux:modal.trigger>
             </div>

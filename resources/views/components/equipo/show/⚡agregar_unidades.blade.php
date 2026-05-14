@@ -44,7 +44,7 @@ new class extends Component
                 </div>
 
                 {{-- REVISAR PARA CORREGIR W --}}
-                <flux:input wire:model.live="unidad" label="Sicipo de la Unidad" placeholder="Ejemplo: 000001" class="w-full" />
+                <flux:input wire:model.live="unidad" label="Número de Sicipo" placeholder="Ejemplo: 000001" class="w-full" />
                 
                 <div class="w-full flex justify-end">
                     <x-btn-wire 
