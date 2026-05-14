@@ -1,6 +1,6 @@
 <?php
 
-use App\http\Controllers\PrestamoController;
+use App\Http\Controllers\PrestamoController;
 use App\Models\Solicitud;
 use App\Models\Solicitud_Equipo;
 use App\Models\Unidad_Equipo;
@@ -130,6 +130,7 @@ new class extends Component
         $prestados = $prestados_1->merge($prestados_2)->merge($prestados_3)->unique();
 
         return Solicitud_Equipo::whereIn('id_solicitud', $prestados)
+            ->where('id_solicitud', '!=', $this->solicitudId)
             ->pluck('id_unidad_equipo')
             ->unique();
     }
@@ -151,9 +152,9 @@ new class extends Component
         ]));
         $solicitud = Solicitud::find($this->solicitudId);
         Flux::toast(
-            heading: $estado === 'Autorizada' ? 'Solicitud autorizada' : 'Solicitud rechazada',
-            text: 'La solicitud de préstamo de '.$solicitud->trabajador->name.' fue '.($estado === 'Autorizada' ? 'autorizada' : 'rechazada').'.',
-            variant: $estado === 'Autorizada' ? 'success' : 'danger',
+            heading:'Prestamo entregado',
+            text: 'El préstamo de '.$solicitud->trabajador->name.' fue entregado.',
+            variant:'success',
         );
     }
 
