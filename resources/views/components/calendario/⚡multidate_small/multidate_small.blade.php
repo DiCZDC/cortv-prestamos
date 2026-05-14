@@ -20,7 +20,6 @@
             >
             <flux:icon.chevron-left class="text-black dark:text-hueso"/>
         </button>
-
         <span class="font-semibold text-md capitalize text-black dark:text-hueso">
             {{ ucfirst($nombreMes) }} {{ $anio }}
         </span>
@@ -32,7 +31,6 @@
             <flux:icon.chevron-right class="text-black dark:text-hueso"/>
         </button>
     </div>
-
     {{-- Días de la semana --}}
     <div class="grid grid-cols-7 text-center text-xs text-gray-500 dark:text-gray-300 mb-1">
         @foreach(['Dom','Lun','Mar','Mie','Jue','Vie','Sab'] as $d)

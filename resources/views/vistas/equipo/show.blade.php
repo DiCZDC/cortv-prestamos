@@ -36,7 +36,7 @@
             ">
                 Fechas Apartadas
             </h1>
-            <livewire:calendario.multidate_small lazy/>
+            <livewire:calendario.multidate_small :id_equipo="$id" lazy/>
         </div>
     </div>
     <livewire:equipo.show.agregar_unidades :producto="$producto"/>
