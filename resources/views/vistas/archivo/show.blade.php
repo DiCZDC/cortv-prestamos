@@ -14,7 +14,9 @@
                 <x-componentes.subtitulo icono="square-user-round" texto=" {{ __('Solicitado por:') }} {{ $Solicitud->trabajador->name }}" />
             </div> 
             <div class="pl-3 mt-2">
+                @if ($Solicitud->admin)
                 <x-componentes.subtitulo icono="shield-user" texto=" {{ __('Autorizado por:') }} {{ $Solicitud->admin->name }}" />
+                @endif
             </div>
     </div>
     

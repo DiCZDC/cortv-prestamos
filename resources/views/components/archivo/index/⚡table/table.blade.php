@@ -1,7 +1,7 @@
 <div class="mt-4">
     @placeholder
         <x-placeholder.table 
-            :header="['ID', 'Trabajador', 'Administrador', 'Motivo', 'Estado del Prestamo', 'Fecha Préstamo', 'Fecha Devolución', 'Fecha Real de Entrega', 'Acciones']" 
+            :header="['ID', 'Trabajador', 'Motivo', 'Estado del Prestamo', 'Fecha Préstamo', 'Fecha Devolución', 'Fecha Real de Entrega', 'Acciones']" 
             filter=true />
     @endplaceholder
     <livewire:componentes.searchbar 
@@ -13,14 +13,14 @@
             'Devuelta' => 'Devuelta',
             'Rechazada' => 'Rechazada',
         ]"/>
-
+    {{ $this->prestamos->count() }}
     <flux:table :paginate="$this->prestamos">
         <flux:table.columns>
             <x-componentes.header_table sortable="id" :sortBy="$sortBy" :sortDirection="$sortDirection"> ID </x-componentes.header_table>            
             @role('admin')
                 <x-componentes.header_table icon="contact-round"> Trabajador</x-componentes.header_table>            
             @endrole
-            <x-componentes.header_table icon="shield-user"> Aprobado por</x-componentes.header_table>
+            {{-- <x-componentes.header_table icon="shield-user"> Aprobado por</x-componentes.header_table> --}}
             <x-componentes.header_table icon="scroll-text"> Motivo</x-componentes.header_table>
             @role('admin')
                 <x-componentes.header_table sortable="id" :sortBy="$sortBy" :sortDirection="$sortDirection" icon="calendar"> Fecha de Solicitud</x-componentes.header_table>
@@ -44,9 +44,9 @@
                             {{ $prestamo->nombre_trabajador}}
                         </flux:table.cell>
                     @endrole
-                    <flux:table.cell class="whitespace-nowrap">
+                    {{-- <flux:table.cell class="whitespace-nowrap">
                         {{ $prestamo->nombre_admin}}
-                    </flux:table.cell>
+                    </flux:table.cell> --}}
 
                     <flux:table.cell class="whitespace-nowrap">
                         {{ Str::limit($prestamo->motivo, 30, '...') }}
