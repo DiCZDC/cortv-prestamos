@@ -146,8 +146,8 @@ new class extends Component
             </flux:field>
                 
             <flux:button wire:click="agregar" variant="primary" icon="layers-plus" :disabled="empty($nombre_equipo) || empty($nombre_unidad_equipo) || empty($from) || empty($to)"
-            class=" bg-rojo-si! text-[#c10007]! font-bold text-sm! border-none!
-                                hover:bg-[#c10007]! 
+            class=" bg-rojo-si! text-rojo-negacion! font-bold text-sm! border-none!
+                                hover:bg-rojo-negacion! 
                                 hover:text-hueso! 
                                 transition-all duration-200 ease-out delay-100
                                 hover:-translate-y-1.5 active:scale-95 cursor-pointer     

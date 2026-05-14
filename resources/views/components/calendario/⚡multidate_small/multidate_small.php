@@ -7,8 +7,8 @@ use Livewire\Component;
 
 new class extends Component
 {
+    public $id_equipo;
     public $anio;
-
     public $mes;
 
     public $range = 3; // Rango de meses a mostrar antes y después del mes actual
@@ -28,6 +28,8 @@ new class extends Component
         return Solicitud_Equipo::query()
             ->join('solicituds', 'solicitud__equipos.id_solicitud', '=', 'solicituds.id')
             ->where('solicituds.estado', 'Autorizada')
+            ->join('unidad__equipos', 'solicitud__equipos.id_unidad_equipo', '=', 'unidad__equipos.id')
+            ->where('unidad__equipos.id', $this->id_equipo)
             ->whereBetween('solicituds.fecha_prestamo', [$inicio, $fin])
             ->select('solicituds.fecha_prestamo', DB::raw('COUNT(solicitud__equipos.id) as total_equipos'))
             ->groupBy('solicituds.fecha_prestamo')

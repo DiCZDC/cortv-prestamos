@@ -57,6 +57,13 @@
     --color-rojo-si:#ffe0e1;
 
     --color-azul-hover: #dcecff;
+
+
+    --color-verde-confirmacion: #00a661;
+    --color-verde-hover: #f0fdf4; 
+
+    --color-rojo-negacion: #c10007;
+
 }
 
 @layer theme {

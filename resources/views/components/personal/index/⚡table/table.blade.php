@@ -1,15 +1,20 @@
-<div>
+<div class="px-2" >
     {{-- It is never too late to be what you might have been. - George Eliot --}}
     @placeholder
         <x-placeholder.table 
             :header="['ID', 'Nombre', 'Correo', 'Rol', 'Acciones']" 
             filter=true 
-            perPage=10
+            perPage=6
         />
     @endplaceholder
     
     <livewire:componentes.searchbar
         placeholder="Buscar por nombre de trabajador o correo..."
+        :filters="[
+            'all' => 'Todos', 
+            'admin' => 'Administradores', 
+            'trabajador' => 'Trabajadores'
+            ]"
     />
     
     <flux:table :paginate="$this->personal">
@@ -18,7 +23,7 @@
             <x-componentes.header_table> ID </x-componentes.header_table>
             <x-componentes.header_table icon="id-card">Nombre</x-componentes.header_table>
             <x-componentes.header_table icon="mail">Correo</x-componentes.header_table>
-            <x-componentes.header_table icon="contact-round">Rol</x-componentes.header_table>
+            <x-componentes.header_table icon="user-round-key" sortable="rol" :sortBy="$sortBy" :sortDirection="$sortDirection">Rol</x-componentes.header_table>
             <x-componentes.header_table icon="target">Acciones</x-componentes.header_table>
         </flux:table.columns>
     {{-- contenido de la tabla --}}
@@ -27,25 +32,59 @@
                 <flux:table.row :key="$persona->id">
                     <flux:table.cell>{{ $persona->id }}</flux:table.cell>
                     <flux:table.cell>{{ $persona->name }}</flux:table.cell>
-                    <flux:table.cell>{{ $persona->email }}</flux:table.cell>
+                    <flux:table.cell>
+                        <flux:badge color="zinc" >
+                            {{ $persona->email }}
+                        </flux:badge>
+                    </flux:table.cell>
                     
-                    <flux:table.cell class="flex items-center gap-1">
-                        <flux:icon :name="$persona->roles->first()?->name == 'admin' ? 'shield-user' : 
-                                        ($persona->roles->first()?->name ? 'user' : 'user-x')"
-                        size="sm" class="mr-1" />
-                        {{ $persona->roles->first()?->name ?? 'Sin rol' }}
+                    <flux:table.cell class="flex items-center! py-5!">
+
+                        <flux:badge :color="match($persona->roles->first()?->name) {
+                            'admin' => 'blue',
+                            'trabajador' => 'cyan',
+                            default => 'zinc'
+                        }">
+
+                            <flux:icon :name="match($persona->roles->first()?->name) {
+                                'admin' => 'shield-user',
+                                'trabajador' => 'contact-round',
+                                default => 'user-round-x'
+                            }"
+                            
+                            size="sm" class="mr-1" />
+                            {{ match($persona->roles->first()?->name) {
+                                'admin' => 'Administrador',
+                                'trabajador' => 'Trabajador',
+                                default => 'Sin rol'
+                            } }}
+
+                        </flux:badge>
+
                     </flux:table.cell>
                     
                     <flux:table.cell class="flex-row  gap-4">
-                        <x-componentes.boton-href ruta="personal.show" texto="Ver" icon="eye" :id="$persona->id" />    
-                        <flux:modal.trigger name="update-role.{{ $persona->id }}">
-                            <flux:button variant="outline" 
-                                        icon:trailing="user-pen" 
-                                        class="text-azul_oscuro border-azul_oscuro hover:bg-azul_oscuro/10 cursor-pointer">
-                                Actualizar rol
-                            </flux:button>
-                        </flux:modal.trigger>
+                        
+                        <div class="flex gap-5">
+                            <flux:modal.trigger name="update-role.{{ $persona->id }}">
+                                <flux:button variant="outline" 
+                                            icon:trailing="user-pen" 
+                                            class="bg-[#fff1bf]! text-[#bb4d00]! font-bold text-sm! border-none!
+                                                    hover:bg-[#FAA543]! 
+                                                    hover:text-white!
+                                                    transition all delay-100 duration-200 ease-out  
+                                                    hover:-translate-y-1.5 active:scale-92 cursor-pointer"
+                                            >
+                                    Actualizar rol
+                                </flux:button>
+                            </flux:modal.trigger>
+
+                            <x-componentes.boton-href ruta="personal.show" texto="Ver" icon="eye" :id="$persona->id" />    
+
+                        </div>
+
                         <livewire:personal.index.modal :persona="$persona" />
+                    
                     </flux:table.cell>
                 </flux:table.row>
             @empty
@@ -57,4 +96,10 @@
             @endforelse
         </flux:table.rows>
     </flux:table>
+    <flux:select size="sm" class="mt-0.5 w-full sm:w-auto" wire:model.live="perPage">
+        <flux:select.option value="6">6</flux:select.option>
+        <flux:select.option value="12">12</flux:select.option>
+        <flux:select.option value="24">24</flux:select.option>
+        <flux:select.option value="48">48</flux:select.option>
+    </flux:select>
 </div>
