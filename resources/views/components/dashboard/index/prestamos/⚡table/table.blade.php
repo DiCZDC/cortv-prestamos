@@ -12,7 +12,7 @@
             <flux:table :paginate="$this->prestamos" >
                 <flux:table.columns>
                     <flux:table.column class="hidden md:block" ></flux:table.column>
-                    <x-componentes.header_table> Equipo </x-componentes.header_table>
+                    <x-componentes.header_table> Motivo </x-componentes.header_table>
                     @role('admin')
                         <x-componentes.header_table> Solicitante </x-componentes.header_table>
                     @endrole
@@ -22,27 +22,38 @@
                 <flux:table.rows>
                     @forelse ($this->prestamos as $prestamo)
                         @php
-                            $dias = round(now()->diffInDays($prestamo->solicitud->fecha_prestamo));
+                            $dias = ceil(now()->diffInDays($prestamo->fecha_prestamo));
                         @endphp
                         <flux:table.row>
                             <flux:table.cell class="hidden md:block">
-                                <flux:icon name="video" />
+                                {{-- <flux:icon name="video" /> --}}
+                                {{ $prestamo->id }}
                             </flux:table.cell>
-                            <flux:table.cell class="text-balance!">{{ $prestamo->unidad_equipo->equipo->marca . ' ' . $prestamo->unidad_equipo->equipo->modelo }}</flux:table.cell>
+                            <flux:table.cell class="text-balance!">{{ $prestamo->motivo }}</flux:table.cell>
                             @role('admin')
-                                <flux:table.cell class="text-balance!">{{ $prestamo->nombre_trabajador }}</flux:table.cell>
+                                <flux:table.cell class="text-balance!">{{ $prestamo->trabajador->name }}</flux:table.cell>
                             @endrole
                             <flux:table.cell>  
-                                <x-componentes.badgeTable :dias="$dias" > 
-                                    @php
-                                        $texto =match(true){
-                                                $dias == 0 => 'Hoy',
-                                                $dias == 1 => 'Mañana',
-                                                $dias > 1 => "En $dias dias",
-                                            }
-                                    @endphp
-                                    {{$texto}}
-                                </x-componentes.badgeTable> 
+                                @php
+                                    $texto =match(true){
+                                        $dias == 0 => 'Hoy',
+                                        $dias == 1 => 'Mañana',
+                                        $dias > 1 => "En $dias dias",
+                                        default => 'Fecha desconocida'
+                                    }
+                                @endphp
+                                    {{-- <x-componentes.boton-href ruta="entrega.show" texto="{{ $texto }}" icon="eye" :id="$prestamo->id" />     --}}
+                                    <flux:button 
+                                        icon:trailing="eye" 
+                                        class=" bg-azul-hover! text-azul_oscuro! font-bold text-sm! border-none!
+                                        hover:bg-azul_oscuro! 
+                                        hover:text-hueso! 
+                                        transition-all duration-200 ease-out delay-150
+                                        hover:-translate-y-1.5 active:scale-95 cursor-pointer"
+                                        href="{{ route('entrega.show', $prestamo->id) }}"
+                                        >
+                                        {{ $texto }}
+                                    </flux:button>
                             </flux:table.cell>
                         </flux:table.row>
                     @empty

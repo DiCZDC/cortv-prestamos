@@ -20,7 +20,7 @@ new class extends Component
     public function prestamo_en_curso()
     {
         return Solicitud::where('id_trabajador', $this->id)
-            ->where('estado', 'Autorizada')
+            ->where('estado', 'Entregada')
             ->first();
     }
 
