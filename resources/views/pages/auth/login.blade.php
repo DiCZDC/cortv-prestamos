@@ -1,6 +1,18 @@
 <x-layouts::auth :title="__('Iniciar Sesión')">
-    <div class="flex flex-col gap-6">
-        <x-auth-header :title="__('Inicia Sesión')" :description="__('Ingresa tu Correo Electrónico y Contraseña para acceder a tu cuenta')" />
+    <div class="flex flex-col gap-6 bg-white/80 rounded-lg p-10 drop-shadow-xl/50 backdrop-blur-sm">
+        
+        {{-- <a href="{{ route('home') }}" class="flex flex-col items-center gap-2 font-medium" wire:navigate>
+                    <span class="flex h-9 w-9 mb-1 items-center justify-center rounded-md">
+                        <x-app-logo/>
+                    </span>
+                    <span class="sr-only">{{ config('app.name', 'Laravel') }}</span>
+        </a> --}}
+
+        <div>
+            <x-app-logo/>
+        </div>
+        
+        <x-auth-header :title="__('Inicia Sesión')" :description="__('Ingresa tus credenciales para acceder')" />
 
         <!-- Session Status -->
         <x-auth-session-status class="text-center" :status="session('status')" />
@@ -31,19 +43,21 @@
                     :placeholder="__('Contraseña')"
                     viewable
                 />
-
-                @if (Route::has('password.request'))
-                    <flux:link class="absolute top-0 text-sm end-0" :href="route('password.request')" wire:navigate>
-                        {{ __('¿Olvidaste tu contraseña?') }}
-                    </flux:link>
-                @endif
+                
             </div>
 
             <!-- Remember Me -->
             <flux:checkbox name="remember" :label="__('Recuérdame')" :checked="old('remember')" />
 
             <div class="flex items-center justify-end">
-                <flux:button variant="primary" type="submit" class="w-full" data-test="login-button">
+                <flux:button variant="primary" type="submit" icon:trailing="log-in" class="w-full 
+                            bg-rojo-si! text-rojo-negacion! font-extrabold border-none!
+                            hover:bg-rojo-negacion! 
+                            hover:text-hueso! 
+                            transition-all duration-200 ease-out delay-150
+                            hover:-translate-y-1.5 active:scale-95 cursor-pointer" 
+                            data-test="login-button">
+                            
                     {{ __('Iniciar sesión') }}
                 </flux:button>
             </div>
