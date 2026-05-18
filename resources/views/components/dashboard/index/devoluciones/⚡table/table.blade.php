@@ -38,14 +38,36 @@
                     @role('admin')
                         <flux:table.cell class="text-balance!">{{ $prestamo->trabajador->name }}</flux:table.cell>
                     @endrole
+                    @php
+                        $colores=['urgente' => '!bg-naranja_logo', 'proximo' => '!bg-rojo_claro', 'normal' => '!bg-rojo_oscuro'];
+                        $color = match(true) {
+                            $dias !== null && $dias <= 5 => $colores['urgente'],
+                            $dias !== null && $dias <= 7 => $colores['proximo'],
+                            $dias !== null && $dias > 7  => $colores['normal'],
+                            default                      => '',
+                        };
+                    @endphp
                     <flux:table.cell>  
-                        {{-- <x-componentes.badgeTable 
+                    {{-- 
+                        <x-componentes.badgeTable 
                         :dias="$dias"
                         :colores="['urgente' => '!bg-naranja_logo', 'proximo' => '!bg-rojo_claro', 'normal' => '!bg-rojo_oscuro']"
                         >
                         {{ $dias }} dias
                     </x-componentes.badgeTable> --}}
-                    <x-componentes.boton-href ruta="recepcion.show" texto="{{ $dias }} dias" icon="eye" :id="$prestamo->id" />    
+                    {{-- <x-componentes.boton-href ruta="recepcion.show" texto="{{ $dias }} dias" icon="eye" :id="$prestamo->id" />     --}}
+                    <flux:button 
+                            icon:trailing="eye" 
+                            class=" {{$color}} text-rojo-negacion! font-bold text-sm! border-none!
+                            hover:bg-rojo-negacion! 
+                            hover:text-hueso! 
+                            transition-all duration-200 ease-out delay-150
+                            hover:-translate-y-1.5 active:scale-95 cursor-pointer"
+                            href="{{ route('recepcion.show', $prestamo->id) }}"
+                            >
+                            
+                            {{ $dias }} dias
+                        </flux:button>
                     </flux:table.cell>
                 </flux:table.row>
             

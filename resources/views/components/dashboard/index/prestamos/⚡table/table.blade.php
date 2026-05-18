@@ -42,7 +42,18 @@
                                         default => 'Fecha desconocida'
                                     }
                                 @endphp
-                                    <x-componentes.boton-href ruta="entrega.show" texto="{{ $texto }}" icon="eye" :id="$prestamo->id" />    
+                                    {{-- <x-componentes.boton-href ruta="entrega.show" texto="{{ $texto }}" icon="eye" :id="$prestamo->id" />     --}}
+                                    <flux:button 
+                                        icon:trailing="eye" 
+                                        class=" bg-azul-hover! text-azul_oscuro! font-bold text-sm! border-none!
+                                        hover:bg-azul_oscuro! 
+                                        hover:text-hueso! 
+                                        transition-all duration-200 ease-out delay-150
+                                        hover:-translate-y-1.5 active:scale-95 cursor-pointer"
+                                        href="{{ route('entrega.show', $prestamo->id) }}"
+                                        >
+                                        {{ $texto }}
+                                    </flux:button>
                             </flux:table.cell>
                         </flux:table.row>
                     @empty

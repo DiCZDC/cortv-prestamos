@@ -22,12 +22,14 @@ class ProcesarRecordatorios implements ShouldQueue
 
     public int $timeout = 30;
 
+    public string $today;
+
     /**
      * Create a new job instance.
      */
     public function __construct()
     {
-        //
+        $this->today = now()->toDateString();
     }
 
     /**
@@ -39,9 +41,31 @@ class ProcesarRecordatorios implements ShouldQueue
         $this->admins();
     }
 
+
+    public function prestamos_pendientes(){
+        return Solicitud::where('estado','Pendiente')
+            ->count();
+    }
+
+    public function prestamos_por_entregar($admin){
+        $solicitudes = Solicitud::where('estado','Autorizada')
+            ->whereDate('fecha_prestamo', now()->toDateString())
+            ->orWhereDate('fecha_prestamo', now()->addDay()->toDateString())
+            ->get();
+        
+        foreach ($solicitudes as $solicitud) {
+            
+            $act=[
+                'header' => 'Recordatorio de Préstamo',
+                'subtitle' => 'El día de hoy es la fecha de préstamo para: '.$solicitud->motivo,
+                'url' => '/archivo/'.$solicitud->id
+            ];
+        }
+        
+    }
+
     public function trabajadores()
     {
-        $today = now()->toDateString();
 
         $solicitudes = Solicitud::whereDate('fecha_devolucion', now()->toDateString())
             ->orWhereDate('fecha_devolucion', now()->addDay()->toDateString())
