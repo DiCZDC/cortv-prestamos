@@ -64,6 +64,9 @@ class ProcesarRecordatorios implements ShouldQueue
         
     }
 
+
+
+    
     public function trabajadores()
     {
 
