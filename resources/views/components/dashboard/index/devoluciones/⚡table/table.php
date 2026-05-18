@@ -31,5 +31,6 @@ new class extends Component
                 $query->where('solicituds.id_trabajador', $user->id);
             })
             ->paginate(4);
+
     }
 };
