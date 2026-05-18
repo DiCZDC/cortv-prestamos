@@ -22,14 +22,13 @@ class ProcesarRecordatorios implements ShouldQueue
 
     public int $timeout = 30;
 
-    public string $today;
+    // public string $today;
 
     /**
      * Create a new job instance.
      */
     public function __construct()
     {
-        $this->today = now()->toDateString();
     }
 
     /**
@@ -102,11 +101,10 @@ class ProcesarRecordatorios implements ShouldQueue
     {
         $prestamosPorEntregar = $this->prestamos_por_entregar();
         foreach ($prestamosPorEntregar as $prestamo) {
-            // Log::info('Contenido de prestamo', ['prestamo' => $prestamo]);
-            Notification::send(User::role('admin')->get(), new solicitud_notification(
+            Notification::send(User::where('is_admin', true)->get(), new solicitud_notification(
                 'Recordatorio de Préstamo',
                 $prestamo['esHoy'] ? 'El día de hoy se debe entregar el prestamo con motivo '.$prestamo['motivo'] : 'El día de mañana se debe entregar el prestamo con motivo '.$prestamo['motivo'],
-                "entrega/{{$prestamo['id']}}"
+                '/entrega/'.$prestamo['id']
             ));
         }
     }
