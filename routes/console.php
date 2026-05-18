@@ -10,6 +10,6 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::job(new ProcesarRecordatorios)
-    ->dailyAt('08:00')
-    // ->everyMinute()
+    // ->dailyAt('08:00')
+    ->everyTenSeconds()
     ->withoutOverlapping();

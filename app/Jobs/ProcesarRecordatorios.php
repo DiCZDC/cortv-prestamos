@@ -47,20 +47,24 @@ class ProcesarRecordatorios implements ShouldQueue
             ->count();
     }
 
-    public function prestamos_por_entregar($admin){
+    public function prestamos_por_entregar(){
         $solicitudes = Solicitud::where('estado','Autorizada')
-            ->whereDate('fecha_prestamo', now()->toDateString())
-            ->orWhereDate('fecha_prestamo', now()->addDay()->toDateString())
+            ->where(function($query) {
+                $query->whereDate('fecha_prestamo', now()->toDateString())
+                    ->orWhereDate('fecha_prestamo', now()->addDay()->toDateString());
+            })
             ->get();
-        
+        $todos = [];
         foreach ($solicitudes as $solicitud) {
-            
             $act=[
                 'header' => 'Recordatorio de Préstamo',
-                'subtitle' => 'El día de hoy es la fecha de préstamo para: '.$solicitud->motivo,
-                'url' => '/archivo/'.$solicitud->id
+                'esHoy' => Carbon::parse($solicitud->fecha_prestamo)->toDateString() == now()->toDateString(),
+                'motivo'=>$solicitud->motivo,
+                'id' => $solicitud->id
             ];
+            array_push($todos,$act);
         }
+        return $todos;
         
     }
 
@@ -70,50 +74,39 @@ class ProcesarRecordatorios implements ShouldQueue
     public function trabajadores()
     {
 
-        $solicitudes = Solicitud::whereDate('fecha_devolucion', now()->toDateString())
-            ->orWhereDate('fecha_devolucion', now()->addDay()->toDateString())
-            ->get();
+        // $solicitudes = Solicitud::whereDate('fecha_devolucion', now()->toDateString())
+        //     ->orWhereDate('fecha_devolucion', now()->addDay()->toDateString())
+        //     ->get();
 
-        foreach ($solicitudes as $solicitud) {
-            $user = $solicitud->trabajador;
-            if (! $user) {
-                continue;
-            }
+        // foreach ($solicitudes as $solicitud) {
+        //     $user = $solicitud->trabajador;
+        //     if (! $user) {
+        //         continue;
+        //     }
 
-            $fechaDevolucion = Carbon::parse($solicitud->fecha_devolucion)->toDateString();
-            $esHoy = $fechaDevolucion === now()->toDateString();
-            $mensaje = $esHoy
-                ? 'El día de hoy es la fecha limite para devolver el prestamo '.$solicitud->motivo
-                : 'El día de mañana es la fecha limite para devolver el prestamo '.$solicitud->motivo;
+        //     $fechaDevolucion = Carbon::parse($solicitud->fecha_devolucion)->toDateString();
+        //     $esHoy = $fechaDevolucion === now()->toDateString();
+        //     $mensaje = $esHoy
+        //         ? 'El día de hoy es la fecha limite para devolver el prestamo '.$solicitud->motivo
+        //         : 'El día de mañana es la fecha limite para devolver el prestamo '.$solicitud->motivo;
 
-            Notification::send($user, new solicitud_notification(
-                'Recordatorio de Devolución',
-                $mensaje,
-                '/archivo/'.$solicitud->id
-            ));
-        }
+        //     Notification::send($user, new solicitud_notification(
+        //         'Recordatorio de Devolución',
+        //         $mensaje,
+        //         '/archivo/'.$solicitud->id
+        //     ));
+        // }
     }
 
     public function admins()
     {
-        $today = now()->toDateString();
-
-        $solicitudes = Solicitud::whereDate('fecha_prestamo', now()->toDateString())
-            ->orWhereDate('fecha_prestamo', now()->addDay()->toDateString())
-            ->get();
-
-        foreach ($solicitudes as $solicitud) {
-
-            $fechaPrestamo = Carbon::parse($solicitud->fecha_prestamo)->toDateString();
-            $esHoy = $fechaPrestamo === now()->toDateString();
-            $mensaje = $esHoy
-                ? 'El día de hoy es la fecha de préstamo para: '.$solicitud->motivo
-                : 'El día de mañana es la fecha de préstamo para: '.$solicitud->motivo;
-
+        $prestamosPorEntregar = $this->prestamos_por_entregar();
+        foreach ($prestamosPorEntregar as $prestamo) {
+            // Log::info('Contenido de prestamo', ['prestamo' => $prestamo]);
             Notification::send(User::role('admin')->get(), new solicitud_notification(
                 'Recordatorio de Préstamo',
-                $mensaje,
-                '/archivo/'.$solicitud->id
+                $prestamo['esHoy'] ? 'El día de hoy se debe entregar el prestamo con motivo '.$prestamo['motivo'] : 'El día de mañana se debe entregar el prestamo con motivo '.$prestamo['motivo'],
+                "entrega/{{$prestamo['id']}}"
             ));
         }
     }
