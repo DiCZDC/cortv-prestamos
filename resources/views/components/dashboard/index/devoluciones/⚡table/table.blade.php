@@ -30,7 +30,8 @@
     
                 <flux:table.row>
                     <flux:table.cell class="hidden md:block">
-                        <flux:icon name="video" />
+                        {{-- <flux:icon name="video" /> --}}
+                        {{ $prestamo->id }}
                     </flux:table.cell>
                     <flux:table.cell class="text-balance!">{{ $prestamo->motivo}}</flux:table.cell>
                     

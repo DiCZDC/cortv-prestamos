@@ -13,7 +13,6 @@
             'Devuelta' => 'Devuelta',
             'Rechazada' => 'Rechazada',
         ]"/>
-    {{ $this->prestamos->count() }}
     <flux:table :paginate="$this->prestamos">
         <flux:table.columns>
             <x-componentes.header_table sortable="id" :sortBy="$sortBy" :sortDirection="$sortDirection"> ID </x-componentes.header_table>            
