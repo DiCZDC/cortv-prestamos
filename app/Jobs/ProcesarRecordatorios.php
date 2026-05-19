@@ -98,7 +98,10 @@ class ProcesarRecordatorios implements ShouldQueue
         }
         return $todos;
     }
-
+    
+    public function new_users(){
+        return User::doesntHave('roles')->count();
+    }
 
     
     public function trabajadores()
@@ -126,7 +129,9 @@ class ProcesarRecordatorios implements ShouldQueue
 
     public function admins()
     {
-        
+        if($this->new_users() > 0) {
+            $this->notificator(User::role('admin')->get(), 'Recordatorio de Nuevos Usuarios', 'Actualmente hay '.$this->new_users().' nuevos usuarios sin asignar rol.', '/personal');
+        }
         if($this->prestamos_pendientes() > 0){
             $this->notificator(User::role('admin')->get(), 'Recordatorio de Préstamos Pendientes', 'Actualmente hay '.$this->prestamos_pendientes().' préstamos pendientes de autorización.', '/prestamo');
         }
