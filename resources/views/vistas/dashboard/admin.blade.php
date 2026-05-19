@@ -1,4 +1,4 @@
-<div class="flex h-full w-full flex-1 flex-col gap-8 rounded-xl">
+<div class="flex h-full w-full flex-1 flex-col gap-7 rounded-xl">
     <div class="grid place-items-center 
                 gap-4
                 grid-cols-1
@@ -23,7 +23,6 @@
         </div>
         
     </div>
-
-        
+       
     
 </div>
