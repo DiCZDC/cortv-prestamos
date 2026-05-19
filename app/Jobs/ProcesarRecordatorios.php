@@ -39,6 +39,16 @@ class ProcesarRecordatorios implements ShouldQueue
         $this->admins();
     }
 
+    public function notificator($user, $header, $message, $url)
+    {
+        Notification::send($user, new solicitud_notification(
+            $header,
+            $message,
+            $url
+        ));
+
+    }
+
 
     public function prestamos_pendientes(){
         return Solicitud::where('estado','Pendiente')
@@ -56,6 +66,7 @@ class ProcesarRecordatorios implements ShouldQueue
         foreach ($solicitudes as $solicitud) {
             $act=[
                 'header' => 'Recordatorio de Préstamo',
+                'tipo'=>'prestamo',
                 'esHoy' => Carbon::parse($solicitud->fecha_prestamo)->toDateString() == now()->toDateString(),
                 'motivo'=>$solicitud->motivo,
                 'id' => $solicitud->id,
@@ -64,39 +75,76 @@ class ProcesarRecordatorios implements ShouldQueue
             array_push($todos,$act);
         }
         return $todos;
-        
     }
 
+    public function recepciones_proximas(){
+        $recepciones = Solicitud::where('estado','Entregada')
+            ->where(function($query) {
+                $query->whereDate('fecha_devolucion', now()->toDateString())
+                    ->orWhereDate('fecha_devolucion', now()->addDay()->toDateString());
+            })
+            ->get();
+        $todos = [];
+        foreach ($recepciones as $recepcion) {
+            $act=[
+                'header' => 'Recordatorio de Recepción',
+                'tipo'=>'recepción',
+                'esHoy' => Carbon::parse($recepcion->fecha_devolucion)->toDateString() == now()->toDateString(),
+                'motivo'=>$recepcion->motivo,
+                'id' => $recepcion->id,
+                'id_trabajador' => $recepcion->trabajador()->first()->id
+            ];
+            array_push($todos,$act);
+        }
+        return $todos;
+    }
 
 
     
     public function trabajadores()
     {
-        $prestamosPorEntregar = $this->prestamos_por_entregar();
+        $prestamosPorEntregar = array_merge(
+            $this->prestamos_por_entregar(),
+            $this->recepciones_proximas()
+        );
         foreach ($prestamosPorEntregar as $prestamo) {
-            $user = User::find($prestamo['id_trabajador']);
-            Notification::send($user, new solicitud_notification(
-                'Recordatorio de Préstamo',
-                'El día de '.($prestamo['esHoy'] ? 'hoy ' : 'mañana').' debes recoger el prestamo con motivo:'.$prestamo['motivo'],
-                '/entrega/'.$prestamo['id']
-            ));
+            $header = 'Recordatorio de '.$prestamo['tipo'];
+            $mensaje = 'El día de '.($prestamo['esHoy'] ? 'hoy ' : 'mañana').' debes '.($prestamo['tipo'] == 'prestamo' ? 'recoger' : 'entregar').' el prestamo con motivo:'.$prestamo['motivo'];
+            $this->notificator(User::find($prestamo['id_trabajador']), $header, $mensaje, '/entrega/'.$prestamo['id']);
         }
+
+        // $recepcionesProximas = $this->recepciones_proximas();
+        // foreach ($recepcionesProximas as $recepcion) {
+        //     $this->notificator(User::find($recepcion['id_trabajador']), $recepcion['header'], 'El día de '.($recepcion['esHoy'] ? 'hoy ' : 'mañana').' debes entregar el prestamo con motivo:'.$recepcion['motivo'], '/recepcion/'.$recepcion['id']);
+        // }
+
+
     }
 
     public function admins()
     {
-        
-        Notification::send(User::role('admin')->get(), new solicitud_notification(
-            'Recordatorio de Préstamos Pendientes',
-            'Actualmente hay '.$this->prestamos_pendientes().' préstamos pendientes de autorización.',
-            '/prestamo'
-        ));
+        if($this->prestamos_pendientes() > 0){
+            Notification::send(User::role('admin')->get(), new solicitud_notification(
+                'Recordatorio de Préstamos Pendientes',
+                'Actualmente hay '.$this->prestamos_pendientes().' préstamos pendientes de autorización.',
+                '/prestamo'
+            ));
+        }
         $prestamosPorEntregar = $this->prestamos_por_entregar();
         foreach ($prestamosPorEntregar as $prestamo) {
             Notification::send(User::role('admin')->get(), new solicitud_notification(
-                'Recordatorio de Préstamo',
-                $prestamo['esHoy'] ? 'El día de hoy se debe entregar el prestamo con motivo '.$prestamo['motivo'] .' solicitado por: '. User::find($prestamo['id_trabajador'])->name : 'El día de mañana se debe entregar el prestamo con motivo '.$prestamo['motivo'].' solicitado por: '. User::find($prestamo['id_trabajador'])->name ,
+                $prestamo['header'],
+                "El día de ". ($prestamo['esHoy'] ? 'hoy' : 'mañana') ." se debe entregar el prestamo con motivo ".$prestamo['motivo'] ." \nSolicitado por: ". User::find($prestamo['id_trabajador'])->name ,
                 '/entrega/'.$prestamo['id']
+            ));
+        }
+
+        $recepcionesProximas = $this->recepciones_proximas();
+        foreach ($recepcionesProximas as $recepcion) {
+            Notification::send(User::role('admin')->get(), new solicitud_notification(
+                $recepcion['header'],
+                "El día de ".($recepcion['esHoy'] ? 'hoy' : 'mañana')." se debe recibir el prestamo con motivo ".$recepcion['motivo']."\nSolicitado por: ".User::find($recepcion['id_trabajador'])->name ,
+                '/recepcion/'.$recepcion['id']
             ));
         }
     }
