@@ -1,5 +1,10 @@
 <x-layouts::auth :title="__('Registrate')">
-    <div class="flex flex-col gap-6">
+    <div class="flex flex-col gap-6 drop-shadow-xl/50 backdrop-blur-sm bg-white/80 rounded-lg p-10 w-[455px]!">
+        
+        <div>
+            <x-app-logo/>
+        </div>
+        
         <x-auth-header :title="__('Crea una cuenta')" :description="__('Ingresa tus datos a continuación para crear tu cuenta')" />
 
         <!-- Session Status -->
@@ -53,7 +58,13 @@
             />
 
             <div class="flex items-center justify-end">
-                <flux:button type="submit" variant="primary" class="w-full" data-test="register-user-button">
+                <flux:button variant="primary" type="submit" icon:trailing="user-round-plus" class="w-full 
+                            bg-rojo-si! text-rojo-negacion! font-extrabold border-none!
+                            hover:bg-rojo-negacion! 
+                            hover:text-hueso! 
+                            transition-all duration-200 ease-out delay-150
+                            hover:-translate-y-1.5 active:scale-95 cursor-pointer" 
+                            data-test="register-user-button">    
                     {{ __('Crear cuenta') }}
                 </flux:button>
             </div>

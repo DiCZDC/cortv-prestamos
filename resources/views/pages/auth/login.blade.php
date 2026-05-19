@@ -34,7 +34,18 @@
 
             <!-- Password -->
             <div class="relative">
+                {{-- <flux:input
+                    class="caret-red-500!"
+                    name="password"
+                    :label="__('Contraseña')"
+                    type="password"
+                    required
+                    autocomplete="current-password"
+                    :placeholder="__('Contraseña')"
+                    viewable
+                /> --}}
                 <flux:input
+                    class="border-red-500!"
                     name="password"
                     :label="__('Contraseña')"
                     type="password"
@@ -46,8 +57,12 @@
                 
             </div>
 
-            <!-- Remember Me -->
-            <flux:checkbox name="remember" :label="__('Recuérdame')" :checked="old('remember')" />
+            <flux:checkbox 
+                class="[--color-accent:theme(colors.red.700)]"
+                name="remember" 
+                :label="__('Recuérdame')" 
+                :checked="old('remember')" 
+            />
 
             <div class="flex items-center justify-end">
                 <flux:button variant="primary" type="submit" icon:trailing="log-in" class="w-full 

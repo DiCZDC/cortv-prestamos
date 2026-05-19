@@ -93,6 +93,14 @@
     @apply  !mb-0 !leading-tight;
 }
 
+[data-flux-control] {
+    caret-color: var(--color-rojo_claro);
+}
+
+[data-flux-input] {
+    --color-accent: var(--color-rojo_claro);
+}
+
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
