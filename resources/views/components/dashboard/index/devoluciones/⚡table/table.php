@@ -28,7 +28,7 @@ new class extends Component
             ->orderBy('fecha_devolucion', 'asc')
             ->join('users', 'solicituds.id_trabajador', '=', 'users.id')
             ->select('solicituds.*', 'users.name as nombre_trabajador')
-            
+
             ->paginate(3);
 
     }

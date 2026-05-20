@@ -7,13 +7,13 @@ use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\RecepcionController;
+use App\Jobs\Recordatorios;
 use Illuminate\Support\Facades\Route;
 
-use App\Jobs\Recordatorios;
-
 Route::get('/test-job', function () {
-    new Recordatorios() ->handle();
-    return response("fin!");
+    new Recordatorios()->handle();
+
+    return response('fin!');
 });
 
 Route::view('/', 'welcome')->name('home');
