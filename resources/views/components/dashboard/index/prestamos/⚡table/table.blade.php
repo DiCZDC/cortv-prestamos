@@ -7,70 +7,75 @@
     <div class="pt-3 px-14 pb-6 " >
         <div>
             @placeholder
-                <x-placeholder.table :header="['','Equipo', 'Solicitante', 'Fecha']" />
+                <x-placeholder.table :header="['Motivo', 'Solicitante', 'Fecha']" />
             @endplaceholder
-            <flux:table :paginate="$this->prestamos" >
-                <flux:table.columns>
-                    <flux:table.column class="w-[250px]!" >
-                        <span class="inline-flex items-center gap-2 whitespace-nowrap text-gris_claro text-base font-semibold">
-                                <flux:icon.scroll-text  class="text-gris_claro!" />
-                                Motivo
-                        </span> 
-                    </flux:table.column>
+            
+           <div class="w-full [&_table]:table-fixed">
+    <flux:table :paginate="$this->prestamos">
+        <flux:table.columns>
+            <flux:table.column class="w-[40%]">
+                <span class="inline-flex items-center gap-2 whitespace-nowrap text-gris_claro text-base font-semibold">
+                    <flux:icon.scroll-text class="text-gris_claro!" />
+                    Motivo
+                </span> 
+            </flux:table.column>
+
+            @role('admin')
+                <x-componentes.header_table icon="square-user-round" class="w-[]"> Solicitante </x-componentes.header_table>
+            @endrole
+            <x-componentes.header_table icon="calendar-clock" class="w-1/4"> Fecha </x-componentes.header_table>    
+        </flux:table.columns>
+
+        <flux:table.rows>
+            @forelse ($this->prestamos as $prestamo)
+                @php
+                    $dias = ceil(now()->diffInDays($prestamo->fecha_prestamo));
+                @endphp
+                <flux:table.row>
+                    <flux:table.cell class="text-balance break-words" title="{{ $prestamo->motivo }}">
+                        {{ Str::limit($prestamo->motivo, 40) }}
+                    </flux:table.cell>
 
                     @role('admin')
-                        <x-componentes.header_table icon="square-user-round"> Solicitante </x-componentes.header_table>
+                        <flux:table.cell class="break-words">
+                            {{ $prestamo->trabajador->name }}
+                        </flux:table.cell>
                     @endrole
-                    <x-componentes.header_table icon="calendar-clock"> Fecha </x-componentes.header_table>    
-                    
-                </flux:table.columns>
-                <flux:table.rows>
-                    @forelse ($this->prestamos as $prestamo)
+
+                    <flux:table.cell>  
                         @php
-                            $dias = ceil(now()->diffInDays($prestamo->fecha_prestamo));
+                            $texto = match(true){
+                                $dias == 0 => 'Hoy',
+                                $dias == 1 => 'Mañana',
+                                $dias > 1  => "En $dias dias",
+                                default    => 'Fecha desconocida'
+                            };
                         @endphp
-                        <flux:table.row>
-                            {{-- <flux:table.cell class="hidden md:block">
-                                {{ $prestamo->id }}
-                            </flux:table.cell> --}}
-                            <flux:table.cell class="text-balance! ">{{ $prestamo->motivo }}</flux:table.cell>
-                            @role('admin')
-                                <flux:table.cell class="text-balance!">{{ $prestamo->trabajador->name }}</flux:table.cell>
-                            @endrole
-                            <flux:table.cell>  
-                                @php
-                                    $texto =match(true){
-                                        $dias == 0 => 'Hoy',
-                                        $dias == 1 => 'Mañana',
-                                        $dias > 1 => "En $dias dias",
-                                        default => 'Fecha desconocida'
-                                    }
-                                @endphp
-                                    {{-- <x-componentes.boton-href ruta="entrega.show" texto="{{ $texto }}" icon="eye" :id="$prestamo->id" />     --}}
-                                    <flux:button 
-                                        icon:trailing="eye" 
-                                        class=" bg-azul-hover! text-azul_oscuro! font-bold text-sm! border-none!
-                                        hover:bg-azul_oscuro! 
-                                        hover:text-hueso! 
-                                        transition-all duration-200 ease-out delay-150
-                                        hover:-translate-y-1.5 active:scale-95 cursor-pointer"
-                                        href="{{ route('entrega.show', $prestamo->id) }}"
-                                        >
-                                        {{ $texto }}
-                                    </flux:button>
-                            </flux:table.cell>
-                        </flux:table.row>
-                    @empty
-                        <flux:table.row>
-                            @if(auth()->user()->hasRole('trabajador'))
-                                <flux:table.cell colspan="4" class="text-center">No tienes prestamos proximos a recibir</flux:table.cell>
-                            @else
-                                 <flux:table.cell colspan="4" class="text-center">No hay prestamos proximos a vencer</flux:table.cell>
-                            @endif
-                        </flux:table.row>
-                    @endforelse
-                </flux:table.rows>
-            </flux:table>
+                        <flux:button 
+                            icon:trailing="eye" 
+                            class="bg-azul-hover! text-azul_oscuro! font-bold text-sm! border-none!
+                                   hover:bg-azul_oscuro! hover:text-hueso! 
+                                   transition-all duration-200 ease-out delay-150
+                                   hover:-translate-y-1.5 active:scale-95 cursor-pointer"
+                            href="{{ route('entrega.show', $prestamo->id) }}"
+                        >
+                            {{ $texto }}
+                        </flux:button>
+                    </flux:table.cell>
+                </flux:table.row>
+            @empty
+                <flux:table.row>
+                    @if(auth()->user()->hasRole('trabajador'))
+                        <flux:table.cell colspan="4" class="text-center">No tienes prestamos proximos a recibir</flux:table.cell>
+                    @else
+                        <flux:table.cell colspan="4" class="text-center">No hay prestamos proximos a vencer</flux:table.cell>
+                    @endif
+                </flux:table.row>
+            @endforelse
+        </flux:table.rows>
+    </flux:table>
+</div> 
+
         </div>
     </div>
 </div>

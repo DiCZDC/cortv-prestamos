@@ -69,7 +69,8 @@
                             <flux:modal.trigger name="update-role.{{ $persona->id }}">
                                 <flux:button variant="outline" 
                                             icon:trailing="user-pen" 
-                                            class="bg-[#fff1bf]! text-[#bb4d00]! font-bold text-sm! border-none!
+                                            class="bg-[#fff1bf]! text-[#bb4d00]! 
+                                                    font-bold text-sm! border-none!
                                                     hover:bg-[#FAA543]! 
                                                     hover:text-white!
                                                     transition all delay-100 duration-200 ease-out  
