@@ -9,6 +9,13 @@ use App\Http\Controllers\PrestamoController;
 use App\Http\Controllers\RecepcionController;
 use Illuminate\Support\Facades\Route;
 
+use App\Jobs\Recordatorios;
+
+Route::get('/test-job', function () {
+    new Recordatorios() ->handle();
+    return response("fin!");
+});
+
 Route::view('/', 'welcome')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
