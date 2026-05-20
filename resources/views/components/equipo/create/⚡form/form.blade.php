@@ -6,13 +6,13 @@
         ">  
 
             <div class="flex justify-center items-center gap-3 mb-1 text-rojo_claro">
-                <flux:icon name="file" class="inline 
+                <flux:icon name="package-plus" class="inline 
                 size-8
                 md:size-12" />
                 <h1 class="font-bold inline
                         text-2xl 
                         md:text-4xl
-                ">Datos de la solicitud</h1>
+                ">Agrega Un Equipo</h1>
             </div>
 
 
