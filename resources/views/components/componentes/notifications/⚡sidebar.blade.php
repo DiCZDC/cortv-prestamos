@@ -58,6 +58,7 @@ new class extends Component
                     Marcar todas como leídas
                 </div>
             </flux:button>
+            
             <div class="w-full flex items-center justify-between"> 
                 <flux:text>
                     Tienes: <b>{{ Auth::user()->unreadNotifications->count() }}</b> notificaciones pendientes.
@@ -66,9 +67,10 @@ new class extends Component
                     <flux:icon.rotate-ccw />        
                 </flux:button>
             </div>
+
             <flux:separator />
             
-            <div wire:poll.30s class="flex flex-col gap-5"> 
+            <div wire:poll.30s class="flex flex-col gap-5 overflow-y-auto" style="max-height: 70vh;"> 
                 @php($unreadNotifications = Auth::user()->fresh()->unreadNotifications()->latest()->get())
                 @forelse ($unreadNotifications as $notification)
                     <livewire:componentes.notifications.item 
