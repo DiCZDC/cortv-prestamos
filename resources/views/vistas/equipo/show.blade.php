@@ -4,18 +4,18 @@
 @endphp
 
 <x-layouts::app title="Equipo">
-    <flux:breadcrumbs class="mb-4">
-        <flux:breadcrumbs.item href="{{ route('equipo.index') }}">Equipo</flux:breadcrumbs.item>
-        <flux:breadcrumbs.item href="#"> {{ $producto->marca . ' ' . $producto->modelo }}</flux:breadcrumbs.item>
-    </flux:breadcrumbs>
-    <!-- It is quality rather than quantity that matters. - Lucius Annaeus Seneca -->
-        <div class="flex flex-col justify-center gap-8.5 pl-3">
-            <x-componentes.titulo icono="airplay" texto="Equipo" />
-            <x-componentes.subtitulo icono="{{ $producto->categoria->icono }}" texto="{{ $producto->marca . ' ' . $producto->modelo }}" />
-        </div>
-    <div class="flex gap-12 mt-10 flex-col lg:flex-row ">
-        <div class="w-full lg:w-2/3 rounded-lg shadow-md p-8 bg-white dark:bg-transparent">
-            <div class="w-full flex items-center justify-end mb-3">
+    <div class="px-8 py-3 w-full gap-4 flex flex-col">
+
+        <flux:breadcrumbs>
+            <flux:breadcrumbs.item href="{{ route('equipo.index') }}">Equipo</flux:breadcrumbs.item>
+            <flux:breadcrumbs.item href="#"> {{ $producto->marca . ' ' . $producto->modelo }}</flux:breadcrumbs.item>
+        </flux:breadcrumbs>
+        <!-- It is quality rather than quantity that matters. - Lucius Annaeus Seneca -->
+
+        <div class="w-full flex flex-col justify-center gap-5 pl-3">
+            <x-componentes.titulo icono="{{ $producto->categoria->icono }}" texto="{{ $producto->marca . ' ' . $producto->modelo }}" />
+            <div class="flex w-full justify-between pr-3 xl:pr-43">
+                <x-componentes.subtitulo icono="list-ordered" texto="Unidades totales del equipo registradas" />
                 <flux:modal.trigger name="create-unidad">
                     <flux:button 
                         icon="book-up" 
@@ -28,16 +28,28 @@
                     </flux:button>
                 </flux:modal.trigger>
             </div>
-            <livewire:equipo.show.table :id="$id" lazy/>
         </div>
-        <div class="flex flex-col w-auto  p-8 items-center justify-center  ">
-            <h1 class="font-bold text-center text-xl text-gris_claro mb-5 
-                dark:text-hueso
-            ">
-                Fechas Apartadas
-            </h1>
-            <livewire:calendario.multidate_small :id_equipo="$id" lazy/>
+
+        <div class="flex gap-12 flex-col lg:flex-row ">
+            
+            <div class="flex flex-col w-full lg:w-2/3 py-8 gap-4 ">
+                <div class="w-full rounded-lg shadow-md p-8 bg-white dark:bg-transparent">
+                    <livewire:equipo.show.table :id="$id" lazy/>
+                </div>
+            </div>
+
+            
+            <div class="flex flex-col w-auto  p-8 items-center justify-center  ">
+                <h1 class="font-bold text-center text-xl text-gris_claro mb-5 
+                    dark:text-hueso
+                ">
+                    Fechas Apartadas
+                </h1>
+                <livewire:calendario.multidate_small :id_equipo="$id" lazy/>
+            </div>
         </div>
+
     </div>
+
     <livewire:equipo.show.agregar_unidades :producto="$producto"/>
 </x-layouts::app>

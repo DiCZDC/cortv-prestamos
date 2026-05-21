@@ -65,7 +65,8 @@
             />
 
             <div class="flex items-center justify-end">
-                <flux:button variant="primary" type="submit" icon:trailing="log-in" class="w-full 
+                <flux:button variant="primary" type="submit" icon:trailing="log-in" 
+                            class="w-full 
                             bg-rojo-si! text-rojo-negacion! font-extrabold border-none!
                             hover:bg-rojo-negacion! 
                             hover:text-hueso! 

@@ -24,3 +24,4 @@
         <flux:toast />
     @endpersist
 </div>
+    

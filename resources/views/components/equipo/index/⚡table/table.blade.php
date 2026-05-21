@@ -1,16 +1,31 @@
 <div>
     @php
         $categorias = \App\Models\Categoria::get();
+        $badgePalette = [
+            'zinc',
+            'green',
+            'emerald',
+            'teal',
+            'cyan',
+            'sky',
+            'blue',
+            'indigo',
+            'violet',
+            'purple',
+        ];
+        $badgeColors = [];
         $this->filters = ['' => 'Todos'];
-        foreach ($categorias as $categoria)
+        foreach ($categorias as $index => $categoria) {
             $this->filters[$categoria->id] = $categoria->nombre_categoria;
+            $badgeColors[$categoria->id] = $badgePalette[$index % count($badgePalette)];
+        }
 
     @endphp
     {{-- Simplicity is the consequence of refined emotions. - Jean D'Alembert --}}
     
     @placeholder
         <x-placeholder.table 
-            :header="['','ID', 'Marca', 'Modelo', 'Unidades totales']"  
+            :header="['Categoria', 'Marca', 'Modelo', 'Unidades totales', 'Acciones']"  
             filter=true
             perPage=10
         />
@@ -19,32 +34,42 @@
     <livewire:componentes.searchbar 
         placeholder="Buscar por marca o modelo..."
         :filters="$this->filters" />
-    <flux:table :paginate="$this->equipos">
+    
+        <flux:table :paginate="$this->equipos" class="px-16 mt-3">
         <flux:table.columns>
-            <x-componentes.header_table/>
-            <x-componentes.header_table sortable="id" :sortBy="$sortBy" :sortDirection="$sortDirection"> ID </x-componentes.header_table>            
+            <x-componentes.header_table icon="layers" sortable="id_categoria" :sortBy="$sortBy" :sortDirection="$sortDirection">Categoria</x-componentes.header_table>
             <x-componentes.header_table sortable="marca" :sortBy="$sortBy" :sortDirection="$sortDirection" icon="tag">Marca</x-componentes.header_table>
             <x-componentes.header_table sortable="modelo" :sortBy="$sortBy" :sortDirection="$sortDirection" icon="cog">Modelo</x-componentes.header_table>
-            <x-componentes.header_table icon="tool-case">Unidades totales</x-componentes.header_table>
+            <x-componentes.header_table align="center" icon="sigma">Unidades totales</x-componentes.header_table>
             <x-componentes.header_table icon="target">Acciones</x-componentes.header_table>
         </flux:table.columns>
         
         @forelse ($this->equipos as $equipo )
             <flux:table.row :key="$equipo->id">
+
                 <flux:table.cell>
-                    <flux:icon :name="
-                    $equipo->icono_categoria ? $equipo->icono_categoria : 'laptop'
-                    " 
-                    class="w-5 h-5" />
+                    <flux:badge
+                        :color="$badgeColors[$equipo->id_categoria] ?? 'zinc'"
+                        :icon="$equipo->icono_categoria ? $equipo->icono_categoria : 'laptop'"
+                    >
+                        {{ $equipo->nombre_categoria }}
+                    </flux:badge>
                 </flux:table.cell>
-                <flux:table.cell>{{ $equipo->id }}</flux:table.cell>
+                
                 <flux:table.cell>{{ $equipo->marca }}</flux:table.cell>
+                
                 <flux:table.cell>{{ $equipo->modelo}}</flux:table.cell>
-                <flux:table.cell>{{ $this->cant_equipos($equipo->id) }}</flux:table.cell>
+                
+                <flux:table.cell align="center">
+                    <flux:badge color="zinc">
+                        {{ $this->cant_equipos($equipo->id) }} equipos
+                    </flux:badge>
+                </flux:table.cell>
+
                 <flux:table.cell>
-                    {{-- <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button> --}}
                     <x-componentes.boton-href ruta="equipo.show" texto="Ver" icon="eye" :id="$equipo->id" />    
                 </flux:table.cell>
+
             </flux:table.row>
         @empty
             <flux:table.row>
