@@ -46,6 +46,6 @@ new class extends Component
     {
         return Unidad_Equipo::where('id_equipo', $this->id)
             ->orderBy('id', 'asc')
-            ->paginate(10);
+            ->paginate(7);
     }
 };
