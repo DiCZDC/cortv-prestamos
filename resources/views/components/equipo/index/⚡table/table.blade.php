@@ -38,7 +38,7 @@
         <flux:table :paginate="$this->equipos" class="px-16 mt-3">
         <flux:table.columns>
             <x-componentes.header_table icon="layers" sortable="id_categoria" :sortBy="$sortBy" :sortDirection="$sortDirection">Categoria</x-componentes.header_table>
-            <x-componentes.header_table sortable="marca" :sortBy="$sortBy" :sortDirection="$sortDirection" icon="tag">Marca</x-componentes.header_table>
+            <x-componentes.header_table sortable="marca" :sortBy="$sortBy" :sortDirection="$sortDirection" icon="tags">Marca</x-componentes.header_table>
             <x-componentes.header_table sortable="modelo" :sortBy="$sortBy" :sortDirection="$sortDirection" icon="cog">Modelo</x-componentes.header_table>
             <x-componentes.header_table align="center" icon="sigma">Unidades totales</x-componentes.header_table>
             <x-componentes.header_table icon="target">Acciones</x-componentes.header_table>
@@ -56,13 +56,18 @@
                     </flux:badge>
                 </flux:table.cell>
                 
-                <flux:table.cell>{{ $equipo->marca }}</flux:table.cell>
+                <flux:table.cell class="font-medium text-zinc-500!">{{ $equipo->marca }}</flux:table.cell>
                 
-                <flux:table.cell>{{ $equipo->modelo}}</flux:table.cell>
+                <flux:table.cell class="font-medium">{{ $equipo->modelo}}</flux:table.cell>
                 
                 <flux:table.cell align="center">
-                    <flux:badge color="zinc">
-                        {{ $this->cant_equipos($equipo->id) }} equipos
+                    @php
+                        $count = $this->cant_equipos($equipo->id);
+                        $color = $count < 3 ? 'red' : ($count < 6 ? 'orange' : ($count < 10 ? 'lime' : 'green'));
+                    @endphp
+
+                    <flux:badge :color="$color">
+                        {{ $count }} equipos
                     </flux:badge>
                 </flux:table.cell>
 

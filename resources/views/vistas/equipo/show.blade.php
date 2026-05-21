@@ -12,30 +12,33 @@
         </flux:breadcrumbs>
         <!-- It is quality rather than quantity that matters. - Lucius Annaeus Seneca -->
 
-        <div class="w-full flex flex-col justify-center gap-5 pl-3">
+        <div class="flex flex-col justify-center gap-5 pl-3">
             <x-componentes.titulo icono="{{ $producto->categoria->icono }}" texto="{{ $producto->marca . ' ' . $producto->modelo }}" />
-            <div class="flex w-full justify-between pr-3 xl:pr-43">
-                <x-componentes.subtitulo icono="list-ordered" texto="Unidades totales del equipo registradas" />
-                <flux:modal.trigger name="create-unidad">
-                    <flux:button 
-                        icon="book-up" 
-                        class=" bg-rojo-si! text-rojo-negacion! font-bold text-sm! border-none!
-                        hover:bg-rojo-negacion! 
-                        hover:text-hueso! 
-                        transition-all duration-200 ease-out delay-150
-                        hover:-translate-y-1.5 active:scale-95 cursor-pointer">
-                        Agregar una nueva unidad
-                    </flux:button>
-                </flux:modal.trigger>
-            </div>
+            <x-componentes.subtitulo icono="list-ordered" texto="Unidades totales del equipo registradas" />
         </div>
 
         <div class="flex gap-12 flex-col lg:flex-row ">
             
-            <div class="flex flex-col w-full lg:w-2/3 py-8 gap-4 ">
-                <div class="w-full rounded-lg shadow-md p-8 bg-white dark:bg-transparent">
+            <div class="flex flex-col w-full lg:w-2/3 py-7 px-4 gap-6 ">
+
+                <div class="flex self-start">
+                        <flux:modal.trigger name="create-unidad">
+                            <flux:button 
+                                icon="book-up" 
+                                class=" bg-rojo-si! text-rojo-negacion! font-bold text-sm! border-none!
+                                hover:bg-rojo-negacion! 
+                                hover:text-hueso! 
+                                transition-all duration-200 ease-out delay-150
+                                hover:-translate-y-1.5 active:scale-95 cursor-pointer">
+                                Agregar una nueva unidad
+                            </flux:button>
+                        </flux:modal.trigger>
+                </div>
+
+                <div class="w-full rounded-lg shadow-md py-8 px-15 bg-white dark:bg-transparent">
                     <livewire:equipo.show.table :id="$id" lazy/>
                 </div>
+
             </div>
 
             

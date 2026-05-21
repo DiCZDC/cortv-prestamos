@@ -16,7 +16,7 @@
         <flux:table.rows >
             @forelse ($this->productos as $producto)
                 <flux:table.row :key="$producto->id">
-                    <flux:table.cell class="flex items-center gap-3">
+                    <flux:table.cell align="center" class="flex items-center gap-3">
                         {{ $producto->id }}
                     </flux:table.cell>
                     <flux:table.cell class="whitespace-nowrap">
@@ -24,7 +24,6 @@
                     </flux:table.cell>
                     <flux:table.cell class="whitespace-nowrap">
                         <flux:badge
-                            size="sm"
                             :color=" 
                                 $this->equipos_prestados()->contains($producto->id) ? 'red' :(
                                 !$producto->mantenimiento ? 'green' : 'yellow'
@@ -37,17 +36,27 @@
                             }}
                         </flux:badge>
                     </flux:table.cell>
+
                     <flux:table.cell class="whitespace-nowrap">
-                        @if(!$this->equipos_prestados()->contains($producto->id))
-                            <flux:button size="sm" variant="primary" class="bg-azul_saturado border-none!" color="sky" wire:click="toggleMantenimiento({{ $producto->id }})">
-                                Cambiar Estado
-                            </flux:button>
-                        @else
-                            <flux:button disabled size="sm" variant="primary" class="bg-azul_saturado border-none!" color="sky" wire:click="toggleMantenimiento({{ $producto->id }})">
-                                Cambiar Estado
-                            </flux:button>
-                        @endif
+
+                        @php $prestado = $this->equipos_prestados()->contains($producto->id); @endphp
+
+                        <flux:button
+                            icon="arrow-left-right"
+                            size="sm"
+                            variant="primary"
+                            :disabled="$prestado"
+                            class="bg-azul-hover! text-azul_oscuro! font-bold text-sm! border-none!
+                                hover:bg-azul_oscuro! 
+                                hover:text-hueso!
+                                transition all delay-100 duration-200 ease-out  
+                                hover:-translate-y-1.5 active:scale-92 cursor-pointer"
+                            wire:click="toggleMantenimiento({{ $producto->id }})">
+                            Cambiar Estado
+                        </flux:button>
+                    
                     </flux:table.cell>
+                
                 </flux:table.row>
             @empty
                 <flux:table.row>
