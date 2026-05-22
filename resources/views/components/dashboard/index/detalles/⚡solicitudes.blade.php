@@ -20,6 +20,7 @@ new class extends Component
             <flux:table.column align="center" variant="strong" class="border-4 rounded-2xl">Marca</flux:table.column>
 
             <flux:table.column align="center" variant="strong" class="text-center! text-pretty! rounded-2xl">Cantidad de Solicitudes</flux:table.column>
+            <flux:table.column align="center" variant="strong" class="text-center! rounded-2xl">Acciones</flux:table.column>
         </flux:table.columns>
 
         <flux:table.rows>
@@ -33,6 +34,9 @@ new class extends Component
 
                     <flux:table.cell align="center">
                         {{$Equipo->total}}
+                    </flux:table.cell>
+                    <flux:table.cell>
+                            <x-componentes.boton-href  ruta="equipo.show" texto="Ver" icon="eye" :id="$Equipo->id" />    
                     </flux:table.cell>
                 </flux:table.row>
             @endforeach

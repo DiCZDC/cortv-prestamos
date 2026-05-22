@@ -2,17 +2,14 @@
 
 namespace App\Jobs;
 
+use App\Model\User;
+use App\Notifications\solicitud_notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Notification;
-use App\Model\User;
-use App\Notifications\solicitud_notification;
-
-
-use Illuminate\Support\Facades\Log;
 
 class Recordatorios implements ShouldQueue
 {
@@ -31,7 +28,7 @@ class Recordatorios implements ShouldQueue
      */
     public function handle(): void
     {
-        echo "Ejecutando el job de recordatorios<br>";
+        echo 'Ejecutando el job de recordatorios<br>';
         info('Ejecutando el job de recordatorios');
         // Notification::send(User::where('is_admin', true)->get(), new solicitud_notification(
         //     'Recordatorio de Préstamo',

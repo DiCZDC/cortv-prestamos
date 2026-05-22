@@ -35,7 +35,9 @@
         placeholder="Buscar por marca o modelo..."
         :filters="$this->filters" />
     
-        <flux:table :paginate="$this->equipos" class="px-16 mt-3">
+        <flux:table :paginate="$this->equipos" class="
+            lg:px-16 
+            mt-3">
         <flux:table.columns>
             <x-componentes.header_table icon="layers" sortable="id_categoria" :sortBy="$sortBy" :sortDirection="$sortDirection">Categoria</x-componentes.header_table>
             <x-componentes.header_table sortable="marca" :sortBy="$sortBy" :sortDirection="$sortDirection" icon="tags">Marca</x-componentes.header_table>
@@ -74,7 +76,7 @@
                 <flux:table.cell>
                     <x-componentes.boton-href ruta="equipo.show" texto="Ver" icon="eye" :id="$equipo->id" />    
                 </flux:table.cell>
-
+                
             </flux:table.row>
         @empty
             <flux:table.row>

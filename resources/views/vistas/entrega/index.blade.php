@@ -1,16 +1,24 @@
 <x-layouts::app title="Entregas">
-    <div class="px-6 flex flex-col gap-8">
+    <div class="
+    {{-- px-2 --}}
+    lg:px-6 flex flex-col gap-8
+    
+    bg-red-700
+    ">
         {{-- info de la vista --}}
-        <div class="w-full flex justify-between ">
+        <div class="w-full flex 
+            flex-col
+            justify-between 
+            md:flex-row
+        ">
 
-            <div class="flex flex-col justify-center gap-8.5 pl-3">
-                
+            <div class="flex flex-col justify-center gap-8.5 pl-3 ">      
                 <x-componentes.titulo icono="package" texto="Entregas" />
                 <x-componentes.subtitulo icono="boxes" texto="Entregas pendientes de realizar" />
     
             </div>
         
-            <div>
+            <div >
                 @php
                     $prestamos_pendientes = App\Models\Solicitud::where('estado', 'Autorizada')
                     ->where('fecha_prestamo', '<=', now())

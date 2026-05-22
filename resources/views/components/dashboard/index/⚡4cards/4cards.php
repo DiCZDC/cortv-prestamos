@@ -21,8 +21,8 @@ new class extends Component
         return Solicitud::whereNotNull('fecha_entrega')->
                     whereColumn('fecha_devolucion', '<', 'fecha_entrega')->
                     join('users', 'users.id', '=', 'solicituds.id_trabajador')->
-                    select('users.name', DB::raw('count(*) as total'))->
-                    groupBy('users.name')->orderByDesc('total')->limit(5)->
+                    select('users.name', DB::raw('count(*) as total'),'users.id')->
+                    groupBy('users.name', 'users.id')->orderByDesc('total')->limit(5)->
                     get();
     }
 
@@ -31,8 +31,8 @@ new class extends Component
     {
         return Solicitud_Equipo::join('unidad__equipos', 'solicitud__equipos.id_unidad_equipo', '=', 'unidad__equipos.id')->
                                 join('equipos', 'unidad__equipos.id_equipo', '=', 'equipos.id')->
-                                select('equipos.modelo', 'equipos.marca', DB::raw('count(*) as total'))->
-                                groupBy('equipos.modelo', 'equipos.marca')->orderByDesc('total')->limit(5)->get();
+                                select('equipos.modelo', 'equipos.marca', DB::raw('count(*) as total'),'equipos.id')->
+                                groupBy('equipos.modelo', 'equipos.marca','equipos.id')->orderByDesc('total')->limit(5)->get();
     }
 
     #[Computed()]
@@ -40,7 +40,7 @@ new class extends Component
     {
         return Solicitud_Equipo::join('unidad__equipos', 'solicitud__equipos.id_unidad_equipo', '=', 'unidad__equipos.id')->
                                 join('equipos', 'unidad__equipos.id_equipo', '=', 'equipos.id')->
-                                select('equipos.modelo', 'equipos.marca', DB::raw('count(*) as total'))->
-                                groupBy('equipos.modelo', 'equipos.marca')->orderBy('total')->limit(5)->get();
+                                select('equipos.modelo', 'equipos.marca', DB::raw('count(*) as total'),'equipos.id')->
+                                groupBy('equipos.modelo', 'equipos.marca','equipos.id')->orderBy('total')->limit(5)->get();
     }
 };

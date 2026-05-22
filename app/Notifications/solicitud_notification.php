@@ -17,7 +17,7 @@ class solicitud_notification extends Notification
     {
         $this->header = $header;
         $this->subtitle = $subtitle;
-        $this->url = url($url);
+        $this->url = $url;
     }
 
     /**

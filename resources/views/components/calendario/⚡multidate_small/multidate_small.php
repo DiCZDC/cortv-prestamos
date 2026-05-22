@@ -8,7 +8,9 @@ use Livewire\Component;
 new class extends Component
 {
     public $id_equipo;
+
     public $anio;
+
     public $mes;
 
     public $range = 3; // Rango de meses a mostrar antes y después del mes actual

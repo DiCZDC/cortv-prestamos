@@ -152,9 +152,9 @@ new class extends Component
         ]));
         $solicitud = Solicitud::find($this->solicitudId);
         Flux::toast(
-            heading:'Prestamo entregado',
+            heading: 'Prestamo entregado',
             text: 'El préstamo de '.$solicitud->trabajador->name.' fue entregado.',
-            variant:'success',
+            variant: 'success',
         );
     }
 

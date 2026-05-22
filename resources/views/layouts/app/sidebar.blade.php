@@ -125,8 +125,8 @@
         {{ $slot }}
 
         @fluxScripts
-        @persist('toast')
+        {{-- @persist('toast')
             <flux:toast />
-        @endpersist 
+        @endpersist  --}}
     </body>
 </html>

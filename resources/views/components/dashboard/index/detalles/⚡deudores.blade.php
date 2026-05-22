@@ -18,6 +18,7 @@ new class extends Component
         <flux:table.columns align="center">
             <flux:table.column  >Nombre</flux:table.column>
             <flux:table.column  >Deudas Totales</flux:table.column>
+            <flux:table.column  >Acciones</flux:table.column>
         </flux:table.columns>
 
         <flux:table.rows>
@@ -26,6 +27,9 @@ new class extends Component
                     <flux:table.cell>{{ $deudor->name }}</flux:table.cell>
                     <flux:table.cell variant="strong">
                         {{$deudor->total}}
+                    </flux:table.cell>
+                    <flux:table.cell>
+                        <x-componentes.boton-href ruta="personal.show" texto="Ver" icon="eye" :id="$deudor->id" />
                     </flux:table.cell>
                 </flux:table.row>
             @endforeach

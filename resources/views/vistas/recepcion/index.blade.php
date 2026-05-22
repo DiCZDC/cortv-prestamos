@@ -4,7 +4,10 @@
 
 @endphp
 <x-layouts::app :title="__('Recepción')">
-    <div class="flex flex-col px-6 pb-2">
+    <div class="flex flex-col 
+    {{-- px-2 --}}
+    lg:px-6 
+    pb-2">
         <div class="flex flex-col gap justify-between gap-8.5 
             align-middle items-center
             lg:flex-row 
@@ -18,7 +21,7 @@
             </div>
 
             
-            <div class="w-full flex-col flex justify-between items-center gap-8.5   
+            <div class="w-full flex justify-between items-center gap-4
                 md:justify-evenly
                 lg:w-[40%] md:flex-row 
             ">

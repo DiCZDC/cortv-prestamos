@@ -11,11 +11,13 @@ new class extends Component
     use WithPagination;
 
     public $search = '';
+
     public $perPage = 6;
+
     public $filter = '';
 
-    
     public $sortBy = 'rol';
+
     public $sortDirection = 'DESC';
 
     public function sort($column)
@@ -54,13 +56,13 @@ new class extends Component
 
             ->leftJoin('model_has_roles', function ($join) {
                 $join->on('users.id', '=', 'model_has_roles.model_id')
-                     ->where('model_has_roles.model_type', User::class);
+                    ->where('model_has_roles.model_type', User::class);
             })
             ->leftJoin('roles', 'roles.id', '=', 'model_has_roles.role_id')
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($q) {
                     $q->whereRaw('LOWER(users.name) like ?', ['%'.strtolower($this->search).'%'])
-                      ->orWhereRaw('LOWER(users.email) like ?', ['%'.strtolower($this->search).'%']);
+                        ->orWhereRaw('LOWER(users.email) like ?', ['%'.strtolower($this->search).'%']);
                 });
             })
             ->when($this->filter !== '', function ($query) {
