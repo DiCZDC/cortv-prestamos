@@ -58,7 +58,19 @@
                                 Cambiar Estado
                             </flux:button>
                         @else
-                            <x-componentes.boton-href  ruta="archivo.show" texto="Ver" icon="eye" :id="$prestamos_act->first()?->id_solicitud" />
+                            <flux:button
+                                icon="eye"
+                                size="sm"
+                                variant="primary"
+                                class="bg-azul-hover! text-azul_oscuro! font-bold text-sm! border-none!
+                                    hover:bg-azul_oscuro! 
+                                    hover:text-hueso!
+                                    transition all delay-100 duration-200 ease-out 
+                                    hover:-translate-y-1.5 active:scale-92 cursor-pointer"
+                                href="{{ route('archivo.show', $prestamos_act->first()?->id_solicitud) }}" 
+                                >
+                                Ver Prestamo
+                            </flux:button>
                         @endif
                     </flux:table.cell>
                 

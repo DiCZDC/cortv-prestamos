@@ -43,7 +43,7 @@ new class extends Component
                 </div>
                 
                 <div class="flex flex-row gap-4">
-                    <flux:button href="{{ $notification->data['url'] ?? '#' }}" target="_blank">
+                    <flux:button wire:click="markAsRead" href="{{ $notification->data['url'] ?? '#' }}" target="_blank">
                         Ver detalles
                     </flux:button>
                     <flux:button wire:click="markAsRead" wire:loading.attr="disabled">
