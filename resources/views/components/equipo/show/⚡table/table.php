@@ -29,16 +29,22 @@ new class extends Component
     }
 
     #[Computed]
+    public function prestamo_activo()
+    {
+        return Solicitud::whereIn('estado', ['Entregada'])
+            ->where('fecha_devolucion', '>=', now())
+            ->pluck('id');
+    }
+    #[Computed]
     public function equipos_prestados()
     {
         $prestados = Solicitud::whereIn('estado', ['Entregada'])
-            // ->where('fecha_prestamo', '<=', now())
             ->where('fecha_devolucion', '>=', now())
-            ->pluck('id');
+            ->pluck('id')->unique();
 
-        return Solicitud_Equipo::whereIn('id_solicitud', $prestados)
-            ->pluck('id_unidad_equipo')
-            ->unique();
+        return Solicitud_Equipo::whereIn('id_solicitud', $prestados);
+            // ->pluck('id_unidad_equipo')
+            // ->unique();
     }
 
     #[Computed]

@@ -74,7 +74,7 @@
                 <flux:table.cell>
                     <x-componentes.boton-href ruta="equipo.show" texto="Ver" icon="eye" :id="$equipo->id" />    
                 </flux:table.cell>
-
+                
             </flux:table.row>
         @empty
             <flux:table.row>

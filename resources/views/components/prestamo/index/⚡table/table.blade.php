@@ -53,7 +53,6 @@
                     <flux:table.cell>
                             <x-componentes.boton-href ruta="prestamo.show" texto="Ver" icon="eye" :id="$prestamo->id" />    
                     </flux:table.cell>
-
                 </flux:table.row>
             @empty
                 <flux:table.row>
