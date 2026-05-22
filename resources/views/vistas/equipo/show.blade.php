@@ -13,7 +13,7 @@
         <!-- It is quality rather than quantity that matters. - Lucius Annaeus Seneca -->
 
         <div class="flex flex-col justify-center gap-5 pl-3">
-            <x-componentes.titulo icono="{{ $producto->categoria->icono }}" texto="{{ $producto->marca . ' ' . $producto->modelo }}" />
+            <x-componentes.titulo :icono="$producto->categoria->icono" :texto="$producto->marca . ' ' . $producto->modelo" />
             <x-componentes.subtitulo icono="list-ordered" texto="Unidades totales del equipo registradas" />
         </div>
 

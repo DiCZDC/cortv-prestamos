@@ -9,6 +9,6 @@
                 text-3xl
                 md:text-4xl
                 lg:text-5xl 
-    ">{{ $texto }}</h1>
+    ">{!! $texto !!}</h1>
 </div>
 
