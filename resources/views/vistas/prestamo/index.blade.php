@@ -1,6 +1,9 @@
 <x-layouts::app :title="__('Prestamos Pendientes')">
     {{-- div general --}}
-    <div class="px-2 py-3.5 flex flex-col gap-3">
+    <div class="
+    {{-- px-2  --}}
+    lg:px-2
+    py-3.5 flex flex-col gap-3">
         {{-- header --}}
         <div class="flex w-full pr-5 justify-between mb-4 
             gap-10 items-center flex-col-reverse

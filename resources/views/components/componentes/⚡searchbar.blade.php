@@ -29,7 +29,7 @@ new class extends Component
         @if ($this->filters && count($this->filters) > 0)  
             <flux:select 
                 size="md" 
-                class="w-full sm:w-auto" 
+                class="w-full md:w-auto" 
                 wire:model.live="filter"
             >
                 @forelse ($this->filters as $key => $label)

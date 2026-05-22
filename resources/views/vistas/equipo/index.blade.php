@@ -1,6 +1,9 @@
 <x-layouts::app :title="__('Equipo')">
     
-    <div class="py-4 px-10 gap-1 flex flex-col"> 
+    <div class="py-4 
+    
+    lg:px-10 
+    gap-1 flex flex-col"> 
 
         <div class="flex flex-row gap mb-10">
             

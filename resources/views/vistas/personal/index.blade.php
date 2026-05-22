@@ -1,5 +1,8 @@
 <x-layouts::app :title="__('Personal')">
-    <div class=" px-6 w-full gap-10 flex flex-col">
+    <div class=" 
+
+    lg:px-6 
+    w-full gap-10 flex flex-col">
             {{-- Cabecera principal --}}
             <div class="flex flex-col justify-center gap-8 pl-3 pt-5">
                 <x-componentes.titulo icono="book-user" texto="Gestión del personal" />

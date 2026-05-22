@@ -1,5 +1,7 @@
 <x-layouts::app title="Entregas">
-    <div class="px-6 flex flex-col gap-8">
+    <div class="
+    {{-- px-2 --}}
+    lg:px-6 flex flex-col gap-8">
         {{-- info de la vista --}}
         <div class="w-full flex justify-between ">
 

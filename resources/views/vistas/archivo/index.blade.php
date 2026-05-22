@@ -6,7 +6,9 @@
             <x-componentes.subtitulo class="w-full" icono="database" texto="Prestamos resueltos" />
         </div>
     </div>
-    <div class="w-full not-dark:bg-white rounded-lg not-dark:shadow-md  p-8">
+    <div class="w-full not-dark:bg-white rounded-lg not-dark:shadow-md 
+        p-4
+        lg:p-8">
         <livewire:archivo.index.table lazy/>
     </div>
 </x-layouts::app>
