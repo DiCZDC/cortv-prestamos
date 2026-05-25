@@ -59,6 +59,7 @@
                             </flux:button>
                         @else
                             <flux:button
+                                title="Solicitado por: {{ $prestamos_act->first()->solicitud->trabajador->name }}"
                                 icon="eye"
                                 size="sm"
                                 variant="primary"
