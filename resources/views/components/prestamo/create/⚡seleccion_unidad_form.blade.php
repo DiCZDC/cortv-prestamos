@@ -80,7 +80,7 @@ new class extends Component
         $this->reset(['nombre_equipo', 'nombre_unidad_equipo']);
     }
     
-};
+};  
 ?>
 <div class="flex flex-col bg-white shadow-xl rounded-2xl px-12 py-6 w-full mt-9
             dark:bg-neutral-800
