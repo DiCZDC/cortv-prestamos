@@ -6,7 +6,7 @@
         
         {{-- herocard de prestamo en curso --}}
         <article class="w-1/2 flex p-5 justify-center">   
-            <livewire:personal.show.carousel/>
+            <livewire:personal.show.carousel :id="$id"/>
             {{-- <livewire:personal.show.card 
                 :prestamo_en_curso="$this->prestamo_en_curso" 
                 /> --}}

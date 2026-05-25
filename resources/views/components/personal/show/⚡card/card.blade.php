@@ -6,29 +6,30 @@
         <header class="flex justify-between items-center w-full">
             <div class="inline-flex items-center gap-3">
                 <flux:icon name="book-marked" class="size-9 text-black dark:text-hueso" />
-                <h1 class="text-xl font-bold text-center">Prestamo en curso</h1>
+                <h1 class="text-xl font-bold text-center">{{$this->titulo}}</h1>
             </div>
 
             <div>
-                <flux:badge color="green">11 dias restantes</flux:badge
+                <flux:badge color="green">{{$this->pill}}</flux:badge>
             </div>
 
         </header>  
         
         <div class="flex flex-col px-2 gap-2.5 w-full">
-            @if($this->prestamo_en_curso)
+            {{-- @if($this->prestamo_en_curso) --}}
                 
-                <span class=" inline-flex text-base text-gris_claro font-medium gap-2">
+                <span title="{{$this->subtitulo}}" class=" inline-flex text-base text-gris_claro font-medium gap-2 ">
                     <flux:icon.scroll-text />
-                    {{$this->prestamo_en_curso->motivo}}
+                    {{Str::limit($this->subtitulo, 40)}}
                 </span> 
 
 
-                <p class="text-base text-gris_claro ml-1">
+                <p class="text-base text-gris_claro ml-1 flex gap-2">
+                    <flux:icon.calendar />
                     <span class="font-semibold">
                         Fecha de entrega:
                     </span>
-                    {{$this->prestamo_en_curso->fecha_devolucion }}
+                    {{$this->date }}
                 </p>
 
                 <div class="self-center mt-1">
@@ -36,12 +37,12 @@
                         ruta="archivo.show" 
                         texto="Ver" 
                         icon="eye" 
-                        :id="$this->prestamo_en_curso->id" 
+                        :id="$this->route"
                         />    
                 </div>
-            @else
+            {{-- @else
                 <p class="text-lg mt-4">No tienes prestamos en curso</p>
-            @endif
+            @endif --}}
         </div>
 
     </div>
