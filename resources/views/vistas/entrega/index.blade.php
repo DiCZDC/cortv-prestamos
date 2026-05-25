@@ -2,8 +2,6 @@
     <div class="
     {{-- px-2 --}}
     lg:px-6 flex flex-col gap-8
-    
-    bg-red-700
     ">
         {{-- info de la vista --}}
         <div class="w-full flex 
@@ -32,7 +30,7 @@
         </div>
 
 
-        <div class="w-full not-dark:bg-white rounded-lg not-dark:shadow-md  p-8">
+        <div class="w-full not-dark:bg-white rounded-lg not-dark:shadow-md  px-8 pt-8 pb-2">
             <livewire:entrega.index.table lazy/> 
         </div>
     </div>

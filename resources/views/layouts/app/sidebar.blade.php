@@ -70,7 +70,7 @@
 
             <flux:spacer />
             @auth
-            <flux:dropdown position="top" align="end">
+            {{-- <flux:dropdown position="top" align="end">
                 <flux:profile
                     :initials="auth()->user()->initials()"
                     icon-trailing="chevron-down"
@@ -118,7 +118,7 @@
                         </flux:menu.item>
                     </form>
                 </flux:menu>
-            </flux:dropdown>
+            </flux:dropdown> --}}
             @endauth
         </flux:header>
         

@@ -33,8 +33,8 @@ class ProcesarRecordatorios implements ShouldQueue
      */
     public function handle(): void
     {
-        $this->trabajadores();
         $this->admins();
+        $this->trabajadores();
     }
 
     public function notificator($user, $header, $message, $url)
