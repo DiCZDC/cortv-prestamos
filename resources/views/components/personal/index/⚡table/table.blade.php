@@ -85,7 +85,7 @@
                                 <flux:button 
                                     variant="outline" 
                                     icon:trailing="refresh-ccw"    
-                                    class="bg-[#fff1bf]! text-[#bb4d00]! 
+                                    class="bg-[#3d1330]! text-[#bb4d00]! 
                                             font-bold text-sm! border-none!
                                             hover:bg-[#FAA543]! 
                                             hover:text-white!
