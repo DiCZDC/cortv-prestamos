@@ -15,11 +15,12 @@ new class extends Component
             ->where('estado', 'Entregada')
             ->first();
         
+        if (!$solicitud) return null;
         $data = [
             'titulo' => 'Prestamo en curso',
-            'subtitulo' => $solicitud ? $solicitud->motivo : '',
-            'date' => $solicitud ? $solicitud->fecha_devolucion : '',
-            'pill' => $solicitud ? round(now()->diffInDays($solicitud->fecha_devolucion, false)) . ' dias restantes' : '',
+            'subtitulo' => $solicitud ? $solicitud->motivo : null,
+            'date' => $solicitud ? $solicitud->fecha_devolucion : null,
+            'pill' => $solicitud ? round(now()->diffInDays($solicitud->fecha_devolucion, false)) . ' dias restantes' : null,
             'route' => $solicitud ? $solicitud->id : null,
         ];
 
@@ -32,12 +33,12 @@ new class extends Component
             ->where('estado', 'Devuelta')
             ->latest()
             ->first();
-        
+        if (!$solicitud) return null;
         $data = [
             'titulo' => 'Ultimo prestamo',
-            'subtitulo' => $solicitud ? $solicitud->motivo : '',
-            'date' => $solicitud ? $solicitud->fecha_devolucion : '',
-            'pill' => $solicitud->estado,
+            'subtitulo' => $solicitud ? $solicitud->motivo : null,
+            'date' => $solicitud ? $solicitud->fecha_devolucion : null,
+            'pill' => $solicitud ? $solicitud->estado : null,
             'route' => $solicitud ? $solicitud->id : null,
         ];
 
@@ -49,12 +50,12 @@ new class extends Component
         $solicitud = Solicitud::where('id_trabajador', $this->id)
             ->latest()
             ->first();
-        
+        if(!$solicitud) return null;
         $data = [
             'titulo' => 'Ultima solicitud',
-            'subtitulo' => $solicitud ? $solicitud->motivo : '',
-            'date' => $solicitud ? $solicitud->fecha_devolucion : '',
-            'pill' => $solicitud->estado,
+            'subtitulo' => $solicitud ? $solicitud->motivo : null,
+            'date' => $solicitud ? $solicitud->fecha_devolucion : null,
+            'pill' => $solicitud ? $solicitud->estado : null,
             'route' => $solicitud ? $solicitud->id : null,
         ];
 
@@ -68,6 +69,7 @@ new class extends Component
             $this->ultimo_prestamo,
             $this->ultima_solicitud,
         ];
-        return $array;
+
+        return array_filter($array, fn ($item) => $item !== null);
     }
 };  

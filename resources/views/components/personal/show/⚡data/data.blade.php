@@ -1,20 +1,19 @@
-{{-- @section('styles')
-    @vite(['resources/css/app.css', 'resources/css/carrusel.css', 'resources/js/carrusel.js', 'resources/js/app.js'])
-@endsection --}}
 <main>
-    <header class="w-full flex items-center justify-center gap-6  ">  
+    <header class="w-full flex flex-col items-center justify-center gap-6 
+                p-8 px-0!
+                lg:flex-row 
+    ">  
         
         {{-- herocard de prestamo en curso --}}
-        <article class="w-1/2 flex p-5 justify-center">   
+        <article class="w-full flex p-5 justify-center
+            lg:w-full
+        ">   
             <livewire:personal.show.carousel :id="$id"/>
-            {{-- <livewire:personal.show.card 
-                :prestamo_en_curso="$this->prestamo_en_curso" 
-                /> --}}
         </article>
 
 
 
-        <aside class="w-1/2 flex justify-evenly">
+        <aside class="w-full flex justify-evenly gap-3">
             <livewire:componentes.card 
                 titulo='{{ $this->porcentaje_cumplimiento }}' 
                 descripcion='Tasa de cumplimiento'
@@ -33,12 +32,16 @@
     </header>
 
     <section class="grid auto-rows-min gap-4 grid-cols-1 place-items-center content-center lg:grid-cols-2">
-        <div class="w-[84%] relative rounded-xl shadow-xl ">
+        <div class="w-full relative rounded-xl shadow-xl 
+                lg:w-[84%]
+        ">
         <!-- Titulo de la tabla -->
             <livewire:dashboard.index.prestamos.table :id_user='$id' lazy/>
         </div>
 
-        <div class="w-[84%] relative shadow-xl rounded-xl ">
+        <div class="w-full relative shadow-xl rounded-xl 
+                lg:w-[84%]
+        ">
             <livewire:dashboard.index.devoluciones.table :id_user='$id' lazy/>
         </div>
         

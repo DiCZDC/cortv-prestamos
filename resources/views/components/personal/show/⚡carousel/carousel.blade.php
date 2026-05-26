@@ -1,14 +1,33 @@
 @vite('resources/js/carousel.js')
 
-<div class="swiper">
-    {{-- Slider main container --}}
-    <div class="swiper-wrapper">
+<div class="swiper
+    shadow-lg rounded-2xl bg-white
+    "
+    style="
+        width: 580px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        justify-content: space-between;
+        overflow: hidden;
+    "
+>
+    <div class="swiper-wrapper"
+        style="
+            width: 540px;
+            height: 100%;
+        "   
+    >
         <!-- Slides -->
-        @foreach ($this->historial_prestamos as $prestamo)
-        <div class="swiper-slide flex justify-center items-center w-1/2 h-full ">
-            {{-- <img src="https://placehold.co/750x400" alt="Slide"> --}}
-            <livewire:personal.show.card 
-                {{-- :prestamo_en_curso="$this->prestamo_en_curso"  --}}
+        @forelse ($this->historial_prestamos as $prestamo)
+        <div class="swiper-slide"
+            style="
+                display: flex;
+                flex-flow: column wrap;
+            "
+        >
+            <livewire:personal.show.card
                 :titulo="$prestamo['titulo']"
                 :subtitulo="$prestamo['subtitulo']"
                 :date="$prestamo['date']"
@@ -16,11 +35,36 @@
                 :route="$prestamo['route']"
                 />
         </div>
-        @endforeach
+        @empty
+        <div class="swiper-slide"
+            style="
+                display: flex;
+                flex-flow: column wrap;
+                justify-content: center;
+                align-items: center;
+            "
+        >
+            <p class="text-lg text-gris_claro">No hay prestamos en curso</p>
+        </div>
+        @endforelse
     </div>
 
     <!-- Pagination and navigation -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"
+        style="
+            color: #8B2427; /* Cambia el color si lo deseas */
+            width: 15px;
+        "
+    ></div>
+    <div class="swiper-pagination"
+        style="
+            color: #8B2427; /* Cambia el color si lo deseas */
+        "
+    ></div>
+    <div class="swiper-button-next"
+        style="
+            color: #8B2427; /* Cambia el color si lo deseas */
+            width: 15px;
+        "
+    ></div>
 </div>

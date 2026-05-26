@@ -1,7 +1,7 @@
 
-<div>
+<div class="bg-white rounded-2xl w-full h-full ">
     {{-- Life is available only in the present moment. - Thich Nhat Hanh --}}
-    <div class="bg-white rounded-2xl shadow-lg flex flex-col justify-start items-start px-9 py-6 w-[70%] gap-5">
+    <div class="flex flex-col justify-start items-start px-9 pt-6 pb-12 w-full gap-5">
                 
         <header class="flex justify-between items-center w-full">
             <div class="inline-flex items-center gap-3">
@@ -40,9 +40,6 @@
                         :id="$this->route"
                         />    
                 </div>
-            {{-- @else
-                <p class="text-lg mt-4">No tienes prestamos en curso</p>
-            @endif --}}
         </div>
 
     </div>
