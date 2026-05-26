@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Component;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -13,18 +14,16 @@ new class extends Component
 
     public function reset_password()
     {
+        // Flux::toast(heading: 'Funcion ejecutada', text: 'La contraseña ha sido restablecida exitosamente.', variant: 'success');
         try{
             $newPassword = Str::random(12);
-            $this->persona->forceFill([
-                'password' => Hash::make($newPassword),
-                'remember_token' => Str::random(10),
-            ])->save();
-            Flux::toast(heading: 'Contraseña restablecida', text: 'La contraseña ha sido restablecida exitosamente.', variant: 'success');
+            $this->persona ->update([
+                'password' => Hash::make($newPassword)
+            ]);
+            
+            Flux::toast(heading: 'Contraseña restablecida', text: 'La contraseña ha sido restablecida exitosamente a: ' . $newPassword, variant: 'success');
         }catch (\Exception $e) {
-            throw ValidationException::withMessages(['error' => 'Ocurrió un error al restablecer la contraseña.']);
             Flux::toast(heading: 'Error', text: $e->getMessage(), variant: 'danger');
         }
-
-        return $newPassword;
     }
 };

@@ -1,4 +1,3 @@
-
 <div>
     {{-- Live as if you were to die tomorrow. Learn as if you were to live forever. - Mahatma Gandhi --}}
     <flux:modal name="reset-password.{{ $persona->id }}" class="md:w-96">
