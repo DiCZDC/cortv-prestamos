@@ -1,7 +1,9 @@
 @vite('resources/js/carousel.js')
 
 <div class="swiper
-    shadow-lg rounded-2xl bg-white
+    shadow-lg rounded-2xl 
+    {{-- bg-white --}}
+    dark:bg-gris_oscuro
     "
     style="
         width: 580px;

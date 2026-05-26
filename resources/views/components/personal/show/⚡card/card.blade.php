@@ -1,5 +1,7 @@
 
-<div class="bg-white rounded-2xl w-full h-full ">
+<div class="
+{{-- bg-white  --}}
+rounded-2xl w-full h-full ">
     {{-- Life is available only in the present moment. - Thich Nhat Hanh --}}
     <div class="flex flex-col justify-start items-start px-9 pt-6 pb-12 w-full gap-5">
                 
