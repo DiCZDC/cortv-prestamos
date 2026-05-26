@@ -17,9 +17,6 @@ new class extends Component
         // Flux::toast(heading: 'Funcion ejecutada', text: 'La contraseña ha sido restablecida exitosamente.', variant: 'success');
         try{
             $newPassword = Str::random(12);
-            // $user = User::findOrFail($this->persona->user_id);
-            // $user->password = $newPassword;
-            // $user->save();
             $this->persona ->update([
                 'password' => Hash::make($newPassword)
             ]);
