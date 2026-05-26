@@ -21,7 +21,11 @@ new class extends Component
                 'password' => Hash::make($newPassword)
             ]);
             
-            Flux::toast(heading: 'Contraseña restablecida', text: 'La contraseña ha sido restablecida exitosamente a: ' . $newPassword, variant: 'success');
+            Flux::toast(
+                duration: 0,
+                heading: 'Contraseña restablecida', 
+                text: 'La contraseña ha sido restablecida exitosamente a: ' . $newPassword. ' Por favor, cámbiala después de iniciar sesión.', 
+                variant: 'success');
         }catch (\Exception $e) {
             Flux::toast(heading: 'Error', text: $e->getMessage(), variant: 'danger');
         }
