@@ -67,24 +67,41 @@
                         
                         <div class="flex gap-5">
                             <flux:modal.trigger name="update-role.{{ $persona->id }}">
-                                <flux:button variant="outline" 
-                                            icon:trailing="user-pen" 
-                                            class="bg-[#fff1bf]! text-[#bb4d00]! 
-                                                    font-bold text-sm! border-none!
-                                                    hover:bg-[#FAA543]! 
-                                                    hover:text-white!
-                                                    transition all delay-100 duration-200 ease-out  
-                                                    hover:-translate-y-1.5 active:scale-92 cursor-pointer"
-                                            >
+                                <flux:button 
+                                    variant="outline" 
+                                    icon:trailing="user-pen" 
+                                    class="bg-[#fff1bf]! text-[#bb4d00]! 
+                                            font-bold text-sm! border-none!
+                                            hover:bg-[#FAA543]! 
+                                            hover:text-white!
+                                            transition all delay-100 duration-200 ease-out  
+                                            hover:-translate-y-1.5 active:scale-92 cursor-pointer"
+                                    >
                                     Actualizar rol
                                 </flux:button>
                             </flux:modal.trigger>
 
+                            <flux:modal.trigger name="reset-password.{{ $persona->id }}">
+                                <flux:button 
+                                    variant="outline" 
+                                    icon:trailing="refresh-ccw"    
+                                    class="bg-[#fff1bf]! text-[#bb4d00]! 
+                                            font-bold text-sm! border-none!
+                                            hover:bg-[#FAA543]! 
+                                            hover:text-white!
+                                            transition all delay-100 duration-200 ease-out  
+                                            hover:-translate-y-1.5 active:scale-92 cursor-pointer"
+                                    >
+                                    Restablecer contraseña
+                                </flux:button>
+                            </flux:modal.trigger>
                             <x-componentes.boton-href ruta="personal.show" texto="Ver" icon="eye" :id="$persona->id" />    
+                            
 
                         </div>
 
                         <livewire:personal.index.modal :persona="$persona" />
+                        <livewire:personal.index.modal-reset-password :persona="$persona"/>
                     
                     </flux:table.cell>
                 </flux:table.row>
