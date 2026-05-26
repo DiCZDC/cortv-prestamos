@@ -96,28 +96,28 @@
                                 </flux:button>
                             </flux:modal.trigger>
                             <x-componentes.boton-href ruta="personal.show" texto="Ver" icon="eye" :id="$persona->id" />    
+                                
+                                
+                            </div>
                             
-
-                        </div>
-
                         <livewire:personal.index.modal :persona="$persona" />
-                        <livewire:personal.index.modal-reset-password :persona="$persona"/>
-                    
+                        <livewire:personal.index.modal_reset_password :persona="$persona"/>
+                        
                     </flux:table.cell>
                 </flux:table.row>
-            @empty
+                @empty
                 <flux:table.row>
                     <flux:table.cell colspan="5" class="text-center">
                         No hay personal registrado.
                     </flux:table.cell>
                 </flux:table.row>
-            @endforelse
-        </flux:table.rows>
-    </flux:table>
-    <flux:select size="sm" class="mt-0.5 w-full sm:w-auto" wire:model.live="perPage">
-        <flux:select.option value="6">6</flux:select.option>
-        <flux:select.option value="12">12</flux:select.option>
-        <flux:select.option value="24">24</flux:select.option>
-        <flux:select.option value="48">48</flux:select.option>
-    </flux:select>
+                @endforelse
+            </flux:table.rows>
+        </flux:table>
+        <flux:select size="sm" class="mt-0.5 w-full sm:w-auto" wire:model.live="perPage">
+            <flux:select.option value="6">6</flux:select.option>
+            <flux:select.option value="12">12</flux:select.option>
+            <flux:select.option value="24">24</flux:select.option>
+            <flux:select.option value="48">48</flux:select.option>
+        </flux:select>
 </div>
