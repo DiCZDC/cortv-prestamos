@@ -51,13 +51,14 @@
                 :titulo="$titulo" 
                 :descripcion="$descripcion" 
                 :icono="$icono"     
-                color_bg='bg-hueso!'
+                color_bg='bg-white! dark:bg-transparent!'
                 :color_text="$color_text"/>    
             </div>
 
             <div class="flex flex-col items-center justify-start gap-10 py-1 ">
                 <div>
                     <span class="font-bold text-black text-2xl
+                    dark:text-hueso
                     md:text-3xl
                     ">
                         Periodo de préstamo</span>

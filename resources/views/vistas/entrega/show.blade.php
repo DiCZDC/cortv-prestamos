@@ -46,16 +46,18 @@
                 :titulo="$titulo" 
                 :descripcion="$descripcion" 
                 :icono="$icono"     
-                color_bg='bg-hueso!'
+                color_bg='bg-hueso! dark:bg-zinc-900!'
                 :color_text="$color_text"/>    
             </div>
 
             <div class="flex flex-col items-center justify-start gap-10 py-1 ">
                 <div>
                     <span class="font-bold text-black text-2xl
+                    dark:text-hueso
                     md:text-3xl
                     ">
-                        Periodo de préstamo</span>
+                        Periodo de préstamo
+                    </span>
                 </div>
                 
                 <livewire:calendario.small :id="$id"/>

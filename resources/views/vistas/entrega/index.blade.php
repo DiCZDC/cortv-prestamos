@@ -19,7 +19,10 @@
                 @endphp
                    
                    <livewire:componentes.card titulo="{{ $prestamos_pendientes }} Prestamos" 
-                    descripcion='Pendientes de entrega' icono='package-search' color_text='text-black' color_bg='bg-hueso'/>    
+                    descripcion='Pendientes de entrega' icono='package-search' 
+                    color_text='text-black dark:text-hueso' 
+                    
+                    color_bg='bg-white! dark:bg-transparent!'/>    
             </div>
         
         </div>

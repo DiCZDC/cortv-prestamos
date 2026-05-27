@@ -25,8 +25,12 @@
                 md:justify-evenly
                 lg:w-[40%] md:flex-row 
             ">
-                <livewire:componentes.card titulo='{{$cant_esperados}} prestamos' descripcion='se devuelven hoy' icono='boxes' color_text='black' color_bg='bg-white dark:bg-transparent'/>    
-                <livewire:componentes.card titulo='{{$cant_atrasados}} prestamos' descripcion='atrasados' icono='file-clock' color_text='black' color_bg='bg-white dark:bg-transparent'/>    
+                <livewire:componentes.card titulo='{{$cant_esperados}} prestamos' descripcion='se devuelven hoy' icono='boxes' color_text='black' 
+                color_bg='bg-white dark:bg-transparent'
+                />    
+                <livewire:componentes.card titulo='{{$cant_atrasados}} prestamos' descripcion='atrasados' icono='file-clock' color_text='black' 
+                color_bg='bg-white dark:bg-transparent'
+                />    
             
             </div>
         </div>
