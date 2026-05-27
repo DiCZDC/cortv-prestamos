@@ -32,7 +32,7 @@
                         <flux:description class="!mt-0">El motivo del prestamo debe tener al menos 10 caracteres y 255 como maximo </flux:description>
                     </flux:field>
 
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 xs:grid-cols-2 gap-10  xs:gap-4">
                         <flux:input type="date" wire:model.live="fecha_prestamo" badge="Requerido" label="Fecha de Préstamo" placeholder="Seleccione la fecha de préstamo" min="{{ now()->toDateString() }}" />
                         <flux:input type="date" wire:model.live="fecha_devolucion" badge="Requerido" label="Fecha de Devolución" placeholder="Seleccione la fecha de devolución" min="{{ $fecha_prestamo ?? now()->toDateString() }}" />
                     </div>
