@@ -1,13 +1,10 @@
-<main>
+<main class="w-full h-full flex flex-col gap-10">
+
     <header class="w-full flex flex-col items-center justify-center gap-6 
-                p-8 px-0!
-                lg:flex-row 
-    ">  
+                lg:flex-row lg:justify-between">  
         
         {{-- herocard de prestamo en curso --}}
-        <article class="w-full flex p-5 justify-center
-            lg:w-full
-        ">   
+        <article class="w-full flex justify-center items-center lg:w-full ">   
             <livewire:personal.show.carousel :id="$id"/>
         </article>
 

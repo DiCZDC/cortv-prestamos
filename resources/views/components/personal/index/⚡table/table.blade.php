@@ -77,7 +77,6 @@
                                             transition all delay-100 duration-200 ease-out  
                                             hover:-translate-y-1.5 active:scale-92 cursor-pointer"
                                     >
-                                    Actualizar rol
                                 </flux:button>
                             </flux:modal.trigger>
 
@@ -85,9 +84,9 @@
                                 <flux:button 
                                     variant="outline" 
                                     icon:trailing="refresh-ccw"    
-                                    class="bg-[#3d1330]! text-[#bb4d00]! 
+                                    class="bg-[#ede6ff]! text-[#7008e7]! 
                                             font-bold text-sm! border-none!
-                                            hover:bg-[#FAA543]! 
+                                            hover:bg-[#7008e7]! 
                                             hover:text-white!
                                             transition all delay-100 duration-200 ease-out  
                                             hover:-translate-y-1.5 active:scale-92 cursor-pointer"
@@ -95,6 +94,7 @@
                                     Restablecer contraseña
                                 </flux:button>
                             </flux:modal.trigger>
+
                             <x-componentes.boton-href ruta="personal.show" texto="Ver" icon="eye" :id="$persona->id" />    
                                 
                                 
