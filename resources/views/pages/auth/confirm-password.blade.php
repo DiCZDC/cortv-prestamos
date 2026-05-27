@@ -1,5 +1,5 @@
 <x-layouts::auth :title="__('Confirm password')">
-    <div class="flex flex-col gap-6 bg-white/80 backdrop-blur-xl p-6 rounded-lg drop-shadow-lg">
+    <div class="flex flex-col gap-6 rounded-lg border border-white/40 bg-white/75 p-6 text-zinc-700 shadow-xl shadow-black/10 backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/80 dark:text-zinc-100 dark:shadow-black/40">
         
         <div>
             <x-app-logo/>

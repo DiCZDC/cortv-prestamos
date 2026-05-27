@@ -1,5 +1,5 @@
 <x-layouts::auth :title="__('Registrate')">
-    <div class="flex flex-col gap-6 drop-shadow-xl/50 backdrop-blur-sm bg-white/80 rounded-lg p-10 w-[455px]!">
+    <div class="flex flex-col gap-6 rounded-lg border border-white/40 bg-white/75 p-10 text-zinc-700 shadow-xl shadow-black/10 backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/80 dark:text-zinc-100 dark:shadow-black/40 w-113.75!">
         
         <div>
             <x-app-logo/>
