@@ -14,7 +14,8 @@
                 
                 <x-componentes.titulo icono="layers" texto="Prestamos" />
                 
-                <div class="flex w-full justify-between pr-5 ">
+                <div class="flex flex-col gap-6 w-full justify-center sm:gap-0 sm:flex-row sm:justify-between sm:pr-5 ">
+                        
                         <x-componentes.subtitulo icono="book-alert" texto="Prestamos pendientes de aprobar" />
                         
                         <flux:button 
