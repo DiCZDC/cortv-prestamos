@@ -16,4 +16,3 @@ Schedule::job(new ProcesarRecordatorios)
     ->withoutOverlapping();
 // Schedule::job(new Recordatorios)
 //     ->everyTenSeconds();
-s

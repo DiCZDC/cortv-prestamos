@@ -77,6 +77,7 @@
                                             transition all delay-100 duration-200 ease-out  
                                             hover:-translate-y-1.5 active:scale-92 cursor-pointer"
                                     >
+                                    Cambiar rol
                                 </flux:button>
                             </flux:modal.trigger>
 
