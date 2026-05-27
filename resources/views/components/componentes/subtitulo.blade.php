@@ -8,7 +8,7 @@
         " />
     @endif
     <span class="text-gris_claro dark:text-hueso font-semibold
-            text-md
+            text-base
             md:text-xl
             lg:text-2xl
     " >
