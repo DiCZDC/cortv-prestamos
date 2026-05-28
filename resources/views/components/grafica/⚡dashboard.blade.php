@@ -78,7 +78,7 @@ new class extends Component
             datasets: [{
                 data: @json($this->chartData),
                 backgroundColor: ['#279AF1', '#76D245', '#AE2B2F', '#EEC33B'],
-                borderWidth: 0,
+                borderWidth: 1,
             }],
         },
         options: {
