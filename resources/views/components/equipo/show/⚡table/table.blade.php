@@ -49,9 +49,11 @@
                                 size="sm"
                                 variant="primary"
                                 :disabled="$prestado"
-                                class="bg-azul-hover! text-azul_oscuro! font-bold text-sm! border-none!
-                                    hover:bg-azul_oscuro! 
-                                    hover:text-hueso!
+                                class="font-bold text-sm! border-none!
+                                    bg-azul-hover! text-azul_oscuro! 
+                                    hover:bg-azul_oscuro! hover:text-hueso!
+                                    dark:bg-azul_oscuro/60! dark:text-azul-hover!
+                                    dark:hover:bg-azul_oscuro/80! dark:hover:text-hueso!
                                     transition all delay-100 duration-200 ease-out 
                                     hover:-translate-y-1.5 active:scale-92 cursor-pointer"
                                 wire:click="toggleMantenimiento({{ $producto->id }})">
@@ -64,8 +66,9 @@
                                 size="sm"
                                 variant="primary"
                                 class="bg-azul-hover! text-azul_oscuro! font-bold text-sm! border-none!
-                                    hover:bg-azul_oscuro! 
-                                    hover:text-hueso!
+                                    hover:bg-azul_oscuro! hover:text-hueso!
+                                    dark:bg-azul_oscuro/60! dark:text-azul-hover!
+                                    dark:hover:bg-azul_oscuro/80! dark:hover:text-hueso!
                                     transition all delay-100 duration-200 ease-out 
                                     hover:-translate-y-1.5 active:scale-92 cursor-pointer"
                                 href="{{ route('archivo.show', $prestamos_act->first()?->id_solicitud) }}" 

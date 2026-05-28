@@ -61,7 +61,7 @@
                                         $estadoBadgeDisponible = $detalle->Disponible;
                                     @endphp
                                         @if ($detalle->Disponible)
-                                             <flux:badge color="blue" class="text-azul_oscuro! ">{{ $detalle->Unidad_Equipo->sicipo }} </flux:badge>       
+                                             <flux:badge color="blue" class="text-azul_oscuro! dark:text-hueso!">{{ $detalle->Unidad_Equipo->sicipo }} </flux:badge>       
                                         @else
                                             @php
                                                 $equiposDisponibles = $this->equipos_libres($detalle->Unidad_Equipo->Equipo->id);
@@ -125,8 +125,9 @@
                                 :disabled="$Prestamo_Activo"
                                 icon="book-up" 
                                 class=" bg-verde-hover! text-verde-confirmacion! font-bold text-sm! border-none!
-                                hover:bg-verde-confirmacion! 
-                                hover:text-verde-hover! 
+                                hover:bg-verde-confirmacion! hover:text-verde-hover! 
+                                dark:bg-verde-confirmacion/20! dark:text-verde-hover! 
+                                dark:hover:bg-verde-confirmacion/50! dark:hover:text-verde-hover!
                                 transition-all duration-200 ease-out delay-100
                                 hover:-translate-y-1.5 active:scale-95 cursor-pointer">
                                 Entregar

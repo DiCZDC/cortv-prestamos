@@ -21,7 +21,7 @@
                             {{ $detalle->Unidad_Equipo->Equipo->marca }} {{ $detalle->Unidad_Equipo->Equipo->modelo }}
                         </flux:table.cell>
                         <flux:table.cell>
-                            <flux:badge color="blue" class="text-azul_oscuro! ">{{ $detalle->Unidad_Equipo->sicipo }} </flux:badge>       
+                            <flux:badge color="blue" class="text-azul_oscuro! dark:text-hueso! ">{{ $detalle->Unidad_Equipo->sicipo }} </flux:badge>       
                         </flux:table.cell>
                     </flux:table.row>
                 @empty
