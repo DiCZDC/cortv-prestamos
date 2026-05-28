@@ -13,6 +13,6 @@ Artisan::command('inspire', function () {
 Schedule::job(new ProcesarRecordatorios)
     // ->dailyAt('08:00')
     ->everyTenMinutes()
+        // ->everyTenSeconds()
     ->withoutOverlapping();
 // Schedule::job(new Recordatorios)
-//     ->everyTenSeconds();
