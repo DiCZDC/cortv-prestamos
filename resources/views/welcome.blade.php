@@ -24,10 +24,10 @@
 
          @fluxAppearance
     </head>
-    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex items-center lg:justify-center min-h-screen flex-col">
+    <body class="bg-[#FDFDFC] dark:bg-zinc-800 text-[#1b1b18] flex items-center lg:justify-center min-h-screen flex-col">
         <header class="w-full text-sm not-has-[nav]:hidden">
             @if (Route::has('login'))
-                <nav class="flex items-center justify-around gap-4 text-base w-full p-3 shadow-md">
+                <nav class="flex items-center justify-around gap-4 text-base w-full p-3 shadow-md bg-[#FDFDFC] dark:bg-zinc-900">
                     
                     <div>
                         <img src="{{ asset('img/logo_cortv.png') }}" alt="Logo de CORTV" class="w-70 h-auto"> 
@@ -73,13 +73,13 @@
         </header>
         
         
-        <main class="flex flex-col items-center  w-full lg:grow py-23 px-32">
+        <main class="flex flex-col items-center w-full lg:grow py-23 px-32  dark:bg-zinc-950">
            <section class="w-full flex gap-20">
                 <div class="w-1/2 flex flex-col gap-3">
-                    <h1 class="text-5xl leading-16 text-black font-medium font-jakarta ">
-                        Gestiona, crea, solicita y administra tus trámites de manera fácil y rápida.
+                    <h1 class="text-5xl leading-16 text-zinc-800 font-medium font-jakarta dark:text-white">
+                        Gestiona, crea, solicita y administra tus trámites de manera fácil y rápida.    
                     </h1>
-                    <p class="text-lg text-gray-600 dark:text-gray-300 mt-4">
+                    <p class="text-lg text-gray-500 dark:text-zinc-300 mt-4">
                         Descubre cómo podemos ayudarte a gestionar tus trámites de forma eficiente y sencilla.
                         <br/>
                         Dile adios al registro manual y a los procesos complicados. 

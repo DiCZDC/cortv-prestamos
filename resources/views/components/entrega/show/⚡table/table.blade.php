@@ -44,7 +44,7 @@
 
                 
                 <flux:table container:class="max-h-[240px]">
-                    <flux:table.columns sticky class="bg-white dark:bg-[#262626]">
+                    <flux:table.columns sticky class="bg-white dark:bg-zinc-800">
                         <x-componentes.header_table icon="hard-drive"> Equipo </x-componentes.header_table> 
                         <x-componentes.header_table icon="binary"> Sicipo </x-componentes.header_table> 
                         <x-componentes.header_table icon="chart-no-axes-column-increasing"> Disponibilidad </x-componentes.header_table>
