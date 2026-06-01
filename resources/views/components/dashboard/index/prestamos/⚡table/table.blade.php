@@ -54,6 +54,7 @@
                         <flux:button 
                             icon:trailing="eye" 
                             class="bg-azul-hover! text-azul_oscuro! font-bold text-sm! border-none!
+                                dark:bg-azul_oscuro/60! dark:text-azul-hover!
                                    hover:bg-azul_oscuro! hover:text-hueso! 
                                    transition-all duration-200 ease-out delay-150
                                    hover:-translate-y-1.5 active:scale-95 cursor-pointer"

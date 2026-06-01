@@ -16,13 +16,13 @@
                 descripcion='Tasa de cumplimiento'
                 icono='box' 
                 color_text='text-hueso' 
-                color_bg='bg-verde_mid'
+                color_bg='bg-verde_mid dark:bg-verde-confirmacion/20!'
                 />
             <livewire:componentes.card 
                 titulo='Faltan' 
                 descripcion='{{ $this->devoluciones_atrasadas }} devoluciones' 
                 icono='triangle-alert' 
-                color_bg='bg-amarillo_logo'
+                color_bg='bg-amarillo_logo dark:bg-[#bb4d00]/50! dark:text-[#fff1bf]!'
                 />
         </aside>
 

@@ -70,12 +70,14 @@
                                 <flux:button 
                                     variant="outline" 
                                     icon:trailing="user-pen" 
-                                    class="bg-[#fff1bf]! text-[#bb4d00]! 
-                                            font-bold text-sm! border-none!
-                                            hover:bg-[#FAA543]! 
-                                            hover:text-white!
-                                            transition all delay-100 duration-200 ease-out  
-                                            hover:-translate-y-1.5 active:scale-92 cursor-pointer"
+                                    class="
+                                        font-bold text-sm! border-none!
+                                        bg-[#fff1bf]! text-[#bb4d00]! 
+                                        hover:bg-[#FAA543]! hover:text-white!
+                                        dark:bg-[#bb4d00]/50! dark:text-[#fff1bf]!
+                                        dark:hover:bg-[#bb4d00]/50! dark:hover:text-[#fff1bf
+                                        transition all delay-100 duration-200 ease-out  
+                                        hover:-translate-y-1.5 active:scale-92 cursor-pointer"
                                     >
                                     Cambiar rol
                                 </flux:button>
@@ -85,12 +87,15 @@
                                 <flux:button 
                                     variant="outline" 
                                     icon:trailing="refresh-ccw"    
-                                    class="bg-[#ede6ff]! text-[#7008e7]! 
-                                            font-bold text-sm! border-none!
-                                            hover:bg-[#7008e7]! 
-                                            hover:text-white!
-                                            transition all delay-100 duration-200 ease-out  
-                                            hover:-translate-y-1.5 active:scale-92 cursor-pointer"
+                                    class="
+                                        font-bold text-sm! border-none!
+                                        bg-[#ede6ff]! text-[#7008e7]! 
+                                        hover:bg-[#7008e7]! hover:text-white!
+                                        dark:bg-[#7008e7]/40! dark:text-[#ede6ff]!
+                                        dark:hover:bg-[#7008e7]/50! dark:hover:text-[#ede6ff
+
+                                        transition all delay-100 duration-200 ease-out  
+                                        hover:-translate-y-1.5 active:scale-92 cursor-pointer"
                                     >
                                     Restablecer contraseña
                                 </flux:button>

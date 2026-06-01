@@ -35,6 +35,7 @@ new class extends Component
             ->where('fecha_devolucion', '>=', now())
             ->pluck('id');
     }
+
     #[Computed]
     public function equipos_prestados()
     {
@@ -43,8 +44,8 @@ new class extends Component
             ->pluck('id')->unique();
 
         return Solicitud_Equipo::whereIn('id_solicitud', $prestados);
-            // ->pluck('id_unidad_equipo')
-            // ->unique();
+        // ->pluck('id_unidad_equipo')
+        // ->unique();
     }
 
     #[Computed]

@@ -41,18 +41,18 @@
                         <flux:table.cell class="text-balance!">{{ $prestamo->trabajador->name }}</flux:table.cell>
                     @endrole
                     @php
-                        $color = 'bg-rojo-si!';
-                        $textClass = 'text-rojo-negacion!';
-                        $hoverClass = 'hover:bg-rojo-negacion! hover:text-white!';
+                        $color = 'bg-rojo-si! dark:bg-red-400/50!';
+                        $textClass = 'text-rojo-negacion! dark:text-red-200!';
+                        $hoverClass = 'hover:bg-rojo-negacion! hover:text-white! dark:hover:bg-red-400/50! dark:hover:bg-red-400/50!';
 
                         if ($dias !== null && $dias <= 5) {
-                            $color = 'bg-[#fff1bf]!';
-                            $textClass = 'text-[#bb4d00]!';
+                            $color = 'bg-[#fff1bf]! dark:bg-[#bb4d00]/50!';
+                            $textClass = 'text-[#bb4d00]! dark:text-[#fff1bf]!';
                             $hoverClass = 'hover:bg-[#FAA543]! hover:text-white!';
                         } 
                         elseif ($dias !== null && $dias <= 10) {
-                            $color = 'bg-[#FFE7CD]!';
-                            $textClass = 'text-[#CA3500]!';
+                            $color = 'bg-[#FFE7CD]! dark:bg-[#CA3500]/50!';
+                            $textClass = 'text-[#CA3500]! dark:text-[#FFE7CD]!';
                             $hoverClass = 'hover:bg-[#FF890A]! hover:text-white!';
                         }
                     @endphp

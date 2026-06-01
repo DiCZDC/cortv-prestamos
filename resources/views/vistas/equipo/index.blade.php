@@ -19,8 +19,9 @@
                                 <flux:button 
                                     icon="grid-2x2-plus" 
                                     class=" bg-rojo-si! text-rojo-negacion! font-bold text-sm! border-none!
-                                    hover:bg-rojo-negacion! 
-                                    hover:text-hueso! 
+                                    dark:bg-red-400/20! dark:text-red-200!
+                                    dark:hover:bg-red-400/50! dark:hover:bg-red-400/50!
+                                    hover:bg-rojo-negacion! hover:text-hueso! 
                                     transition-all duration-200 ease-out delay-150
                                     hover:-translate-y-1.5 active:scale-95 cursor-pointer">
                                     Añadir un nuevo equipo

@@ -66,7 +66,7 @@
 
                 <div class="h-8 w-8 mx-auto rounded-xl text-sm transition-colors flex items-center justify-center
                         {{ $esInicio || $esFin ? 'bg-azul_oscuro text-white font-bold' : '' }}
-                        {{ $enRango ? 'bg-azul_oscuro/8 text-black rounded-xl dark:text-hueso' : '' }}
+                        {{ $enRango ? 'bg-azul_oscuro/8 text-black rounded-xl dark:bg-azul_oscuro/30 dark:text-hueso' : '' }}
                         {{ $esHoy  ? 'border border-azul_oscuro text-azul_oscuro' : '' }}"> 
                     {{ $dia }}
                 </div>
