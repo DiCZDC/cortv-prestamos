@@ -73,20 +73,42 @@
         </header>
         
         
-        <main class="flex flex-col items-center justify-center w-full lg:grow ">
-           <section class="w-full flex">
-                <div class="w-1/2">
-                    <h1 class="text-3xl text-bold font-jakarta ">
-                        Gestiona, crea, solicita y administra tus trámites de manera fácil y rápida con CORTV.
+        <main class="flex flex-col items-center  w-full lg:grow py-23 px-32">
+           <section class="w-full flex gap-20">
+                <div class="w-1/2 flex flex-col gap-3">
+                    <h1 class="text-5xl leading-16 text-black font-medium font-jakarta ">
+                        Gestiona, crea, solicita y administra tus trámites de manera fácil y rápida.
                     </h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mt-4">
+                        Descubre cómo podemos ayudarte a gestionar tus trámites de forma eficiente y sencilla.
+                        <br/>
+                        Dile adios al registro manual y a los procesos complicados. 
+                        <br/>
+                        Simplifica tu vida y ahorra tiempo con nuestra plataforma intuitiva y eficiente.
+                        <br/>
+                        Todo a traves de una interfaz amigable y accesible desde cualquier dispositivo.
+                        <br/>
+                        <br>
+                        Moderniza tu experiencia de gestión de trámites en la 
+                        <b>
+                            <i>
+                                Corporación Oaxaqueña de Radio y Televisión
+                            </i>
+                        </b>
+                        . ¡Registrate en
+                        <b>
+                        CORTV Prestamos
+                        </b>
+                        y descubre lo fácil que puede ser gestionar tus trámites!
+                    </p>
                 </div>
                 
                 <div class="w-1/2">
-                    
+                    <img src="{{ asset('img/mockup.png') }}" alt="Imagen de bienvenida" class="w-full h-auto">
                 </div> 
 
            </section>
-        </main>    
+        </main>   
         
         @livewireScripts
         @fluxScripts
