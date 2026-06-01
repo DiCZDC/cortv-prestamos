@@ -76,7 +76,7 @@
         <main class="flex flex-col items-center justify-center w-full lg:grow ">
            <section class="w-full flex">
                 <div class="w-1/2">
-                    <h1 class="text-3xl text-bold ">
+                    <h1 class="text-3xl text-bold font-jakarta ">
                         Gestiona, crea, solicita y administra tus trámites de manera fácil y rápida con CORTV.
                     </h1>
                 </div>
