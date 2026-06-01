@@ -79,7 +79,7 @@
                     <h1 class="text-5xl leading-16 text-zinc-800 font-medium font-jakarta dark:text-white">
                         Gestiona, crea, solicita y administra tus trámites de manera fácil y rápida.    
                     </h1>
-                    <p class="text-lg text-gray-500 dark:text-zinc-300 mt-4">
+                    <p class="text-lg text-gray-500 dark:text-zinc-100 mt-4">
                         Descubre cómo podemos ayudarte a gestionar tus trámites de forma eficiente y sencilla.
                         <br/>
                         Dile adios al registro manual y a los procesos complicados. 
