@@ -10,12 +10,6 @@ use App\Http\Controllers\RecepcionController;
 use App\Jobs\Recordatorios;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/test-job', function () {
-    new Recordatorios()->handle();
-
-    return response('fin!');
-});
-
 Route::view('/', 'welcome')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
