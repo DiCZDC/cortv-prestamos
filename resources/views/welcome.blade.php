@@ -143,6 +143,77 @@
                 </div>
            </section>
         </main>   
+        <footer class="bg-gray-100 py-10 w-full">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-wrap items-start gap-10">
+
+                    {{-- Logo + Contacto + Redes --}}
+                    <div class="flex items-start gap-6">
+                        <img class="w-28" src="https://www.oaxaca.gob.mx/cortv/wp-content/themes/temadeps2023/assets/images/imagotipo-footer.svg">
+                        <div class="flex flex-col gap-3">
+                            <ul class="flex flex-col gap-2">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-location-dot text-[#8B2427] mt-1 text-sm"></i>
+                                    <span class="text-sm text-gray-600">Manuel Gómez Morín 116, Santa Cruz, San Jacinto Amilpas C.P. 68285</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-phone-flip text-[#8B2427] text-sm"></i>
+                                    <span class="text-sm font-semibold text-gray-700">Tel. 951 501 6230</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-globe text-[#8B2427] text-sm"></i>
+                                    <span class="text-sm font-semibold text-gray-700">www.oaxaca.gob.mx/cortv</span>
+                                </li>
+                            </ul>
+                            <div>
+                                <p class="text-xs font-bold text-gray-700 uppercase mb-2">Síguenos en:</p>
+                                <ul class="flex gap-2">
+                                    <li>
+                                        <a href="https://www.facebook.com/cortv" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-[#8B2427] rounded-full flex items-center justify-center text-white text-xs hover:opacity-80 transition-opacity">
+                                            <x-si-facebook class="w-4 h-4"/>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://twitter.com/cortv" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-[#8B2427] rounded-full flex items-center justify-center text-white text-xs hover:opacity-80 transition-opacity">
+                                            <x-si-x class="w-4 h-4"/>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.instagram.com/cortv_oax/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-[#8B2427] rounded-full flex items-center justify-center text-white text-xs hover:opacity-80 transition-opacity">
+                                            <x-si-instagram class="w-4 h-4"/>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Enlaces --}}
+                    <div class="flex-1 min-w-[220px]">
+                        <h4 class="text-sm font-bold text-gray-800 uppercase mb-3 leading-tight">Corporación Oaxaqueña de Radio y Televisión</h4>
+                        <div class="flex flex-col">
+                            <a href="https://www.oaxaca.gob.mx/cortv/mapa-del-sitio/" class="flex items-center justify-between border-b border-gray-300 py-2 text-sm text-gray-600 hover:text-gray-900">
+                                Mapa del Sitio Web <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
+                            </a>
+                            <a href="https://www.oaxaca.gob.mx/cortv/avisos-de-privacidad/" class="flex items-center justify-between border-b border-gray-300 py-2 text-sm text-gray-600 hover:text-gray-900">
+                                Política de Privacidad <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- 911 Emergencias --}}
+                    <div class="flex items-center gap-4">
+                        <div class="flex gap-1">
+                            <span class="w-10 h-10 bg-[#8B2427] rounded-sm flex items-center justify-center text-white font-bold text-xl">9</span>
+                            <span class="w-10 h-10 bg-[#8B2427] rounded-sm flex items-center justify-center text-white font-bold text-xl">1</span>
+                            <span class="w-10 h-10 bg-[#8B2427] rounded-sm flex items-center justify-center text-white font-bold text-xl">1</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-gray-700 uppercase leading-tight">Número Único <br> de Emergencias</h4>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
         
         @livewireScripts
         @fluxScripts
