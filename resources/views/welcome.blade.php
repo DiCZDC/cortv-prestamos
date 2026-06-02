@@ -77,7 +77,7 @@
            <section class="w-full flex gap-20">
                 <div class="w-1/2 flex flex-col gap-3">
                     <h1 class="text-5xl leading-16 text-zinc-800 font-medium font-jakarta dark:text-white">
-                        Gestiona, crea, solicita y administra tus trámites de manera fácil y rápida.    
+                        Gestiona, crea, solicita y administra tus trámites de prestamo de manera fácil y rápida.    
                     </h1>
                     <p class="text-lg text-gray-500 dark:text-zinc-100 mt-4">
                         Descubre cómo podemos ayudarte a gestionar tus trámites de forma eficiente y sencilla.
@@ -103,10 +103,44 @@
                     </p>
                 </div>
                 
-                <div class="w-1/2">
+                <div class="w-1/2 self-center">
                     <img src="{{ asset('img/mockup.png') }}" alt="Imagen de bienvenida" class="w-full h-auto">
                 </div> 
 
+           </section>
+
+           <section class="w-full mt-25 flex flex-col items-center gap-10">
+                <div class="flex flex-col items-center justify-center font-jakarta gap-4 w-1/2 ">
+                    
+                    <h3 class="text-3xl font-semibold ">¿Por qué elegir CORTV Prestamos?</h3>
+                    
+                    <p class="text-lg leading-8 text-gray-500 dark:text-zinc-100 text-center">
+                        En CORTV Prestamos, nos enorgullece ofrecer una plataforma de gestión de trámites de préstamo que se destaca 
+                        por su eficiencia, facilidad de uso y seguridad. 
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-3 gap-10 px-15">
+                    
+                    <x-card-welcome icono="bolt" titulo="Rápido y Eficiente" 
+                    descripcion="Procesa tus trámites en cuestión de minutos, sin complicaciones." />
+                    
+                    <x-card-welcome icono="calendars" titulo="Aparta tus equipos" 
+                    descripcion="Reserva tus equipos en línea y evita las demoras. " />
+                    
+                    <x-card-welcome icono="gauge" titulo="Estadísticas dinamicas" 
+                    descripcion="Consulta en tiempo real tus estadísticas de préstamos." />
+                    
+                    <x-card-welcome icono="tablet-smartphone" titulo="Acceso desde cualquier dispositivo" 
+                    descripcion="Consulta y gestiona tus préstamos desde cualquier dispositivo con conexión a internet." />
+                    
+                    <x-card-welcome icono="shelving-unit" titulo="Control de equipos" 
+                    descripcion="Administra tu inventario de equipos de forma eficiente, conociendo en todo momento su estado." />
+                    
+                    <x-card-welcome icono="heart-handshake" titulo="Integración con CORTV" 
+                    descripcion="Realizado según las necesidades de la Corporación Oaxaqueña de Radio y Televisión." />
+
+                </div>
            </section>
         </main>   
         
