@@ -18,6 +18,6 @@
     </div>
 
     <div>
-        <p class="text-gray-500 dark:text-zinc-100">{{ ($descripcion) }}</p>
+        <p class="text-gray-500 dark:text-zinc-100 md:text-base text-xs">{{ ($descripcion) }}</p>
     </div>
 </div>

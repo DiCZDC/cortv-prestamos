@@ -73,10 +73,10 @@
         </header>
         
         
-        <main class="flex flex-col items-center w-full lg:grow py-23 px-32  dark:bg-zinc-950">
-           <section class="w-full flex gap-20">
-                <div class="w-1/2 flex flex-col gap-3">
-                    <h1 class="text-5xl leading-16 text-zinc-800 font-medium font-jakarta dark:text-white">
+        <main class="flex flex-col items-center w-full lg:grow py-23 sm:px-32 px-12  dark:bg-zinc-950">
+           <section class="w-full flex flex-col lg:flex-row gap-20">
+                <div class="lg:w-1/2 w-full flex flex-col gap-3">
+                    <h1 class="text-3xl lg:text-5xl lg:leading-16 leading-12 text-zinc-800 font-medium font-jakarta dark:text-white">
                         Gestiona, crea, solicita y administra tus trámites de prestamo de manera fácil y rápida.    
                     </h1>
                     <p class="text-lg text-gray-500 dark:text-zinc-100 mt-4">
@@ -103,14 +103,14 @@
                     </p>
                 </div>
                 
-                <div class="w-1/2 self-center">
+                <div class="lg:w-1/2 w-full self-center">
                     <img src="{{ asset('img/mockup.png') }}" alt="Imagen de bienvenida" class="w-full h-auto">
                 </div> 
 
            </section>
 
            <section class="w-full mt-25 flex flex-col items-center gap-10">
-                <div class="flex flex-col items-center justify-center font-jakarta gap-4 w-1/2 ">
+                <div class="flex flex-col items-center justify-center font-jakarta gap-4 lg:w-1/2 w-full ">
                     
                     <h3 class="text-3xl font-semibold ">¿Por qué elegir CORTV Prestamos?</h3>
                     
@@ -120,7 +120,7 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-3 gap-10 px-15">
+                <div class="grid  lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 px-15">
                     
                     <x-card-welcome icono="bolt" titulo="Rápido y Eficiente" 
                     descripcion="Procesa tus trámites en cuestión de minutos, sin complicaciones." />
