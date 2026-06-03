@@ -21,6 +21,7 @@
 # !/vendor/livewire/flux/stubs/resources/views/flux/sidebar/
 # /vendor/livewire/flux/stubs/resources/views/flux/sidebar/*
 # !/vendor/livewire/flux/stubs/resources/views/flux/sidebar/item.blade.php
+AUDITORIA_SEGURIDAD.md
 .env
 .env.backup
 .env.production
