@@ -24,10 +24,10 @@
 
          @fluxAppearance
     </head>
-    <body class="bg-[#FDFDFC] dark:bg-zinc-800 text-[#1b1b18] flex items-center lg:justify-center min-h-screen flex-col">
+    <body class="bg-hueso dark:bg-zinc-900 text-[#1b1b18] flex items-center lg:justify-center min-h-screen flex-col">
         <header class="w-full text-sm not-has-[nav]:hidden">
             @if (Route::has('login'))
-                <nav class="flex items-center justify-around gap-4 text-base w-full p-3 shadow-md bg-[#FDFDFC] dark:bg-zinc-900">
+                <nav class="flex items-center justify-around gap-4 text-base w-full p-3 shadow-md bg-hueso dark:bg-zinc-800">
                     
                     <div>
                         <img src="{{ asset('img/logo_cortv.png') }}" alt="Logo de CORTV" class="w-70 h-auto"> 
@@ -73,7 +73,7 @@
         </header>
         
         
-        <main class="flex flex-col items-center w-full lg:grow py-23 sm:px-32 px-12  dark:bg-zinc-950">
+        <main class="flex flex-col items-center w-full lg:grow py-23 sm:px-32 px-12  dark:bg-zinc-900">
            <section class="w-full flex flex-col lg:flex-row gap-20">
                 <div class="lg:w-1/2 w-full flex flex-col gap-3">
                     <h1 class="text-3xl lg:text-5xl lg:leading-16 leading-12 text-zinc-800 font-medium font-jakarta dark:text-white">
@@ -112,7 +112,7 @@
            <section class="w-full mt-25 flex flex-col items-center gap-10">
                 <div class="flex flex-col items-center justify-center font-jakarta gap-4 lg:w-1/2 w-full ">
                     
-                    <h3 class="text-3xl font-semibold ">¿Por qué elegir CORTV Prestamos?</h3>
+                    <h3 class="text-3xl font-semibold  dark:text-white">¿Por qué elegir CORTV Prestamos?</h3>
                     
                     <p class="text-lg leading-8 text-gray-500 dark:text-zinc-100 text-center">
                         En CORTV Prestamos, nos enorgullece ofrecer una plataforma de gestión de trámites de préstamo que se destaca 
@@ -153,15 +153,15 @@
                         <div class="flex flex-col gap-3">
                             <ul class="flex flex-col gap-2">
                                 <li class="flex items-start gap-3">
-                                    <i class="fa-solid fa-location-dot text-[#8B2427] mt-1 text-sm"></i>
+                                    <i class="fa-solid fa-location-dot text-rojo_oscuro mt-1 text-sm"></i>
                                     <span class="text-sm text-gray-600">Manuel Gómez Morín 116, Santa Cruz, San Jacinto Amilpas C.P. 68285</span>
                                 </li>
                                 <li class="flex items-center gap-3">
-                                    <i class="fa-solid fa-phone-flip text-[#8B2427] text-sm"></i>
+                                    <i class="fa-solid fa-phone-flip text-rojo_oscuro text-sm"></i>
                                     <span class="text-sm font-semibold text-gray-700">Tel. 951 501 6230</span>
                                 </li>
                                 <li class="flex items-center gap-3">
-                                    <i class="fa-solid fa-globe text-[#8B2427] text-sm"></i>
+                                    <i class="fa-solid fa-globe text-rojo_oscuro text-sm"></i>
                                     <span class="text-sm font-semibold text-gray-700">www.oaxaca.gob.mx/cortv</span>
                                 </li>
                             </ul>
@@ -169,17 +169,17 @@
                                 <p class="text-xs font-bold text-gray-700 uppercase mb-2">Síguenos en:</p>
                                 <ul class="flex gap-2">
                                     <li>
-                                        <a href="https://www.facebook.com/cortv" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-[#8B2427] rounded-full flex items-center justify-center text-white text-xs hover:opacity-80 transition-opacity">
+                                        <a href="https://www.facebook.com/cortv" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-rojo_oscuro rounded-full flex items-center justify-center text-white text-xs hover:opacity-80 transition-opacity">
                                             <x-si-facebook class="w-4 h-4"/>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://twitter.com/cortv" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-[#8B2427] rounded-full flex items-center justify-center text-white text-xs hover:opacity-80 transition-opacity">
+                                        <a href="https://twitter.com/cortv" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-rojo_oscuro rounded-full flex items-center justify-center text-white text-xs hover:opacity-80 transition-opacity">
                                             <x-si-x class="w-4 h-4"/>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://www.instagram.com/cortv_oax/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-[#8B2427] rounded-full flex items-center justify-center text-white text-xs hover:opacity-80 transition-opacity">
+                                        <a href="https://www.instagram.com/cortv_oax/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-rojo_oscuro rounded-full flex items-center justify-center text-white text-xs hover:opacity-80 transition-opacity">
                                             <x-si-instagram class="w-4 h-4"/>
                                         </a>
                                     </li>
@@ -204,9 +204,9 @@
                     {{-- 911 Emergencias --}}
                     <div class="flex items-center gap-4">
                         <div class="flex gap-1">
-                            <span class="w-10 h-10 bg-[#8B2427] rounded-sm flex items-center justify-center text-white font-bold text-xl">9</span>
-                            <span class="w-10 h-10 bg-[#8B2427] rounded-sm flex items-center justify-center text-white font-bold text-xl">1</span>
-                            <span class="w-10 h-10 bg-[#8B2427] rounded-sm flex items-center justify-center text-white font-bold text-xl">1</span>
+                            <span class="w-10 h-10 bg-rojo_oscuro rounded-sm flex items-center justify-center text-white font-bold text-xl">9</span>
+                            <span class="w-10 h-10 bg-rojo_oscuro rounded-sm flex items-center justify-center text-white font-bold text-xl">1</span>
+                            <span class="w-10 h-10 bg-rojo_oscuro rounded-sm flex items-center justify-center text-white font-bold text-xl">1</span>
                         </div>
                         <h4 class="text-sm font-bold text-gray-700 uppercase leading-tight">Número Único <br> de Emergencias</h4>
                     </div>

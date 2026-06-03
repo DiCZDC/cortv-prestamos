@@ -8,7 +8,11 @@ export default defineConfig({
     plugins: [
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js', 'resources/js/carousel.js'],
-            refresh: true,
+            refresh: [
+                'resources/views/**',
+                'app/Livewire/**',
+                'app/Http/**',
+            ]
         }),
         tailwindcss(),
     ],

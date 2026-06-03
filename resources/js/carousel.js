@@ -1,11 +1,13 @@
 import Swiper from 'swiper/bundle';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Mousewheel } from 'swiper/modules';
 import 'swiper/css/bundle';
 
-// Initialize Swiper
 const swiper = new Swiper('.swiper', {
-  modules: [Navigation, Pagination],
+  modules: [Navigation, Pagination, Mousewheel],
   loop: true,
+  mousewheel: {
+    forceToAxis: true,
+  },
   pagination: {
     el: '.swiper-pagination',
     clickable: true,

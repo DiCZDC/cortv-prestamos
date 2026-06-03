@@ -4,13 +4,15 @@
                 lg:flex-row lg:justify-between">  
         
         {{-- herocard de prestamo en curso --}}
-        <article class="w-full flex justify-center items-center lg:w-full ">   
-            <livewire:personal.show.carousel :id="$id"/>
+        <article class="w-full flex justify-center items-center self-center lg:w-1/2 ">   
+            <div class="w-full lg:w-68/80">
+                <livewire:personal.show.carousel :id="$id"/>
+            </div>
         </article>
 
 
 
-        <aside class="w-full flex justify-evenly gap-3">
+        <aside class="w-full flex justify-evenly gap-3 lg:w-1/2">
             <livewire:componentes.card 
                 titulo='{{ $this->porcentaje_cumplimiento }}' 
                 descripcion='Tasa de cumplimiento'
