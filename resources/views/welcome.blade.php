@@ -143,30 +143,40 @@
                 </div>
            </section>
         </main>   
-        <footer class="bg-gray-100 py-10 w-full">
+        <footer class="bg-gray-100 py-10 w-full
+                        dark:bg-zinc-800 dark:text-gray-300
+        ">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="flex flex-wrap items-start gap-10">
 
                     {{-- Logo + Contacto + Redes --}}
                     <div class="flex items-start gap-6">
-                        <img class="w-28" src="https://www.oaxaca.gob.mx/cortv/wp-content/themes/temadeps2023/assets/images/imagotipo-footer.svg">
+                        <img class="w-28 text-gray-200"  src="https://www.oaxaca.gob.mx/cortv/wp-content/themes/temadeps2023/assets/images/imagotipo-footer.svg">
                         <div class="flex flex-col gap-3">
                             <ul class="flex flex-col gap-2">
                                 <li class="flex items-start gap-3">
                                     <i class="fa-solid fa-location-dot text-rojo_oscuro mt-1 text-sm"></i>
-                                    <span class="text-sm text-gray-600">Manuel Gómez Morín 116, Santa Cruz, San Jacinto Amilpas C.P. 68285</span>
+                                    <span class="text-sm text-gray-600 
+                                                dark:text-gray-400 
+                                    ">Manuel Gómez Morín 116, Santa Cruz, San Jacinto Amilpas C.P. 68285</span>
                                 </li>
                                 <li class="flex items-center gap-3">
                                     <i class="fa-solid fa-phone-flip text-rojo_oscuro text-sm"></i>
-                                    <span class="text-sm font-semibold text-gray-700">Tel. 951 501 6230</span>
+                                    <span class="text-sm font-semibold text-gray-700
+                                        dark:text-gray-300
+                                    ">Tel. 951 501 6230</span>
                                 </li>
                                 <li class="flex items-center gap-3">
                                     <i class="fa-solid fa-globe text-rojo_oscuro text-sm"></i>
-                                    <span class="text-sm font-semibold text-gray-700">www.oaxaca.gob.mx/cortv</span>
+                                    <span class="text-sm font-semibold text-gray-700
+                                        dark:text-gray-300
+                                    ">www.oaxaca.gob.mx/cortv</span>
                                 </li>
                             </ul>
                             <div>
-                                <p class="text-xs font-bold text-gray-700 uppercase mb-2">Síguenos en:</p>
+                                <p class="text-xs font-bold text-gray-700 uppercase mb-2
+                                dark:text-gray-300
+                                ">Síguenos en:</p>
                                 <ul class="flex gap-2">
                                     <li>
                                         <a href="https://www.facebook.com/cortv" target="_blank" rel="noopener noreferrer" class="w-8 h-8 bg-rojo_oscuro rounded-full flex items-center justify-center text-white text-xs hover:opacity-80 transition-opacity">
@@ -190,13 +200,25 @@
 
                     {{-- Enlaces --}}
                     <div class="flex-1 min-w-[220px]">
-                        <h4 class="text-sm font-bold text-gray-800 uppercase mb-3 leading-tight">Corporación Oaxaqueña de Radio y Televisión</h4>
+                        <h4 class="text-sm font-bold text-gray-800 uppercase mb-3 leading-tight
+                            dark:text-gray-300
+                        ">Corporación Oaxaqueña de Radio y Televisión</h4>
                         <div class="flex flex-col">
-                            <a href="https://www.oaxaca.gob.mx/cortv/mapa-del-sitio/" class="flex items-center justify-between border-b border-gray-300 py-2 text-sm text-gray-600 hover:text-gray-900">
-                                Mapa del Sitio Web <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
+                            <a href="https://www.oaxaca.gob.mx/cortv/mapa-del-sitio/" class="flex items-center justify-between border-b border-gray-300 py-2 text-sm text-gray-600 hover:text-gray-900
+                            dark:text-gray-400
+                            dark:hover:text-gray-200
+                            ">
+                                Mapa del Sitio Web <i class="fa-solid fa-chevron-right text-xs text-gray-400
+                                dark:text-gray-200
+                                "></i>
                             </a>
-                            <a href="https://www.oaxaca.gob.mx/cortv/avisos-de-privacidad/" class="flex items-center justify-between border-b border-gray-300 py-2 text-sm text-gray-600 hover:text-gray-900">
-                                Política de Privacidad <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
+                            <a href="https://www.oaxaca.gob.mx/cortv/avisos-de-privacidad/" class="flex items-center justify-between border-b border-gray-300 py-2 text-sm text-gray-600 hover:text-gray-900
+                            dark:text-gray-400
+                            dark:hover:text-gray-200
+                            ">
+                                Política de Privacidad <i class="fa-solid fa-chevron-right text-xs text-gray-400
+                                dark:text-gray-200
+                                "></i>
                             </a>
                         </div>
                     </div>
@@ -208,7 +230,9 @@
                             <span class="w-10 h-10 bg-rojo_oscuro rounded-sm flex items-center justify-center text-white font-bold text-xl">1</span>
                             <span class="w-10 h-10 bg-rojo_oscuro rounded-sm flex items-center justify-center text-white font-bold text-xl">1</span>
                         </div>
-                        <h4 class="text-sm font-bold text-gray-700 uppercase leading-tight">Número Único <br> de Emergencias</h4>
+                        <h4 class="text-sm font-bold text-gray-700 uppercase leading-tight
+                        dark:text-gray-300
+                        ">Número Único <br> de Emergencias</h4>
                     </div>
 
                 </div>
