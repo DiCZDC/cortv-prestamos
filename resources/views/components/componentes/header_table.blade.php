@@ -13,7 +13,7 @@
         wire:click="sort('{{ $sortable }}')"
         {{ $attributes }}
     >
-        <span class="inline-flex items-center gap-2 whitespace-nowrap text-gris_claro text-base font-semibold">
+        <span class="inline-flex items-center gap-2 whitespace-nowrap text-gris_claro text-base font-semibold dark:text-gris_claro">
             @if($icon)
                 <flux:icon :name="$icon" class="text-gris_claro!" />
             @endif
