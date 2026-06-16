@@ -47,7 +47,8 @@
                                 class="inline-flex gap-2 px-6 py-2 dark:text-[#EDEDEC] text-rojo-texto border-2 border-solid 
                                 border-rojo-texto rounded-lg leading-normal font-medium
                                 hover:bg-rojo-texto hover:text-hueso hover:border transition duration-300 ease-in-out
-                                hover:translate-y-1.5 hover:shadow-sm"
+                                hover:translate-y-1.5 hover:shadow-sm
+                                "
                             >   
                                 Inicia sesión
                                 <flux:icon.id-card-lanyard />
@@ -147,13 +148,13 @@
                         dark:bg-zinc-800 dark:text-gray-300
         ">
             <div class="max-w-7xl mx-auto px-6">
-                <div class="flex flex-wrap items-start gap-10">
+                <div class="flex flex-wrap items-start gap-10 ">
 
                     {{-- Logo + Contacto + Redes --}}
                     <div class="flex items-start gap-6">
                         <img class="w-28 text-gray-200"  src="https://www.oaxaca.gob.mx/cortv/wp-content/themes/temadeps2023/assets/images/imagotipo-footer.svg">
                         <div class="flex flex-col gap-3">
-                            <ul class="flex flex-col gap-2">
+                            <ul class="flex flex-col gap-2 ">
                                 <li class="flex items-start gap-3">
                                     <i class="fa-solid fa-location-dot text-rojo_oscuro mt-1 text-sm"></i>
                                     <span class="text-sm text-gray-600 
@@ -173,7 +174,7 @@
                                     ">www.oaxaca.gob.mx/cortv</span>
                                 </li>
                             </ul>
-                            <div>
+                            <div class="ml-3">
                                 <p class="text-xs font-bold text-gray-700 uppercase mb-2
                                 dark:text-gray-300
                                 ">Síguenos en:</p>
